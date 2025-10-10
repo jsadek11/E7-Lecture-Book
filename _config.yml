@@ -1,9 +1,9 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: My sample book
-author: The Jupyter Book Community
-logo: logo.png
+title: E7 Lecture Books
+author: Mohamad M. Hallal
+logo: cover.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
