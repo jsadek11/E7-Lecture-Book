@@ -9,3 +9,6 @@ chapters:
 - file: lec/00_introduction.ipynb
 - file: lec/01_basics.ipynb
 - file: lec/02_data_struct.ipynb
+- file: lec/03_arrays.ipynb
+- file: lec/04_functions.ipynb
+- file: lec/05_conditionals.ipynb
