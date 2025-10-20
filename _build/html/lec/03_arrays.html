@@ -1,0 +1,1385 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 4: NumPy Arrays &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/03_arrays';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 5: Functions" href="04_functions.html" />
+    <link rel="prev" title="Chapter 3: Data Structures" href="02_data_struct.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="E7 Lecture Books - Home"/>
+    <script>document.write(`<img src="../_static/cover.png" class="logo__image only-dark" alt="E7 Lecture Books - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to E7: Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/03_arrays.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/03_arrays.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/03_arrays.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 4: NumPy Arrays</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-numpy-arrays">4.1. Introduction to NumPy Arrays <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-array-or-vector">4.1.1. 1-D Array (or Vector)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-array-or-matrix">4.1.2. 2-D Array (or Matrix)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#array-attributes">4.1.3. Array Attributes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-ways-for-creating-arrays">4.1.4. Other Ways for Creating Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#np-arange">4.1.4.1. <code class="docutils literal notranslate"><span class="pre">np.arange()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#np-linspace">4.1.4.2. <code class="docutils literal notranslate"><span class="pre">np.linspace()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-functions">4.1.4.3. Other Functions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membership-operators">4.1.5. Membership Operators</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-arrays">4.2. Indexing Arrays <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-element-indexing">4.2.1. Single Element Indexing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">4.2.2. Slicing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutating-an-array">4.2.3. Mutating an Array</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulating-arrays">4.3. Manipulating Arrays <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-and-removing-elements">4.3.1. Adding and Removing Elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenating-and-splitting-arrays">4.3.2. Concatenating and Splitting Arrays</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-methods">4.4. Array Methods <a id="s4"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-and-comparison-operations">4.5. Arithmetic and Comparison Operations <a id="s5"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operations">4.5.1. Arithmetic Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-operations">4.5.2. Comparison Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparisons-between-a-scalar-and-an-array">4.5.2.1. Comparisons Between a Scalar and an Array</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparisons-between-two-arrays">4.5.2.2. Comparisons Between Two Arrays</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">4.5.2.3. Logical Operators</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-elements-based-on-logical-expressions">4.5.2.4. Indexing Elements Based on Logical Expressions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-4-numpy-arrays">
+<h1>Chapter 4: NumPy Arrays<a class="headerlink" href="#chapter-4-numpy-arrays" title="Link to this heading">#</a></h1>
+<p>While Python’s built-in data structures like lists and tuples are versatile, they may not always provide the performance and efficiency required for complex numerical computations, especially when dealing with large datasets or multidimensional arrays. This is where NumPy comes into play. NumPy, short for “Numerical Python”, is one of the most used modules for scientific and numerical applications. NumPy is a large and extensive module, and this section is just a brief introduction. In addition to performance benefits, NumPy provides a wide range of mathematical functions for array manipulation, linear algebra, and more. These functions are optimized for efficiency and are essential for various scientific and engineering applications.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Create 1-D and 2-D arrays using different methods</p></li>
+<li><p>Access individual elements and slices of arrays using indexing and slicing techniques</p></li>
+<li><p>Modify elements and slices of arrays</p></li>
+<li><p>Perform arithmetic and comparison operations on arrays</p></li>
+<li><p>Use advanced indexing methods like boolean indexing to access and modify array elements</p></li>
+</ul>
+<section id="introduction-to-numpy-arrays">
+<h2>4.1. Introduction to NumPy Arrays <a id="s1"></a><a class="headerlink" href="#introduction-to-numpy-arrays" title="Link to this heading">#</a></h2>
+<p>To utilize NumPy, it must first be imported.  A conventional way to import it is to use <code class="docutils literal notranslate"><span class="pre">np</span></code> as a shortened name: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code></p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+While you could use any name, <code>np</code> is widely accepted by the community and it is a good practice to use it for consistency and readability.</p>
+</div></blockquote>
+<section id="d-array-or-vector">
+<h3>4.1.1. 1-D Array (or Vector)<a class="headerlink" href="#d-array-or-vector" title="Link to this heading">#</a></h3>
+<p>The main data structure in NumPy is the <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>, which stands for N-dimensional array. When working with NumPy, an <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> is simply referred to as an array. It contains data of the same type, such as integers or floating-point values.</p>
+<p>To define an array in Python, you can use the <code class="docutils literal notranslate"><span class="pre">np.array()</span></code> function. This function takes as input a list <code class="docutils literal notranslate"><span class="pre">[]</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">()</span></code> and converts it to a NumPy array. You can also provide an argument of type <code class="docutils literal notranslate"><span class="pre">range</span></code> to <code class="docutils literal notranslate"><span class="pre">np.array()</span></code>. So, the items are put inside square brackets <code class="docutils literal notranslate"><span class="pre">np.array([...])</span></code> or a second set of parentheses <code class="docutils literal notranslate"><span class="pre">np.array((...))</span></code>, and are separated by commas <code class="docutils literal notranslate"><span class="pre">,</span></code>.</p>
+<p><strong>Examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">array1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>   <span class="c1"># Using a list</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>   <span class="c1"># Using a tuple</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>    <span class="c1"># Using a range</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Create the following array in NumPy and then check its type using <code>type()</code>: <br> <br> <span class="math notranslate nohighlight">\(x = \begin{pmatrix}  -2 &amp; 4 &amp; 3 &amp; 12\\ \end{pmatrix}\)</span> <br></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="d-array-or-matrix">
+<h3>4.1.2. 2-D Array (or Matrix)<a class="headerlink" href="#d-array-or-matrix" title="Link to this heading">#</a></h3>
+<p>The above variable <code class="docutils literal notranslate"><span class="pre">x</span></code> is a 1-D array, also known as a vector. We can also define a 2-D array, also known as a matrix. A 2-D array is essentially a collection of 1-D arrays (rows), stacked one after another. To define a 2-D array, you use <code class="docutils literal notranslate"><span class="pre">np.array()</span></code> with a list of lists, where each row is a list: <code class="docutils literal notranslate"><span class="pre">np.array([[row1],</span> <span class="pre">[row2],</span> <span class="pre">...])</span></code> or a tuple of tuples, where each row is a tuple: <code class="docutils literal notranslate"><span class="pre">np.array(((row1),</span> <span class="pre">(row2),</span> <span class="pre">...))</span></code>. The items within each row are separated by commas <code class="docutils literal notranslate"><span class="pre">,</span></code>, and the lists or tuples that enclose each row are also separated by commas <code class="docutils literal notranslate"><span class="pre">,</span></code>.</p>
+<p><strong>Examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">array1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>   <span class="c1"># Using nested lists</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)))</span>   <span class="c1"># Using nested tuples</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Create the following array and then check its type using <code>type()</code>: <br> <br> <span class="math notranslate nohighlight">\(y = \begin{pmatrix} 1 &amp; 4 &amp; 3 \\ 9 &amp; 2 &amp; 7 \\ \end{pmatrix}\)</span> <br></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="array-attributes">
+<h3>4.1.3. Array Attributes<a class="headerlink" href="#array-attributes" title="Link to this heading">#</a></h3>
+<p>In NumPy, arrays have attributes that provide useful information about their shape, size, and dimensionality. These attributes help you understand the structure of the array and perform operations accordingly. Here are some of the common attributes:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.shape.html"><code class="docutils literal notranslate"><span class="pre">array_name.shape</span></code></a>: returns the shape of <code class="docutils literal notranslate"><span class="pre">array_name</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>returns a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> with <code class="docutils literal notranslate"><span class="pre">(n_rows,</span> <span class="pre">n_columns)</span></code>, where the first element is the number of rows and the second element is the number of columns in the array</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.size.html#numpy.ndarray.size"><code class="docutils literal notranslate"><span class="pre">array_name.size</span></code></a>: returns the total number of elements in <code class="docutils literal notranslate"><span class="pre">array_name</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>this is the number of rows times number of columns</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.ndim.html#numpy.ndarray.ndim"><code class="docutils literal notranslate"><span class="pre">array_name.ndim</span></code></a>: returns the number of dimensions of <code class="docutils literal notranslate"><span class="pre">array_name</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>this indicates whether the array is 1-D, 2-D. etc.</p>
+</div></blockquote>
+<p>These are just a few of the attributes available for NumPy arrays. For a complete list, you can refer to the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html">official documentation</a>.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/1vNr9OCNVuha4NLtoAi7udvnXe9mO-Lyhd9aBglaaz94/pub?w=1440&h=1080" style="width:50%">
+    <figcaption style="text-align:center"><strong> <br> NumPy array attributes</strong></figcaption>   
+</figure></center>
+<br>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Get the dimension, shape, and size of array <code>y</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Notice that we used <code>y.shape</code> instead of <code>y.shape()</code>. This is because <code>shape</code> is an <strong>attribute</strong>, which is a value associated with an object. For now you need to remember that when we call an attribute on an object, we do not use parentheses. You can always try both and see which works!</p>
+</div></blockquote>
+</section>
+<section id="other-ways-for-creating-arrays">
+<h3>4.1.4. Other Ways for Creating Arrays<a class="headerlink" href="#other-ways-for-creating-arrays" title="Link to this heading">#</a></h3>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">np.array()</span></code>, NumPy provides several functions for creating arrays with specific patterns or sequences. For instance, if we want to create the array <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">...,</span> <span class="pre">365]</span></code>, it would be very cumbersome to manually type each value from 1 through 365. Below, we introduce several functions for efficiently creating arrays that have a pattern.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p> </p></th>
+<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">np.arange()</span></code></p></th>
+<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">np.linspace()</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Generates</strong></p></td>
+<td class="text-left"><p>Evenly spaced values within a specified range</p></td>
+<td class="text-left"><p>Evenly spaced values within a specified range</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Arguments</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">start</span></code>: Start value (optional, default 0)</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">start</span></code>: Start value (required)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p> </p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">stop</span></code>: End value (required)</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">stop</span></code>: End value (required)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p> </p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">step</span></code>: Increment (optional, default 1)</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">num</span></code>: Number of values to generate (optional, default 50)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>End Value</strong></p></td>
+<td class="text-left"><p>Exclusive</p></td>
+<td class="text-left"><p>Inclusive</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="np-arange">
+<h4>4.1.4.1. <code class="docutils literal notranslate"><span class="pre">np.arange()</span></code><a class="headerlink" href="#np-arange" title="Link to this heading">#</a></h4>
+<p>For creating arrays with <strong>evenly spaced values</strong> within a specific range, where you know the increment between the values, it is useful to use the <code class="docutils literal notranslate"><span class="pre">np.arange()</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code>: a number specifying the start value of the array. This is an optional argument. If not specified, it defaults to 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stop</span></code>: a number specifying the end value of the array (exclusive). This is a required argument.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code>: a number specifying the increment in the values of the array (<code class="docutils literal notranslate"><span class="pre">step</span></code> <span class="math notranslate nohighlight">\(\neq 0\)</span>). This is an optional argument. If not specified, it defaults to 1. The <code class="docutils literal notranslate"><span class="pre">step</span></code> can be positive or negative and the value in index <code class="docutils literal notranslate"><span class="pre">i</span></code> will simply be <code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">+</span> <span class="pre">step*i</span></code></p></li>
+</ul>
+<p>The resulting array will include values from <code class="docutils literal notranslate"><span class="pre">start</span></code> up to, <strong>but not including</strong>, <code class="docutils literal notranslate"><span class="pre">stop</span></code>, with a spacing of <code class="docutils literal notranslate"><span class="pre">step</span></code> between each two values.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+This should sound familiar. We have seen the <code>range()</code> function before. However, <code>range()</code> is used for integer sequences only, while <code>np.arange()</code> can take non-integer values as well. For integer arguments, the functions are roughly equivalent.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Create an array with <span class="math notranslate nohighlight">\([0.5, 1.0, 1.5, 2.0, ..., 6.0, 6.5]\)</span>. <br> Create an array with <span class="math notranslate nohighlight">\([0, 1, 2, ..., 6]\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Run the code below and change the values for start, stop, and step to check how they affect the array.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>  <span class="c1"># import ipywidgets package for interactive widgets</span>
+
+<span class="c1"># create 3 sliders for start, stop, and step</span>
+<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">stop</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">step</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+
+<span class="c1"># define a function that takes the values from the sliders and returns the ndarray</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> &gt;&gt;&gt; np.arange(start=</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s1">, stop=</span><span class="si">{</span><span class="n">stop</span><span class="si">}</span><span class="s1">, step=</span><span class="si">{</span><span class="n">step</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">) </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="np-linspace">
+<h4>4.1.4.2. <code class="docutils literal notranslate"><span class="pre">np.linspace()</span></code><a class="headerlink" href="#np-linspace" title="Link to this heading">#</a></h4>
+<p>For creating arrays with <strong>evenly spaced values</strong> within a specific range, where you know the total number of values, it is useful to use the <code class="docutils literal notranslate"><span class="pre">np.linspace()</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code>: a number specifying the start value of the array. Here, this is a required argument.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stop</span></code>: a number specifying the end value of the array (inclusive). This is a required argument.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num</span></code>: an integer specifying the number of evenly spaced points to generate between <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">stop</span></code>, including <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">stop</span></code>. This is an optional argument. If not specified, it defaults to 50.</p></li>
+</ul>
+<p>The resulting array will include <code class="docutils literal notranslate"><span class="pre">num</span></code> values between <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">stop</span></code>, inclusive of both endpoints.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Create an array starting at 3, ending at 9, and containing 10 evenly spaced elements.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Run the code below and change the values for start, stop, and num to check how they affect the array.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>  <span class="c1"># import ipywidgets package for interactive widgets</span>
+
+<span class="c1"># create 3 sliders for start, stop, and step</span>
+<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">stop</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># define a function that takes the values from the sliders and returns the ndarray</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> &gt;&gt;&gt; np.linspace(start=</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s1">, stop=</span><span class="si">{</span><span class="n">stop</span><span class="si">}</span><span class="s1">, num=</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s1">) </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">num</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-functions">
+<h4>4.1.4.3. Other Functions<a class="headerlink" href="#other-functions" title="Link to this heading">#</a></h4>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">np.arange()</span></code> and <code class="docutils literal notranslate"><span class="pre">np.linspace()</span></code>, NumPy provides several other functions for creating predefined arrays, which can be highly useful in various numerical computations. Three commonly used functions are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">np.zeros(shape)</span></code>: Returns an array filled with zeros, with the specified shape.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.ones(shape)</span></code>: Returns an array filled with ones, with the specified shape.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.empty(shape)</span></code>: Returns an uninitialized array with the specified shape. The values in the array will be arbitrary and may vary.</p></li>
+</ul>
+<p>All of these functions take an input argument <code class="docutils literal notranslate"><span class="pre">shape</span></code>, which specifies the shape of the array. This should be of type <code class="docutils literal notranslate"><span class="pre">tuple</span></code> with <code class="docutils literal notranslate"><span class="pre">(n_rows,</span> <span class="pre">n_columns)</span></code>. If you only need a 1-D array, you can specify just one number instead of both the number of rows and number of columns.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+When calling these functions to create 2-D arrays, make sure to include two sets of parentheses, one for the function itself and one for the <code>shape</code> argument: <code>np.zeros((n_rows, n_columns))</code>.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Create a 3 by 5 array with all the elements as 0. <br> Create a 1-D empty array with 10 elements.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+The empty array is not really empty, it is filled with random numbers.</p>
+</div></blockquote>
+<p>There are other functions in NumPy for creating arrays. You can read about them in the <a class="reference external" href="https://numpy.org/doc/stable/reference/routines.array-creation.html">official documentation</a>.</p>
+</section>
+</section>
+<section id="membership-operators">
+<h3>4.1.5. Membership Operators<a class="headerlink" href="#membership-operators" title="Link to this heading">#</a></h3>
+<p>We can check whether a specific value is present in an array using the membership operators: <code class="docutils literal notranslate"><span class="pre">in</span></code> and <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">in</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="ow">in</span> <span class="n">array_name</span>
+<span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">array_name</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Check if 0 is in an empty array with 10 rows and 10 columns.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="indexing-arrays">
+<h2>4.2. Indexing Arrays <a id="s2"></a><a class="headerlink" href="#indexing-arrays" title="Link to this heading">#</a></h2>
+<p>Similar to built-in data structures (e.g., <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">tuple</span></code>), an <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> has indexes to indicate the location of each element.</p>
+<p>Consider for example the following array: <span class="math notranslate nohighlight">\(x = \begin{pmatrix}  -2 &amp; 4 &amp; 3 &amp; 12\\ \end{pmatrix}\)</span></p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSpHjTf3tUlTWKDpaCfoUcVC_O59_Q2LJfFW4tpHku465W1BLrUfHPyAJ0J2_0ZbQHXpzlpfmA0GJHB/pub?w=446&h=134
+" style="width:30%">
+    <figcaption style="text-align:center"><strong> <br> Indexing elements in a 1-D NumPy array</strong></figcaption>   
+</figure></center>
+<p>The concept of indexing in NumPy arrays is consistent with that of other data structures in Python, both for positive and negative indexing.</p>
+<section id="single-element-indexing">
+<h3>4.2.1. Single Element Indexing<a class="headerlink" href="#single-element-indexing" title="Link to this heading">#</a></h3>
+<p>In Python, we can access any value of a NumPy array using square brackets and the index of the desired element: <code class="docutils literal notranslate"><span class="pre">array_name[index]</span></code></p>
+<p>Let’s use <span class="math notranslate nohighlight">\(x = \begin{pmatrix}  -2 &amp; 4 &amp; 3 &amp; 12\\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Get the first and second elements of <code>x</code> and add them. Repeat this using negative indexing.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># using positive indexing</span>
+
+
+<span class="c1"># using negative indexing</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For 2-D arrays, indexing is slightly different, since we have rows and columns. To index a 2-D array, we need to indicate the index of the row and the column, separated by a comma, using: <code class="docutils literal notranslate"><span class="pre">array_name[row_index,</span> <span class="pre">column_index]</span></code>. Think of 2-D arrays like a table with rows and columns, as shown in the illustration below. If you only think about the row index or the column index, then it is similar to a 1-D array. Negative indexing also works with 2-D arrays, similar to 1-D arrays.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSJpIGPqprNzpn7yNRyUR0rKEgBWtzVLcnp6Xs9T-9wRup9RNO7-D-uOQe7NRrWTYKxZSZqLTjEEnq5/pub?w=928&h=323
+" style="width:70%">
+    <figcaption style="text-align:center"><strong>Indexing elements in a 2-D NumPy array</strong></figcaption>   
+</figure></center>
+<p>Let’s use <span class="math notranslate nohighlight">\(y = \begin{pmatrix} 1 &amp; 4 &amp; 3 \\ 9 &amp; 2 &amp; 7 \\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Using negative indexing, get the element at the last row and last column of <code>y</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="slicing">
+<h3>4.2.2. Slicing<a class="headerlink" href="#slicing" title="Link to this heading">#</a></h3>
+<p>We can also access a sequence of elements from a NumPy array using slicing, similar to other data structures.</p>
+<p>In general, the syntax for slicing in Python is <code class="docutils literal notranslate"><span class="pre">array_name[start:end:step]</span></code>, where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code>: an integer specifying the starting index (included). If <code class="docutils literal notranslate"><span class="pre">start</span></code> is not specified, slicing will start from index 0 (first position).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end</span></code>: an integer specifying the ending index (excluded). If <code class="docutils literal notranslate"><span class="pre">end</span></code> is not specified, slicing will end at the last index.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code>: an integer specifying the step between the indexes. If <code class="docutils literal notranslate"><span class="pre">step</span></code> is not specified, the result will be equivalent to using <code class="docutils literal notranslate"><span class="pre">step</span> <span class="pre">=</span> <span class="pre">1</span></code>. If <code class="docutils literal notranslate"><span class="pre">step</span></code> is specified, the result will be elements with the following indexes:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[[\text{start, start + step, start + 2 $\times$ step, ...}]\]</div>
+<p>When slicing in Python, the <strong>upper-bound is exclusive</strong>, which means that <code class="docutils literal notranslate"><span class="pre">array_name[1:3]</span></code> actually takes a slice from indexes 1 <span class="math notranslate nohighlight">\(\rightarrow\)</span> 2 instead of 1 <span class="math notranslate nohighlight">\(\rightarrow\)</span> 3.</p>
+<p>Let’s use <span class="math notranslate nohighlight">\(w = \begin{pmatrix}0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; ... &amp; 98 &amp; 99 &amp; 100\\\end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Run the code below and change the values for start, end, and step to check how they affect slicing.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>  <span class="c1"># import ipywidgets package for interactive widgets</span>
+
+<span class="c1"># create array w</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># create 3 sliders for start, end, and step</span>
+<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">101</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">101</span><span class="p">),</span> <span class="n">step</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># define a function that takes the values from the sliders and slices w</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">slicing</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> &gt;&gt;&gt; w[</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">end</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s1">] </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">:</span><span class="n">step</span><span class="p">])</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Check the outputs of <code>w[:10]</code>, <code>w[:]</code>, and <code>w[::2]</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># elements from index 0 (included) to 10 (excluded, so index 9, which is 10-1)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span> 
+
+<span class="c1"># the whole array, equivalent to [0:101:1] in this case</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">[:])</span> 
+
+<span class="c1"># every other element starting from the beginning, equivalent to [0:101:2] in this case</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also use negative indexes when slicing, similar to lists and tuples.</p>
+<p>Let’s use <span class="math notranslate nohighlight">\(w = \begin{pmatrix}0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; ... &amp; 98 &amp; 99 &amp; 100\\\end{pmatrix}\)</span> as an example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">w</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="p">[</span> <span class="mi">0</span>  <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="o">...</span> <span class="mi">99</span><span class="p">]</span>       
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Run the code below and change the values for start, end, and step to check how they affect slicing.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>  <span class="c1"># import ipywidgets package for interactive widgets</span>
+
+<span class="c1"># create array w</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># create 3 sliders for start, end, and step</span>
+<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">102</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">102</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">step</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># define a function that takes the values from the sliders and slices w</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">slicing</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> &gt;&gt;&gt; w[</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">end</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s1">] </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">:</span><span class="n">step</span><span class="p">])</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Slicing also works with 2-D arrays. If you only think about the row slicing or the column slicing, then each is similar to a 1-D array.</p>
+<p>The general syntax for slicing a 2-D array is <code class="docutils literal notranslate"><span class="pre">array_name[start_row:end_row:step_row,</span> <span class="pre">start_col:end_col:step_col]</span></code>, where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">start_row</span></code>: The starting index for rows (inclusive).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_row</span></code>: The ending index for rows (exclusive).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step_row</span></code>: The step size for rows.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start_col</span></code>: The starting index for columns (inclusive).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_col</span></code>: The ending index for columns (exclusive).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step_col</span></code>: The step size for columns.</p></li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, or <code class="docutils literal notranslate"><span class="pre">step</span></code> are not specified, they default to 0, the size of the dimension, and 1, respectively.</p>
+<p>Let’s use <span class="math notranslate nohighlight">\(y = \begin{pmatrix} 1 &amp; 4 &amp; 3 \\ 9 &amp; 2 &amp; 7 \\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font>   &gt;  Get the first and third columns of <code>y</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mutating-an-array">
+<h3>4.2.3. Mutating an Array<a class="headerlink" href="#mutating-an-array" title="Link to this heading">#</a></h3>
+<p>NumPy arrays are <strong>mutable</strong>, which means that their contents <strong>can</strong> be modified.</p>
+<p>You can use single element indexing and the assignment operator to modify a value of an array. You can also reassign multiple elements of an array to a single value using slicing, or alternatively, to multiple values as long as both the shape of the elements being assigned and the shape of the elements assigned are the same.</p>
+<p><strong>Examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+<span class="go">[1 2 3 4 5]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>              <span class="c1"># single element modification</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+<span class="go">[ 1 10  3  4  5]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>            <span class="c1"># multiple element modification to a single element</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+<span class="go">[ 1 10 10  4  5]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>       <span class="c1"># multiple element modification to multiple elements</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+<span class="go">[ 1 -1  0  4  5]</span>
+</pre></div>
+</div>
+<p>Let’s use <span class="math notranslate nohighlight">\(x = \begin{pmatrix}  -2 &amp; 4 &amp; 3 &amp; 12\\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Reassign the second element of <code>x</code> to 25.<br> Reassign the first and second elements of <code>x</code> to 19.<br> Reassign the second and fourth elements of <code>x</code> to 5 and 7, respectively.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+
+<span class="c1"># reassign a single element to a single value</span>
+<span class="o">...</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># reassign multiple elements to a single value</span>
+<span class="o">...</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># reassign multiple elements to a multiple values</span>
+<span class="o">...</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="manipulating-arrays">
+<h2>4.3. Manipulating Arrays <a id="s3"></a><a class="headerlink" href="#manipulating-arrays" title="Link to this heading">#</a></h2>
+<p>Although reassigning values of an array can be helpful, this cannot be used to grow the array (i.e., add a new element to the array). NumPy provides several functions that can be used to manipulate arrays efficiently.</p>
+<section id="adding-and-removing-elements">
+<h3>4.3.1. Adding and Removing Elements<a class="headerlink" href="#adding-and-removing-elements" title="Link to this heading">#</a></h3>
+<p>There are different functions that can be used to add or remove elements from an array, including:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.append.html#numpy.append"><code class="docutils literal notranslate"><span class="pre">np.append(array,</span> <span class="pre">values)</span></code></a>: Append <code class="docutils literal notranslate"><span class="pre">values</span></code> to the end of <code class="docutils literal notranslate"><span class="pre">array</span></code>, where <code class="docutils literal notranslate"><span class="pre">values</span></code> can be a single value or array-like.</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.insert.html#numpy.insert"><code class="docutils literal notranslate"><span class="pre">np.insert(array,</span> <span class="pre">ind,</span> <span class="pre">values)</span></code></a>: Insert <code class="docutils literal notranslate"><span class="pre">values</span></code> into <code class="docutils literal notranslate"><span class="pre">array</span></code> before index(es) <code class="docutils literal notranslate"><span class="pre">ind</span></code>. Both <code class="docutils literal notranslate"><span class="pre">values</span></code> and <code class="docutils literal notranslate"><span class="pre">ind</span></code> can be a single value or array-like.</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.delete.html#numpy.delete"><code class="docutils literal notranslate"><span class="pre">np.delete(array,</span> <span class="pre">ind)</span></code></a>: Delete element(s) from <code class="docutils literal notranslate"><span class="pre">array</span></code> with index(es) <code class="docutils literal notranslate"><span class="pre">ind</span></code>, which can be a single value or array-like.</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.unique.html#numpy.unique"><code class="docutils literal notranslate"><span class="pre">np.unique(array)</span></code></a>: Find the unique elements of <code class="docutils literal notranslate"><span class="pre">array</span></code> and return them in sorted order.</p></li>
+</ul>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+These functions will not automatically change the array. To change the array, you have to reassign it: <code>array = np.append(array, values)</code>.</p>
+</div></blockquote>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">input</span></code></p></th>
+<th class="head text-left"><p>Function</p></th>
+<th class="head text-left"><p>Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>😎😂🤩😎🤔</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">np.append(input,</span> <span class="pre">🎉)</span></code></p></td>
+<td class="text-left"><p>😎😂🤩😎🤔🎉</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>😎😂🤩😎🤔</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">np.insert(input,</span> <span class="pre">1,</span> <span class="pre">🎉)</span></code></p></td>
+<td class="text-left"><p>😎🎉😂🤩😎🤔</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>😎😂🤩😎🤔</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">np.delete(input,</span> <span class="pre">1)</span></code></p></td>
+<td class="text-left"><p>😎🤩😎🤔</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>😎😂🤩😎🤔</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">np.unique(input)</span></code></p></td>
+<td class="text-left"><p>😎😂🤩🤔</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Let’s use <span class="math notranslate nohighlight">\(x = \begin{pmatrix}  -2 &amp; 4 &amp; 3 &amp; 12\\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Append the value 1 to the end of <code>x</code>.<br>
+Insert the values 8 and 9 before the first element of <code>x</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+
+<span class="c1"># append</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># insert</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># x remains unchanged</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="concatenating-and-splitting-arrays">
+<h3>4.3.2. Concatenating and Splitting Arrays<a class="headerlink" href="#concatenating-and-splitting-arrays" title="Link to this heading">#</a></h3>
+<p>In addition to manipulating single arrays, NumPy also provides functions to combine multiple arrays into one and to split a single array into multiple arrays. Some of these functions include:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.concatenate.html#numpy.concatenate"><code class="docutils literal notranslate"><span class="pre">np.concatenate((array1,</span> <span class="pre">array2,...))</span></code></a>: Concatenate (join) two or more arrays of the same shape.</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.split.html#numpy.split"><code class="docutils literal notranslate"><span class="pre">np.split(array,</span> <span class="pre">ind_or_sections)</span></code></a>: Split <code class="docutils literal notranslate"><span class="pre">array</span></code> into multiple sub-arrays. If <code class="docutils literal notranslate"><span class="pre">ind_or_sections</span></code> is an integer, N, the array will be divided into N equal arrays along axis. If <code class="docutils literal notranslate"><span class="pre">ind_or_sections</span></code> is a 1-D array of sorted integers, the entries indicate the indexes at which the split will be performed.</p></li>
+</ul>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/1I4O9hdVlt2xGRmrCsFtFsMNM7QYtO6QuDJZ87CTRBDc/pub?w=1440&h=1080" style="width:75%">
+    <figcaption style="text-align:center"><strong> <br> Concatenate examples</strong></figcaption>   
+</figure></center>
+<br>
+<hr class="docutils" />
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/1WTiwIO8lGrKc2J3zwlOqaIQ5qPBs138QYQCF2hUNK58/pub?w=1440&h=1080" style="width:70%">
+    <figcaption style="text-align:center"><strong> <br> Split examples</strong></figcaption>   
+</figure></center>
+<br>
+<p>Let’s use <span class="math notranslate nohighlight">\(x = \begin{pmatrix}  -2 &amp; 4 &amp; 3 &amp; 12\\ \end{pmatrix}\)</span> and <span class="math notranslate nohighlight">\(v = \begin{pmatrix}  13 &amp; 4 &amp; 5 &amp; 2\\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Concatenate <code>x</code> and <code>v</code>.<br> Split <code>x</code> into two sub-arrays.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">13</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># concatenate</span>
+
+<span class="c1"># split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are other functions in NumPy for manipulating arrays. You can read about them in the <a class="reference external" href="https://numpy.org/doc/stable/reference/routines.array-manipulation.html#array-manipulation-routines">official documentation</a>.</p>
+</section>
+</section>
+<section id="array-methods">
+<h2>4.4. Array Methods <a id="s4"></a><a class="headerlink" href="#array-methods" title="Link to this heading">#</a></h2>
+<p>NumPy arrays have many methods, which manipulate its data or perform actions on an array. Some of the common methods are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.cumsum.html#numpy.ndarray.cumsum"><code class="docutils literal notranslate"><span class="pre">array_name.cumsum()</span></code></a>: returns the cumulative sum of the array elements along the given axis</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.max.html"><code class="docutils literal notranslate"><span class="pre">array_name.max()</span></code></a>: returns the maximum of the array elements along the given axis</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.mean.html"><code class="docutils literal notranslate"><span class="pre">array_name.mean()</span></code></a>: returns the average of the array elements along the given axis</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.min.html#numpy.ndarray.min"><code class="docutils literal notranslate"><span class="pre">array_name.min()</span></code></a>: returns the minimum of the array elements along the given axis</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html"><code class="docutils literal notranslate"><span class="pre">array_name.sort()</span></code></a>: sorts the array elements</p></li>
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.sum.html"><code class="docutils literal notranslate"><span class="pre">array_name.sum()</span></code></a>: returns the sum of the array elements along the given axis</p></li>
+</ul>
+<p>There are other methods in NumPy for manipulating and performing actions on arrays. You can read about them in the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html">official documentation</a>.</p>
+<p>Let’s use <span class="math notranslate nohighlight">\(x = \begin{pmatrix}  -2 &amp; 4 &amp; 3 &amp; 12\\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Get the mean of <code>x</code>.<br>Get the sum of <code>x</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+
+<span class="c1"># mean</span>
+
+<span class="c1"># sum</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Notice that we used <code>x.sum()</code> instead of <code>x.sum</code>. This is because <code>sum</code> is a <strong>method</strong>, which is a function associated with an object. For now you need to remember that when we call a method on an object, we need to use parentheses. You can always try both and see which works!</p>
+</div></blockquote>
+</section>
+<section id="arithmetic-and-comparison-operations">
+<h2>4.5. Arithmetic and Comparison Operations <a id="s5"></a><a class="headerlink" href="#arithmetic-and-comparison-operations" title="Link to this heading">#</a></h2>
+<p>Some of the arithmetic and comparison operators we have used on scalar objects can also be used on arrays. These arithmetic and comparison operations behave differently compared to Python lists or tuples.</p>
+<section id="arithmetic-operations">
+<h3>4.5.1. Arithmetic Operations<a class="headerlink" href="#arithmetic-operations" title="Link to this heading">#</a></h3>
+<p>Basic arithmetic is defined for arrays. However, there are operations between a scalar (a single number) and an array and operations between two arrays. We will start with operations between a scalar and an array. To illustrate, let <span class="math notranslate nohighlight">\(c\)</span> be a scalar, and <span class="math notranslate nohighlight">\(A\)</span> be an array.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">c</span></code>: adds <span class="math notranslate nohighlight">\(c\)</span> to every element of <span class="math notranslate nohighlight">\(A\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">−</span> <span class="pre">c</span></code>: subtracts <span class="math notranslate nohighlight">\(c\)</span> from every element of <span class="math notranslate nohighlight">\(A\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">c</span></code>: multiplies every element of <span class="math notranslate nohighlight">\(A\)</span> by <span class="math notranslate nohighlight">\(c\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">/</span> <span class="pre">c</span></code>: divides every element of <span class="math notranslate nohighlight">\(A\)</span> by <span class="math notranslate nohighlight">\(c\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">**</span> <span class="pre">c</span></code>: raises every element of <span class="math notranslate nohighlight">\(A\)</span> to the power <span class="math notranslate nohighlight">\(c\)</span></p></li>
+</ul>
+<p>These apply to 1-D and 2-D arrays.</p>
+<p>Let’s use <span class="math notranslate nohighlight">\(y = \begin{pmatrix} 1 &amp; 4 &amp; 3 \\ 9 &amp; 2 &amp; 7 \\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Square the values of <code>y</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># y squared</span>
+
+<span class="c1"># y remains unchanged</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+We did not reassign <code>y</code> when doing the above operation (we did not, for example, use <code>y = y ** 2</code>). Therefore, <code>y</code> remains unchanged.</p>
+</div></blockquote>
+<p>We can also perform operations between two or more arrays. Let <span class="math notranslate nohighlight">\(A1\)</span> and <span class="math notranslate nohighlight">\(A2\)</span> be two arrays of the <strong>same shape</strong>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span> <span class="pre">+</span> <span class="pre">A2</span></code>: takes every element of <span class="math notranslate nohighlight">\(A1\)</span> and add it to the corresponding element of <span class="math notranslate nohighlight">\(A2\)</span> in the same index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span> <span class="pre">-</span> <span class="pre">A2</span></code>: takes every element of <span class="math notranslate nohighlight">\(A2\)</span> and subtracts it from the corresponding element of <span class="math notranslate nohighlight">\(A1\)</span> in the same index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span> <span class="pre">*</span> <span class="pre">A2</span></code>: takes every element of <span class="math notranslate nohighlight">\(A1\)</span> and multiplies it by the corresponding element of <span class="math notranslate nohighlight">\(A2\)</span> in the same index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span> <span class="pre">/</span> <span class="pre">A2</span></code>: takes every element of <span class="math notranslate nohighlight">\(A1\)</span> and divides it by the corresponding element of <span class="math notranslate nohighlight">\(A2\)</span> in the same index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span> <span class="pre">**</span> <span class="pre">A2</span></code>: takes every element of <span class="math notranslate nohighlight">\(A1\)</span> and raises it to the power the corresponding element of <span class="math notranslate nohighlight">\(A2\)</span> in the same index</p></li>
+</ul>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+If you have taken linear algebra, you will notice that <code>A1 * A2</code> is different from that standard array multiplication. Standard array multiplication will be described in a later chapter. The operations above are known as element-by-element operations.</p>
+</div></blockquote>
+<p>Let’s use <span class="math notranslate nohighlight">\(y = \begin{pmatrix} 1 &amp; 4 &amp; 3 \\ 9 &amp; 2 &amp; 7 \\ \end{pmatrix}\)</span> and <span class="math notranslate nohighlight">\(z = \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Perform element-by-element multiplication between <code>y</code> and <code>z</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]])</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+
+<span class="c1"># element-by-element multiplication</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>NumPy has many mathematical functions, such as <code class="docutils literal notranslate"><span class="pre">np.sin()</span></code>, <code class="docutils literal notranslate"><span class="pre">np.cos()</span></code>, etc., that can take arrays as input arguments. The output is an array that includes the outputs of the function evaluated for every element of the input array. A list of mathematical funcitons in NumPy can be found in the <a class="reference external" href="https://numpy.org/doc/stable/reference/routines.math.html">official documentation</a>.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+While many of these functions are similar to those available in the <code>math</code> module, you cannot use the functions from <code>math</code> directly on NumPy arrays. Instead, you should use the equivalent functions available in the NumPy module.</p>
+</div></blockquote>
+<p>Let’s use <span class="math notranslate nohighlight">\(y = \begin{pmatrix} 1 &amp; 4 &amp; 3 \\ 9 &amp; 2 &amp; 7 \\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Compute the square root of <code>y</code> using <code>np.sqrt()</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparison-operations">
+<h3>4.5.2. Comparison Operations<a class="headerlink" href="#comparison-operations" title="Link to this heading">#</a></h3>
+<p>Logical expressions can be applied to arrays in NumPy, allowing for comparisons between elements within arrays or between arrays and scalars.</p>
+<section id="comparisons-between-a-scalar-and-an-array">
+<h4>4.5.2.1. Comparisons Between a Scalar and an Array<a class="headerlink" href="#comparisons-between-a-scalar-and-an-array" title="Link to this heading">#</a></h4>
+<p>When comparing a scalar to an array, the comparison is performed between the scalar and <strong>each element</strong> of the array. The output will be an array of the same shape as the original array, containing <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> based on the result of the comparison.</p>
+</section>
+<section id="comparisons-between-two-arrays">
+<h4>4.5.2.2. Comparisons Between Two Arrays<a class="headerlink" href="#comparisons-between-two-arrays" title="Link to this heading">#</a></h4>
+<p>When comparing two arrays of the <strong>same shape</strong>, the comparison is conducted element-wise (i.e., <strong>element-by-element</strong>). The output will be an array of the same shape as the original arrays, containing <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> based on the result of the comparison for each corresponding pair of elements.</p>
+<p>Let’s use <span class="math notranslate nohighlight">\(y = \begin{pmatrix} 1 &amp; 4 &amp; 3 \\ 9 &amp; 2 &amp; 7 \\ \end{pmatrix}\)</span> and <span class="math notranslate nohighlight">\(z = \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Check which elements of <code>y</code> are greater than 3. Check which elements of <code>y</code> are equal to the corresponding element of <code>z</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># greater than 3</span>
+
+<span class="c1"># equal to z</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="logical-operators">
+<h4>4.5.2.3. Logical Operators<a class="headerlink" href="#logical-operators" title="Link to this heading">#</a></h4>
+<p>The standard logical operators <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> are not directly applicable to NumPy arrays. Attempting to use these operators directly with arrays will raise an error.</p>
+<p>To perform element-wise logical AND and OR operations between two arrays, you should use NumPy’s specialized logical functions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">np.logical_and(expression1,</span> <span class="pre">expression2)</span></code>: Performs element-wise logical AND operation between corresponding elements of <code class="docutils literal notranslate"><span class="pre">expression1</span></code> and <code class="docutils literal notranslate"><span class="pre">expression2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.logical_or(expression1,</span> <span class="pre">expression2)</span></code>: Performs element-wise logical OR operation between corresponding elements of <code class="docutils literal notranslate"><span class="pre">expression1</span></code> and <code class="docutils literal notranslate"><span class="pre">expression2</span></code>.</p></li>
+</ul>
+</section>
+<section id="indexing-elements-based-on-logical-expressions">
+<h4>4.5.2.4. Indexing Elements Based on Logical Expressions<a class="headerlink" href="#indexing-elements-based-on-logical-expressions" title="Link to this heading">#</a></h4>
+<p>Python allows indexing elements of an array based on logical expressions, which is particularly useful for extracting specific elements that satisfy certain conditions. Instead of giving the values of the indexes, a logical expression can be used directly to filter the elements of the array.</p>
+<p>Let’s use <span class="math notranslate nohighlight">\(y = \begin{pmatrix} 1 &amp; 4 &amp; 3 \\ 9 &amp; 2 &amp; 7 \\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Create a new array that contains all the elements of <code>y</code> that are strictly greater than 3.<br> Assign all the values of <code>y</code> that are greater than 3 the value 0.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]])</span>
+
+<span class="c1"># new array</span>
+
+<span class="c1"># indexing with logical expression</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_data_struct.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 3: Data Structures</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_functions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 5: Functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-numpy-arrays">4.1. Introduction to NumPy Arrays <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-array-or-vector">4.1.1. 1-D Array (or Vector)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-array-or-matrix">4.1.2. 2-D Array (or Matrix)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#array-attributes">4.1.3. Array Attributes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-ways-for-creating-arrays">4.1.4. Other Ways for Creating Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#np-arange">4.1.4.1. <code class="docutils literal notranslate"><span class="pre">np.arange()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#np-linspace">4.1.4.2. <code class="docutils literal notranslate"><span class="pre">np.linspace()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-functions">4.1.4.3. Other Functions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membership-operators">4.1.5. Membership Operators</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-arrays">4.2. Indexing Arrays <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-element-indexing">4.2.1. Single Element Indexing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">4.2.2. Slicing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutating-an-array">4.2.3. Mutating an Array</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulating-arrays">4.3. Manipulating Arrays <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-and-removing-elements">4.3.1. Adding and Removing Elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenating-and-splitting-arrays">4.3.2. Concatenating and Splitting Arrays</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-methods">4.4. Array Methods <a id="s4"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-and-comparison-operations">4.5. Arithmetic and Comparison Operations <a id="s5"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operations">4.5.1. Arithmetic Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-operations">4.5.2. Comparison Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparisons-between-a-scalar-and-an-array">4.5.2.1. Comparisons Between a Scalar and an Array</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparisons-between-two-arrays">4.5.2.2. Comparisons Between Two Arrays</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">4.5.2.3. Logical Operators</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-elements-based-on-logical-expressions">4.5.2.4. Indexing Elements Based on Logical Expressions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
