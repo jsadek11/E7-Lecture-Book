@@ -1,0 +1,1331 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 5: Functions &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/04_functions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 6: Conditional Statements" href="05_conditionals.html" />
+    <link rel="prev" title="Chapter 4: NumPy Arrays" href="03_arrays.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cover.png" class="logo__image only-light" alt="E7 Lecture Books - Home"/>
+    <script>document.write(`<img src="../_static/cover.png" class="logo__image only-dark" alt="E7 Lecture Books - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to E7: Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/04_functions.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/04_functions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/04_functions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 5: Functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-basics">5.1. Function Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-functions">5.2. Calling Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-and-global-variables">5.3. Local and Global Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-variables">5.3.1. Local Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-variables">5.3.2. Global Variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-and-return-arguments">5.4. Input and Return Arguments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-input-arguments">5.4.1. Default Input Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-input-arguments">5.4.2. Order of Input Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-return-parameters">5.4.3. Multiple Return Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-without-input-arguments-and-or-return">5.4.4. Functions Without Input Arguments and/or Return</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">5.5. Lambda Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-as-arguments-to-functions">5.6. Functions as Arguments to Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-reading-nested-functions">5.7. Additional Reading: Nested Functions</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-5-functions">
+<h1>Chapter 5: Functions<a class="headerlink" href="#chapter-5-functions" title="Link to this heading">#</a></h1>
+<p>Functions are one of the most important concepts in computer programming, and perhaps the most underrated by students. As our codes get larger and more complex, using functions becomes a necessity, as they can be used to break down a large task into a collection of smaller tasks. In programming, functions are reusable blocks of code that perform a specific task. Functions are ideal because they can be reused multiple times with different input data.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Write custom functions to perform specific tasks in Python</p></li>
+<li><p>Trace function calls to understand program flow and variable scope</p></li>
+<li><p>Write functions with default input arguments</p></li>
+<li><p>Write lambda functions to create concise and readable code</p></li>
+</ul>
+<section id="function-basics">
+<h2>5.1. Function Basics<a class="headerlink" href="#function-basics" title="Link to this heading">#</a></h2>
+<p>In Python, functions are blocks of code that perform a specific task. Similar to mathematical functions, Python functions take in data, perform on them a sequence of statements, and then return an output(s).</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vS-Aan3J-NxJSBU6acb9F6swelfy7zz5GhF75smFPcQsDm1T4J6pqYCvQoBebHTOhpf-l0xL-vr2qC7/pub?w=626&h=448
+" style="width:40%">
+    <figcaption style="text-align:center"><strong>Functions input and output illustration</strong></figcaption>   
+</figure></center>
+<p>An example of a mathematical function is: <span class="math notranslate nohighlight">\(f(x)=4x^2+2x-1\)</span></p>
+<p>In Python, a function that serves the same task looks like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>In Python, functions can be written to do much more than just evaluate an equation. We have seen several built-in functions in Python, such as <code class="docutils literal notranslate"><span class="pre">type()</span></code>. A list of important built-in functions can be found in the <a class="reference external" href="https://docs.python.org/3/library/functions.html">official documentation</a>. Since these are built-in, they are always available, without having to import any modules. We have also used functions from modules, such as <code class="docutils literal notranslate"><span class="pre">math.log()</span></code> and <code class="docutils literal notranslate"><span class="pre">math.tan()</span></code>.</p>
+<p>When using these functions, we did not worry about the details of how the functions work – we only needed to know what input data are passed to the function and what does the function return as output.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Import the <code>math</code> module and then use <code>math.sin()</code> to calculate the sine of different numbers.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To reuse <code class="docutils literal notranslate"><span class="pre">math.sin()</span></code>, we did not have to write a new code every time. Instead, this code was stored as a function that we can use over and over again by simply changing the input. That’s why <em>functions make programming a lot easier.</em></p>
+<p>In programming, a function is a block of code that performs a specific task. A function can have <strong>input arguments</strong>, which are made available to it by the user. Functions can also have <strong>output parameters</strong>, which are the results of the function that the user expects to receive once the function has completed its task. For example, the function <code class="docutils literal notranslate"><span class="pre">math.sin()</span></code> has one input argument, an angle in radians, and one output parameter, an approximation to the sine function of the input angle. The sequence of instructions to compute the sine of the angle is the <strong>body</strong> of the function, which until this point has not been shown.</p>
+<p>One of the powerful features is the ability to create your <strong>own custom functions</strong>. This makes your code easier to understand for you and others, and as a result, easier to debug! There are several ways to define a new function. The most common way is using the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code> (short for define), as shown below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">argument_1</span><span class="p">,</span> <span class="n">argument_2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Description</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">function_body</span>
+    
+    <span class="k">return</span> <span class="n">output_parameters</span> <span class="c1"># optional</span>
+</pre></div>
+</div>
+<p>The syntax includes:</p>
+<ol class="arabic simple">
+<li><p>Function header that begins with the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code>, which is used to define a function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">function_name</span></code>, which is the identifier chosen by the programmer (you)</p></li>
+</ol>
+<blockquote>
+<div><blockquote>
+<div><p>Function names follow the same naming conventions as variables. They can only contain alphanumeric characters and underscores, and the first character must be a letter or an underscore. Also, function names are case-sensitive.</p>
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Input arguments <code class="docutils literal notranslate"><span class="pre">(argument_1,</span> <span class="pre">argument_2,</span> <span class="pre">...)</span></code>, which are a comma-separated sequence of inputs that will be sent to the function</p></li>
+</ol>
+<blockquote>
+<div><blockquote>
+<div><p>Input arguments are optional, and you can include any number of input arguments, or none.</p>
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p><code class="docutils literal notranslate"><span class="pre">:</span></code> colon, which is used at the end of the function header, after the input arguments</p></li>
+<li><p>Description, called a docstring, which is an optional string written between three single or double quotation marks to describe what this function does</p></li>
+</ol>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>The first line describes the job of the function in one line. The following lines can describe arguments and clarify the behavior of the function. The description could be accessed using <code class="docutils literal notranslate"><span class="pre">function_name?</span></code> or <code class="docutils literal notranslate"><span class="pre">help(function_name)</span></code>.</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><p><code class="docutils literal notranslate"><span class="pre">function_body</span></code>, which is a sequence of code statements that the function will execute when called</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span></code> (optional), which will return (send back) the value(s) after the keyword to the calling statement</p></li>
+</ol>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>The <code class="docutils literal notranslate"><span class="pre">return</span></code> statement will force immediate exit from the function, and it will return the value of the expression to the caller. Any code within the function after <code class="docutils literal notranslate"><span class="pre">return</span></code> is not executed.</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+The code that belongs to a function should be indented, as shown above. Indentation is important as it is the only way Python knows which code blocks belong to the function. It is standard in Python to use four spaces (equivalent to a tab) for indenting. If the code block is not indented correctly, this will raise an <code>IndentationError</code>.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define a function named <code>sum_3()</code> that takes in three numbers and returns their sum. Use the docstring below.</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of three numbers.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a (int or float): first number</span>
+<span class="sd">    b (int or float): second number</span>
+<span class="sd">    c (int or float): third number</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out (int or float): sum of a, b, and c</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try calling the help function on <code>sum_3()</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">sum_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calling-functions">
+<h2>5.2. Calling Functions<a class="headerlink" href="#calling-functions" title="Link to this heading">#</a></h2>
+<p>Defining a function does not make it run. To run or use a function, we need to <strong>call</strong> it. To call a function, use its name followed by the list of input arguments, if any, between parentheses: <code class="docutils literal notranslate"><span class="pre">function_name(argument_1,</span> <span class="pre">argument_2,</span> <span class="pre">...)</span></code>.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+A function should be defined before it can be called/used. Otherwise, you will get a <code>NameError</code>.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Use the function <code>sum_3()</code> to compute the sum of 1, 5, and 6 and assign the result to a variable <code>x</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When a function is called, Python locates the function and the control of the program goes to the function. Inside the function, input arguments are assigned to variables defined in the function header: the first input argument, 1, will be assigned to variable <code class="docutils literal notranslate"><span class="pre">a</span></code>, the second input argument, 5, will be assigned to variable <code class="docutils literal notranslate"><span class="pre">b</span></code>, and the third input argument, 6, will be assigned to variable <code class="docutils literal notranslate"><span class="pre">c</span></code>. Then, all the code inside the function is executed. Once the program reaches the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement, the variable(s) after <code class="docutils literal notranslate"><span class="pre">return</span></code> will be assigned to the output of the function. Finally, the output of <code class="docutils literal notranslate"><span class="pre">sum_3(1,</span> <span class="pre">5,</span> <span class="pre">6)</span></code> is assigned to the variable <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<br>
+<figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vQPC0_0VMhU3IxA21hkaLkBo4--wl8ipBix2k8v1vy2PN3Ru3ZZf5_SuSEj5xSkY9CntYBfshwJ3WEj/pub?w=2102&h=729
+" style="width:100%">
+    <figcaption style="text-align:center"><strong>Flow control of Python functions</strong></figcaption>   
+</figure>
+<p>The input arguments can be values, expressions, variables, or function calls!</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Use the function <code>sum_3()</code> to compute the sum of: <span class="math notranslate nohighlight">\(cos(0)\)</span>, <span class="math notranslate nohighlight">\(12/6\)</span>, and <span class="math notranslate nohighlight">\(2^2 + 1\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="local-and-global-variables">
+<h2>5.3. Local and Global Variables<a class="headerlink" href="#local-and-global-variables" title="Link to this heading">#</a></h2>
+<p>Assume that we defined <code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">=</span> <span class="pre">0</span></code> outside the function <code class="docutils literal notranslate"><span class="pre">sum_3()</span></code>. Inside the function <code class="docutils literal notranslate"><span class="pre">sum_3()</span></code>, we also defined a variable named <code class="docutils literal notranslate"><span class="pre">out</span></code>. It would be undesirable for Python to treat the variables within a function as equivalent to those which were defined outside the function. If Python didn’t provide some mechanism to separate variables within a function and those outside, every time we call <code class="docutils literal notranslate"><span class="pre">sum_3()</span></code>, the external variable <code class="docutils literal notranslate"><span class="pre">out</span></code> would be overwritten by the internal value within the function. This becomes particularly critical when using functions whose internal variables we might not be aware of. To avoid this confusion, Python treats the variables defined inside a function as local to that function, ensuring they do not interfere with variables outside the function.</p>
+<p>A function has its own memory block that is reserved for variables created within that function. This block of memory is not shared with the main memory block outside the function. Therefore, when we define variables inside a function, these variables can only be accessed inside the function and cannot be accessed outside the function. A variable scope specifies the region where we can access a variable. Therefore, because variables declared inside a function have scope only within that function, they are known as <strong>local variables</strong>. Based on scope we can also define <strong>global variables</strong> and <strong>nonlocal variables</strong>.</p>
+<section id="local-variables">
+<h3>5.3.1. Local Variables<a class="headerlink" href="#local-variables" title="Link to this heading">#</a></h3>
+<p>When we create a variable inside a function, it is local by default. Local variables are defined or modified within a function’s body and are accessible only within that function. Attempting to access a local variable from outside the function will result in an error.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try to access <code>out</code> after running <code>sum_3(1, 5, 6)</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sum_3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of three numbers.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a (int or float): first number</span>
+<span class="sd">    b (int or float): second number</span>
+<span class="sd">    c (int or float): third number</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out (int or float): sum of a, b, and c</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># call the function</span>
+
+<span class="c1"># print out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">sum_3()</span></code>, the variable <code class="docutils literal notranslate"><span class="pre">out</span></code> is a <strong>local variable</strong>. That is, it is only defined locally inside the memory of <code class="docutils literal notranslate"><span class="pre">sum_3()</span></code>, and so it cannot be accessed outside the function. That’s why we get an error when we try to access it outside the function. Only output parameters, which come after the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword, can escape from a function’s memory to the main memory. Even then, the output parameters will not escape with the same variable names given inside the function. They will be returned as values (not variables) and will be assigned to any variable(s) used in the function call.</p>
+<p>This also implies that a variable can be modified inside a function (in the function memory) without changing a variable with the same name outside of the function (in the main memory).</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define a variable <code>out = 1</code>, then check the value of <code>out</code> after running <code>sum_3(1, 5, 6)</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sum_3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of three numbers.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a (int or float): first number</span>
+<span class="sd">    b (int or float): second number</span>
+<span class="sd">    c (int or float): third number</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out (int or float): sum of a, b, and c</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># define out</span>
+
+
+<span class="c1"># call the function</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sum_3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># print out</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned above, in <code class="docutils literal notranslate"><span class="pre">sum_3()</span></code>, the variable <code class="docutils literal notranslate"><span class="pre">out</span></code> is a <strong>local variable</strong>, and it does not affect variables outside of the function, even if they have the same name. Because the function and main memory blocks are not shared, assigning <code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">c</span></code> inside <code class="docutils literal notranslate"><span class="pre">sum_3()</span></code> does not change the value assigned to <code class="docutils literal notranslate"><span class="pre">out</span></code> outside the function.</p>
+<p><em>The key point is that the function memory and the main memory are not shared.</em> In fact, this is a good thing, as it reduces the potential for naming conflicts.</p>
+</section>
+<section id="global-variables">
+<h3>5.3.2. Global Variables<a class="headerlink" href="#global-variables" title="Link to this heading">#</a></h3>
+<p>In contrast to local variables, which are confined to the function in which they are defined, <strong>global variables</strong> are accessible from anywhere in the program, including both inside and outside functions. When we define a variable outside of a function, it is global by default.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Redefine the function <code>sum_3()</code> such that it returns <code>out = a + b + c + g</code>, but do not add <code>g</code> as an input argument. Then define <code>g = 3</code> in the main memory and try to run <code>sum_3(1, 5, 6)</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sum_3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of three numbers with global variable g.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a (int or float): first number</span>
+<span class="sd">    b (int or float): second number</span>
+<span class="sd">    c (int or float): third number</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out (int or float): sum of a, b, c, and g</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="c1"># modify this line to add g</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># define g</span>
+
+<span class="c1"># call the function</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because <code class="docutils literal notranslate"><span class="pre">g</span></code> was defined outside of a function, it is a global variable and we can access it anywhere, inside or outside of a function, even if it is not an input argument of the function.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+If a global variable has the same name as an input argument, the input argument takes priority inside the function.</p>
+</div></blockquote>
+<p>Although we are able to access <code class="docutils literal notranslate"><span class="pre">g</span></code> from the inside of a function, if we try to modify it from inside a function, we will get an error. This is because we can only access the global variable but cannot modify it from inside the function.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Copy the code from above and try to modify <code>g</code> inside <code>sum_3()</code> using <code>g = g + 2</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sum_3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of three numbers with global variable g.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a (int or float): first number</span>
+<span class="sd">    b (int or float): second number</span>
+<span class="sd">    c (int or float): third number</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out (int or float): sum of a, b, c, and g</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">g</span>
+    <span class="c1"># try to modify g</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># define g</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># call the function</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sum_3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we want to modify a variable inside a function, this can be done by using the <code class="docutils literal notranslate"><span class="pre">global</span></code> keyword inside the function. The syntax is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">global</span> <span class="n">variable_name</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Copy the code cell form above and define <code>g</code> as a global variable inside <code>sum_3()</code>. Then try to print the value of <code>g</code> after calling the function.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sum_3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of three numbers with global variable g.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a (int or float): first number</span>
+<span class="sd">    b (int or float): second number</span>
+<span class="sd">    c (int or float): third number</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out (int or float): sum of a, b, c, and g</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># define g as a global variable</span>
+    
+    <span class="n">out</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">g</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># define g</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># call the function</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sum_3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># print g</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above example, we have defined <code class="docutils literal notranslate"><span class="pre">g</span></code> as a global variable inside <code class="docutils literal notranslate"><span class="pre">sum_3()</span></code>. Then, we have incremented <code class="docutils literal notranslate"><span class="pre">g</span></code> by 2 using <code class="docutils literal notranslate"><span class="pre">g</span> <span class="pre">=</span>&#160; <span class="pre">g</span> <span class="pre">+</span> <span class="pre">2</span></code>. As we can see after calling <code class="docutils literal notranslate"><span class="pre">sum_3()</span></code>, the value of the global variable <code class="docutils literal notranslate"><span class="pre">g</span></code> is modified from 3 to 5. This change occurs in the main memory, even if we did not return the new value of <code class="docutils literal notranslate"><span class="pre">g</span></code>, because it is now defined as a global variable.</p>
+<p>The basic rules for local and global variables are:</p>
+<ul class="simple">
+<li><p>When we define a variable inside a function, it is local by default.</p></li>
+<li><p>When we define a variable outside of a function, it is global by default.</p></li>
+<li><p>Local variables can only be accessed in the function’s workspace, and they “disappear” when the function is completed.</p></li>
+<li><p>Global variables can be accessed in the function’s workspace, but cannot be modified by default.</p></li>
+<li><p>We use the <code class="docutils literal notranslate"><span class="pre">global</span></code> keyword inside a function to modify a global variable.</p></li>
+<li><p>Use of the <code class="docutils literal notranslate"><span class="pre">global</span></code> keyword outside a function has no effect.</p></li>
+</ul>
+</section>
+</section>
+<section id="input-and-return-arguments">
+<h2>5.4. Input and Return Arguments<a class="headerlink" href="#input-and-return-arguments" title="Link to this heading">#</a></h2>
+<section id="default-input-arguments">
+<h3>5.4.1. Default Input Arguments<a class="headerlink" href="#default-input-arguments" title="Link to this heading">#</a></h3>
+<p>Input arguments in a function can have default values, which will be used only if the value(s) are not provided when calling a function. If the input arguments are provided when calling a function, they will replace the default values. The default values should be assigned when defining the function, as shown below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">argument_1</span> <span class="o">=</span> <span class="n">default_1</span><span class="p">,</span> <span class="n">argument_2</span> <span class="o">=</span> <span class="n">default_2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+
+    <span class="n">function_body</span>
+    
+    <span class="k">return</span> <span class="n">output_parameters</span> <span class="c1"># optional</span>
+</pre></div>
+</div>
+<p>Any (or none) of a function’s input arguments can have default values. When a function contains both default and non-default arguments, all non-default arguments must be placed before any default arguments in the function definition. Therefore, when providing a default value for an argument, ensure it comes after all required arguments.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">argument_1</span><span class="p">,</span> <span class="n">argument_2</span> <span class="o">=</span> <span class="n">default_2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+
+    <span class="n">function_body</span>
+    
+    <span class="k">return</span> <span class="n">output_parameters</span> <span class="c1"># optional</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Modify the function <code>sum_3()</code> to define default input arguments 1 and 2 for two of the three numbers. Then run it with and without input arguments using <code>sum_3(6)</code> and <code>sum_3(1, 5, 6)</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sum_3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span> <span class="c1"># assign default values</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of three numbers.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a (int or float): first number</span>
+<span class="sd">    b (int or float): second number (default 1)</span>
+<span class="sd">    c (int or float): third number (default 2)</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out (int or float): sum of a, b, and c</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># only give non-default arguments</span>
+
+<span class="c1"># give all arguments</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="order-of-input-arguments">
+<h3>5.4.2. Order of Input Arguments<a class="headerlink" href="#order-of-input-arguments" title="Link to this heading">#</a></h3>
+<p>When arguments are passed to a function without a name, such as <code class="docutils literal notranslate"><span class="pre">sum_3(1,</span> <span class="pre">5,</span> <span class="pre">6)</span></code>, Python assumes that you’ve entered the arguments in exactly the same order as in the function definition: <code class="docutils literal notranslate"><span class="pre">a=1</span></code>, <code class="docutils literal notranslate"><span class="pre">b=5</span></code>, and <code class="docutils literal notranslate"><span class="pre">c=6</span></code>. These are known as <strong>positional arguments</strong> because they are matched with parameters based on their position in the function definition. In this case, the order of the arguments is important because Python assumes that they follow the same order as in the function definition.</p>
+<p>However, to avoid the necessity to know the order of arguments in a function, Python also allows <strong>keyword arguments</strong> (or named arguments). When you call a function, you can precede some or all of the arguments by their name and an equal sign, such as <code class="docutils literal notranslate"><span class="pre">sum_3(c=1,</span> <span class="pre">a=5,</span> <span class="pre">b=6)</span></code>. This allows you to tell the function exactly which argument you are passing. In this case, the order of the arguments is no longer relevant and can differ from that in the function definition.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+When you mix keyword (named) and positional (unnamed) arguments in a function call, the unnamed arguments must come before the named ones in the argument list.</p>
+</div></blockquote>
+<p><strong>Examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">! You are </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Correct usage</span>
+<span class="n">greet</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>  <span class="c1"># Positional argument first, then keyword argument</span>
+
+<span class="c1"># Incorrect usage</span>
+<span class="n">greet</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;Alice&quot;</span><span class="p">)</span>  <span class="c1"># Keyword argument before positional argument - raises an error</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Call the function without assigning names to the input arguments <code>sum_3(6, 0)</code>. Then call it by assigning names to the input arguments in the function call <code>sum_3(6, c = 0)</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sum_3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the sum of three numbers.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a (int or float): first number</span>
+<span class="sd">    b (int or float): second number (default 1)</span>
+<span class="sd">    c (int or float): third number (default 2)</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out (int or float): sum of a, b, and c</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="c1"># 6 replaces the first input argument, a. </span>
+<span class="c1"># 0 replaces the second input argument, b.</span>
+<span class="c1"># The default value (2) is used for c.</span>
+
+
+<span class="c1"># 6 replaces the first input argument, a. </span>
+<span class="c1"># 0 replaces the third input argument, c.</span>
+<span class="c1"># The default value (1) is used for b.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiple-return-parameters">
+<h3>5.4.3. Multiple Return Parameters<a class="headerlink" href="#multiple-return-parameters" title="Link to this heading">#</a></h3>
+<p>Python functions can return multiple outputs, allowing them to provide several results. The syntax for defining a function with multiple outputs is the same as before, but with more than one output listed after the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword, separated by commas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">argument_1</span><span class="p">,</span> <span class="n">argument_2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Description</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">function_body</span>
+    
+    <span class="k">return</span> <span class="n">output_1</span><span class="p">,</span> <span class="n">output_2</span><span class="p">,</span> <span class="n">output_3</span><span class="p">,</span> <span class="o">...</span>
+
+</pre></div>
+</div>
+<p>When calling a function with multiple outputs, the function will return the multiple outputs in a tuple <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code>.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define a function <code>division(dividend, divisor)</code> that takes two input arguments, <code>dividend</code> and <code>divisor</code>, and returns the quotient and remainder when dividing the first input by the second input. Then, call the function using <code>dividend = 26</code> and <code>divisor = 5</code>, assign the output to a variable <code>x</code>, and check the output type.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">division</span><span class="p">(</span><span class="n">dividend</span><span class="p">,</span> <span class="n">divisor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the quotient and remainder of dividend / divisor.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dividend (int or float): value of the dividend</span>
+<span class="sd">    divisor (int or float): value of the divisor</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    quotient (int): quotient of dividend / divisor</span>
+<span class="sd">    remainder (int): remainder of dividend / divisor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># function body</span>
+    
+
+<span class="c1"># call function</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">division</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="c1"># print x</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># print type of x</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you assign the function call to only one variable, this variable will be a tuple that includes all output parameters. You can then access individual output parameters using indexing, with the first output being in index 0.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Print <code>x[0]</code> and <code>x[1]</code> from the above function call.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, to unpack the returned tuple, you can assign the function call to multiple variables separated by commas. In this case, the number of assigned variables should be exactly the same as the number of returned outputs. Otherwise, an error is raised.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Call the function <code>division(26, 5)</code> and assign the output to <code>a, b</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="functions-without-input-arguments-and-or-return">
+<h3>5.4.4. Functions Without Input Arguments and/or Return<a class="headerlink" href="#functions-without-input-arguments-and-or-return" title="Link to this heading">#</a></h3>
+<p>Functions could be defined without input arguments and/or without returning any value. In such cases, leave the parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code> empty when defining and calling the function. Although the parentheses are empty, they must still be present in the function header and when calling the function, as this is the only way for Python to know that this is a function and not a variable.  When defining a function without <code class="docutils literal notranslate"><span class="pre">return</span></code>, you can either omit the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement altogether or include it with nothing after it.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define a function <code>greet()</code> that prints “Hello!” and then call it.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+There is a distinction between using <code>return</code> and <code>print()</code> within a function. The <code>return</code> statement sends a value back to the caller of the function, which can be assigned to variables and used. The <code>print()</code> function, on the other hand, simply displays information to the console. It does not send any data back to the caller.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="lambda-functions">
+<h2>5.5. Lambda Functions<a class="headerlink" href="#lambda-functions" title="Link to this heading">#</a></h2>
+<p>When a function consists of just one expression (the body is one line), Python allows two concise ways to define it:</p>
+<ul class="simple">
+<li><p>using <code class="docutils literal notranslate"><span class="pre">def</span></code></p></li>
+<li><p>using a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function</p></li>
+</ul>
+<p>A function defined in a single line using <code class="docutils literal notranslate"><span class="pre">def</span></code> looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">argument_1</span><span class="p">,</span> <span class="n">argument_2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span> <span class="n">statement_or_expression</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">statement_or_expression</span></code> can be any valid Python instruction, such as returning a value, calling another function like <code class="docutils literal notranslate"><span class="pre">print()</span></code>, or modifying a mutable object, among others.</p>
+<p>Python also provides another concise approach to define simple function. Instead of using the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code>, we can use lambda functions. Lambda functions are a special type of function in Python that can take any number of input arguments but evaluate and return only a single expression. They are defined using the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> keyword:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="n">argument_1</span><span class="p">,</span> <span class="n">argument_2</span><span class="p">,</span> <span class="o">...</span> <span class="p">:</span> <span class="n">expression</span> 
+</pre></div>
+</div>
+<p>The syntax includes:</p>
+<ol class="arabic simple">
+<li><p>The keyword <code class="docutils literal notranslate"><span class="pre">lambda</span></code>, which is used to declare a lambda function</p></li>
+<li><p>Input arguments <code class="docutils literal notranslate"><span class="pre">argument_1,</span> <span class="pre">argument_2,</span> <span class="pre">...</span></code>, which are a comma-separated sequence of inputs that will be sent to the function</p></li>
+</ol>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>Input arguments are optional, and you can include any number of input arguments, or none.</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">:</span></code> colon, which is used after the input arguments</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expression</span></code>, which is a single expression whose value is automatically returned when the function is called</p></li>
+</ol>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+In lambda functions, the <code>return</code> keyword is not explicitly used. Lambda functions implicitly return the result of that single expression. Including <code>return</code> will result in a syntax error.</p>
+</div></blockquote>
+<p>Lambda functions are also known as anonymous functions because they do not have a name unless explicitly assigned to one. If we want to reuse them, we can assign them to a variable name as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">function_name</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">argument_1</span><span class="p">,</span> <span class="n">argument_2</span><span class="p">,</span> <span class="o">...</span> <span class="p">:</span> <span class="n">expression</span> 
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define a lambda function <code>lambda_sum_3</code> that takes in 3 numbers and returns their sum. Then call it using <code>lambda_sum_3(1, 5, 6)</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Although both single-line functions defined with <code class="docutils literal notranslate"><span class="pre">def</span></code> and <code class="docutils literal notranslate"><span class="pre">lambda</span></code> functions can look similar, there are important differences. A one-line <code class="docutils literal notranslate"><span class="pre">def</span></code> function can contain any valid Python statement, including <code class="docutils literal notranslate"><span class="pre">return</span></code>, <code class="docutils literal notranslate"><span class="pre">print()</span></code>, or modifications to mutable objects. In contrast, a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function is usually limited to evaluating and returning a single expression. Because of this, <code class="docutils literal notranslate"><span class="pre">def</span></code> is usually preferred for functions you plan to reuse, document, or expand later. <code class="docutils literal notranslate"><span class="pre">lambda</span></code> functions, on the other hand, are most commonly used for short, throwaway functions in contexts where you don’t want to formally define a function.</p>
+</section>
+<section id="functions-as-arguments-to-functions">
+<h2>5.6. Functions as Arguments to Functions<a class="headerlink" href="#functions-as-arguments-to-functions" title="Link to this heading">#</a></h2>
+<p>We have seen that input arguments can be values, expressions, variables, or function calls (outputs of a function). Sometimes it is useful to be able to pass a function itself as an input argument to another function.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define a function <code>add_one()</code> that takes a function <span class="math notranslate nohighlight">\(f(x)\)</span> and a number <span class="math notranslate nohighlight">\(a\)</span> as input arguments and returns <span class="math notranslate nohighlight">\(f(a) + 1\)</span>. Then define another function <code>f()</code> that evaluates <span class="math notranslate nohighlight">\(x^2 + x\)</span> for some input <span class="math notranslate nohighlight">\(x\)</span>. Finally, call <code>add_one()</code> using various functions and values of <span class="math notranslate nohighlight">\(a\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="additional-reading-nested-functions">
+<h2>5.7. Additional Reading: Nested Functions<a class="headerlink" href="#additional-reading-nested-functions" title="Link to this heading">#</a></h2>
+<p>A nested function is a function that is defined <strong>within another function</strong>, which is referred to as the parent function. Nested functions are useful when a task must be performed many times within the function but not outside the function. In this way, nested functions help the parent function perform its task while hiding in the parent function. Consider the following parent and nested functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># parent function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dist_3</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the distance between all pairs of three points in a coordinate system.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    point1 (tuple): coordinates of point 1</span>
+<span class="sd">    point2 (tuple): coordinates of point 2</span>
+<span class="sd">    point3 (tuple): coordinates of point 3</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dist (list): list of the distances between point1 and point2, point1 and point3, and point2 and point3</span>
+<span class="sd">    &quot;&quot;&quot;</span> 
+    <span class="c1"># nested function</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dist_2</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the distance between two points in a coordinate system.</span>
+<span class="sd">    </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        point1 (tuple): coordinates of point 1</span>
+<span class="sd">        point2 (tuple): coordinates of point 2</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dist (float): distance between point1 and point2</span>
+<span class="sd">        &quot;&quot;&quot;</span> 
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">point1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">point2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">point1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">point2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dist</span>
+    
+    <span class="n">d0</span> <span class="o">=</span> <span class="n">dist_2</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">)</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">dist_2</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point3</span><span class="p">)</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">dist_2</span><span class="p">(</span><span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">)</span>
+    
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="n">d0</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">dist</span>
+</pre></div>
+</div>
+<p>Notice that the variables <code class="docutils literal notranslate"><span class="pre">point1</span></code>, <code class="docutils literal notranslate"><span class="pre">point2</span></code>, and <code class="docutils literal notranslate"><span class="pre">dist</span></code> appear in both <code class="docutils literal notranslate"><span class="pre">dist_3()</span></code> and <code class="docutils literal notranslate"><span class="pre">dist_2()</span></code>. This is permissible because a nested function has a separate memory block from its parent function.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Copy and paste the code snippet from above and then call <code>dist_3()</code> for <code>point1 = (0, 0), point2 = (2, 1), point3 = (2, 2)</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dist_3</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the distance between all pairs of three points in a coordinate system.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    point1 (tuple): coordinates of point 1</span>
+<span class="sd">    point2 (tuple): coordinates of point 2</span>
+<span class="sd">    point3 (tuple): coordinates of point 3</span>
+<span class="sd"> </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dist (list): list of the distances between point1 and point2, point1 and point3, and point2 and point3</span>
+<span class="sd">    &quot;&quot;&quot;</span> 
+    <span class="c1"># nested function</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dist_2</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the distance between two points in a coordinate system.</span>
+<span class="sd">    </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        point1 (tuple): coordinates of point 1</span>
+<span class="sd">        point2 (tuple): coordinates of point 2</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dist (float): distance between point1 and point2</span>
+<span class="sd">        &quot;&quot;&quot;</span> 
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">point1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">point2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">point1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">point2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dist</span>
+    
+    <span class="n">d0</span> <span class="o">=</span> <span class="n">dist_2</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">)</span>
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">dist_2</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point3</span><span class="p">)</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">dist_2</span><span class="p">(</span><span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">)</span>
+    
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="n">d0</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">dist</span>
+
+<span class="n">dist_3</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Only the parent function is able to call the nested function (think of it as a local function because it is defined within a function, similar to a local variable).</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try to call the nested function <code>dist_2()</code> from outside the parent function.</p>
+</div></blockquote>
+<p>You should see that this will raise an error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_2</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_arrays.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 4: NumPy Arrays</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_conditionals.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 6: Conditional Statements</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-basics">5.1. Function Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-functions">5.2. Calling Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-and-global-variables">5.3. Local and Global Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-variables">5.3.1. Local Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-variables">5.3.2. Global Variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-and-return-arguments">5.4. Input and Return Arguments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-input-arguments">5.4.1. Default Input Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-input-arguments">5.4.2. Order of Input Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-return-parameters">5.4.3. Multiple Return Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-without-input-arguments-and-or-return">5.4.4. Functions Without Input Arguments and/or Return</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">5.5. Lambda Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-as-arguments-to-functions">5.6. Functions as Arguments to Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-reading-nested-functions">5.7. Additional Reading: Nested Functions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
