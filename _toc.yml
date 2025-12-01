@@ -12,3 +12,16 @@ chapters:
 - file: lec/03_arrays.ipynb
 - file: lec/04_functions.ipynb
 - file: lec/05_conditionals.ipynb
+- file: lec/06_iteration.ipynb
+- file: lec/07_recursion.ipynb
+- file: lec/08_exceptions.ipynb
+- file: lec/09_number_rep.ipynb
+- file: lec/10_files.ipynb
+- file: lec/11_plotting.ipynb
+- file: lec/12_matlab.ipynb
+- file: lec/13_linear_algebra.ipynb
+- file: lec/14_taylor_series.ipynb
+- file: lec/15_root_finding.ipynb
+- file: lec/16_differentiation.ipynb
+- file: lec/17_integration.ipynb
+- file: lec/18_ode.ipynb

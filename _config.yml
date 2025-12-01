@@ -3,7 +3,6 @@
 
 title: E7 Lecture Books
 author: Mohamad M. Hallal
-logo: cover.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html

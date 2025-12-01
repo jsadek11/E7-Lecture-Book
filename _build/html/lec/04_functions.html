@@ -150,14 +150,8 @@
   
   
   
-    
-    
-      
-    
-    
-    <img src="../_static/cover.png" class="logo__image only-light" alt="E7 Lecture Books - Home"/>
-    <script>document.write(`<img src="../_static/cover.png" class="logo__image only-dark" alt="E7 Lecture Books - Home"/>`);</script>
   
+    <p class="title logo__title">E7 Lecture Books</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -177,7 +171,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to E7: Introduction to Computer Programming and Numerical Methods
+                    Introduction to Computer Programming and Numerical Methods
                 </a>
             </li>
         </ul>
@@ -188,6 +182,19 @@
 <li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 5: Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
 </ul>
 
     </div>
@@ -499,45 +506,29 @@ Import the <code>math</code> module and then use <code>math.sin()</code> to calc
 <p>The syntax includes:</p>
 <ol class="arabic simple">
 <li><p>Function header that begins with the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code>, which is used to define a function</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">function_name</span></code>, which is the identifier chosen by the programmer (you)</p></li>
-</ol>
-<blockquote>
-<div><blockquote>
-<div><p>Function names follow the same naming conventions as variables. They can only contain alphanumeric characters and underscores, and the first character must be a letter or an underscore. Also, function names are case-sensitive.</p>
-</div></blockquote>
-</div></blockquote>
-<ol class="arabic simple" start="3">
-<li><p>Input arguments <code class="docutils literal notranslate"><span class="pre">(argument_1,</span> <span class="pre">argument_2,</span> <span class="pre">...)</span></code>, which are a comma-separated sequence of inputs that will be sent to the function</p></li>
-</ol>
-<blockquote>
-<div><blockquote>
-<div><p>Input arguments are optional, and you can include any number of input arguments, or none.</p>
-</div></blockquote>
-</div></blockquote>
-<ol class="arabic simple" start="4">
+<li><p><code class="docutils literal notranslate"><span class="pre">function_name</span></code>, which is the identifier chosen by the programmer (you)</p>
+<ul class="simple">
+<li><p>Function names follow the same naming conventions as variables. They can only contain alphanumeric characters and underscores, and the first character must be a letter or an underscore. Also, function names are case-sensitive.</p></li>
+</ul>
+</li>
+<li><p>Input arguments <code class="docutils literal notranslate"><span class="pre">(argument_1,</span> <span class="pre">argument_2,</span> <span class="pre">...)</span></code>, which are a comma-separated sequence of inputs that will be sent to the function</p>
+<ul class="simple">
+<li><p>Input arguments are optional, and you can include any number of input arguments, or none.</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">:</span></code> colon, which is used at the end of the function header, after the input arguments</p></li>
-<li><p>Description, called a docstring, which is an optional string written between three single or double quotation marks to describe what this function does</p></li>
-</ol>
-<blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><p>The first line describes the job of the function in one line. The following lines can describe arguments and clarify the behavior of the function. The description could be accessed using <code class="docutils literal notranslate"><span class="pre">function_name?</span></code> or <code class="docutils literal notranslate"><span class="pre">help(function_name)</span></code>.</p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
-<ol class="arabic simple" start="6">
+<li><p>Description, called a docstring, which is an optional string written between three single or double quotation marks to describe what this function does</p>
+<ul class="simple">
+<li><p>The first line describes the job of the function in one line. The following lines can describe arguments and clarify the behavior of the function. The description could be accessed using <code class="docutils literal notranslate"><span class="pre">function_name?</span></code> or <code class="docutils literal notranslate"><span class="pre">help(function_name)</span></code>.</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">function_body</span></code>, which is a sequence of code statements that the function will execute when called</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">return</span></code> (optional), which will return (send back) the value(s) after the keyword to the calling statement</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span></code> (optional), which will return (send back) the value(s) after the keyword to the calling statement</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">return</span></code> statement will force immediate exit from the function, and it will return the value of the expression to the caller. Any code within the function after <code class="docutils literal notranslate"><span class="pre">return</span></code> is not executed.</p></li>
+</ul>
+</li>
 </ol>
-<blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><p>The <code class="docutils literal notranslate"><span class="pre">return</span></code> statement will force immediate exit from the function, and it will return the value of the expression to the caller. Any code within the function after <code class="docutils literal notranslate"><span class="pre">return</span></code> is not executed.</p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
 <blockquote>
 <div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
 The code that belongs to a function should be indented, as shown above. Indentation is important as it is the only way Python knows which code blocks belong to the function. It is standard in Python to use four spaces (equivalent to a tab) for indenting. If the code block is not indented correctly, this will raise an <code>IndentationError</code>.</p>
@@ -1030,18 +1021,11 @@ There is a distinction between using <code>return</code> and <code>print()</code
 <p>The syntax includes:</p>
 <ol class="arabic simple">
 <li><p>The keyword <code class="docutils literal notranslate"><span class="pre">lambda</span></code>, which is used to declare a lambda function</p></li>
-<li><p>Input arguments <code class="docutils literal notranslate"><span class="pre">argument_1,</span> <span class="pre">argument_2,</span> <span class="pre">...</span></code>, which are a comma-separated sequence of inputs that will be sent to the function</p></li>
-</ol>
-<blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><p>Input arguments are optional, and you can include any number of input arguments, or none.</p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
-<ol class="arabic simple" start="3">
+<li><p>Input arguments <code class="docutils literal notranslate"><span class="pre">argument_1,</span> <span class="pre">argument_2,</span> <span class="pre">...</span></code>, which are a comma-separated sequence of inputs that will be sent to the function</p>
+<ul class="simple">
+<li><p>Input arguments are optional, and you can include any number of input arguments, or none.</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">:</span></code> colon, which is used after the input arguments</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">expression</span></code>, which is a single expression whose value is automatically returned when the function is called</p></li>
 </ol>

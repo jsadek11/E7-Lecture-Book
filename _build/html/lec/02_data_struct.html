@@ -150,14 +150,8 @@
   
   
   
-    
-    
-      
-    
-    
-    <img src="../_static/cover.png" class="logo__image only-light" alt="E7 Lecture Books - Home"/>
-    <script>document.write(`<img src="../_static/cover.png" class="logo__image only-dark" alt="E7 Lecture Books - Home"/>`);</script>
   
+    <p class="title logo__title">E7 Lecture Books</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -177,7 +171,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to E7: Introduction to Computer Programming and Numerical Methods
+                    Introduction to Computer Programming and Numerical Methods
                 </a>
             </li>
         </ul>
@@ -188,6 +182,19 @@
 <li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
 </ul>
 
     </div>
@@ -465,7 +472,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="chapter-3-data-structures">
 <h1>Chapter 3: Data Structures<a class="headerlink" href="#chapter-3-data-structures" title="Link to this heading">#</a></h1>
-<p>Hi this is JOhn in here</p>
 <p>We have already encountered some simple Python data types like <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, and <code class="docutils literal notranslate"><span class="pre">bool</span></code>. These types represent a single value and cannot be subdivided. Such types are known as <strong>scalar</strong> objects. However, in practice, programs often need to work with collections of values. For example, consider representing daily maximum temperatures over a year. Instead of using 365 individual floats (e.g., <code class="docutils literal notranslate"><span class="pre">day1</span> <span class="pre">=</span> <span class="pre">63.9</span></code>, <code class="docutils literal notranslate"><span class="pre">day2</span> <span class="pre">=</span> <span class="pre">64.6</span></code>, <code class="docutils literal notranslate"><span class="pre">day3</span> <span class="pre">=</span> <span class="pre">65.0</span></code>, …), we can use a list of floats: <code class="docutils literal notranslate"><span class="pre">temp</span> <span class="pre">=</span> <span class="pre">[63.9,</span> <span class="pre">64.6,</span> <span class="pre">65.0,</span> <span class="pre">...]</span></code>. This approach is more powerful and efficient, allowing us to perform operations on the entire list using similar syntax to operations on scalar objects. Efficient storage and manipulation of data structures are crucial for scientific and engineering applications.</p>
 <p>Objects that contain multiple values are called <strong>non-scalar</strong> objects. These objects have an internal structure that can be subdivided (e.g., accessing the first value). Due to their structured nature, they are referred to as <strong>data structures</strong>. Python offers many built-in data structures, such as strings, lists, and tuples, which we will encounter frequently.</p>
 <br>
@@ -528,7 +534,7 @@ The first element has index 0 in Python. MATLAB, however, starts at index 1.</p>
 <p>In Python, we can access any value of a list using square brackets and the index of the desired element: <code class="docutils literal notranslate"><span class="pre">list_name[index]</span></code>.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Define <code>mixed_list = [‘Welcome’, ‘to’, ‘ENGIN’, 7, ‘!’]</code> and then print the first element.<br> Print the last element in <code>mixed_list</code>.</p>
+Define <code>mixed_list = [‘Welcome’, ‘to’, ‘ENGIN’, 7, ‘!’]</code> and then print the first element.<br> Print the last element in <code>mixed_list</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -554,7 +560,7 @@ Indices should be integers. If you use <code>list_name[1.]</code>, Python will i
 </figure></center>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Using negative indexing, create a new list named <code>new_list</code> that contains the first and last elements of <code>mixed_list</code>.</p>
+Using negative indexing, create a new list named <code>new_list</code> that contains the first and last elements of <code>mixed_list</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -589,7 +595,7 @@ Using <code>list_name[-1]</code> is really useful when you don’t know how big 
 <p>Let’s use <code class="docutils literal notranslate"><span class="pre">numeric_list</span> <span class="pre">=</span> <span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">...</span> <span class="pre">,</span> <span class="pre">98,</span> <span class="pre">99,</span> <span class="pre">100]</span></code> as an example.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run the code below and change the values for start, end, and step to check how they affect slicing.</p>
+Run the code below and change the values for start, end, and step to check how they affect slicing.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -612,7 +618,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run
 </div>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Check the outputs of <code>numeric_list[:10]</code>, <code>numeric_list[:]</code>, and <code>numeric_list[::2]</code>.</p>
+Check the outputs of <code>numeric_list[:10]</code>, <code>numeric_list[:]</code>, and <code>numeric_list[::2]</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -638,7 +644,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Che
 <p>In the example above, since <code class="docutils literal notranslate"><span class="pre">start</span></code> is not specified, the slice will start from index 0 (inclusive) up to index -1 (exclusive). Thus, the output includes the full list except for the last element, <code class="docutils literal notranslate"><span class="pre">100</span></code>.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run the code below and change the values for start, end, and step to check how they affect slicing.</p>
+Run the code below and change the values for start, end, and step to check how they affect slicing.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -680,7 +686,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run
 </div>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Modify <code>mixed_list</code> to replace the third and fourth items with another course, <code>’CE’</code> and <code>93</code>, respectively.</p>
+Modify <code>mixed_list</code> to replace the third and fourth items with another course, <code>’CE’</code> and <code>93</code>, respectively.</p>
 </div></blockquote>
 <p>Recall that we have defined: <code class="docutils literal notranslate"><span class="pre">mixed_list</span> <span class="pre">=</span> <span class="pre">['Welcome',</span> <span class="pre">'to',</span> <span class="pre">'ENGIN',</span> <span class="pre">7,</span> <span class="pre">'!']</span></code></p>
 <div class="cell docutils container">
@@ -701,7 +707,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Mod
 <p>We can check the length of a list using the built-in <code class="docutils literal notranslate"><span class="pre">len()</span></code> function. This will return the total number of elements in the list.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Check the length of <code>mixed_list</code> in Python.</p>
+Check the length of <code>mixed_list</code> in Python.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -717,7 +723,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Che
 <p>Additionally, a list can be repeated a specific number of times with the <code class="docutils literal notranslate"><span class="pre">*</span></code> operator simply by multiplying the list by that number. Note that the number you multiply a list by should be of type <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Concatenate the following two lists <code>list1 = [1]</code> and <code>list2 = [2]</code>. Save them as a new variable called <code>new_list</code>.<br> Then try to multiply <code>list1</code> by an integer and check the output.</p>
+Concatenate the following two lists <code>list1 = [1]</code> and <code>list2 = [2]</code>. Save them as a new variable called <code>new_list</code>.<br> Then try to multiply <code>list1</code> by an integer and check the output.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -747,7 +753,7 @@ Not all arithmetic operators can be used on lists – for example, using <code>l
 </div>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Check if 7 is in the list <code>mixed_list</code>.</p>
+Check if 7 is in the list <code>mixed_list</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -822,7 +828,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Che
 </div>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Define an empty list <code>list3 = []</code> and then append to it the numbers 1 and 3.</p>
+Define an empty list <code>list3 = []</code> and then append to it the numbers 1 and 3.</p>
 </div></blockquote>
 <blockquote>
 <div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
@@ -854,7 +860,7 @@ You can only append a single item at a time using the <code>.append()</code> met
 </div>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Insert 2 at index 1 of <code>list3</code>.</p>
+Insert 2 at index 1 of <code>list3</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -868,7 +874,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Ins
 </div>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Reverse the order of <code>list3</code>.</p>
+Reverse the order of <code>list3</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -884,7 +890,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Rev
 <p>However, it’s important to note that methods like <code class="docutils literal notranslate"><span class="pre">index()</span></code> and <code class="docutils literal notranslate"><span class="pre">count()</span></code> do not modify the list; they only provide information about the list’s contents. Therefore, they do not change the original list.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run the example below to see the effect of methods applied to lists.</p>
+Run the example below to see the effect of methods applied to lists.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -963,7 +969,7 @@ It is possible to drop the parentheses when specifying a tuple, and only use a c
 <p>Similar to lists, you can get the length of a tuple, you can index and slice tuples. As such, these topics are not discussed again.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Define a tuple called <code>tuple1</code> with all integers between 1 and 5. Then, check its type using the <code>type()</code> function.</p>
+Define a tuple called <code>tuple1</code> with all integers between 1 and 5. Then, check its type using the <code>type()</code> function.</p>
 </div></blockquote>
 <section id="unpacking">
 <h3>3.2.1. Unpacking<a class="headerlink" href="#unpacking" title="Link to this heading">#</a></h3>
@@ -1019,7 +1025,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Def
 <p>Similar to lists, using the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator with tuples, like <code class="docutils literal notranslate"><span class="pre">tuple1</span> <span class="pre">+</span> <span class="pre">tuple2</span></code>, won’t perform arithmetic addition between the values of the two tuples. Instead, this will concatenate them into a combined tuple. Additionally, you can use the <code class="docutils literal notranslate"><span class="pre">*</span></code> operator for tuple repetition, just as we did with lists.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Concatenate the following two tuples <code>tuple1 = (0, 1)</code> and <code>tuple2 = (2, 2)</code>. Save them as a new variable called <code>new_tuple</code>.<br>      Then try to multiply <code>tuple1</code> by an integer and check the output.</p>
+Concatenate the following two tuples <code>tuple1 = (0, 1)</code> and <code>tuple2 = (2, 2)</code>. Save them as a new variable called <code>new_tuple</code>.<br>      Then try to multiply <code>tuple1</code> by an integer and check the output.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1067,7 +1073,7 @@ The built-in <code>range</code> function is specifically designed to generate se
 </div></blockquote>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Define a range <code>year</code> with all days of the year starting from 1 through 365 (inclusive). Print it then check its type using the <code>type()</code> function.</p>
+Define a range <code>year</code> with all days of the year starting from 1 through 365 (inclusive). Print it then check its type using the <code>type()</code> function.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1078,7 +1084,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Def
 </div>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run the code below and change the values for start, stop, and step to check how they affect range.</p>
+Run the code below and change the values for start, stop, and step to check how they affect range.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1105,7 +1111,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run
 <p>A string can include letters, digits, punctuation, spaces, and other valid symbols. They can represent anything from a single character to a word, a sentence, or even an entire book! Strings can also be assigned to variables.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Define a variable named <code>greeting</code> with the following string: “Welcome to ENGIN7!” Check its type using <code>type()</code>.</p>
+Define a variable named <code>greeting</code> with the following string: “Welcome to ENGIN7!” Check its type using <code>type()</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1140,7 +1146,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Def
 <p>Note that even a space is considered a character, and thus it has an index. Therefore, <code class="docutils literal notranslate"><span class="pre">&quot;Welcome</span> <span class="pre">to</span> <span class="pre">ENGIN7!&quot;</span></code> is different from <code class="docutils literal notranslate"><span class="pre">&quot;WelcometoENGIN7!&quot;</span></code>. Understanding string indexing is crucial for effectively working with and manipulating strings.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Print the character with index 10. Print the character with index 16 and then check its type.</p>
+Print the character with index 10. Print the character with index 16 and then check its type.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1151,7 +1157,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Pri
 </div>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run the code below and change the values for start, end, and step to check how they affect slicing.</p>
+Run the code below and change the values for start, end, and step to check how they affect slicing.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1170,7 +1176,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run
 </div>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Check the outputs of <code>greeting[:7]</code>, <code>greeting[:]</code>, and <code>greeting[::2]</code>.</p>
+Check the outputs of <code>greeting[:7]</code>, <code>greeting[:]</code>, and <code>greeting[::2]</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1186,7 +1192,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Che
 <p>We can reverse a string by specifying a negative <code class="docutils literal notranslate"><span class="pre">step</span></code>, such as -1, -2, etc… When using negative <code class="docutils literal notranslate"><span class="pre">step</span></code>, characters will be printed from right to left.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Reverse the order of the characters in <code>greeting</code>.</p>
+Reverse the order of the characters in <code>greeting</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1232,7 +1238,7 @@ While the syntax of <code>greeting[-1]</code>, <code>greeting[:-1]</code>, and <
 <h3>3.4.3. Length<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>Similar to other data structures, we can check the length of a string using the built-in function <code class="docutils literal notranslate"><span class="pre">len()</span></code>. This will return the total number of all characters in the string, including letters, digits, punctuation, spaces, and other valid symbols.</p>
 <blockquote>
-<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font>    &gt; Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Print the length of <code>greeting</code>.</p>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font>    &gt; Print the length of <code>greeting</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1247,7 +1253,7 @@ While the syntax of <code>greeting[-1]</code>, <code>greeting[:-1]</code>, and <
 <p>Strings can be concatenated (glued together) with the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator. This allows you to combine multiple strings into a single string. So, writing <code class="docutils literal notranslate"><span class="pre">&quot;Welcome</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">&quot;to</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">&quot;ENGIN7!&quot;</span></code> will give us the same string as <code class="docutils literal notranslate"><span class="pre">greeting</span></code>. Notice how spaces were included after “Welcome” and after “to”.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Create a string without any spaces within the quotations using <code>”Welcome” + “to” + “ENGIN7!”</code>.</p>
+Create a string without any spaces within the quotations using <code>”Welcome” + “to” + “ENGIN7!”</code>.</p>
 </div></blockquote>
 <p>Python will not automatically add a space because these are different words; this is up to the programmer (you) to specify.</p>
 <div class="cell docutils container">
@@ -1260,7 +1266,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Cre
 <p>A string can be repeated a specific number of times with the <code class="docutils literal notranslate"><span class="pre">*</span></code> operator simply by multiplying the string by that number. However, it’s important to note that the number you multiply the string by should be of type <code class="docutils literal notranslate"><span class="pre">int</span></code>. You cannot multiply <code class="docutils literal notranslate"><span class="pre">str</span></code> by a <code class="docutils literal notranslate"><span class="pre">float</span></code> or by another <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Repeat the statement in <code>greeting</code> 3 times. What happens if you try to run <code>greeting * ‘3’</code>?</p>
+Repeat the statement in <code>greeting</code> 3 times. What happens if you try to run <code>greeting * ‘3’</code>?</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1272,7 +1278,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Rep
 <p>To check whether a specific character or string is part of another string, you can use the operator <code class="docutils literal notranslate"><span class="pre">string1</span> <span class="pre">in</span> <span class="pre">string2</span></code>. This will return <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">string1</span></code> is a part of <code class="docutils literal notranslate"><span class="pre">string2</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise. Using <code class="docutils literal notranslate"><span class="pre">string1</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">string2</span></code> will return <code class="docutils literal notranslate"><span class="pre">True</span></code> is <code class="docutils literal notranslate"><span class="pre">string1</span></code> is not part of <code class="docutils literal notranslate"><span class="pre">string2</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Check if “,” is in <code>greeting</code>.</p>
+Check if “,” is in <code>greeting</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1296,7 +1302,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Che
 <p>These are just a few of the methods available for manipulating strings. For a complete list, you can refer to the <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#string-methods">official documentation</a>.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run the following commands: <code>greeting.lower()</code>, <code>greeting.count(‘N’)</code>, and <code>greeting.replace(‘ENGIN7’, ‘E7’)</code>.</p>
+Run the following commands: <code>greeting.lower()</code>, <code>greeting.count(‘N’)</code>, and <code>greeting.replace(‘ENGIN7’, ‘E7’)</code>.</p>
 </div></blockquote>
 <p>Recall that <code class="docutils literal notranslate"><span class="pre">greeting</span> <span class="pre">=</span> <span class="pre">&quot;Welcome</span> <span class="pre">to</span> <span class="pre">ENGIN7!&quot;</span></code>.</p>
 <div class="cell docutils container">
@@ -1313,7 +1319,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run
 <p>Although strings and lists both have several methods, there is a key difference in the behavior between methods applied to lists and strings in Python. We saw earlier that some list methods modify the original list. However, none of the string methods ever change the original string. This stems from the fundamental concept that lists are mutable whereas strings are immutable.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run the example below to see the differences between methods applied to strings and to lists.</p>
+Run the example below to see the differences between methods applied to strings and to lists.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1344,7 +1350,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run
 <p>In Python, strings are surrounded by either single or double quotation marks, and both options work the same way for creating strings. However, the difference becomes apparent when these quotes are used together. You may find yourself in a situation where you want to use an apostrophe as a string, such as the word <code class="docutils literal notranslate"><span class="pre">don't</span></code>. Double quotes allow you to include apostrophes inside of strings. Alternatively, if using single quotes, a backslash (<code class="docutils literal notranslate"><span class="pre">\</span></code>) can be included before the apostrophe as a way to tell Python this is part of the string. The backslash is used to escape characters that otherwise have a special meaning, such as the quote character. If you want to include a backslash as a character in the the string, you have to use double backslash <code class="docutils literal notranslate"><span class="pre">\\</span></code>. This will include a single backslash <code class="docutils literal notranslate"><span class="pre">\</span></code> in the string.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run the following using single and double quotes <code>This won’t work with a single-quoted string!</code> and <code>Don’t cheat, it’s not worth the consequences.</code>.</p>
+Run the following using single and double quotes <code>This won’t work with a single-quoted string!</code> and <code>Don’t cheat, it’s not worth the consequences.</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1370,7 +1376,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Run
 <p>We can convert other data types to strings using the built-in function <code class="docutils literal notranslate"><span class="pre">str()</span></code>. For example <code class="docutils literal notranslate"><span class="pre">str(1)</span></code> will convert the number 1, to the string ‘1’. This is particularly useful when you have calculated a numeric variable and want to print it out with a string. In this case, you can convert the numeric variable to a string and then concatenate it with the string you are trying to print.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Define the variable <code>number = 400</code> and then try to print a statement that says: <code>There are x students in E7.</code>, where <code>x</code> should be replaced by the value of the variable <code>number</code>.</p>
+Define the variable <code>number = 400</code> and then try to print a statement that says: <code>There are x students in E7.</code>, where <code>x</code> should be replaced by the value of the variable <code>number</code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1395,7 +1401,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Def
 <p>You can embed different Python expressions, such as arithmetic expressions, between <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Print the following statement using the new formatting syntax: “Nine divided by two is x, where y is the quotient and z is the remainder”. Replace x, y, and z with the correct values.</p>
+Print the following statement using the new formatting syntax: “Nine divided by two is x, where y is the quotient and z is the remainder”. Replace x, y, and z with the correct values.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1417,7 +1423,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Pri
 <p>You can use logical expressions such as <code class="docutils literal notranslate"><span class="pre">==</span></code> and <code class="docutils literal notranslate"><span class="pre">!=</span></code> with strings to compare and evaluate them. These comparisons evaluate whether two strings are identical or different. It’s important to note that string are case-sensitive, meaning <code class="docutils literal notranslate"><span class="pre">&quot;Hello&quot;</span></code> is not the same as <code class="docutils literal notranslate"><span class="pre">&quot;hello&quot;</span></code>. Also, even a space is considered a character, meaning <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">hello&quot;</span></code> is not the same as <code class="docutils literal notranslate"><span class="pre">&quot;hello&quot;</span></code>.</p>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Using logical expressions, check if <code>greeting</code> is equal to <code>”Welcome “ + “to “ + “ENGIN7!”</code>.</p>
+Using logical expressions, check if <code>greeting</code> is equal to <code>”Welcome “ + “to “ + “ENGIN7!”</code>.</p>
 </div></blockquote>
 <p>Recall that <code class="docutils literal notranslate"><span class="pre">greeting</span> <span class="pre">=</span> <span class="pre">&quot;Welcome</span> <span class="pre">to</span> <span class="pre">ENGIN7!&quot;</span></code>.</p>
 <div class="cell docutils container">
@@ -1530,7 +1536,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Usi
 </div>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Define a variable named <code>greeting</code> with the following string in Python: “Welcome to ENGIN7!” and then convert it to a list.<br>      Convert <code>year</code> from range to tuple.</p>
+Define a variable named <code>greeting</code> with the following string in Python: “Welcome to ENGIN7!” and then convert it to a list.<br>      Convert <code>year</code> from range to tuple.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1634,7 +1640,7 @@ Using <code>%f</code> in the example above added zeros to the number. To control
 </div></blockquote>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Define <code>divisor = 2</code>, <code>dividend = 9</code>, then print the following statement: “Nine divided by two is x, where y is the quotient and z is the remainder”. Replace x, y, and z with the correct values. Display only two digits after the decimal point for x.</p>
+Define <code>divisor = 2</code>, <code>dividend = 9</code>, then print the following statement: “Nine divided by two is x, where y is the quotient and z is the remainder”. Replace x, y, and z with the correct values. Display only two digits after the decimal point for x.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1664,7 +1670,7 @@ Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Def
 </figure></center>
 <blockquote>
 <div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
-Compute <span class="math notranslate nohighlight">\(3^4\)</span> in Python. Using logical expressions, check if <code>greeting</code> is equal to <code>”Welcome “ + “to “ + “ENGIN7!”</code>, is less than <code>”Welcome”</code>, is less than <code>”a”</code>, and is less than <code>”A”</code>.</p>
+Using logical expressions, check if <code>greeting</code> is equal to <code>”Welcome “ + “to “ + “ENGIN7!”</code>, is less than <code>”Welcome”</code>, is less than <code>”a”</code>, and is less than <code>”A”</code>.</p>
 </div></blockquote>
 <p>Recall that <code class="docutils literal notranslate"><span class="pre">greeting</span> <span class="pre">=</span> <span class="pre">&quot;Welcome</span> <span class="pre">to</span> <span class="pre">ENGIN7!&quot;</span></code>.</p>
 <div class="cell docutils container">

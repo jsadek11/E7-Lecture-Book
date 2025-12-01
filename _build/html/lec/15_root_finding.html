@@ -1,0 +1,864 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 16: Root Finding &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/15_root_finding';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 17: Differentiation" href="16_differentiation.html" />
+    <link rel="prev" title="Chapter 15: Taylor Series" href="14_taylor_series.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/15_root_finding.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/15_root_finding.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/15_root_finding.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 16: Root Finding</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-finding">16.1. Root Finding <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error">16.1.1. Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tolerance">16.1.2. Tolerance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence">16.1.3. Convergence</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bisection-method">16.2. Bisection Method <a id="s2"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-raphson-method">16.3. Newton-Raphson Method <a id="s3"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-finding-in-python">16.4. Root Finding in Python <a id="s4"></a></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-16-root-finding">
+<h1>Chapter 16: Root Finding<a class="headerlink" href="#chapter-16-root-finding" title="Link to this heading">#</a></h1>
+<p>Much like <span class="math notranslate nohighlight">\(\sin(x)\)</span>, <span class="math notranslate nohighlight">\(\cos(x)\)</span>, <span class="math notranslate nohighlight">\(e^x\)</span>, and <span class="math notranslate nohighlight">\(\log(x)\)</span>, which cannot be explicitly computed, analytically solving many equations in engineering and science is not possible. The goal of equation solving is to find the value of the independent variable, generally referred to as <span class="math notranslate nohighlight">\(x\)</span>, that makes the equation true. For simple functions such as <span class="math notranslate nohighlight">\(f(x) = ax^2 + bx + c = 0\)</span>, you may already be familiar with the quadratic formula, which provides the exact solutions:</p>
+<div class="math notranslate nohighlight">
+\[
+x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\]</div>
+<p>However for more complicated functions, the solution can rarely be computed using such explicit, or exact, means. Several numerical methods exist to find approximate solutions to many functions commonly encountered in engineering and science. Numerical methods mainly focus on approximating the solutions to equations without relying on specific formulas or other algebraic techniques. The advantages of these numerical techniques include their applicability to nearly any function, their quick and simple implementation, and the minimal mathematical knowledge that is required. However, as with other numerical methods, the solutions obtained will be approximations and are subject to errors.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Rewrite a nonlinear equation as a root finding problem</p></li>
+<li><p>Describe the general approach of numerical root finding algorithms, including concepts such as error, tolerance, and convergence</p></li>
+<li><p>Discuss why tolerance is used as opposed to zero error</p></li>
+<li><p>Explain the bisection method, its applicability, and limitations</p></li>
+<li><p>Implement the bisection method in Python</p></li>
+<li><p>Explain the Newton-Raphson method, its applicability, and limitations</p></li>
+<li><p>Implement the Newton-Raphson method in Python</p></li>
+<li><p>Use existing root finding functions in Python, particularly <code class="docutils literal notranslate"><span class="pre">fsolve()</span></code> from <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code></p></li>
+</ul>
+<section id="root-finding">
+<h2>16.1. Root Finding <a id="s1"></a><a class="headerlink" href="#root-finding" title="Link to this heading">#</a></h2>
+<p>Let’s first take a look at the general idea of solving a nonlinear equation. Consider the equation <span class="math notranslate nohighlight">\(\ell(x)=r(x)\)</span>, where <span class="math notranslate nohighlight">\(\ell(x)\)</span> is the left-hand expression and <span class="math notranslate nohighlight">\(r(x)\)</span> is the right-hand expression. To find the values of <span class="math notranslate nohighlight">\(x\)</span> for which this equation is true, which we will refer to as equation solving, we can first rewrite it by subtracting the right-hand side from the left to get:</p>
+<div class="math notranslate nohighlight">
+\[\ell(x)-r(x)=0\]</div>
+<p>If we define <span class="math notranslate nohighlight">\(f(x) = \ell(x)-r(x)\)</span>, then solving the equation <span class="math notranslate nohighlight">\(\ell(x)=r(x)\)</span> is essentially the same as solving <span class="math notranslate nohighlight">\(f(x)=0\)</span>. This is true for any equation. Thus, in the remainder of this section, we focus on solving equations of the form <span class="math notranslate nohighlight">\(f(x)=0\)</span>.</p>
+<p>A <strong>root</strong> of a function <span class="math notranslate nohighlight">\(f(x)\)</span> is a value <span class="math notranslate nohighlight">\(x_r\)</span> that satisfies <span class="math notranslate nohighlight">\(f(x_r) = 0\)</span>. A function may possess zero, one, or multiple roots. For instance, in the case of the function <span class="math notranslate nohighlight">\(f(x) = x^2 - 9\)</span>, it is evident that the roots are precisely <span class="math notranslate nohighlight">\(3\)</span> and <span class="math notranslate nohighlight">\(-3\)</span>. However, consider a more complex function like <span class="math notranslate nohighlight">\(f(x)=e^{-40x}+40xe^{-40x}-0.05\)</span>. It should be evident that finding the roots of this equation is not possible using specific formulas or other algebraic techniques. As such, when dealing with more complex functions, determining an analytical or exact solution for its roots can prove to be challenging. In such situations, the application of numerical methods to find approximate solutions becomes invaluable.</p>
+<p>Numerical methods for root finding are typically iterative in nature and can also be implemented recursively. These methods involve a series of steps, including:</p>
+<ol class="arabic simple">
+<li><p>Initiate an initial guess, denoted as <span class="math notranslate nohighlight">\(x_0\)</span></p></li>
+<li><p>Iterate to refine the answer <span class="math notranslate nohighlight">\(x_i\)</span></p></li>
+<li><p>Terminate when <span class="math notranslate nohighlight">\(x_i\)</span> reaches an acceptable approximation</p></li>
+</ol>
+<p>For some equations, the roots can extend to infinite decimal places. Consequently, when numerically computing them, it is crucial to establish a metric for quantifying the error and a criterion for what defines an acceptable approximation.</p>
+<section id="error">
+<h3>16.1.1. Error<a class="headerlink" href="#error" title="Link to this heading">#</a></h3>
+<p>Error quantifies the deviation between an expected value and the computed value. In root finding, if <span class="math notranslate nohighlight">\(x_i\)</span> is the estimated root at iteration <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(x_r\)</span> is the actual exact root, where <span class="math notranslate nohighlight">\(f(x_r) = 0\)</span>, error can be measured in various ways:</p>
+<ul class="simple">
+<li><p>Absolute value of the function at <span class="math notranslate nohighlight">\(x_i\)</span>: <span class="math notranslate nohighlight">\(|f(x_i)|\)</span>
+<br></p></li>
+<li><p>Absolute error: <span class="math notranslate nohighlight">\(|x_r - x_i|\)</span>
+<br></p></li>
+<li><p>Relative error: <span class="math notranslate nohighlight">\(\dfrac{|x_r - x_i|}{|x_r|}\)</span></p></li>
+</ul>
+<p>However, in practice, the exact root <span class="math notranslate nohighlight">\(x_r\)</span> is generally unknown, as it is the value we are attempting to determine. Consequently, calculating absolute and relative error using <span class="math notranslate nohighlight">\(x_r\)</span> is impractical. Root finding methods operate iteratively and gradually approach the root. As the estimate <span class="math notranslate nohighlight">\(x_i\)</span> approaches <span class="math notranslate nohighlight">\(x_r\)</span>, the change between successive iterations, <span class="math notranslate nohighlight">\(|x_{i+1} - x_i|\)</span>, diminishes. As such, the absolute and relative error can be estimated as:</p>
+<ul class="simple">
+<li><p>Absolute error: <span class="math notranslate nohighlight">\(|x_{i+1} - x_i|\)</span>
+<br></p></li>
+<li><p>Relative error: <span class="math notranslate nohighlight">\(\dfrac{|x_{i+1} - x_i|}{|x_{i+1}|}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+These different measures of error have their advantages and disadvantages, and the choice of which metric to use must be done very carefully.</p>
+</div></blockquote>
+<p>All of the above error definitions will be exactly equal to 0 if <span class="math notranslate nohighlight">\(x_i=x_r\)</span>. However, achieving  exactly zero error is often impractical and, in many cases, impossible due to the finite precision of computer arithmetic. Computers use floating-point numbers, resulting in small numerical fluctuations even when extremely close to the actual root. Therefore, exact zero error is rarely attainable in practical numerical computations. Instead of aiming for zero error, the goal is to find an acceptable approximation <span class="math notranslate nohighlight">\(x_i\)</span> such that <span class="math notranslate nohighlight">\(|f(x_i)| \approx 0\)</span>, or equivalently, <span class="math notranslate nohighlight">\(|x_r - x_i| \approx 0\)</span>.</p>
+</section>
+<section id="tolerance">
+<h3>16.1.2. Tolerance<a class="headerlink" href="#tolerance" title="Link to this heading">#</a></h3>
+<p>Numerical algorithms use tolerance thresholds to decide when to stop iterations. Tolerance defines the acceptable level of error for an application. Starting with an initial guess <span class="math notranslate nohighlight">\(x_0\)</span>, iterations are used to refine the estimate until the error is below a predefined tolerance, <span class="math notranslate nohighlight">\(\epsilon\)</span>. At this point, the iterations are terminated and the value <span class="math notranslate nohighlight">\(x_i\)</span> is deemed an acceptable approximation of the root. This stopping criterion ensures practical accuracy while accounting for computational limitations. Another stopping criterion is when the number of iterations reaches a predetermined maximum number. As such, the common stopping criteria are:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(|f(x_i)| \leq \epsilon \)</span>
+<br></p></li>
+<li><p><span class="math notranslate nohighlight">\(|x_{i+1} - x_i| \leq \epsilon\)</span>
+<br></p></li>
+<li><p><span class="math notranslate nohighlight">\(\dfrac{|x_{i+1} - x_i|}{|x_{i+1}|} \leq \epsilon\)</span>
+<br></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = N\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is a predetermined maximum number of iterations</p></li>
+</ol>
+<p>Selecting a suitable tolerance is critical, as it directly impacts both the accuracy and computational cost of an algorithm.</p>
+</section>
+<section id="convergence">
+<h3>16.1.3. Convergence<a class="headerlink" href="#convergence" title="Link to this heading">#</a></h3>
+<p>Convergence occurs when a numerical method iteratively refines an initial guess <span class="math notranslate nohighlight">\(x_0\)</span> until the error falls below the predefined tolerance. Specifically, a solution is said to have converged when the iteration yields <span class="math notranslate nohighlight">\(x_i\)</span> with an error smaller than the tolerance.</p>
+<p>We now have a way to view every equation-solving problem as well as a way to define stopping criteria. Next, we will introduce different numerical techniques for root finding.</p>
+</section>
+</section>
+<section id="bisection-method">
+<h2>16.2. Bisection Method <a id="s2"></a><a class="headerlink" href="#bisection-method" title="Link to this heading">#</a></h2>
+<p>One common numerical method for root finding is the bisection method. As its name suggests, the method is based on repeatedly bisecting (dividing into two equal parts) an interval that contains a root. The basic idea is very simple and is grounded in the Intermediate Value Theorem.</p>
+<p>The Intermediate Value Theorem states that if two points are connected by a continuous curve, with one point below a certain line and the other point above a certain line, then there is at least one place where the curve crosses the line.</p>
+<br>
+<center><figure>
+  <img src="https://www.mathsisfun.com/algebra/images/intermediate-value-a.svg
+" style="width:25%">
+    <figcaption style="text-align:center"><strong><br>Intermediate Value Theorem:</strong> <a href="https://www.mathsisfun.com/algebra/intermediate-value-theorem.html">https://www.mathsisfun.com/</a></figcaption>   
+</figure></center>
+<br>
+<p>Now if this line corresponds to <span class="math notranslate nohighlight">\(y=0\)</span>, then the curve would cross the line at a root.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(f(x)\)</span> is a continuous function on a closed interval <span class="math notranslate nohighlight">\([a, b]\)</span>. If <span class="math notranslate nohighlight">\(f(a)\)</span> and <span class="math notranslate nohighlight">\(f(b)\)</span> have opposite signs (one is positive and the other is negative), then there must exits at least one root within <span class="math notranslate nohighlight">\([a, b]\)</span>. This is because if the function is continuous, then to go from negative to positive (or vice versa), the function must cross through <span class="math notranslate nohighlight">\(f(x)=0\)</span>.</p>
+<p>The steps of the bisection method are as follows:</p>
+<ol class="arabic">
+<li><p>Choose an initial interval <span class="math notranslate nohighlight">\([a, b]\)</span> where the function <span class="math notranslate nohighlight">\(f(x)\)</span> changes signs: <span class="math notranslate nohighlight">\(f(a) \times f(b) &lt; 0\)</span>
+<br></p></li>
+<li><p>Compute the midpoint of the interval: <span class="math notranslate nohighlight">\(m = \dfrac{a + b}{2}\)</span>
+<br></p></li>
+<li><p>Evaluate the function at the midpoint: <span class="math notranslate nohighlight">\(f(m)\)</span>
+<br></p></li>
+<li><p>Check the error</p>
+<p>4.1. If <span class="math notranslate nohighlight">\(|f(m)| \leq \epsilon\)</span> (or any other equivalent error is within the tolerance), then <span class="math notranslate nohighlight">\(m\)</span> is an acceptable root</p>
+<p>4.2. Else if <span class="math notranslate nohighlight">\(f(a) \times f(m) &lt; 0\)</span>, then the root lies in the interval <span class="math notranslate nohighlight">\([a, m]\)</span>. Set <span class="math notranslate nohighlight">\(b = m\)</span>.</p>
+<p>4.3. Else, the root lies in the interval <span class="math notranslate nohighlight">\([m, b]\)</span>. Set <span class="math notranslate nohighlight">\(a = m\)</span>.
+<br></p>
+</li>
+<li><p>Repeat the process with the new interval until the stopping criterion is satisfied</p></li>
+</ol>
+<br>
+<center><figure>
+  <img src="https://x-engineer.org/wp-content/uploads/2016/11/The-Bisection-Method-animation.gif
+" style="width:50%">
+    <figcaption style="text-align:center"><strong>Animation of the bisection method:</strong> <a href="https://x-engineer.org/bisection-method/">https://x-engineer.org/</a></figcaption>   
+</figure></center>
+<br>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a recursive function <code>myBisection(f, a, b, tol)</code> which takes as input a function <code>f</code> and three scalar values <code>a, b, tol</code> and returns a root <code>m</code> of <code>f</code>, bounded by <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> to within <span class="math notranslate nohighlight">\(|f(m)| \leq {\text{tol}}\)</span>. If <span class="math notranslate nohighlight">\(f(a)\times f(b) &lt;0\)</span> is not satisfied, raise an exception with the message <code>’Invalid [a, b]’</code> using an <code>assert</code> statement.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define function</span>
+
+    <span class="c1"># check if a and b are valid</span>
+    
+        
+    <span class="c1"># get midpoint</span>
+    
+    <span class="c1"># check error</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try your function <code>myBisection(f, a, b, tol)</code> for <span class="math notranslate nohighlight">\(f(x)=e^{-40x}+40xe^{-40x}-0.05\)</span> with different values of <code>a, b, tol</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.05</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">myBisection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1e-15</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;r    = </span><span class="si">{</span><span class="n">root</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;f(r) = </span><span class="si">{</span><span class="n">f</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The bisection method works because it systematically narrows down the interval containing the root. By continually halving the interval and choosing the subinterval where the sign change occurs, it ensures that the root is always within the interval. This method is guaranteed to converge to a root, provided that the initial interval <span class="math notranslate nohighlight">\([a,b]\)</span> is chosen such that <span class="math notranslate nohighlight">\(f(a)\)</span> and <span class="math notranslate nohighlight">\(f(b)\)</span> have opposite signs.</p>
+<p>Despite its simple algorithm and guaranteed convergence under certain conditions, the method can be slow compared to other root finding methods, especially if the interval is large. In addition, the method fails to find a solution if the signs of the function on either side of the root are the same.</p>
+</section>
+<section id="newton-raphson-method">
+<h2>16.3. Newton-Raphson Method <a id="s3"></a><a class="headerlink" href="#newton-raphson-method" title="Link to this heading">#</a></h2>
+<p>The quality of numerical root finding algorithms can be greatly improved by leveraging some calculus. One such method is the Newton-Raphson method, also known as Newton’s method. The method was originally proposed by Isaac Newton, and later modified by Joseph Raphson. The method uses the idea that a continuous and differentiable function can be approximated by a straight line tangent to it.</p>
+<p>Consider the plot below. As we approach the root, the function can be approximated by a straight line (i.e., a linear function). So, if we take any point along the function in the zoomed-in view, and draw a tangent line, the <span class="math notranslate nohighlight">\(x\)</span>-intercept of the tangent line (where it intersects the <span class="math notranslate nohighlight">\(x\)</span> axis) is a reasonable estimate of the root. By repeating this process multiple times, the estimate can be refined such that it becomes an acceptable approximation of the root.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSFnZxT8BSCI34RQfZhJXlwY-HE1tUUZUW7vzNOfWuxVfjC3BbCJIVRZpb8u2lCjhbJT2yx3smQqnf3/pub?w=1270&h=480
+" style="width:75%">
+    <figcaption style="text-align:center"><strong><br>Zoomed-in view of a root</strong></figcaption>   
+</figure></center>
+<br>
+<p>Using calculus, we can show that if we draw a tangent line at a point <span class="math notranslate nohighlight">\(x_{i-1}\)</span>, where the slope of that tangent line is simply the value of the first derivative of the function at that point, <span class="math notranslate nohighlight">\(f'(x_{i-1})\)</span>, then the tangent line intersects the <span class="math notranslate nohighlight">\(x\)</span>-axis at:</p>
+<div class="math notranslate nohighlight">
+\[x_i = x_{i-1} - \dfrac{f(x_{i-1})}{f'(x_{i-1})}\]</div>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vRWq2sfHb5Y0aDtHAdC9S0MxvxPvtjLFwzi3P0LTuz2W0I-LDqellEra4EFUFYIyZMEWDzHDP2zbauP/pub?w=885&h=527
+" style="width:50%">
+    <figcaption style="text-align:center"><strong><br>Calculating $x$-intercept of the tangent line</strong></figcaption>   
+</figure></center>
+<br>
+<p>The steps of the Newton-Raphson method are as follows:</p>
+<ol class="arabic">
+<li><p>Choose an initial guess <span class="math notranslate nohighlight">\(x_0\)</span>
+<br></p></li>
+<li><p>Evaluate the function at <span class="math notranslate nohighlight">\(x_{i}\)</span>: <span class="math notranslate nohighlight">\(f(x_i)\)</span>
+<br></p></li>
+<li><p>Check the error</p>
+<p>3.1. If <span class="math notranslate nohighlight">\(|f(x_i)| \leq \epsilon\)</span> (or any other equivalent error is within the tolerance), then <span class="math notranslate nohighlight">\(x_i\)</span> is an acceptable root</p>
+<p>3.2. Else calculate an improved estimate <span class="math notranslate nohighlight">\(x_{i}\)</span> using the formula: <span class="math notranslate nohighlight">\(x_{i} = x_{i-1} - \dfrac{f(x_{i-1})}{f'(x_{i-1})}\)</span></p>
+</li>
+<li><p>Repeat the process with the new estimate until the stopping criterion is satisfied</p></li>
+</ol>
+<br>
+<center><figure>
+  <img src="https://yasincapar.com/wp-content/uploads/2020/07/newto2n.gif
+" style="width:40%">
+    <figcaption style="text-align:center"><strong><br>Animation of the Netwon-Raphson method:</strong> <a href="https://yasincapar.com/the-newton-raphson-method/">https://yasincapar.com/</a></figcaption>   
+</figure></center>
+<br>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a recursive function <code>myNewton(f, df, x0, tol)</code> which takes as input two functions <code>f</code> and its derivative <code>df</code> and two scalar values <code>x0, tol</code> and returns a root <code>r</code> of <code>f</code> such that <span class="math notranslate nohighlight">\(|f(r)| \leq {\text{tol}}\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define function</span>
+
+    <span class="c1"># check error</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try your function <code>myNewton(f, df, x0, tol)</code> for <span class="math notranslate nohighlight">\(f(x)=e^{-40x}+40xe^{-40x}-0.05\)</span> with different values of <code>x0, tol</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.05</span>
+<span class="n">df</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">40</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">40</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">40</span><span class="o">*</span><span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">myNewton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;r    = </span><span class="si">{</span><span class="n">root</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;f(r) = </span><span class="si">{</span><span class="n">f</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try your function <code>myNewton(f, df, x0, tol)</code> for <span class="math notranslate nohighlight">\(f(x)=e^{-40x}+40xe^{-40x}-0.05\)</span> with <code>x0 = 0.18</code>. Then run the next code to visualize why the method fails to find the desired root.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root</span> <span class="o">=</span> <span class="n">myNewton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;r    = </span><span class="si">{</span><span class="n">root</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;f(r) = </span><span class="si">{</span><span class="n">f</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Create figure and axes</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="c1"># control axes</span>
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">spine</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;zero&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">spine</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.major.pad&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;5&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.major.pad&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;5&#39;</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticks</span> <span class="o">=</span> <span class="p">[])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+
+<span class="c1"># define array of x values for plotting</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># define function that returns the value of the tangent to a function evaluated at point x0</span>
+<span class="n">tangent</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">df</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span> <span class="o">-</span> <span class="n">df</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="o">*</span><span class="n">x0</span>
+
+<span class="c1"># plot the function</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;C5&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+
+<span class="c1"># plot the tangent</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">tangent</span><span class="p">(</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="mf">0.18</span><span class="p">),</span> <span class="s1">&#39;oC0&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Newton-Raphson method estimates the root by repeatedly refining an initial guess based on the function and its derivative. As opposed to the bisection method, which required two initial guesses <span class="math notranslate nohighlight">\([a, b]\)</span> with different function signs, the Newton-Raphson method only requires one initial guess. In addition, the method converges to a root much faster than the bisection method if the initial guess is close to the actual root.</p>
+<p>However, it should be clear that this method is applicable only if the function is both continuous and differentiable, whereas the bisection method only requires the function to be continuous. In addition, the Newton-Raphson method requires dividing by the derivative of the function. Consequently, if the derivative at <span class="math notranslate nohighlight">\(x_i\)</span> is zero or close to 0, this will result in division by zero, and the method will fail to converge to a solution.</p>
+</section>
+<section id="root-finding-in-python">
+<h2>16.4. Root Finding in Python <a id="s4"></a><a class="headerlink" href="#root-finding-in-python" title="Link to this heading">#</a></h2>
+<p>Several Python modules have existing root finding functions. One such function is <code class="docutils literal notranslate"><span class="pre">fsolve()</span></code> from <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code>. To use it, we will need to import SciPy: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">scipy</span></code>. The <code class="docutils literal notranslate"><span class="pre">scipy.optimize.fsolve()</span></code> function takes in many arguments that you can read about in the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html">documentation</a>. The most important two are the function you want to find its root, <code class="docutils literal notranslate"><span class="pre">f</span></code>, and the initial guess, <code class="docutils literal notranslate"><span class="pre">x0</span></code>: <code class="docutils literal notranslate"><span class="pre">scipy.optimize.fsolve(f,</span> <span class="pre">x0)</span></code>.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Use <code>fsolve(f, x0)</code> to find a root for <span class="math notranslate nohighlight">\(f(x)=e^{-40x}+40xe^{-40x}-0.05\)</span> with different values of <code>x0</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.05</span>
+
+<span class="c1"># find a root using fsolve()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="14_taylor_series.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 15: Taylor Series</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="16_differentiation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 17: Differentiation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-finding">16.1. Root Finding <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error">16.1.1. Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tolerance">16.1.2. Tolerance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence">16.1.3. Convergence</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bisection-method">16.2. Bisection Method <a id="s2"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-raphson-method">16.3. Newton-Raphson Method <a id="s3"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-finding-in-python">16.4. Root Finding in Python <a id="s4"></a></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

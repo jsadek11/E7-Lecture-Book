@@ -1,4 +1,4 @@
-# Welcome to E7: Introduction to Computer Programming and Numerical Methods
+# Introduction to Computer Programming and Numerical Methods
 
 > **Mohamad M. Hallal, PhD** <br> Teaching Professor, UC Berkeley
 
@@ -6,6 +6,3 @@
 ***
 
 Inspiring speech here.
-
-```{tableofcontents}
-:maxdepth: 1

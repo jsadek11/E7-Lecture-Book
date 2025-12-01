@@ -1,0 +1,1452 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 19: Ordinary Differential Equations &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/18_ode';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Chapter 18: Integration" href="17_integration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/18_ode.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/18_ode.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/18_ode.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 19: Ordinary Differential Equations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-differential-equations">19.1. Basics of Differential Equations <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-differential-equations">19.1.1. Definition of Differential Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-differential-equations">19.1.2. Types of Differential Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-differential-equations">19.1.3. Order of Differential Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-value-problem">19.1.4. Initial Value Problem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-solutions-to-first-order-odes">19.2. Numerical Solutions to First Order ODEs <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-s-method">19.2.1. Euler’s Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#midpoint-method">19.2.2. Midpoint Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heun-s-method">19.2.3. Heun’s Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runge-kutta-4-method">19.2.4. Runge-Kutta 4 Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-in-numerical-solutions">19.3. Error in Numerical Solutions <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-error">19.3.1. Order of Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-and-spacing-trade-off">19.3.2. Error and Spacing Trade-off</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-odes">19.4. System of ODEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-odes">19.5. Higher-Order ODEs <a id="s5"></a></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-19-ordinary-differential-equations">
+<h1>Chapter 19: Ordinary Differential Equations<a class="headerlink" href="#chapter-19-ordinary-differential-equations" title="Link to this heading">#</a></h1>
+<p>A differential equation is a mathematical equation that relates a function to its derivative(s). These equations emerge when the rate of change (i.e., the derivative) is related to the function itself and/or its independent variable(s). Differential equations are fundamental in almost all disciplines, with the most common examples found in physics and engineering. Consider, for example, Newton’s second Law: <span class="math notranslate nohighlight">\(F=ma\)</span>, where <span class="math notranslate nohighlight">\(F\)</span> is a force acting on an object, <span class="math notranslate nohighlight">\(m\)</span> is the mass of the object, and <span class="math notranslate nohighlight">\(a\)</span> is its acceleration. Recall that <span class="math notranslate nohighlight">\(a=v'=s''\)</span>, where <span class="math notranslate nohighlight">\(v\)</span> is the velocity and <span class="math notranslate nohighlight">\(s\)</span> is the displacement. Thus, Newton’s second law can be rewritten as <span class="math notranslate nohighlight">\(F=mv'\)</span> or <span class="math notranslate nohighlight">\(F=ms''\)</span>, both of which are differential equations. The objective when working with differential equations is to find the unknown function that satisfies the relationship between a function and its derivatives, such as determining the position of an object over time.</p>
+<p>In introductory physics courses, you likely studied the motion of an object under a constant force and without friction, such as the free fall of an object under gravity, assuming no air resistance. In these simple cases, a neat analytical solution can be obtained for <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(v\)</span>, and <span class="math notranslate nohighlight">\(s\)</span>, as a function of time. However, this scenario is a simplification and does not accurately represent real-world conditions. It only takes minor changes, such as adding friction or considering interactions between multiple objects, for the differential equations derived from Newton’s second law to become significantly more complicated and often impossible to solve using analytical methods. For example, consider the motion of an object orbiting a much heavier central body, such as the moon orbiting Earth, driven by gravitational forces. Even with just two celestial bodies, solving for the position of the moon analytically is not trivial. Now, imagine the complexity of the differential equations needed to model the interactions within our entire solar system or even our galaxy! The resulting differential equations often have no analytic solutions, and the only way to determine how the positions of the bodies evolve over time is through numerical methods.</p>
+<br>
+<center><figure>
+    <table><tr>
+    <td style="vertical-align:center"> 
+      <p align="center" >
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Animation_of_Moon_orbit_around_Earth.gif?20181102152516" style="width:100%">
+        <br>
+      </p> 
+    </td>
+    <td style="vertical-align:center"> 
+      <p align="center" >
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Animation_of_THEMIS-B_trajectory_-_Trans-lunar_injection.gif" style="width:100%">
+        <br>
+      </p> 
+    </td>
+    <td style="vertical-align:center"> 
+      <p align="center" >
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Animation_of_Rosetta_trajectory.gif" style="width:100%">
+        <br>
+      </p> 
+    </td>
+    </tr></table>
+    <figcaption style="text-align:center"><strong>Examples of <a href="https://commons.wikimedia.org/wiki/File:Animation_of_Moon_orbit_around_Earth.gif">(a) two-object</a>, <a href="https://commons.wikimedia.org/wiki/File:Animation_of_THEMIS-B_trajectory_-_Trans-lunar_injection.gif">(b) three-object</a>, and <a href="https://commons.wikimedia.org/wiki/File:Animation_of_Rosetta_trajectory.gif">(c) multi-object</a> motion</strong></figcaption>  
+</figure></center> 
+<br>
+<p>Exact solutions to differential equations are often too difficult to obtain or may not exist because many functions cannot be integrated analytically. Therefore, numerical methods are essential as they allow us to approximate these solutions, making them practical for designing and understanding engineering and scientific systems. This section will focus on numerical solutions to a specific subset of differential equations: ordinary differential equations (ODEs) with specified initial values, commonly known as initial value problems (IVPs).</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Recognize the challenges associated with analytical solutions to differential equation in real-world problems</p></li>
+<li><p>Understand the practical significance of numerical solution to differential equations</p></li>
+<li><p>Describe the general approach of numerical methods for solving differential equations</p></li>
+<li><p>Implement different numerical methods including, Euler’s, Midpoint, Heun’s, and RK4 methods in Python</p></li>
+<li><p>Estimate the order of the error of these numerical solution methods and choose the most accurate method</p></li>
+<li><p>Discuss the error and spacing trade-off in numerical solutions and how very small spacing can result in increased computation time</p></li>
+<li><p>Rewrite a system of differential equations in matrix form and implement any of the numerical methods to solve it</p></li>
+<li><p>Reduce a higher-order differential equation to a system of first-order differential equations and implement any of the numerical methods to solve it</p></li>
+</ul>
+<section id="basics-of-differential-equations">
+<h2>19.1. Basics of Differential Equations <a id="s1"></a><a class="headerlink" href="#basics-of-differential-equations" title="Link to this heading">#</a></h2>
+<p>This section gives a very brief review of some of the basics of differential equations, which you might be familiar with from previous courses. An important part of differential equations is the symbolic language (notation). We will use different notations, based on what is most relevant for each problem. Below are some notation conventions:</p>
+<ul>
+<li><p>Unknown function: <span class="math notranslate nohighlight">\(f(x)\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, …</p></li>
+<li><p>Values of the function: <span class="math notranslate nohighlight">\(f(x_{i+1})\)</span>, <span class="math notranslate nohighlight">\(f(x_i+h)\)</span>, <span class="math notranslate nohighlight">\(y_{i+1}\)</span>, …</p></li>
+<li><p>Derivatives:</p>
+<ul class="simple">
+<li><p><strong>First order</strong>: <span class="math notranslate nohighlight">\(\ \ \ \ \ f'(x)\)</span>,  <span class="math notranslate nohighlight">\(\ f^{(1)}(x)\)</span>, <span class="math notranslate nohighlight">\(\ \dfrac{df(x)}{dx}\)</span>, <span class="math notranslate nohighlight">\(\ \ \ \ \dot{f}\)</span>, <span class="math notranslate nohighlight">\(\ y'\)</span>, <span class="math notranslate nohighlight">\(\ y^{(1)}\)</span>, <span class="math notranslate nohighlight">\(\ \dfrac{dy}{dx}\)</span>, <span class="math notranslate nohighlight">\(\ \ \ \dot{y}\)</span>, …
+<br></p></li>
+<li><p><strong>Second order</strong>: <span class="math notranslate nohighlight">\(f''(x)\)</span>,  <span class="math notranslate nohighlight">\(\ f^{(2)}(x)\)</span>, <span class="math notranslate nohighlight">\(\ \dfrac{d^2f(x)}{dx^2}\)</span>, <span class="math notranslate nohighlight">\(\ \ddot{f}\)</span>, <span class="math notranslate nohighlight">\(\ y''\)</span>, <span class="math notranslate nohighlight">\(\ y^{(2)}\)</span>, <span class="math notranslate nohighlight">\(\ \dfrac{d^2y}{dx^2}\)</span>, <span class="math notranslate nohighlight">\(\ \ddot{y}\)</span>, …
+<br></p></li>
+<li><p>Similarly for higher order derivatives</p></li>
+</ul>
+  <br>
+</li>
+<li><p>Independent variable: <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(t\)</span>, …</p></li>
+</ul>
+<section id="definition-of-differential-equations">
+<h3>19.1.1. Definition of Differential Equations<a class="headerlink" href="#definition-of-differential-equations" title="Link to this heading">#</a></h3>
+<p>In various engineering and scientific disciplines, there are two main types of equations: algebraic and differential.</p>
+<p><strong>Algebraic Equations:</strong> An algebraic equation involves basic operations like addition, subtraction, multiplication, and division of a variable, often with polynomials, such as <span class="math notranslate nohighlight">\(f(x) = 2x^2 + 3x - 5 = 0\)</span>. Solving an algebraic equation means finding specific values, known as roots, that satisfy <span class="math notranslate nohighlight">\(f(x) = 0\)</span>. In this case, the unknown represents distinct numerical values for <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p><strong>Differential Equations:</strong> Conversely, a differential equation relates functions and their derivatives, such as <span class="math notranslate nohighlight">\(f''(x) + 2f'(x) + f(x) = 0\)</span>. Solving a differential equation means finding the function(s) that satisfy it. Unlike algebraic equations, the unknown in a differential equation is an entire function, making the solution process more challenging.</p>
+</section>
+<section id="types-of-differential-equations">
+<h3>19.1.2. Types of Differential Equations<a class="headerlink" href="#types-of-differential-equations" title="Link to this heading">#</a></h3>
+<p>Differential equations can be classified into two main types based on the number of independent variables: ordinary and partial.</p>
+<p><strong>Ordinary Differential Equations (ODEs):</strong> ODEs involve an unknown function and its derivatives with respect to a <em>single independent variable</em>. An example is <span class="math notranslate nohighlight">\(f''(x) + 2f'(x) + f(x) = 0\)</span>, where there is a single independent variable <span class="math notranslate nohighlight">\(x\)</span>. In general, ODEs consider how the function varies across a single dimension, such as time or a single spatial dimension.</p>
+<p><strong>Partial Differential Equations (PDEs):</strong> Conversely, PDEs involve unknown functions and their partial derivatives with respect to <em>several independent variables</em>. An example is <span class="math notranslate nohighlight">\(x\dfrac{\partial f(x, t)}{\partial x} + t\dfrac{\partial f(x, t)}{\partial t} - f(x, t) = 0\)</span>, where there are two independent variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span>. In general, PDEs consider how the function varies across multiple dimensions simultaneously, such as time and space or multiple spatial dimensions (<span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span>).</p>
+<br>
+<p>In this section, we only focus on ODEs.</p>
+<p>Differential equations can also be classified based on their linearity. An ODE is linear if the unknown function and its derivatives appear only to the first power and are not multiplied by each other. If the functions and/or derivatives are raised to a power other than one or are multiplied by each other, the ODE is nonlinear.</p>
+<ul class="simple">
+<li><p><em>Examples of linear ODEs:</em></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(f''(x) + 2f'(x) + f(x) = 0\)</span> <span class="math notranslate nohighlight">\(\newline\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f''(x) + f(x) + e^x = 0\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\newline\)</span></p>
+<ul class="simple">
+<li><p><em>Examples of nonlinear ODEs:</em></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(f''(x) + 2f'(x) + f^2(x) = 0\)</span> <span class="math notranslate nohighlight">\(\newline\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f''(x) + 2f'(x)f(x) = 0\)</span> <span class="math notranslate nohighlight">\(\newline\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f'(x) = \cos(f(x))\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="order-of-differential-equations">
+<h3>19.1.3. Order of Differential Equations<a class="headerlink" href="#order-of-differential-equations" title="Link to this heading">#</a></h3>
+<p>The order of a differential equation is determined by the <em>highest derivative</em> present in the equation. Here are some examples:</p>
+<ul class="simple">
+<li><p><em>First order</em> (the highest derivative is first): <span class="math notranslate nohighlight">\(\newline\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\dfrac{dy}{dt} = 3t + 2\)</span> <span class="math notranslate nohighlight">\(\newline\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\dfrac{dy}{dt} = y^2 + 3t + 2\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\newline\)</span></p>
+<ul class="simple">
+<li><p><em>Second order</em> (the highest derivative is second): <span class="math notranslate nohighlight">\(\newline\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\dfrac{d^2y}{dt^2}+ 2 \dfrac{dy}{dt}+y = 0\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="initial-value-problem">
+<h3>19.1.4. Initial Value Problem<a class="headerlink" href="#initial-value-problem" title="Link to this heading">#</a></h3>
+<p>An Initial Value Problem (IVP) is a specific type of differential equation that includes initial conditions. These initial conditions provide the starting values for the unknown function and its derivatives at a particular point. An example of an initial condition could be a known value of the function at <span class="math notranslate nohighlight">\(t=0\)</span>, <span class="math notranslate nohighlight">\(y_0\)</span>. Solving an IVP involves finding a function that satisfies the given differential equation and also aligns with the initial conditions.</p>
+<p><strong>General Solution:</strong> The general solution of a differential equation represents the family of all possible solutions without specifying particular values for any arbitrary constants that may arise during the solving process. For example, for the differential equation <span class="math notranslate nohighlight">\(y' = y\)</span>, we need to find a function such that its first derivative is equal to the function itself. An obvious solution in this case is <span class="math notranslate nohighlight">\(y = C e^t\)</span>, where <span class="math notranslate nohighlight">\(C\)</span> is some arbitrary constant. This solution is known as a general solution because it involves an arbitrary constant.</p>
+<p><strong>Particular Solution:</strong> A particular solution is derived from the general solution by assigning particular values to the arbitrary constants based on additional information, such as initial conditions. For instance if we know that <span class="math notranslate nohighlight">\(y(t=0)=y_0=5\)</span>, then substituting the initial condition into the general solution <span class="math notranslate nohighlight">\(y = C e^t\)</span>, gives <span class="math notranslate nohighlight">\(5=C e^0\)</span> implying <span class="math notranslate nohighlight">\(C=5\)</span>. Hence, the particular solution is <span class="math notranslate nohighlight">\(y= 5 e^t\)</span>. This solution satisfies both the differential equation <span class="math notranslate nohighlight">\(y'=y\)</span> as well as the initial condition <span class="math notranslate nohighlight">\(y_0=5\)</span>.</p>
+<p>In the next section, we will explore various numerical methods for approximating the solutions to initial value problems. While IVPs may involve more than just differential equations in time, we will predominantly focus on time as the independent variable for simplicity. Additionally, we will utilize different notations for the unknown function and its derivatives, adapting them based on the specific context, as previously mentioned.</p>
+</section>
+</section>
+<section id="numerical-solutions-to-first-order-odes">
+<h2>19.2. Numerical Solutions to First Order ODEs <a id="s2"></a><a class="headerlink" href="#numerical-solutions-to-first-order-odes" title="Link to this heading">#</a></h2>
+<p>The primary objective when dealing with differential equations is to determine the unknown function <span class="math notranslate nohighlight">\(y\)</span> that satisfies the relationship between the function itself and its derivatives. An analytic solution is a mathematical function that, when substituted into the differential equation, results in a true statement. For instance, in the previous example <span class="math notranslate nohighlight">\(y'=y\)</span>, it was easy to find an analytic solution: <span class="math notranslate nohighlight">\(y=5e^t\)</span>. If an analytic solution exists, there is no need to use any of the numerical techniques we will discuss. However, obtaining analytic solutions for many differential equations is often challenging or impossible, making numerical methods necessary. Therefore, we focus on finding approximate numerical solutions. But what exactly is a <em>numerical solution</em>?</p>
+<p>A numerical solution involves computing a sequence of approximate values for the unknown function at various points in time or space. For instance, a numerical solution might consist of <span class="math notranslate nohighlight">\(y(t=0)=5\)</span>, <span class="math notranslate nohighlight">\(y(t=0.2)=6\)</span>, <span class="math notranslate nohighlight">\(y(t=0.4)=7.2\)</span>, <span class="math notranslate nohighlight">\(y(t=0.6)=8.6\)</span>, and so on. It is called a numerical solution because it consists of numbers rather than a mathematical expression. Typically, the numerical solution is visualized, and by estimating the solution at small intervals, the numeric results effectively resemble a function.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSRz0aUJNSDz-Wf-IoLB6kXIwaoyH8fv2xv60cYl6C5XMe_q_uC4im9sWRFMCUggW8PbJ1XYcRye0fU/pub?w=648&h=432
+" style="width:45%">
+    <figcaption style="text-align:center"><strong>Analytic versus numeric solution</strong></figcaption>   
+</figure></center>
+<p>Accordingly, numerical methods require dividing the domain (typically time) into <span class="math notranslate nohighlight">\(N\)</span> subintervals or steps, each with step size <span class="math notranslate nohighlight">\(h\)</span>, similar to the process used in numerical integration. The solution is then computed through iteration. Starting from the initial condition <span class="math notranslate nohighlight">\((t_0, y_0)\)</span>, we take a step forward and estimate <span class="math notranslate nohighlight">\((t_1, y_1)\)</span>. Then using <span class="math notranslate nohighlight">\((t_1, y_1)\)</span>, we take another step forward and estimate <span class="math notranslate nohighlight">\((t_2, y_2)\)</span>, continuing this process until we estimate the solution at the final time step <span class="math notranslate nohighlight">\((t_f, y_f)\)</span>.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSOPfvz36FaK7TmIPCh8ho7hMqFctk-TJUNnLtxP0WOE5mmPjIHgIsUYOU6-Ywufdff4y3DNPAViYEE/pub?w=961&h=348
+" style="width:40%">
+    <figcaption style="text-align:center"><strong>Numerical solution time grid</strong></figcaption>   
+</figure></center>
+<br>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+By dividing the domain <span class="math notranslate nohighlight">\([t_0, t_f]\)</span> into <span class="math notranslate nohighlight">\(N\)</span> subintervals, we can show the following relations:</p>
+ <table style="width: 100%; border-collapse: collapse; background-color: #fff3cd;">
+ <tr>
+ <td style="text-align: center; padding: 10px; background-color: #fff3cd;">$$h = \dfrac{t_f-t_0}{N}$$</td>
+ <td style="text-align: center; padding: 10px; background-color: #fff3cd;">$$t_{i+1}=t_i+h$$</td>
+ <td style="text-align: center; padding: 10px; background-color: #fff3cd;">$$t_f = t_0 + hN$$</td>
+ </tr>
+ </table>
+</div></blockquote>
+<p>The numerical methods we will explore share a common approach of estimating a future value <span class="math notranslate nohighlight">\(y_{i+1}\)</span> using the known current value <span class="math notranslate nohighlight">\(y_i\)</span>. But how do we estimate <span class="math notranslate nohighlight">\(y_{i+1}\)</span> from <span class="math notranslate nohighlight">\(y_i\)</span>? If we use a small step size <span class="math notranslate nohighlight">\(h\)</span>, the function <span class="math notranslate nohighlight">\(y\)</span> can be approximated as a linear function between two successive points <span class="math notranslate nohighlight">\((t_i, y_i)\)</span> and <span class="math notranslate nohighlight">\((t_{i+1}, y_{i+1})\)</span>. Under this assumption, all we need is the slope of the linear function to be able to estimate the value at <span class="math notranslate nohighlight">\((t_{i+1}, y_{i+1})\)</span> from <span class="math notranslate nohighlight">\((t_i, y_i)\)</span>. From the figure below, it becomes evident that <span class="math notranslate nohighlight">\(y_{i+1} = y_i + h \times slope\)</span>.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vRhDse7IHEMLugFYNXje7qPZQLiQCxlstAj3XO30TlSVdOc1YX59NEBU3hzydU4CmmSG52SdVUdU1U3/pub?w=1152&h=864
+" style="width:45%">
+    <figcaption style="text-align:center"><strong>Calculating $y_{i+1}$ from $y_i$</strong></figcaption>   
+</figure></center>
+<br>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+The linear function between <span class="math notranslate nohighlight">\((t_i, y_i)\)</span> and <span class="math notranslate nohighlight">\((t_{i+1}, y_{i+1})\)</span>, while reasonable for a small step size <span class="math notranslate nohighlight">\(h\)</span>, is still an approximation. If the actual function is nonlinear, which is generally the case, this approximation will introduce error. We will discuss the order of the error and how to control it later.</p>
+</div></blockquote>
+<p>To estimate the value at <span class="math notranslate nohighlight">\((t_{i+1}, y_{i+1})\)</span> from <span class="math notranslate nohighlight">\((t_i, y_i)\)</span>, we need a value for the slope of the assumed linear function. So, what should we use for the slope?</p>
+<p>We will focus on solving first-order ODEs and then discuss solutions to higher-order ODEs next. Since we are working with differential equations, we have a procedure for determining the value of the slope. Geometrically, the slope of the tangent line is the derivative of a function. To utilize this concept, we can rearrange the differential equation to isolate the first derivative <span class="math notranslate nohighlight">\(y'\)</span> on one side, and move everything else to the other side. This rearrangement allows us to express the slope of the function explicitly in terms of the other variables involved as:</p>
+<div class="math notranslate nohighlight">
+\[slope = y' =F(t, y)\]</div>
+<p>where <span class="math notranslate nohighlight">\(F\)</span> is a known function that returns the derivative, <span class="math notranslate nohighlight">\(t\)</span> is the independent variable, and <span class="math notranslate nohighlight">\(y\)</span> is the unknown function we are trying to solve for.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y'-y-t=0 \rightarrow y'=y+t \rightarrow F(t,y) = y+t\)</span>
+<br></p></li>
+<li><p><span class="math notranslate nohighlight">\(y' + 0.1(y-75) \rightarrow y'= -0.1(y-75) \rightarrow F(t,y) = -0.1(y-75)\)</span>
+<br></p></li>
+<li><p><span class="math notranslate nohighlight">\(1000y' + 200y -500=0 \rightarrow y'=-0.2y+0.5 \rightarrow F(t,y) = -0.2y+0.5\)</span>
+<br></p></li>
+</ul>
+<p>For all of the methods we will discuss, we will use the following equation iteratively to find the numerical solution:</p>
+<div class="math notranslate nohighlight">
+\[y_{i+1} = y_i + h \times slope = y_i + h \times F(t,y)\]</div>
+<p>The critical part is determining what to use for the slope (or equivalently, the derivative). There are different methods for approximating the slope, which influence the accuracy of the predictions. We will discuss the following methods:</p>
+<ol class="arabic simple">
+<li><p><strong>Euler’s Method:</strong> Uses the slope at the current point <span class="math notranslate nohighlight">\((t_i, y_i)\)</span></p></li>
+<li><p><strong>Midpoint Method:</strong> Uses the slope at the midpoint of the interval <span class="math notranslate nohighlight">\((t_{i+1/2}, y_{i+1/2})\)</span>, where <span class="math notranslate nohighlight">\(t_{i+1/2} = t_i + h \ / \ 2\)</span></p></li>
+<li><p><strong>Heun’s Method:</strong> Uses the average of the slopes at the current point <span class="math notranslate nohighlight">\((t_i, y_i)\)</span> and the predicted point <span class="math notranslate nohighlight">\((t_{i+1}, y^*_{i+1})\)</span></p></li>
+<li><p><strong>Fourth Order Runge-Kutta Method:</strong>  Uses a weighted average of four slopes at several points</p></li>
+</ol>
+<section id="euler-s-method">
+<h3>19.2.1. Euler’s Method<a class="headerlink" href="#euler-s-method" title="Link to this heading">#</a></h3>
+<p>Euler’s Method is a simple numerical technique that approximates the solution of a first-order ODE using the slope at the current point <span class="math notranslate nohighlight">\((t_i, y_i)\)</span> (left endpoint of each subinterval). The key idea is to approximate the slope of the function between <span class="math notranslate nohighlight">\((t_i, y_i)\)</span> and <span class="math notranslate nohighlight">\((t_{i+1}, y_{i+1})\)</span> using the derivative at the current point, <span class="math notranslate nohighlight">\(y'_i\)</span>.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+When using Euler’s method, not only are we assuming that the function between <span class="math notranslate nohighlight">\((t_i, y_i)\)</span> and <span class="math notranslate nohighlight">\((t_{i+1}, y_{i+1})\)</span> is linear, but also that the slope of this linear function is equal to <span class="math notranslate nohighlight">\(y'_i\)</span>, which is the slope at the left endpoint. However, this is generally not the case, as the actual function is usually not linear and the slope can vary between these points. These assumptions contribute to the error in numerical solutions.</p>
+</div></blockquote>
+<p>Recall that we have the first order ODE <span class="math notranslate nohighlight">\(y'=F(t, y)\)</span>, where <span class="math notranslate nohighlight">\(F\)</span> is the derivative function. If we know the values for the current point <span class="math notranslate nohighlight">\((t_i, y_i)\)</span>, we can substitute them into the differential equation to obtain the value of the slope at the current point: <span class="math notranslate nohighlight">\(y'_i = F(t_i, y_i)\)</span>. Using this slope, Euler’s Method provides a numerical approximation for the next point as:</p>
+<div class="math notranslate nohighlight">
+\[y_{i+1} = y_i + h \times F(t_i, y_i)\]</div>
+<p>We can also obtain the same equation for <span class="math notranslate nohighlight">\(y_{i+1}\)</span> by rearranging the forward difference equation (refer to the notes on differentiation):</p>
+<div class="math notranslate nohighlight">
+\[
+y'_i \approx \frac{y_{i+1} - y_i}{h} \rightarrow y_{i+1} = y_i+hy'_i = y_i + h \times F(t_i, y_i)
+\]</div>
+<p>The general steps are as follows:</p>
+<ul class="simple">
+<li><p>Set the initial condition: <span class="math notranslate nohighlight">\(t_0, y_0\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(y_{1} = y_0 + h F(t_0, y_0)\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(y_{2} = y_1 + h F(t_1, y_1)\)</span></p></li>
+<li><p>Continue the process until the endpoint is reached</p></li>
+</ul>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vQfkSx9tztq5leLlz1hadNbRqb0DwJTTieBtyQTYmDW9tSHLQsbOmppLrok8r7EBj-BOslYG2LXmQJJ/pub?w=1872&h=576
+" style="width:100%">
+    <figcaption style="text-align:center"><strong>Graphical illustration of Euler's method</strong></figcaption>
+</figure></center>
+<br>
+<p>A pseudocode describing the steps is shown below. The variables in the pseudocode are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(t\)</span>: independent variable (time)</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span>: dependent variable (solution)</p></li>
+<li><p><span class="math notranslate nohighlight">\(F\)</span>: the derivative function</p></li>
+<li><p><span class="math notranslate nohighlight">\(t_0\)</span>: initial time</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_0\)</span>: initial value of <span class="math notranslate nohighlight">\(y\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(t_f\)</span>: final time</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span>: number of steps</p></li>
+</ul>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSfayVuvo3vA4yagfqGcKSpa_bz_ypQZlL24y0asGJl-gy0SnPcfGwcO7NgoRTHiTpwMsD2TrmLgvgC/pub?w=1440&h=593
+" style="width:65%">
+</figure></center>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>my_Euler(F, t0, y0, tf, N)</code> which takes as input a function object <code>F</code> and four scalar values <code>t0, y0, tf, N</code>. The function should return two arrays (in this order): the time grid and corresponding numerical solution using Forward Euler’s method. The solution should be evaluated at <code>N+1</code> points between <code>[t0, tf]</code>, inclusive. Note that <code>F(t, y)</code> is a function that returns the value of the first derivative <span class="math notranslate nohighlight">\(y'=F(t, y)\)</span> for specified values of <code>t</code> and <code>y</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s consider an example of the cooling of a cup of coffee in a room with an ambient temperature. The rate of change of the coffee’s temperature <span class="math notranslate nohighlight">\(T\)</span> with respect to time <span class="math notranslate nohighlight">\(t\)</span> can be modeled by the first-order ordinary differential equation:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dT}{dt} = -k(T - T_{\text{ambient}})\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T\)</span> is the temperature of the coffee,</p></li>
+<li><p><span class="math notranslate nohighlight">\(t\)</span> is time,</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{\text{ambient}}\)</span> is the ambient temperature of the room,</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span> is a positive constant representing the cooling rate.</p></li>
+</ul>
+<p>Assume <span class="math notranslate nohighlight">\(T_{\text{ambient}} = 75^\circ \text{F}\)</span>, <span class="math notranslate nohighlight">\(T_0 = 200^\circ \text{F}\)</span> (initial temperature of the coffee at <span class="math notranslate nohighlight">\(t=0\)</span>), and <span class="math notranslate nohighlight">\(k = 0.1 \text{ min}^{-1}\)</span> (cooling rate).</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Use your function <code>my_Euler()</code> to find the temperature of the cup of coffee at <span class="math notranslate nohighlight">\(t = 30\)</span> min. Try different number of steps. Plot the result and compare it with the analytic solution provided below.</p>
+</div></blockquote>
+<p>The analytic solution to this differential equation is:</p>
+<div class="math notranslate nohighlight">
+\[T(t) = T_{\text{ambient}} + (T_0 - T_{\text{ambient}})e^{-kt}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Given</span>
+<span class="n">t0</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">T_amb</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">1</span>
+
+<span class="c1"># Define y&#39; = F</span>
+<span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">T</span><span class="p">:</span> <span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">T_amb</span><span class="p">)</span>
+
+<span class="c1"># Numerical solution</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">my_Euler</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Analytic solution </span>
+<span class="n">T_excat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">T_amb</span> <span class="o">+</span> <span class="p">(</span><span class="n">T0</span> <span class="o">-</span> <span class="n">T_amb</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
+<span class="n">sol_exact</span> <span class="o">=</span> <span class="n">T_excat</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sol_exact</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Analytic solution&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Euler&#39;s method&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Temperature ($^\circ$F)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (min)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In Euler’s method, we used the derivative at the left endpoint <span class="math notranslate nohighlight">\(y'_i\)</span> as an estimate of the slope over the entire region between <span class="math notranslate nohighlight">\(t_i\)</span> and <span class="math notranslate nohighlight">\(t_{i+1}\)</span>. As we have seen, this method can lead to errors, particularly in regions with high curvature, where the slope at the left endpoint does not accurately represent the entire interval’s behavior. If you could choose a different point that better represents the slope over the interval, which point would you choose?</p>
+</section>
+<section id="midpoint-method">
+<h3>19.2.2. Midpoint Method<a class="headerlink" href="#midpoint-method" title="Link to this heading">#</a></h3>
+<p>The Midpoint Method improves the accuracy by approximating the solution of a first-order ODE using the slope at the midpoint of each subinterval <span class="math notranslate nohighlight">\((t_{i+1/2}, y_{i+1/2})\)</span>, where <span class="math notranslate nohighlight">\(t_{i+1/2}=t_i+h\ /\ 2\)</span>. The key idea is to first take a half step with Euler’s method to approximate the solution at <span class="math notranslate nohighlight">\(t_{i+1/2}\)</span>. We then go back to the point <span class="math notranslate nohighlight">\((t_i, y_i)\)</span> and take a full step using the derivative at the midpoint, <span class="math notranslate nohighlight">\(y'_{i+1/2}\)</span>, to estimate the solution at <span class="math notranslate nohighlight">\(t_{i+1}\)</span>.</p>
+<p>Recall that we have the first order ODE <span class="math notranslate nohighlight">\(y'=F(t, y)\)</span>, where <span class="math notranslate nohighlight">\(F\)</span> is the derivative function. It follows that the slope at the midpoint is <span class="math notranslate nohighlight">\(y'_{i+1/2} = F(t_{i+1/2}, y_{i+1/2})\)</span>. Using this slope, the Midpoint Method provides a numerical approximation for the next point as:</p>
+<div class="math notranslate nohighlight">
+\[y_{i+1} = y_i + h \times F(t_{i+1/2}, y_{i+1/2})\]</div>
+<p>The general steps are as follows:</p>
+<ul class="simple">
+<li><p>Set the initial condition: <span class="math notranslate nohighlight">\(t_0, y_0\)</span></p></li>
+<li><p>Compute the midpoint (intermediate step): <span class="math notranslate nohighlight">\(y_{1/2} = y_0 + \frac{h}{2} F(t_0, y_0)\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(y_{1} = y_0 + h F(t_{1/2}, y_{1/2})\)</span></p></li>
+<li><p>Compute the midpoint (intermediate step): <span class="math notranslate nohighlight">\(y_{1+1/2} = y_1 + \frac{h}{2} F(t_1, y_1)\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(y_{2} = y_1 + h F(t_{1+1/2}, y_{1+1/2})\)</span></p></li>
+<li><p>Continue the process until the endpoint is reached</p></li>
+</ul>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vT6evWL5oyQIzq413aZ34NR__Lpj0HQQx2hotoert8lkK-64vpRUldmlMW_HLSY9UxF953pRgR2yIwY/pub?w=1872&h=1152
+" style="width:100%">
+    <figcaption style="text-align:center"><strong>Graphical illustration of Midpoint method</strong></figcaption>
+</figure></center>
+<br>
+<p>A pseudocode describing the steps is shown below. The variables in the pseudocode are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(t\)</span>: independent variable (time)</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span>: dependent variable (solution)</p></li>
+<li><p><span class="math notranslate nohighlight">\(F\)</span>: the derivative function</p></li>
+<li><p><span class="math notranslate nohighlight">\(t_0\)</span>: initial time</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_0\)</span>: initial value of <span class="math notranslate nohighlight">\(y\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(t_f\)</span>: final time</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span>: number of steps</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\_int\)</span>: value at intermediate step, <span class="math notranslate nohighlight">\(y_{i+1/2}\)</span></p></li>
+</ul>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vRHlcOs8-K74zttzo4pI6_vrLMBHZzyFgYrxncAahjqZCFF3qC03jpp4QKdiuwlIu-XZlLZjeB88z1l/pub?w=1440&h=624
+" style="width:65%">   
+</figure></center></section>
+<section id="heun-s-method">
+<h3>19.2.3. Heun’s Method<a class="headerlink" href="#heun-s-method" title="Link to this heading">#</a></h3>
+<p>Instead of using the slope at the midpoint, <span class="math notranslate nohighlight">\(y'_{i+1/2}\)</span>, Heun’s method improves the accuracy by averaging the slopes at the current <span class="math notranslate nohighlight">\((t_{i}, y_{i})\)</span> and the predicted point <span class="math notranslate nohighlight">\((t_{i+1}, y^*_{i+1})\)</span>. The key idea is to first take a full step with Euler’s method to approximate an intermediate solution at <span class="math notranslate nohighlight">\(t_{i+1}\)</span>. We then go back to the point <span class="math notranslate nohighlight">\((t_i, y_i)\)</span> and take a full step again but this time using the average of the derivatives at the left and right endpoints to estimate a better solution at <span class="math notranslate nohighlight">\(t_{i+1}\)</span>.</p>
+<p>Recall that we have the first order ODE <span class="math notranslate nohighlight">\(y'=F(t, y)\)</span>, where <span class="math notranslate nohighlight">\(F\)</span> is the derivative function. Using Euler’s method, we can compute an intermediate or predictor solution for the next step as:</p>
+<div class="math notranslate nohighlight">
+\[y^*_{i+1} = y_i + h \times F(t_{i}, y_{i})\]</div>
+<p>However, unlike Euler’s method, this is not the final solution for <span class="math notranslate nohighlight">\(y_{i+1}\)</span>. Now that we have an estimated point <span class="math notranslate nohighlight">\((t_{i+1}, y^*_{i+1})\)</span>, we can get an estimate of the slope at the right endpoint: <span class="math notranslate nohighlight">\(F(t_{i+1}, y^*_{i+1})\)</span>. Then, we take the average of the slope at the left endpoint and that at the predicted right endpoint. Using this average slope, Heun’s Method provides a final numerical approximation for the next point as:</p>
+<div class="math notranslate nohighlight">
+\[y_{i+1} = y_i + h \times \dfrac{F(t_{i}, y_{i})+ F(t_{i+1}, y^*_{i+1})}{2}\]</div>
+<p>The general steps are as follows:</p>
+<ul class="simple">
+<li><p>Set the initial condition: <span class="math notranslate nohighlight">\(t_0, y_0\)</span></p></li>
+<li><p>Compute the intermediate/predictor step: <span class="math notranslate nohighlight">\(y^*_{1} = y_0 + h F(t_0, y_0)\)</span></p></li>
+<li><p>Compute the final/corrector step: <span class="math notranslate nohighlight">\(y_{1} = y_0 + \frac{h}{2}  [F(t_{0}, y_{0}) + F(t_{1}, y^*_{1})]\)</span></p></li>
+<li><p>Compute the intermediate/predictor step: <span class="math notranslate nohighlight">\(y^*_{2} = y_1 + h F(t_1, y_1)\)</span></p></li>
+<li><p>Compute the final/corrector step: <span class="math notranslate nohighlight">\(y_{2} = y_1 + \frac{h}{2}  [F(t_{1}, y_{1}) + F(t_{2}, y^*_{2})]\)</span></p></li>
+<li><p>Continue the process until the endpoint is reached</p></li>
+</ul>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vTBA8ZpSTdQ-bKNAzBaZdRbMkJBxKGDOy18DT_Ll0gDbZU5-S_s6c92HKjK9x9HEH8LeUd6HEYgZBI8/pub?w=1872&h=1152
+" style="width:100%">
+    <figcaption style="text-align:center"><strong>Graphical illustration of Heun's method</strong></figcaption>
+</figure></center>
+<br>
+<p>A pseudocode describing the steps is shown below. The variables in the pseudocode are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(t\)</span>: independent variable (time)</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span>: dependent variable (solution)</p></li>
+<li><p><span class="math notranslate nohighlight">\(F\)</span>: the derivative function</p></li>
+<li><p><span class="math notranslate nohighlight">\(t_0\)</span>: initial time</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_0\)</span>: initial value of <span class="math notranslate nohighlight">\(y\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(t_f\)</span>: final time</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span>: number of steps</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\_int\)</span>: value at intermediate step, <span class="math notranslate nohighlight">\(y^*_{i+1}\)</span></p></li>
+</ul>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSpOm43PmbWNsIotgOKMkHRiJOqwplljLClXqs6-CJpLfzJx2JA6fYRU0dacROYQqVoi7vB4RKLVbOj/pub?w=1439&h=639
+" style="width:65%">  
+</figure></center></section>
+<section id="runge-kutta-4-method">
+<h3>19.2.4. Runge-Kutta 4 Method<a class="headerlink" href="#runge-kutta-4-method" title="Link to this heading">#</a></h3>
+<p>One of the challenges of numerical solutions is using a slope (derivative) that accurately captures the overall behavior of the function between <span class="math notranslate nohighlight">\(t_i\)</span> and <span class="math notranslate nohighlight">\(t_{i+1}\)</span>. Recall that Euler’s method evaluates the slope at the left endpoint of each subinterval, the Midpoint method uses the slope at the midpoint of each subinterval, and Heun’s method takes the average of the slopes at the left and right endpoints.</p>
+<p>What if we use a technique that combines the ideas of Euler’s, Midpoint, and Heun’s methods by evaluating the slope at several points over each subinterval? By evaluating the slope at several points and then taking a weighted average, we can come up with a slope that better reflects the overall behavior between <span class="math notranslate nohighlight">\(t_i\)</span> and <span class="math notranslate nohighlight">\(t_{i+1}\)</span>.</p>
+<p>The Runge-Kutta (RK) methods follow this approach. RK methods are a family of iterative methods with many variations, ranging from simpler lower-order methods to more complex higher-order methods. The Fourth Order Runge Kutta (RK4) method is one of the most commonly used methods for solving ODEs. It provides a more accurate solution by considering the slopes at four different points within each subinterval:</p>
+<ol class="arabic simple">
+<li><p>Left endpoint slope (<span class="math notranslate nohighlight">\(k_1\)</span>): This is the slope at the beginning of the subinterval, similar to Euler’s method.</p></li>
+<li><p>Midpoint slope (<span class="math notranslate nohighlight">\(k_2\)</span>): This slope is calculated at the midpoint of the subinterval, using <span class="math notranslate nohighlight">\(k_1\)</span> to estimate the value at the midpoint, <span class="math notranslate nohighlight">\(y_{i+1/2}\)</span>, similar to the Midpoint method.</p></li>
+<li><p>Midpoint slope (<span class="math notranslate nohighlight">\(k_3\)</span>): This is another midpoint slope, but it uses the slope from the midpoint <span class="math notranslate nohighlight">\(k_2\)</span> to refine the function’s estimated value at the midpoint, <span class="math notranslate nohighlight">\(y_{i+1/2}\)</span>.</p></li>
+<li><p>Right endpoint slope (<span class="math notranslate nohighlight">\(k_4\)</span>): This slope is evaluated at the end of the subinterval, using <span class="math notranslate nohighlight">\(k_3\)</span> to estimate the function’s value at this endpoint, <span class="math notranslate nohighlight">\(y^*_{i+1}\)</span>.</p></li>
+</ol>
+<p>The RK4 method then takes a weighted average of these four slopes to determine the overall slope for the interval, where middle points are assigned higher weight compared to the endpoints. Using this weighted slope, RK4 Method provides a final numerical approximation for the next point as:</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i+1} = y_i + \frac{h}{6}\left(k_1 + 2k_2 + 2k_3 + k_4\right)
+\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray*}
+k_1 &amp; = &amp; F(t_i,y_i)\\
+k_2 &amp; = &amp; F\left(t_i+\tfrac{h}{2},y_i+\tfrac{h}{2}k_1\right)\\
+k_3 &amp; = &amp; F\left(t_i+\tfrac{h}{2},y_i+\tfrac{h}{2}k_2\right)\\
+k_4 &amp; = &amp; F(t_i+h,y_i+hk_3)
+\end{eqnarray*}
+\end{split}\]</div>
+<p>The general steps are as follows:</p>
+<ul class="simple">
+<li><p>Set the initial condition: <span class="math notranslate nohighlight">\(t_0, y_0\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(k_{1} = F(t_0, y_0)\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(k_{2} = F(t_0+\frac{h}{2}, y_0+\frac{h}{2}k_1)\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(k_{3} = F(t_0+\frac{h}{2}, y_0+\frac{h}{2}k_2)\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(k_{4} = F(t_0+h, y_0+hk_3)\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(y_{1} = y_0 + \frac{h}{6}  (k_1+2k_2+2k_3+k_4)\)</span></p></li>
+<li><p>Continue the process until the endpoint is reached</p></li>
+</ul>
+</section>
+</section>
+<section id="error-in-numerical-solutions">
+<h2>19.3. Error in Numerical Solutions <a id="s3"></a><a class="headerlink" href="#error-in-numerical-solutions" title="Link to this heading">#</a></h2>
+<p>Similar to numerical differentiation and integration, numerical solutions to differential equations are also subject to errors. Understanding the accuracy of these methods and the magnitude of the error is crucial for their reliable application. Mathematically, the error in numerical solutions refers to the difference between the exact solution at a time step and the approximated numerical solution at that time step. The error is mainly caused by the assumptions used in numerical methods, specifically, assuming a linear function between two successive time steps and approximating the value of the slope of that function using the derivative at one or multiple points.</p>
+<p>As the step size <span class="math notranslate nohighlight">\(h\)</span> decreases, the numerical results tend to converge to the true values of the function that satisfies the differential equation. However, even with the same step size <span class="math notranslate nohighlight">\(h\)</span>, different numerical methods exhibit different levels of accuracy. Theoretically, methods that evaluate the slope at the midpoint of the interval and those that use multiple points to approximate the slope are more accurate.</p>
+<section id="order-of-error">
+<h3>19.3.1. Order of Error<a class="headerlink" href="#order-of-error" title="Link to this heading">#</a></h3>
+<p>Calculating the exact error is generally not possible, as this requires knowing the true value of the function, which is usually unknown in real applications. Instead, we estimate the order or magnitude of the error using Big-O notation as a function of the step size <span class="math notranslate nohighlight">\(h\)</span>. The table below summarizes the order of the error associated with various numerical integration methods:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Method</p></th>
+<th class="head text-left"><p>Error</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Euler’s Method</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Midpoint Method</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h^2\right)\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Heun’s Method</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h^2\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>RK4 Method</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h^4\right)\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Because we are focusing on small values of <span class="math notranslate nohighlight">\(h\)</span>, higher-order methods, for which the exponent <span class="math notranslate nohighlight">\(k\)</span> in <span class="math notranslate nohighlight">\(\mathcal{O}\left(h^k\right)\)</span> is larger, tend to have smaller error and thus are more accurate (since for small values of <span class="math notranslate nohighlight">\(h\)</span> like 0.01, <span class="math notranslate nohighlight">\(h^2\)</span> will be smaller, <span class="math notranslate nohighlight">\(h^4\)</span> even smaller than that, and so on, making higher-order methods more accurate for small step sizes).</p>
+</section>
+<section id="error-and-spacing-trade-off">
+<h3>19.3.2. Error and Spacing Trade-off<a class="headerlink" href="#error-and-spacing-trade-off" title="Link to this heading">#</a></h3>
+<p>Similar to numerical differentiation and integration, choosing a smaller step size <span class="math notranslate nohighlight">\(h\)</span> improves the accuracy of numerical solution for differential equations. However, this increased accuracy comes at the cost of greater computational demands, including longer processing times and higher memory requirements, as well as potentially more significant round-off errors. When subdividing the solution domain <span class="math notranslate nohighlight">\([t_0, t_f]\)</span> into <span class="math notranslate nohighlight">\(N\)</span> subintervals each with step size <span class="math notranslate nohighlight">\(h\)</span>, increasing <span class="math notranslate nohighlight">\(N\)</span> or equivalently decreasing <span class="math notranslate nohighlight">\(h\)</span>, increases the number of values <span class="math notranslate nohighlight">\(y_i\)</span> that must be computed. This added complexity leads to longer computation times. Therefore, a balance between acceptable error and step size is crucial.</p>
+<p>Below is a summary of the fourth methods:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Aspect</strong></p></th>
+<th class="head"><p><strong>Euler’s Method</strong></p></th>
+<th class="head"><p><strong>Midpoint Method</strong></p></th>
+<th class="head"><p><strong>Heun’s Method</strong></p></th>
+<th class="head"><p><strong>RK4 Method</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Basic Idea</strong></p></td>
+<td><p>Uses the slope at the current point</p></td>
+<td><p>Uses the slope at the midpoint of the interval</p></td>
+<td><p>Uses the average of the slopes at the current and predicted point</p></td>
+<td><p>Uses a weighted average of slopes at four points</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><span class="math notranslate nohighlight">\(y_{i+1} =\)</span></strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( y_i + hk_1 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(y_i + hk_2 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( y_i + \frac{h}{2} \left(k_1 + F\left(t_i + h, y_i + hk_1\right)\right) \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( y_i + \frac{h}{6} \left(k_1 + 2k_2 + 2k_3 + k_4\right) \)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Order of Accuracy</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h^2\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h^2\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h^4\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Computational Complexity</strong></p></td>
+<td><p>Low (requires a single slope calculation)</p></td>
+<td><p>Moderate (requires midpoint evaluation)</p></td>
+<td><p>Moderate (requires averaging slopes)</p></td>
+<td><p>High (requires multiple slope evaluations)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Error Characteristics</strong></p></td>
+<td><p>High error due to assuming constant slope over each interval</p></td>
+<td><p>Lower error by accounting for slope at midpoint</p></td>
+<td><p>Lower error by averging slopes</p></td>
+<td><p>Very small error due to multiple slope approximations</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Typical Usage</strong></p></td>
+<td><p>Simple problems, educational purposes</p></td>
+<td><p>Moderate accuracy with manageable complexity</p></td>
+<td><p>Useful for moderate accuracy and stability</p></td>
+<td><p>Ideal for high-accuracy scientific computations</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Stability</strong></p></td>
+<td><p>Limited stability; sensitive to step size</p></td>
+<td><p>More stable than Euler’s method</p></td>
+<td><p>More stable than Euler’s method</p></td>
+<td><p>Highly stable for a wide range of problems</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Implementation Ease</strong></p></td>
+<td><p>Easy and straightforward</p></td>
+<td><p>Slightly more complex; involves midpoint evaluation</p></td>
+<td><p>Moderate; requires averaging and additional steps</p></td>
+<td><p>Most complex; involves multiple evaluations and coefficients</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>where:</p>
+<p><span class="math notranslate nohighlight">\(\begin{eqnarray*}
+k_1 &amp; = &amp; F(t_i,y_i)\\
+k_2 &amp; = &amp; F\left(t_i+\tfrac{h}{2},y_i+\tfrac{h}{2}k_1\right)\\
+k_3 &amp; = &amp; F\left(t_i+\tfrac{h}{2},y_i+\tfrac{h}{2}k_2\right)\\
+k_4 &amp; = &amp; F(t_i+h,y_i+hk_3)
+\end{eqnarray*}\)</span></p>
+</section>
+</section>
+<section id="system-of-odes">
+<h2>19.4. System of ODEs<a class="headerlink" href="#system-of-odes" title="Link to this heading">#</a></h2>
+<p>So far, we have discussed numerical solutions to first-order ODEs for a single dependent variable (i.e., unknown function). For instance, the simplified motion of the moon orbiting Earth can be represented as a single differential equation with one unknown function, namely the position of the moon. However, many real-life scenarios involve multiple functions that are interdependent. For example, when modeling the positions of multiple objects within our solar system, we encounter multiple differential equations with multiple unknown functions – one for the position of each object. These are commonly expressed as a system of differential equations.</p>
+<p>A system of first-order ordinary differential equations arises when modeling complex dynamic situations involving multiple interacting functions. The methods we discussed for solving a single first-order ODE can be extended to a system of ODEs. This requires rewriting the equations in matrix/vector form. In general, a system of <span class="math notranslate nohighlight">\(n\)</span> first order ODEs involving functions <span class="math notranslate nohighlight">\(f_1, f_2, \dots, f_n\)</span> can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+    \begin{cases}
+      f_1' = F_1(t, f_1, f_2, \dots, f_n)\\
+      f_2' = F_2(t, f_1, f_2, \dots, f_n)\\
+      \ \vdots \\
+      f_n' = F_n(t, f_1, f_2, \dots. f_n)\\
+    \end{cases}       
+\end{equation}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(F_1, F_2, \dots, F_n\)</span> are known functions that return the derivatives, <span class="math notranslate nohighlight">\(t\)</span> is the independent variable, and <span class="math notranslate nohighlight">\(f_1, f_2, \dots, f_n\)</span> are the unknown functions we aim to solve for.</p>
+<p>Since we have a system of <span class="math notranslate nohighlight">\(n\)</span> differential equations, we will require <span class="math notranslate nohighlight">\(n\)</span> initial conditions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} f_1(t_0) = f_{1, 0} \\ f_2(t_0) = f_{2, 0} \\ \vdots \\ f_n(t_0) = f_{n, 0} \end{bmatrix}\end{split}\]</div>
+<br>
+<p>Consider an example of water flow between three connected tanks. If the three water tanks initially have different water heights, water will flow from the tank with a higher water level to the tanks with lower water levels through the connecting pipes until the water levels equalize. The rate of flow will depend on the difference in water levels between the connected tanks and the properties of the connecting pipes (e.g., diameter, length, etc.). In this example, we assume that the connecting pipe between tanks 1 and 2 is wider than that between tanks 2 and 3, as illustrated below.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSw4tkNXwXmKLBAdmvM_4hoqx6GyzDSMQ98JLCFd73SJlQByEYbvfEndr30xZr64WjdgI7OUftxOpEj/pub?w=1435&h=669
+" style="width:50%">
+    <figcaption style="text-align:center"><strong>Water flow between three connected tanks</strong></figcaption>   
+</figure></center>
+<p>We are interested in estimating the water height in each tank with time. Let <span class="math notranslate nohighlight">\(h_1, h_2, h_3\)</span> be the water height at any time <span class="math notranslate nohighlight">\(t\)</span> in tanks 1, 2, and 3, respectively. Based on certain assumed tank and pipe dimensions, the rate of change of the water height in each tank can be modeled by a system of three first-order ordinary differential equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+  h_1' = -2h_1 + 2 h_2 \\ \\ h_2' = 2h_1 - 3 h_2 + h_3 \\ \\ h_3' = h_2 - h_3 
+\end{cases}
+\end{split}\]</div>
+<p>The initial conditions are the initial water heights in each tank at time 0:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} h_{1, 0} \\ h_{2, 0} \\ h_{3, 0} \end{bmatrix}\end{split}\]</div>
+<br>
+<p>Similar to solving a system of algebraic equations, solving a system of differential equations requires finding a set of functions that satisfy all equations simultaneously. Since we are working with a system of equations, we will use linear algebra and express the solution in matrix form. The general approach to solving a system of differential equations is:</p>
+<ol class="arabic simple">
+<li><p><strong>Formulation of the state of the system:</strong> Begin by defining a vector <span class="math notranslate nohighlight">\(S\)</span> of all the dependent variables (i.e., unknown functions we are trying to solve for). This is referred to as the state of the system. In general, the state of the system is given by:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}S = \begin{bmatrix} f_1 \\ f_2 \\ \vdots \\ f_n \end{bmatrix}\end{split}\]</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Formulation of the system of ODEs:</strong> The system of the differential equations is simply <span class="math notranslate nohighlight">\(S'\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}S' = \begin{bmatrix} f'_1 \\ f'_2 \\ \vdots \\ f'_n \end{bmatrix} = \begin{bmatrix} F_1(t, f_1, f_2, \dots, f_n) \\ F_2(t, f_1, f_2, \dots, f_n) \\ \vdots \\ F_n(t, f_1, f_2, \dots, f_n) \end{bmatrix}\end{split}\]</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Numerical solution:</strong> We can then apply any of the numerical methods to solve the system. However, keep in mind that we are working with vectors/matrices. For example, Forward Euler’s method would be:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+  S_{i+1} = S_i + h S'_i
+  \]</div>
+<p>which translates to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} f_{1, i+1} \\ f_{2, i+1} \\ \vdots \\ f_{n, i+1} \end{bmatrix} = \begin{bmatrix} f_{1, i} \\ f_{2, i} \\ \vdots \\ f_{n, i} \end{bmatrix} + h \begin{bmatrix} F_1(t_i, f_{1, i}, f_{2, i}, \dots, f_{n, i}) \\ F_2(t_i, f_{1, i}, f_{2, i}, \dots, f_{n, i}) \\ \vdots \\ F_n(t_i, f_{1, i}, f_{2, i}, \dots, f_{n, i}) \end{bmatrix}\end{split}\]</div>
+<p>To use other numerical methods (e.g., Midpoint, Heun’s, or RK4), simply replace <span class="math notranslate nohighlight">\(S'_i\)</span> with the relevant set of derivatives for each method.</p>
+<br>
+<p>For the water flow example we discussed earlier, the above three steps would be:</p>
+<ol class="arabic simple">
+<li><p><strong>State of the system:</strong></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}S = \begin{bmatrix} h_1 \\ h_2 \\ h_3 \end{bmatrix}\end{split}\]</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>System of ODEs:</strong></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}S' = \begin{bmatrix} -2h_1 + 2 h_2 \\ 2h_1 - 3 h_2 + h_3 \\ h_2 - h_3 \end{bmatrix} = \begin{bmatrix} F_1(t, h_1, h_2, h_3) \\ F_2(t, h_1, h_2, h_3) \\ F_3(t, h_1, h_2, h_3) \end{bmatrix}\end{split}\]</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Numerical solution using Euler’s method:</strong></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} h_{1, i+1} \\ h_{2, i+1} \\ h_{3, i+1} \end{bmatrix} = \begin{bmatrix} h_{1, i} \\ h_{2, i} \\ h_{3, i} \end{bmatrix} + h \begin{bmatrix} -2h_{1, i} + 2 h_{2, i} \\ 2h_{1, i} - 3 h_{2, i} + h_{3, i} \\ h_{2, i} - h_{3, i} \end{bmatrix}\end{split}\]</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>my_Euler_system(dS, t0, S0, tf, N)</code> which takes as input a function object <code>dS</code>, three scalar values <code>t0, tf, N</code>, and a NumPy array of the initial conditions <code>S0</code>. The function should return two arrays (in this order): a vector of the time grid and corresponding matrix of the numerical solution using Forward Euler’s method. The solution should be evaluated at <code>N+1</code> points between <code>[t0, tf]</code>, inclusive. Note that <code>dS(ti, Si)</code> is a function that returns a NumPy array of the derivative of the state of the system evaluated at step <span class="math notranslate nohighlight">\(i\)</span>: <span class="math notranslate nohighlight">\(S'_i\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recall that for the water flow between three connected tanks, we had the following system of differential equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S = \begin{bmatrix} h_1 \\ h_2 \\ h_3 \end{bmatrix} \rightarrow  S' = \begin{bmatrix} -2h_1 + 2 h_2 \\ 2h_1 - 3 h_2 + h_3 \\ h_2 - h_3 \end{bmatrix}\end{split}\]</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>dS(ti, Si)</code> which takes as input the time at the current step <code>ti</code> and a NumPy array (row vector) of the current state <code>Si</code> based on the above system of ODEs and returns a NumPy array of the derivative of the state of the system evaluated at step <span class="math notranslate nohighlight">\(i\)</span>. Then, change the initial conditions and see how that affects the numerical solution.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>  <span class="c1"># import ipywidgets package for interactive widgets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Define function dS</span>
+<span class="n">dS</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">ti</span><span class="p">,</span> <span class="n">Si</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Si</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Si</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                             <span class="mi">2</span><span class="o">*</span><span class="n">Si</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">Si</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Si</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                             <span class="n">Si</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Si</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+
+<span class="c1"># create sliders</span>
+<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">h1_0</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">h2_0</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">h3_0</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">ti</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">))</span>
+
+<span class="c1"># define a function that takes the values from the sliders and plots the results</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">arange</span><span class="p">(</span><span class="n">h1_0</span><span class="p">,</span> <span class="n">h2_0</span><span class="p">,</span> <span class="n">h3_0</span><span class="p">,</span> <span class="n">ti</span><span class="p">):</span>
+    
+    <span class="c1"># Get numerical solution</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">my_Euler_system</span><span class="p">(</span><span class="n">dS</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h1_0</span><span class="p">,</span> <span class="n">h2_0</span><span class="p">,</span> <span class="n">h3_0</span><span class="p">]),</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    
+    <span class="c1"># Get index of selected time</span>
+    <span class="n">t_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ti</span><span class="o">/</span><span class="mf">0.05</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    
+    <span class="c1"># Plot numerical solution</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tank 1&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tank 2&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tank 3&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="s1">&#39;oC0&#39;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="s1">&#39;oC1&#39;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="s1">&#39;oC2&#39;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Water Height (m)&#39;</span><span class="p">,</span> <span class="n">xlim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (hr)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Numerical Solution&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Tanks Dimensions</span>
+    <span class="n">tank_width</span> <span class="o">=</span> <span class="mf">2.99</span>
+    <span class="n">tank_height</span> <span class="o">=</span> <span class="mi">10</span>
+    
+    <span class="c1"># Current water heights</span>
+    <span class="n">heights</span> <span class="o">=</span> <span class="p">[</span><span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="n">t_index</span><span class="p">]]</span>
+
+    <span class="c1"># Plot each tank</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">height</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">heights</span><span class="p">):</span>
+        <span class="c1"># Calculate tank coordinates</span>
+        <span class="n">tank_x</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">tank_width</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">tank_y</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+        <span class="c1"># Plot tank outline</span>
+        <span class="n">tank_rect</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="n">tank_x</span><span class="p">,</span> <span class="n">tank_x</span><span class="o">+</span><span class="n">tank_width</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">tank_height</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span>\
+                                 <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        <span class="n">tank_rect</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">tank_y</span><span class="p">,</span> <span class="n">tank_x</span><span class="p">,</span> <span class="n">tank_x</span><span class="o">+</span><span class="n">tank_width</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># Plot water in the tank</span>
+        <span class="n">water_height</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">tank_height</span><span class="p">)</span>
+        <span class="n">water_rect</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">tank_x</span><span class="p">,</span> <span class="n">tank_y</span><span class="p">),</span> <span class="n">tank_width</span><span class="p">,</span> <span class="n">water_height</span><span class="p">,</span> \
+                                   <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">water_rect</span><span class="p">)</span>
+
+    <span class="c1"># Connect tanks with pipes at the bottom</span>
+    <span class="n">pipe_rect</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">tank_width</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">),</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> \
+                              <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">pipe_rect</span><span class="p">)</span> 
+    <span class="n">pipe_rect</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">tank_width</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.5</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">),</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> \
+                              <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">pipe_rect</span><span class="p">)</span> 
+        
+    <span class="c1"># Remove axis labels and ticks</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+
+    <span class="c1"># Set title</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Water Heights at t = </span><span class="si">{</span><span class="n">ti</span><span class="si">}</span><span class="s2"> hr&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Remove axes border</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Display the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When we have a system of <strong>linear</strong> ODEs, we can derive a more elegant formulation for the numerical solution. Specifically, we will write the system of differential equations <span class="math notranslate nohighlight">\(S'\)</span> in matrix form as some matrix <span class="math notranslate nohighlight">\(A\)</span> times the state of the system <span class="math notranslate nohighlight">\(S\)</span>. Consider the following system of first-order differential equations:</p>
+<p>\begin{equation}
+\begin{cases}
+f_1’ = a_{1,1}f_1 + a_{1,2}f_2 + \dots + a_{1,n}f_n\
+f_2’ = a_{2,1}f_1 + a_{2,2}f_2 + \dots + a_{2,n}f_n\
+\ \vdots \
+f_n’ = a_{n,1}f_1 + a_{n,2}f_2 + \dots + a_{n,n}f_n\
+\end{cases}<br />
+\end{equation}</p>
+<p>We can rewrite it in matrix form as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} f'_1 \\ f'_2 \\ \vdots \\ f'_n \end{bmatrix} = \begin{bmatrix} a_{1,1} &amp; a_{1,2} &amp; \dots &amp; a_{1,n} \\ a_{2,1} &amp; a_{2,2} &amp; \dots &amp; a_{2,n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{n,1} &amp; a_{n,2} &amp; \dots &amp; a_{n,n} \end{bmatrix} \begin{bmatrix} f_1 \\ f_2 \\ \vdots \\ f_n \end{bmatrix}\end{split}\]</div>
+<p>which simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[S' = A \times S\]</div>
+<p>Then, Forward Euler’s equation can be written in matrix form as:</p>
+<div class="math notranslate nohighlight">
+\[S_{i+1} = S_i + h S'_i = S_i + h A S_i = (I + hA) S_i \]</div>
+<p>where <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix.</p>
+<br>
+<p>The tanks example is a system of linear ODEs, so let’s obtain a numerical solution using the above formulation.  Recall that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S = \begin{bmatrix} h_1 \\ h_2 \\ h_3 \end{bmatrix} \rightarrow  S' = \begin{bmatrix} -2h_1 + 2 h_2 \\ 2h_1 - 3 h_2 + h_3 \\ h_2 - h_3 \end{bmatrix}\end{split}\]</div>
+<p>So first, we need to find a matrix A such that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} S' = AS \rightarrow \begin{bmatrix} -2h_1 + 2 h_2 \\ 2h_1 - 3 h_2 + h_3 \\ h_2 - h_3 \end{bmatrix} = \begin{bmatrix} a_{1,1} &amp; a_{1,2} &amp; a_{1,3} \\ a_{2,1} &amp; a_{2,2} &amp; a_{2,3} \\ a_{3,1} &amp; a_{3,2} &amp; a_{3,3} \end{bmatrix} \begin{bmatrix} h_1 \\ h_2 \\ h_3 \end{bmatrix} \end{split}\]</div>
+<p>Then matrix <span class="math notranslate nohighlight">\(A\)</span> can be obtained as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} S' = AS \rightarrow \begin{bmatrix} -2h_1 + 2 h_2 \\ 2h_1 - 3 h_2 + h_3 \\ h_2 - h_3 \end{bmatrix} = \begin{bmatrix} -2 &amp; 2 &amp; 0 \\ 2 &amp; -3 &amp; 1 \\ 0 &amp; 1 &amp; -1 \end{bmatrix} \begin{bmatrix} h_1 \\ h_2 \\ h_3 \end{bmatrix} \end{split}\]</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>my_Euler_system_lin(A, t0, S0, tf, N)</code> which takes as input an array <code>A</code>, where <span class="math notranslate nohighlight">\(S'=A S\)</span>, three scalar values <code>t0, tf, N</code>, and a list of the initial conditions <code>S0</code>. The function should return two arrays: a vector of the time grid and corresponding matrix of the numerical solution using Forward Euler’s method. The solution should be evaluated at <code>N+1</code> points between <code>[t0, tf]</code>, inclusive.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+For the water flow problem, define matrix <code>A</code> in Python. Then, change the initial conditions and see how that affects the numerical solution.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define matrix A</span>
+<span class="n">A</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># create sliders</span>
+<span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">h1_0</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">h2_0</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">h3_0</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">ti</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">))</span>
+
+<span class="c1"># define a function that takes the values from the sliders and plots the results</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">arange</span><span class="p">(</span><span class="n">h1_0</span><span class="p">,</span> <span class="n">h2_0</span><span class="p">,</span> <span class="n">h3_0</span><span class="p">,</span> <span class="n">ti</span><span class="p">):</span>
+    
+    <span class="c1"># Get numerical solution</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">my_Euler_system_lin</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h1_0</span><span class="p">,</span> <span class="n">h2_0</span><span class="p">,</span> <span class="n">h3_0</span><span class="p">]),</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    
+    <span class="c1"># Get index of selected time</span>
+    <span class="n">t_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ti</span><span class="o">/</span><span class="mf">0.05</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    
+    <span class="c1"># Plot numerical solution</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tank 1&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tank 2&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tank 3&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="s1">&#39;oC0&#39;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="s1">&#39;oC1&#39;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="s1">&#39;oC2&#39;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Water Height (m)&#39;</span><span class="p">,</span> <span class="n">xlim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (hr)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Numerical Solution&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Tanks Dimensions</span>
+    <span class="n">tank_width</span> <span class="o">=</span> <span class="mf">2.99</span>
+    <span class="n">tank_height</span> <span class="o">=</span> <span class="mi">10</span>
+    
+    <span class="c1"># Current water heights</span>
+    <span class="n">heights</span> <span class="o">=</span> <span class="p">[</span><span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">t_index</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="n">t_index</span><span class="p">]]</span>
+
+    <span class="c1"># Plot each tank</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">height</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">heights</span><span class="p">):</span>
+        <span class="c1"># Calculate tank coordinates</span>
+        <span class="n">tank_x</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">tank_width</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">tank_y</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+        <span class="c1"># Plot tank outline</span>
+        <span class="n">tank_rect</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="n">tank_x</span><span class="p">,</span> <span class="n">tank_x</span><span class="o">+</span><span class="n">tank_width</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">tank_height</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> \
+                                 <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        <span class="n">tank_rect</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">tank_y</span><span class="p">,</span> <span class="n">tank_x</span><span class="p">,</span> <span class="n">tank_x</span><span class="o">+</span><span class="n">tank_width</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># Plot water in the tank</span>
+        <span class="n">water_height</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">tank_height</span><span class="p">)</span>
+        <span class="n">water_rect</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">tank_x</span><span class="p">,</span> <span class="n">tank_y</span><span class="p">),</span> <span class="n">tank_width</span><span class="p">,</span> <span class="n">water_height</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> \
+                                   <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">water_rect</span><span class="p">)</span>
+
+    <span class="c1"># Connect tanks with pipes at the bottom</span>
+    <span class="n">pipe_rect</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">tank_width</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">),</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> \
+                              <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">pipe_rect</span><span class="p">)</span> 
+    <span class="n">pipe_rect</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">tank_width</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.5</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">),</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> \
+                              <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">pipe_rect</span><span class="p">)</span> 
+        
+    <span class="c1"># Remove axis labels and ticks</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+
+    <span class="c1"># Set title</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Water Heights at t = </span><span class="si">{</span><span class="n">ti</span><span class="si">}</span><span class="s2"> hr&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Remove axes border</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Display the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="higher-order-odes">
+<h2>19.5. Higher-Order ODEs <a id="s5"></a><a class="headerlink" href="#higher-order-odes" title="Link to this heading">#</a></h2>
+<p>So far, we have discussed numerical solutions to first-order ODEs. That is because most numerical methods for solving initial value problems are designed specifically to solve first-order differential equations. To make these solvers useful for solving higher-order differential equations, we will use the matrix formulation we discussed earlier. Specifically, we will turn an <strong><span class="math notranslate nohighlight">\(n^{th}\)</span> order ODE</strong> into a <strong>system of <span class="math notranslate nohighlight">\(n\)</span> first order ODEs</strong>.</p>
+<p>The general approach to solving a higher order ODE is as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Rearrange the ODE:</strong> Begin by rearranging the differential equation to isolate the highest-order derivative <span class="math notranslate nohighlight">\(y^{(n)}\)</span> on one side, and move everything else to the other side:
+$<span class="math notranslate nohighlight">\(y^{(n)} = F\left(t, y, y', \dots, y^{(n-1)}\right)\)</span><span class="math notranslate nohighlight">\(
+where \)</span>F<span class="math notranslate nohighlight">\( is a known function that returns the highest-order derivative, \)</span>t<span class="math notranslate nohighlight">\( is the independent variable, \)</span>y<span class="math notranslate nohighlight">\( is the unknown function we are trying to solve for, \)</span>y’<span class="math notranslate nohighlight">\( is the first-order derivative, \)</span>\dots$
+<br></p></li>
+<li><p><strong>Introduce new functions:</strong> We will then define new functions <span class="math notranslate nohighlight">\(S_1, S_2, \dots, S_n\)</span> that replace the unknown function and its higher order derivatives. We will denote them as some vector <span class="math notranslate nohighlight">\(S\)</span>:
+$<span class="math notranslate nohighlight">\(S = \begin{bmatrix} S_1 \\ S_2 \\ \vdots \\ S_n \end{bmatrix} = \begin{bmatrix} y \\ y' \\ \vdots \\ y^{(n-1)} \end{bmatrix}\)</span>$</p></li>
+</ol>
+<br>
+<p>By using these new functions <span class="math notranslate nohighlight">\( S_1, S_2, \dots, S_n \)</span>, we “got rid of” the derivatives <span class="math notranslate nohighlight">\(y', \dots, y^{(n-1)}\)</span> and replaced them with regular functions.</p>
+<div class="math notranslate nohighlight">
+\[y^{(n)} = F\left(t, y, y', \dots, y^{(n-1)}\right) \rightarrow y^{(n)} = F\left(t, S_1, S_2, \dots, S_n\right)\]</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Take the derivative of <span class="math notranslate nohighlight">\(S\)</span>:</strong> By taking the derivative of this new vector of functions, we will obtain a system of <span class="math notranslate nohighlight">\(n\)</span>, first order ODEs:
+$<span class="math notranslate nohighlight">\(S' = \begin{bmatrix} S'_1 \\ S'_2 \\ \vdots \\ S'_n \end{bmatrix} = \begin{bmatrix} y' \\ y'' \\ \vdots \\ y^{(n)} \end{bmatrix}\)</span>$
+<br></p></li>
+</ol>
+<p>However, from step 2, we know that <span class="math notranslate nohighlight">\(y'=S_2\)</span>, <span class="math notranslate nohighlight">\(y''=S_3\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> So, we can re-write the above as:
+$<span class="math notranslate nohighlight">\(S'=\begin{bmatrix} S'_1 \\ S'_2 \\ \vdots \\ S'_n \end{bmatrix}=\begin{bmatrix} y' \\ y'' \\ \vdots \\ y^{(n)} \end{bmatrix}=\begin{bmatrix} S_2 \\ S_3 \\ \vdots \\ F\left(t, S_1, S_2, \dots, S_n\right) \end{bmatrix} \rightarrow \begin{cases}
+      S_1' = S_2\\
+      S_2' = S_3\\
+      \ \vdots \\
+      S_n' = F\left(t, S_1, S_2, \dots, S_n\right)\\
+    \end{cases} \)</span>$<br />
+which is a system of first-order ODEs.</p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Numerical solution:</strong> We can then apply any of the numerical methods to solve the system. However, keep in mind that we are working with vectors/matrices. For example, Forward Euler’s method would be:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[S_{i+1} = S_i + h S'_i\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} y_{i+1} \\ y'_{i+1} \\ \vdots \\ y^{(n-1)}_{i+1} \end{bmatrix} = \begin{bmatrix} y_{i} \\ y'_{i} \\ \vdots \\ y^{(n-1)}_{i} \end{bmatrix} + h \begin{bmatrix} y'_{i} \\ y''_{i} \\ \vdots \\ F\left(t_i, y_i, y_i', \dots, y_i^{(n-1)}\right) \end{bmatrix}\end{split}\]</div>
+<p>If the <span class="math notranslate nohighlight">\(n^{th}\)</span> order ODE is linear, then we can rewrite the solution more elegantly using linear algebra by defining some matrix <span class="math notranslate nohighlight">\(A\)</span> such that <span class="math notranslate nohighlight">\(S'=AS\)</span>.</p>
+<p>Consider the following higher-order differential equation:</p>
+<div class="math notranslate nohighlight">
+\[y^{(n)} = a_0 y + a_1 y' + a_2 y'' + \dots + a_{n-1} y^{(n-1)}\]</div>
+<p>Let the state of the system be:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S = \begin{bmatrix} S_1 \\ S_2 \\ S_3 \\ \vdots \\ S_{n-1} \\ S_n \end{bmatrix} = \begin{bmatrix} y \\ y' \\ y'' \\ \vdots \\ y^{(n-2)}  \\ y^{(n-1)} \end{bmatrix}\end{split}\]</div>
+<p>Then matrix <span class="math notranslate nohighlight">\(A\)</span> can be obtained as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} S' = AS \rightarrow  \begin{bmatrix} S_2 \\ S_3 \\ \vdots \\ S_n \\ a_0 S_1 + a_1 S_2 + a_2 S_3 + \dots + a_{n-1} S_n \end{bmatrix} = \begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; \dots &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; \dots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; 0 &amp; \dots &amp; 1 \\ a_0 &amp; a_1 &amp; a_2 &amp; \dots &amp; a_{n-1} \end{bmatrix} \begin{bmatrix} S_1 \\ S_2 \\ S_3 \\ \vdots \\ S_n \end{bmatrix}\end{split}\]</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="17_integration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 18: Integration</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-differential-equations">19.1. Basics of Differential Equations <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-differential-equations">19.1.1. Definition of Differential Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-differential-equations">19.1.2. Types of Differential Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-differential-equations">19.1.3. Order of Differential Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-value-problem">19.1.4. Initial Value Problem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-solutions-to-first-order-odes">19.2. Numerical Solutions to First Order ODEs <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-s-method">19.2.1. Euler’s Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#midpoint-method">19.2.2. Midpoint Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heun-s-method">19.2.3. Heun’s Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runge-kutta-4-method">19.2.4. Runge-Kutta 4 Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-in-numerical-solutions">19.3. Error in Numerical Solutions <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-error">19.3.1. Order of Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-and-spacing-trade-off">19.3.2. Error and Spacing Trade-off</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-odes">19.4. System of ODEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-odes">19.5. Higher-Order ODEs <a id="s5"></a></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

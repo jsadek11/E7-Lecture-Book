@@ -1,0 +1,868 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 17: Differentiation &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/16_differentiation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 18: Integration" href="17_integration.html" />
+    <link rel="prev" title="Chapter 16: Root Finding" href="15_root_finding.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/16_differentiation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/16_differentiation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/16_differentiation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 17: Differentiation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-derivative">17.1. The First Derivative <a id="s1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-differentiation">17.2. Numerical Differentiation <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-difference">17.2.1. Forward Difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-difference">17.2.2. Backward Difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-difference">17.2.3. Central Difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-derivatives">17.2.4. Higher-Order Derivatives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-in-numerical-differentiation">17.3. Error in Numerical Differentiation <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-error">17.3.1. Order of Error</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">17.3.1.1. Forward Difference</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">17.3.1.2. Backward Difference</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">17.3.1.3. Central Difference</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-and-spacing-trade-off">17.3.2. Error and Spacing Trade-off</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-17-differentiation">
+<h1>Chapter 17: Differentiation<a class="headerlink" href="#chapter-17-differentiation" title="Link to this heading">#</a></h1>
+<p>Understanding how physical quantities change over time, space, and other dimensions is crucial in various engineering and science disciplines. For instance, in civil engineering, predicting the flow of water through a dam requires understanding the rate of change of water pressure across different points in the structure. Similarly, in aerospace engineering, analyzing the trajectory of a rocket involves understanding how its velocity changes with respect to time and altitude.</p>
+<p>Mathematically, the rate at which quantities change is modeled using derivatives. There is an extensive <a class="reference external" href="https://www.mathsisfun.com/calculus/derivatives-rules.html">set of rules</a> for computing derivatives analytically: power rule, product rule, quotient rule, chain rule, differentiation rules for exponentials, inverses, and trigonometric functions, and the list goes on. While with these rules (and enough time and patience) we can find derivatives for any function, these analytical methods, especially for complex functions, can be cumbersome and time-consuming.</p>
+<p>Moreover, in real-world scenarios, the exact mathematical form of the function may be unknown, and only discrete data points are typically available. In such cases, analytical differentiation is impossible. This limitation necessitates the use of numerical differentiation methods, which provide a practical approach to approximating derivatives when analytical solutions are impractical or unavailable. These methods allow us to estimate the rate of change of a function based on available data points, making them invaluable tools.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Recognize the challenges associated with analytical differentiation in real-world problems</p></li>
+<li><p>Understand the practical significance of numerical differentiation</p></li>
+<li><p>Describe the general approach of numerical differentiation methods</p></li>
+<li><p>Implement different numerical differentiation techniques including, backward, forward, and central differentiation in Python</p></li>
+<li><p>Estimate the order of the error of these numerical approximations and choose the most accurate method</p></li>
+<li><p>Discuss the error and spacing trade-off in numerical differentiation and how very small spacing can result in increased error</p></li>
+</ul>
+<section id="the-first-derivative">
+<h2>17.1. The First Derivative <a id="s1"></a><a class="headerlink" href="#the-first-derivative" title="Link to this heading">#</a></h2>
+<p>The derivative <span class="math notranslate nohighlight">\(f'(x)\)</span> of a function <span class="math notranslate nohighlight">\(f(x)\)</span> at a point <span class="math notranslate nohighlight">\(x\)</span> is interpreted as the slope of the tangent line to the function at that specific point. Mathematically, the derivative is defined as:</p>
+<div class="math notranslate nohighlight">
+\[f^\prime(x) = \lim_{h\rightarrow 0}\frac{f(x+h) - f(x)}{h}\]</div>
+<p>If we drop the limit and instead use some small number for <span class="math notranslate nohighlight">\(h\)</span>, then we can estimate the first derivative as the slope of a secant line through two points <span class="math notranslate nohighlight">\(\big(x, f(x)\big)\)</span> and <span class="math notranslate nohighlight">\(\big(x + h, f(x + h)\big)\)</span>. Conceptually, as the spacing between the points <span class="math notranslate nohighlight">\(h\)</span> decreases, one endpoint of the interval slides toward the point of interest, and the slope of this secant line converges to the derivative of the function at <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<br>
+<center><figure>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Derivative_GIF.gif
+" style="width:45%">
+    <figcaption style="text-align:center"><strong>Derivative of a function:</strong> <a href="https://en.m.wikipedia.org/wiki/File:Derivative_GIF.gif">https://en.m.wikipedia.org/</a></figcaption>   
+</figure></center></section>
+<section id="numerical-differentiation">
+<h2>17.2. Numerical Differentiation <a id="s2"></a><a class="headerlink" href="#numerical-differentiation" title="Link to this heading">#</a></h2>
+<p>In many scenarios, obtaining analytical solutions for derivatives can be either too complex or impractical due to the lack of a known mathematical function. Although physical data are inherently continuous, their values may only be available at discrete points. For instance, a GPS sensor might record position versus time pairs at regular intervals. Although position is a smooth and continuous function with respect to time, the GPS provides values only at discrete time intervals, rendering the underlying function unknown. In the absence of a mathematical function, analytical differentiation methods cannot be used to compute the rate of change.</p>
+<p>In such cases, <strong>finite difference</strong> approximations of the derivative can be employed. These numerical approximations involve calculating the slope between two neighboring points from the available set of data points. There are three fundamental types of finite difference approximations:</p>
+<ol class="arabic simple">
+<li><p>Forward difference</p></li>
+<li><p>Backward difference</p></li>
+<li><p>Central difference</p></li>
+</ol>
+<p>The following figure illustrates these three numerical differentiation methods used to estimate the slope or derivative:</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSZ5kN1WZPnLn0MZ9uQ16mE-Gets1ot2JuLEYSvlW20QpAkBZXatQvgdYBLZP_dxUlVpJaYBi7Yn2fU/pub?w=1152&h=432
+" style="width:100%">
+    <figcaption style="text-align:center"><strong>Finite difference methods</strong></figcaption>   
+</figure></center>
+<br>
+<p>All these methods share the same primary idea: approximate the derivative using the slope of the secant line of two points. They differ in which two points are being used.</p>
+<section id="forward-difference">
+<h3>17.2.1. Forward Difference<a class="headerlink" href="#forward-difference" title="Link to this heading">#</a></h3>
+<p>The <strong>forward difference</strong> estimates the derivative of the function at <span class="math notranslate nohighlight">\(x_i\)</span> as the slope of the line that connects <span class="math notranslate nohighlight">\(\big(x_i, f(x_i)\big)\)</span> and a forward point <span class="math notranslate nohighlight">\(\big(x_{i+1}, f(x_{i+1})\big)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+f'(x_i) \approx \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i}
+\]</div>
+<p>When working with discrete data, we are restricted by the spacing between successive measurements. However, if we have knowledge of the underlying mathematical function, <span class="math notranslate nohighlight">\(f(x)\)</span>, we can control the spacing between the two points, denoted as <span class="math notranslate nohighlight">\(h\)</span>, used in approximating the derivative. The forward finite-difference approximation in this case uses the line that connects <span class="math notranslate nohighlight">\(\big(x_i, f(x_i)\big)\)</span> and <span class="math notranslate nohighlight">\(\big(x_{i}+h, f(x_{i}+h)\big)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+f'(x_i) \approx \frac{f(x_{i}+h) - f(x_i)}{h}
+\]</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+When dealing with only discrete points, it is not possible to compute the derivative at the last point in the dataset <span class="math notranslate nohighlight">\(f'(x_n)\)</span> using forward difference, as there is no forward point to use for the calculation.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#006600'><strong>💡 TIP!</strong></font><br />
+When dealing with discrete points, the <a href="https://numpy.org/doc/stable/reference/generated/numpy.diff.html"><code>np.diff(a, n=1)</code></a> function can be helpful. It returns an <code>ndarray</code> with values <code>out[i] = a[i+1] - a[i]</code>.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>forward_diff(f, x, h)</code> which takes as input a function object <code>f</code> and two scalar values <code>x, h</code>. The function should return an estimate of the derivative of <code>f</code> at <code>x</code> using the forward difference method and spacing <code>h</code>. Set the default value of the spacing equal to <span class="math notranslate nohighlight">\(10^{-3}\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try your function <code>forward_diff(f, x, h)</code> for <span class="math notranslate nohighlight">\(f(x)=\cos(x)\)</span> at <code>x=0.15</code>. Then, compute the analytical value of the derivative and the error between the numerical approximation and the analytical value.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Point of interest</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">0.15</span>
+
+<span class="c1"># Estimate derivative and display results</span>
+<span class="n">estimate</span> <span class="o">=</span> <span class="o">...</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f&#39;(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">) ~ </span><span class="si">{</span><span class="n">estimate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Analytical solution for derivative</span>
+<span class="n">exact</span> <span class="o">=</span> <span class="o">...</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f&#39;(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">exact</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate Error</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error    = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">exact</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">estimate</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="backward-difference">
+<h3>17.2.2. Backward Difference<a class="headerlink" href="#backward-difference" title="Link to this heading">#</a></h3>
+<p>The <strong>backward difference</strong> estimates the derivative of the function at <span class="math notranslate nohighlight">\(x_i\)</span> as the slope of the line that connects <span class="math notranslate nohighlight">\(\big(x_i, f(x_i)\big)\)</span> and a backward point <span class="math notranslate nohighlight">\(\big(x_{i-1}, f(x_{i-1})\big)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+f'(x_i) \approx \frac{f(x_i) - f(x_{i-1})}{x_i - x_{i-1}}
+\]</div>
+<p>When the mathematical function is known, the backward finite-difference approximation equation becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+f'(x_i) \approx \frac{f(x_i) - f(x_{i}-h)}{h}
+\]</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+When dealing with only discrete points, it is not possible to compute the derivative at the first point in the dataset <span class="math notranslate nohighlight">\(f'(x_0)\)</span> using backward difference, as there is no backward point to use for the calculation.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+When dealing with discrete points, the forward and backward difference methods give the same results but shifted by <span class="math notranslate nohighlight">\(i=1\)</span>. So, the forward difference result for <span class="math notranslate nohighlight">\(f'(x_0)\)</span> will have the same value as the backward difference result for <span class="math notranslate nohighlight">\(f'(x_1)\)</span>, because both use the same equation <span class="math notranslate nohighlight">\(\dfrac{f(x_1) - f(x_{0})}{x_1 - x_{0}}\)</span>.</p>
+</div></blockquote>
+</section>
+<section id="central-difference">
+<h3>17.2.3. Central Difference<a class="headerlink" href="#central-difference" title="Link to this heading">#</a></h3>
+<p>The <strong>central difference</strong> estimates the derivative of the function at <span class="math notranslate nohighlight">\(x_i\)</span> as the slope of the line that connects a backward <span class="math notranslate nohighlight">\(\big(x_{i-1}, f(x_{i-1})\big)\)</span> and a forward <span class="math notranslate nohighlight">\(\big(x_{i+1}, f(x_{i+1})\big)\)</span> point, centered about <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+f'(x_i) \approx \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}}
+\]</div>
+<p>When the mathematical function is known, the central finite-difference approximation equation becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+f'(x_i) \approx \frac{f(x_{i}+h) - f(x_{i}-h)}{2h}
+\]</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+When dealing with only discrete points, it is not possible to compute the derivative at both the first and last point in the dataset using central difference, as there is no backward and forward point, respectively, to use for the calculation.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>central_diff(f, x, h)</code> which takes as input a function object <code>f</code> and two scalar values <code>x, h</code>. The function should return an estimate of the derivative of <code>f</code> at <code>x</code> using the central difference method and spacing <code>h</code>. Set the default value of the spacing equal to <span class="math notranslate nohighlight">\(10^{-3}\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try your function <code>central_diff(f, x, h)</code> for <span class="math notranslate nohighlight">\(f(x)=\cos(x)\)</span> at <code>x=0.15</code>. Then, compute the analytical value of the derivative and the error between the numerical approximation and the analytical value.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Point of interest</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">0.15</span>
+
+<span class="c1"># Estimate derivative and display results</span>
+<span class="n">estimate</span> <span class="o">=</span> <span class="n">central_diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f&#39;(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">) ~ </span><span class="si">{</span><span class="n">estimate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Analytical solution for derivative</span>
+<span class="n">exact</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f&#39;(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">exact</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate Error</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error    = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">exact</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">estimate</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="higher-order-derivatives">
+<h3>17.2.4. Higher-Order Derivatives<a class="headerlink" href="#higher-order-derivatives" title="Link to this heading">#</a></h3>
+<p>It is also possible to approximate higher-order derivatives (e.g., <span class="math notranslate nohighlight">\(f''(x_i), f'''(x_i)\)</span>, etc.). For example, the second order derivative using the central difference method can be approximated as:</p>
+<div class="math notranslate nohighlight">
+\[
+f''(x_i) \approx \frac{f(x_{i}+h)-2f(x_i)+f(x_{i}-h)}{h^2}
+\]</div>
+</section>
+</section>
+<section id="error-in-numerical-differentiation">
+<h2>17.3. Error in Numerical Differentiation <a id="s3"></a><a class="headerlink" href="#error-in-numerical-differentiation" title="Link to this heading">#</a></h2>
+<p>Numerical differentiation methods, being approximations, inherently introduce some level of error. Understanding the accuracy of these methods and the magnitude of the error is crucial for their interpretation and improvement. Graphically, the error in numerical differentiation refers to the difference in the slope between the true and the approximated slopes by the numerical differentiation method, as illustrated in the figure below. Based on the figure, which method appears to be the most accurate? Which method(s) appear(s) to be the least accurate?</p>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSS8tf-dA6R_AUeLyLkebqBIqy8tXF160HveLYRBcxERhoJDMPolMTzazPI0xtEgMV8a3_UwyaWImwb/pub?w=1152&h=720" style="width:75%">
+    <figcaption style="text-align:center"><strong>Numerical differentiation error as a function of the step size $h$</strong></figcaption>   
+</figure></center>
+<br>
+<p>Calculating the error exactly, similar to the examples above, is generally not possible, as the actual derivative is the unknown we are trying to estimate. Instead, we focus on estimating the order or magnitude of the error. One common way of describing the order of the error is using Big-O notation, which we have previously used to describe the magnitude of the error of a truncated Taylor series.</p>
+<section id="order-of-error">
+<h3>17.3.1. Order of Error<a class="headerlink" href="#order-of-error" title="Link to this heading">#</a></h3>
+<p>Calculating the error exactly, similar to the examples above, is generally not possible, as the actual derivative is the unknown we are trying to estimate. Instead, we focus on estimating the order or magnitude of the error. One common way of describing the order of the error is using Big-O notation as a function of the step size <span class="math notranslate nohighlight">\(h\)</span>, which we have previously used to describe the magnitude of the error of a truncated Taylor series.</p>
+<p>The table below summarizes the order of the error associated with various numerical differentiation methods:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Method</p></th>
+<th class="head text-left"><p>Error</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Forward Difference</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Backward Difference</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h\right)\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Central Difference</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h^2\right)\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>As the step size <span class="math notranslate nohighlight">\(h\)</span> decreases, the numerical result tends to converge to the true value of the derivative, as evident in the figure above. However, even with the same step size <span class="math notranslate nohighlight">\(h\)</span>, different numerical differentiation methods exhibit different levels of accuracy. Below, we derive the order of error for the forward difference method.</p>
+<section id="id1">
+<h4>17.3.1.1. Forward Difference<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>We already derived the forward difference equation based on the slope of the line that connects <span class="math notranslate nohighlight">\(\big(x_i, f(x_i)\big)\)</span> and a forward point <span class="math notranslate nohighlight">\(\big(x_{i+1}, f(x_{i+1})\big)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+f'(x_i) \approx \frac{f(x_{i}+h) - f(x_i)}{h}
+\]</div>
+<p>While this is a simple way to derive the equation of forward difference, we can obtain the same equation using Taylor series. The Taylor series of a function <span class="math notranslate nohighlight">\(f(x)\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = f(a)+\frac {f'(a)}{1!} (x-a)+ \frac{f''(a)}{2!} (x-a)^2+\frac{f'''(a)}{3!}(x-a)^3+ \cdots = \sum_{n = 0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n\]</div>
+<p>If we substitute <span class="math notranslate nohighlight">\(x\)</span> with <span class="math notranslate nohighlight">\(x+h\)</span> and <span class="math notranslate nohighlight">\(a\)</span> with <span class="math notranslate nohighlight">\(x\)</span> in the above equation, we get:</p>
+<div class="math notranslate nohighlight">
+\[ f(x+h) = f(x)+f'(x) (x+h-x)+ \frac{f''(x)}{2!} (x+h-x)^2+\frac{f'''(x)}{3!}(x+h-x)^3+ \cdots = f(x)+f'(x) h+ \frac{f''(x)}{2!} h^2+\frac{f'''(x)}{3!}h^3+ \cdots\]</div>
+<p>By rearranging this equation to solve for <span class="math notranslate nohighlight">\(f'(x)\)</span>, we can obtain the forward difference formula and identify the error term:</p>
+<div class="math notranslate nohighlight">
+\[ f'(x) = \dfrac{f(x+h)-f(x)- \dfrac{f''(x)}{2!} h^2-\dfrac{f'''(x)}{3!}h^3- \cdots}{h} = \underbrace{\dfrac{f(x+h)-f(x)}{h}}_{\text{Forward Difference}}- \underbrace{\dfrac{f''(x)}{2!} h-\dfrac{f'''(x)}{3!}h^2- \cdots}_{\text{Remainder}}\]</div>
+<p>The first part of the above equation is the forward difference approximation of the derivative. By ignoring the remaining components of the above equation, this introduces error. If <span class="math notranslate nohighlight">\(h\)</span> is a very small value, then the largest term in the remainder is the <span class="math notranslate nohighlight">\(h\)</span> term (since for small values of <span class="math notranslate nohighlight">\(h\)</span> like 0.01, <span class="math notranslate nohighlight">\(h^2\)</span> will be even smaller, <span class="math notranslate nohighlight">\(h^3\)</span> even smaller than that, etc). This means that if we use a forward difference approximation for <span class="math notranslate nohighlight">\(f'(x)\)</span>, then we expect our error to be about the same size as <span class="math notranslate nohighlight">\(h\)</span>. In this case, it is common to rewrite the forward difference as:</p>
+<div class="math notranslate nohighlight">
+\[f'(x) = \dfrac{f(x+h)-f(x)}{h} + \mathcal{O}\left(h\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{O}\left(h\right)\)</span> reads “Big-O of <span class="math notranslate nohighlight">\(h\)</span>” indicates that the expected error for forward difference is proportional to <span class="math notranslate nohighlight">\(h\)</span>.</p>
+<p>This is equivalent to saying that forward difference method is first order. In other words, the error is proportional to the step size <span class="math notranslate nohighlight">\(h\)</span>.</p>
+<p>In general, Big-O notation is used to describe the asymptotic behavior of functions, indicating how fast a function grows or declines. In this case, we will use it to describe the order at which the error in numerical differentiation grows or declines as a function of the spacing <span class="math notranslate nohighlight">\(h\)</span>. We say that the error in a differentiation scheme is <span class="math notranslate nohighlight">\(\mathcal{O}\left(h^k\right)\)</span> if and only if the error is proportional to <span class="math notranslate nohighlight">\(h^k\)</span>. This is equivalent to saying that the differentiation method is <span class="math notranslate nohighlight">\(k^{th}\)</span> order. This analysis holds true for small values of <span class="math notranslate nohighlight">\(h\)</span>. The error analysis is not applicable when <span class="math notranslate nohighlight">\(h\)</span> is large. Because we are focusing on small values of <span class="math notranslate nohighlight">\(h\)</span>, higher-order methods with larger <span class="math notranslate nohighlight">\(k\)</span> have smaller error and are more accurate (since for small values of <span class="math notranslate nohighlight">\(h\)</span> like 0.01, <span class="math notranslate nohighlight">\(h^2\)</span> will be smaller, <span class="math notranslate nohighlight">\(h^3\)</span> even smaller than that, etc).</p>
+</section>
+<section id="id2">
+<h4>17.3.1.2. Backward Difference<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>Similar error analysis can be conducted for backward difference to obtain the order of accuracy. The backward difference method is also first order, with a similar order of error as the forward difference method:</p>
+<div class="math notranslate nohighlight">
+\[f'(x) = \dfrac{f(x)-f(x-h)}{h} + \mathcal{O}\left(h\right)\]</div>
+</section>
+<section id="id3">
+<h4>17.3.1.3. Central Difference<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>Similar error analysis can also be conducted for central difference to obtain the order of accuracy. However, unlike the forward and backward difference methods, the central difference method is second order, meaning the error is proportional to <span class="math notranslate nohighlight">\(h^2\)</span>, and thus is more accurate:</p>
+<div class="math notranslate nohighlight">
+\[f'(x) = \dfrac{f(x+h)-f(x-h)}{2h} + \mathcal{O}\left(h^2\right)\]</div>
+</section>
+</section>
+<section id="error-and-spacing-trade-off">
+<h3>17.3.2. Error and Spacing Trade-off<a class="headerlink" href="#error-and-spacing-trade-off" title="Link to this heading">#</a></h3>
+<p>Theoretically, reducing the spacing, <span class="math notranslate nohighlight">\(h\)</span>, between the points used in numerical differentiation improves accuracy. However, with very small <span class="math notranslate nohighlight">\(h\)</span>, round-off error becomes a significant concern, potentially compromising the accuracy of the numerical differentiation. Therefore, striking a balance between the acceptable error and the spacing <span class="math notranslate nohighlight">\(h\)</span> is crucial.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Calculate the error for the forward and central difference methods relative to the analytical solution for <span class="math notranslate nohighlight">\(f(x)=\cos(x)\)</span> at <code>x=0.15</code>. Calculate the error for different values of <code>h</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define inputs</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">0.15</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">1e-2</span>
+
+<span class="c1"># Calculate error and display results</span>
+<span class="n">dfx</span> <span class="o">=</span> <span class="n">forward_diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forward difference error: O(h)   = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dfx</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate error and display results</span>
+<span class="n">dfx</span> <span class="o">=</span> <span class="n">central_diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Central difference error: O(h^2) = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dfx</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="15_root_finding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 16: Root Finding</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="17_integration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 18: Integration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-derivative">17.1. The First Derivative <a id="s1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-differentiation">17.2. Numerical Differentiation <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-difference">17.2.1. Forward Difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-difference">17.2.2. Backward Difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-difference">17.2.3. Central Difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-derivatives">17.2.4. Higher-Order Derivatives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-in-numerical-differentiation">17.3. Error in Numerical Differentiation <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-error">17.3.1. Order of Error</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">17.3.1.1. Forward Difference</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">17.3.1.2. Backward Difference</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">17.3.1.3. Central Difference</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-and-spacing-trade-off">17.3.2. Error and Spacing Trade-off</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

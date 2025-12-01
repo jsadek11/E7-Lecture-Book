@@ -1,0 +1,1344 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 7: Iteration &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/06_iteration';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 8: Recursion" href="07_recursion.html" />
+    <link rel="prev" title="Chapter 6: Conditional Statements" href="05_conditionals.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/06_iteration.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/06_iteration.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/06_iteration.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 7: Iteration</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops">7.1. For Loops <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-the-values-of-a-sequence">7.1.1. Looping Over the Values of a Sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-the-indexes-of-a-sequence">7.1.2. Looping Over the Indexes of a Sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-the-indexes-and-values-using-enumerate">7.1.3. Looping Over the Indexes and Values Using <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-multiple-sequences">7.1.4. Looping Over Multiple Sequences</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loops">7.2. While Loops <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-of-while-loops">7.2.1. Syntax of While Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infinite-loops">7.2.2. Infinite Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-between-for-and-while">7.2.3. Choosing between For and While</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-loops">7.3. Nested Loops <a id="s3"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jump-statements-break-and-continue">7.4. Jump Statements: <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code> <a id="s4"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#break-statement">7.4.1. <code class="docutils literal notranslate"><span class="pre">break</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-statement">7.4.2. <code class="docutils literal notranslate"><span class="pre">continue</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uses-of-jump-statements">7.4.3. Uses of Jump Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.4.4. Nested Loops</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehension">7.5. List Comprehension <a id="s5"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-list-comprehension">7.5.1. Basic List Comprehension</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehension-with-a-filter-condition">7.5.2. List Comprehension with a Filter Condition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehension-with-ternary-operator">7.5.3. List Comprehension with Ternary Operator</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-7-iteration">
+<h1>Chapter 7: Iteration<a class="headerlink" href="#chapter-7-iteration" title="Link to this heading">#</a></h1>
+<p>Many tasks in computing require repeating the same basic action multiple times. While humans might find doing the same thing over and over again tedious, computers are really good at executing the same instructions millions or billions of times repeatedly  with precision. This capability makes computers invaluable for automating repetitive tasks. Programming languages like Python offer direct methods for performing such repetitive tasks, a concept known as <strong>iteration</strong>.</p>
+<p>Iteration involves the process of repeatedly executing a set of statements. It’s analogous to a <strong>loop</strong>, as it cycles back to the beginning after each iteration. In this section, we will explore two primary types of loops in Python:</p>
+<ol class="arabic simple">
+<li><p>for loops: these loops repeat specific commands a predefined number of times.</p></li>
+<li><p>while loops: these loops repeat specific commands as long as a certain condition is met</p></li>
+</ol>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Identify situations where iterative statements are essential</p></li>
+<li><p>Integrate iterative statements in your functions and scripts</p></li>
+<li><p>Distinguish between for loops and while loops, selecting the appropriate one for a given task</p></li>
+<li><p>Use jump statements, such as <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code>, effectively within loops</p></li>
+</ul>
+<section id="for-loops">
+<h2>7.1. For Loops <a id="s1"></a><a class="headerlink" href="#for-loops" title="Link to this heading">#</a></h2>
+<p>A for loop is employed when we know in advance how many times we want to repeat a set of commands. The loop iterates over a sequence (e.g., a list or range) and executes the specified block of code for each item in the sequence.</p>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSQupkexDEBJ1yMPoBJOF24msvYknZMePYjVEW36oYUoFjYO0S7XLxVGnJjKaLU9PSmiGBeDcqmqWCT/pub?w=873&h=741" style="width:40%">
+    <figcaption style="text-align:center"><br><strong>Flow chart of for loop</strong></figcaption>   
+</figure></center>
+<section id="looping-over-the-values-of-a-sequence">
+<h3>7.1.1. Looping Over the Values of a Sequence<a class="headerlink" href="#looping-over-the-values-of-a-sequence" title="Link to this heading">#</a></h3>
+<p>To repeat a code block for every value in a sequence, we can use the <code class="docutils literal notranslate"><span class="pre">for</span></code> syntax in Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+    <span class="c1"># code block to be repeated</span>
+    <span class="c1"># notice the indentation relative to for</span>
+    
+<span class="c1"># subsequent code</span>
+<span class="c1"># since this is not indented, this is outside the loop and will be executed after the loop is finished</span>
+</pre></div>
+</div>
+<p>Python’s <code class="docutils literal notranslate"><span class="pre">for</span></code> statement iterates over the items of a sequence, in the order that they appear in the sequence. Here’s how a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop works:</p>
+<ul class="simple">
+<li><p>The word <code class="docutils literal notranslate"><span class="pre">for</span></code> is a keyword that signals the start of a loop</p></li>
+<li><p>After <code class="docutils literal notranslate"><span class="pre">for</span></code>, we specify a variable name (in this case, <code class="docutils literal notranslate"><span class="pre">value</span></code>) that will take on the values from the sequence</p></li>
+<li><p>The keyword <code class="docutils literal notranslate"><span class="pre">in</span></code> separates the variable from the sequence</p></li>
+<li><p>The variable <code class="docutils literal notranslate"><span class="pre">sequence</span></code> is the name of the object we want to iterate over</p></li>
+<li><p>The colon <code class="docutils literal notranslate"><span class="pre">:</span></code> indicates the beginning of the code block that will be executed for each value in the sequence</p></li>
+<li><p>Inside the indented code block, we place the commands that need to be repeated</p></li>
+<li><p>Python will initially assign the first element of the sequence to the variable <code class="docutils literal notranslate"><span class="pre">value</span></code>, execute the indented code block, and then proceed to the next element in the sequence and execute the indented code block again. This process continues until all elements in <code class="docutils literal notranslate"><span class="pre">sequence</span></code> have been accessed.</p></li>
+<li><p>Once the indented code block has been executed for the last element in <code class="docutils literal notranslate"><span class="pre">sequence</span></code>, the unindented subsequent code is executed</p></li>
+</ul>
+<p>We can use any variable name in place of <code class="docutils literal notranslate"><span class="pre">value</span></code> and any valid sequence, such as strings, lists, tuples, ranges in place of <code class="docutils literal notranslate"><span class="pre">sequence</span></code>.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+In a <code>for</code> loop, the name you write after <code>for</code>
+(e.g., <code>value</code> in <code>for value in sequence:</code>) is called the <em>iteration variable</em> (or the loop variable).
+During each pass through the loop, this variable is assigned the current element of the sequence.
+Important things to keep in mind:</p>
+<ul>
+  <li>The iteration variable is created automatically when the loop starts</li>
+ <li>It changes value each time through the loop</li>
+ <li>It remains defined even after the loop finishes, holding its last assigned value</li>
+ <li>If a variable with the same name already existed, the loop will <em>overwrite</em> it</li>
+</ul>
+</div></blockquote>
+<p>Indentation is important as it is the only way Python knows which code block belongs to the loop. Python requires the same level of indentation for every line of code within the same loop.</p>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vR5m-A7Hpbn08nzqiYJ8BlA6-fDctdT9FMyvl7ozatX-2Cn8T8UlOeQviL3wj6Cq7AeoywsJd-N0W8Y/pub?w=1005&h=524" style="width:60%">
+    <figcaption style="text-align:center"><br><strong>For loop example</strong></figcaption>   
+</figure></center>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+A loop is <em>not</em> a function. Indentation only shows which lines belong to the loop’s block. Unlike functions, variables created inside a <code>for</code> loop  are <em>not local</em> to the loop and they remain accessible after the loop ends.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Using a for loop, print every non-negative integer before 5.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above example, the for loop iterates through the values from 0 to 5 (exclusive) and prints each value.</p>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vQNrpoPptyu8oJ_mLB0WqHqAcwo6Snu_Wtu6sn_OG0Qgz5HmWC4H3bMQyEZt9xDvYxAOU1ZeZ4pfySB/pub?w=805&h=500" style="width:40%">
+    <figcaption style="text-align:center"><br><strong>For loop example</strong></figcaption>   
+</figure></center>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Print every character in <code>banana</code>. Once completed, print the word “Done!”.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;banana&quot;</span>
+
+<span class="c1"># iterate over banana</span>
+
+
+<span class="c1"># print &#39;Done!&#39;. Try it with and without indentation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>sum_to()</code> that takes one argument <code>n</code>, which is a non-negative integer, and returns the sum of every non-negative integer up to and including <code>n</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sum_to</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># initialize value</span>
+    
+    <span class="c1"># iterate</span>
+    
+    
+    <span class="c1"># return, try with and without indentation</span>
+    
+
+<span class="c1"># call function</span>
+<span class="n">sum_to</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span> <span class="c1"># 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 = 45</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="looping-over-the-indexes-of-a-sequence">
+<h3>7.1.2. Looping Over the Indexes of a Sequence<a class="headerlink" href="#looping-over-the-indexes-of-a-sequence" title="Link to this heading">#</a></h3>
+<p>Alternatively, we can iterate over the indexes of a sequence. This can be useful when we need to access elements in a sequence by their positions. One way to achieve this is by combining the <code class="docutils literal notranslate"><span class="pre">range()</span></code> and <code class="docutils literal notranslate"><span class="pre">len()</span></code> functions as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)):</span>
+    <span class="c1"># code block to be repeated</span>
+    
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p>Here’s how this approach works:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">range(len(sequence))</span></code> expression generates a sequence of integers from 0 to the length of <code class="docutils literal notranslate"><span class="pre">sequence</span></code> (excluded)</p></li>
+<li><p>These integers correspond to the valid indexes of the sequence</p></li>
+<li><p>Inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> represents the current index being processed</p></li>
+<li><p>We can use <code class="docutils literal notranslate"><span class="pre">sequence[i]</span></code> to access the element at the current iteration</p></li>
+</ul>
+<p>We can use any variable name in place of <code class="docutils literal notranslate"><span class="pre">i</span></code> and any valid sequence, such as strings, lists, tuples, ranges in place of <code class="docutils literal notranslate"><span class="pre">sequence</span></code>.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Repeat the above by iterating over the length of <code>banana</code>. Print a tuple that includes the index and then the corresponding character.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;banana&quot;</span>
+
+<span class="c1"># iterate over banana</span>
+
+<span class="c1"># print &#39;Done!&#39;    </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="looping-over-the-indexes-and-values-using-enumerate">
+<h3>7.1.3. Looping Over the Indexes and Values Using <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code><a class="headerlink" href="#looping-over-the-indexes-and-values-using-enumerate" title="Link to this heading">#</a></h3>
+<p>Python provides a more convenient method to  loop over the indexes and values of a sequence. This can be achieved using the <a class="reference external" href="https://docs.python.org/3/library/functions.html#enumerate"><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code></a> function, which returns a tuple containing the index (starting from 0 by default) and the corresponding element of the sequence at that index. This can simplify your code and make it more readable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+    <span class="c1"># code block to be repeated</span>
+    
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p>Here’s how <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> streamlines the process:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">enumerate(sequence)</span></code> expression generates pairs of <code class="docutils literal notranslate"><span class="pre">(index,</span> <span class="pre">element)</span></code> as you iterate through the sequence</p></li>
+<li><p>Inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, we can directly use <code class="docutils literal notranslate"><span class="pre">i</span></code> for the index and <code class="docutils literal notranslate"><span class="pre">value</span></code> for the element</p></li>
+</ul>
+<p>We can use any variable names in place of <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code> and any valid sequence, such as strings, lists, tuples, ranges in place of <code class="docutils literal notranslate"><span class="pre">sequence</span></code>.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> eliminates the need to manually manage index variables, making your code more concise and easier to understand. It’s a preferred method when you need both the index and the value of each element in the sequence.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Repeat the above using <code>enumerate()</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;banana&quot;</span>
+
+<span class="c1"># iterate over banana</span>
+
+<span class="c1"># print &#39;Done!&#39;    </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="looping-over-multiple-sequences">
+<h3>7.1.4. Looping Over Multiple Sequences<a class="headerlink" href="#looping-over-multiple-sequences" title="Link to this heading">#</a></h3>
+<p>In some scenarios, we may need to iterate over two or more sequences simultaneously. Python provides an elegant solution for this using the <a class="reference external" href="https://docs.python.org/3/library/functions.html#zip"><code class="docutils literal notranslate"><span class="pre">zip()</span></code></a> function, which combines elements from multiple sequences into tuples and allows us to loop over these pairs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value1</span><span class="p">,</span> <span class="n">value2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sequence1</span><span class="p">,</span> <span class="n">sequence2</span><span class="p">):</span>
+    <span class="c1"># code block to be repeated</span>
+    
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p>Here’s how <code class="docutils literal notranslate"><span class="pre">zip()</span></code> facilitates looping over multiple sequences:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">zip(sequence1,</span> <span class="pre">sequence2)</span></code> function pairs elements from <code class="docutils literal notranslate"><span class="pre">sequence1</span></code> and <code class="docutils literal notranslate"><span class="pre">sequence2</span></code> together as we iterate through them</p></li>
+<li><p>Inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, we can directly use <code class="docutils literal notranslate"><span class="pre">value1</span></code> and <code class="docutils literal notranslate"><span class="pre">value2</span></code> to access elements from the respective sequences</p></li>
+</ul>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Create a list <code>questions = [‘first name’, ‘favorite fruit’, ‘age’]</code> and a tuple <code>answers</code> that includes the answers to the questions. Then, iterate over <code>questions</code> and <code>answers</code> and print: ‘What is your {question}?  It is {answer}.’.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># questions</span>
+<span class="n">questions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;first name&#39;</span><span class="p">,</span> <span class="s1">&#39;favorite fruit&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">]</span>
+
+<span class="c1"># answers</span>
+<span class="n">answers</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;strawberry&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+
+<span class="c1"># iterate</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="while-loops">
+<h2>7.2. While Loops <a id="s2"></a><a class="headerlink" href="#while-loops" title="Link to this heading">#</a></h2>
+<p>For loops repeat code statements a specific <em>number of times</em>. However, in some cases, we do not know in advance how many iterations are needed. For example, in a game of tic-tac-toe, we want the game to keep going until one player wins or the board is full, which might happen in as little as 5 moves or as many as 9 moves. In this case, we want to continue the game as long as it is not over yet. This can be achieved using a while loop.</p>
+<p>While loops are used to repeat a set of commands as long as a specific condition remains true. Unlike for loops, where we know the number of iterations in advance, while loops are ideal for situations where we don’t know in advance how many iterations are needed. While loops offer flexibility, as they enable us to create dynamic processes that continue until a specified condition changes from true to false.</p>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSiaHIcn2hwgGR1mxEHXDFLHfPEB9Lsi6NORkSWVXwCXheQFEtidJH6ld5Q0qZ0eoMqp1O1i0EkBXHa/pub?w=873&h=741" style="width:40%">
+    <figcaption style="text-align:center"><br><strong>Flow chart of while loop</strong></figcaption>   
+</figure></center>
+<section id="syntax-of-while-loops">
+<h3>7.2.1. Syntax of While Loops<a class="headerlink" href="#syntax-of-while-loops" title="Link to this heading">#</a></h3>
+<p>In a while loop, we specify a condition, and the loop continues to execute a code block as long as that condition remains true. The syntax for a while loop in Python is as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">condition</span><span class="p">:</span>
+    <span class="c1"># code block to be repeated</span>
+    <span class="c1"># notice the indentation relative to while</span>
+    
+<span class="c1"># subsequent code</span>
+<span class="c1"># since this is not indented, this is outside the loop and will be executed after the loop is finished</span>
+</pre></div>
+</div>
+<p>Here’s how a while loop works:</p>
+<ul class="simple">
+<li><p>The keyword <code class="docutils literal notranslate"><span class="pre">while</span></code> signals the beginning of a loop</p></li>
+<li><p>After <code class="docutils literal notranslate"><span class="pre">while</span></code>, we specify a condition that must be evaluated as either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+<li><p>The colon <code class="docutils literal notranslate"><span class="pre">:</span></code> marks the start of the code block to be executed repeatedly as long as the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p>Inside the indented code block, we place the commands that need to be repeated</p></li>
+<li><p>Python initially checks if <code class="docutils literal notranslate"><span class="pre">condition</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>. If it is, it executes the indented code block.</p></li>
+<li><p>After executing the code block, Python returns to the top of the loop, reevaluates <code class="docutils literal notranslate"><span class="pre">condition</span></code>, and continues looping if the condition is still <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p>The loop continues to run until <code class="docutils literal notranslate"><span class="pre">condition</span></code> becomes <code class="docutils literal notranslate"><span class="pre">False</span></code>. Once that happens, Python exits the loop and proceeds to the unindented subsequent code.</p></li>
+</ul>
+<p>In summary, the flow of execution of a while loop works like this:</p>
+<ol class="arabic simple">
+<li><p>Evaluate the condition, which yields <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p>If the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>, execute the indented code block and then go back to step 1.</p></li>
+<li><p>If the condition is <code class="docutils literal notranslate"><span class="pre">False</span></code>, exit the while loop and continue to the subsequent code.</p></li>
+</ol>
+<p>Recall that an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement executes the code block one time if the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>. The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop reevaluates the condition and repeats the code block as long as the condition remains <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>divisions_by_2</code> that takes one argument <code>n</code>, which can be any real number, and prints the number of times <code>n</code> can be divided by 2 until the result is less than 1: ‘The number of divisions by 2 until the result is less than 1 is {i}.’.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">divisions_by_2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># initialize value</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># iterate</span>
+    
+    <span class="c1"># print</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The number of divisions by 2 until the result is less than 1 is </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+<span class="c1"># call function    </span>
+<span class="n">divisions_by_2</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 10 / 2 = 5 / 2 = 2.5 / 2 = 1.25 / 2 = 0.625</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="infinite-loops">
+<h3>7.2.2. Infinite Loops<a class="headerlink" href="#infinite-loops" title="Link to this heading">#</a></h3>
+<p>You may have wondered, “What if the condition never becomes false?” If the condition remains true, and nothing within the code block of the while loop changes the condition, the loop will repeat infinitely, creating what’s known as an <strong>infinite loop</strong>. Infinite loops run endlessly, or until the computer runs out of memory.</p>
+<p>Infinite loops should generally be avoided in programming because they can lead to several issues. However, there are cases where infinite loops can be used intentionally. For example, we might want a program to run continuously, waiting for user input. In such cases, it’s essential to design the code carefully and include mechanisms for breaking out of the infinite loop when necessary.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define <code>n = 0</code>. While <code>n</code> is non-negative modify it by increasing it by 1 every iteration.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">n</span></code> will always be non-negative, no matter how many times the loop is run, this code will run endlessly.</p>
+<p>You can terminate the infinite while loop manually by clicking the <em>interrupt the kernel</em> icon <code class="docutils literal notranslate"><span class="pre">⬛</span></code> form the Toolbar, or
+from the Menu bar, click <strong>Kernel</strong>, then <strong>Interrupt</strong>. Or if you are using the Python shell, you need to press <kbd>Ctrl</kbd>+<kbd>c</kbd> (<kbd>Cmd</kbd>+<kbd>c</kbd> for macOS).</p>
+<p>To avoid unintentional infinite loops, always double-check your code logic, ensure that the loop condition can change over time, and eventually, alter the condition from true to false.</p>
+</section>
+<section id="choosing-between-for-and-while">
+<h3>7.2.3. Choosing between For and While<a class="headerlink" href="#choosing-between-for-and-while" title="Link to this heading">#</a></h3>
+<p>We have learned about two types of loops: <em>for loops</em> and <em>while loops</em>. In some cases, either can be used equally well, but sometimes one is better suited for the task than the other.</p>
+<p>In general, use <em>for loops</em> when you already know the number of iterations required, creating what’s known as a definite loop. For example, when iterating over elements in a sequence like a list or a range.</p>
+<p>Conversely, use <em>while loops</em> when you don’t know the number of iterations in advance, leading to an indefinite loop. This is especially useful for scenarios where you need to repeatedly execute code until a specific condition becomes false.</p>
+</section>
+</section>
+<section id="nested-loops">
+<h2>7.3. Nested Loops <a id="s3"></a><a class="headerlink" href="#nested-loops" title="Link to this heading">#</a></h2>
+<p>Just like with conditional statements, loops can be nested, which means having one loop inside another. A nested loop is a loop within a loop, and it allows you to tackle more complex tasks that involve multiple iterations. The syntax for nested loops looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value1</span> <span class="ow">in</span> <span class="n">sequence1</span><span class="p">:</span> <span class="c1"># outer for loop</span>
+    <span class="k">for</span> <span class="n">value2</span> <span class="ow">in</span> <span class="n">sequence2</span><span class="p">:</span> <span class="c1"># inner for loop</span>
+        <span class="c1"># code block to be repeated</span>
+        <span class="c1"># notice the deep indentation</span>
+        
+<span class="c1"># subsequent code </span>
+<span class="c1"># since this is not indented, this is outside the loop and will be executed after the loop is finished</span>
+</pre></div>
+</div>
+<p>Similarly we can create nested <em>while</em> or combine <em>for</em> and <em>while</em> loops. There’s no limit to how deeply you can nest loops.</p>
+<p>An important concept when working with nested loops is because the inner loop is nested within the outer loop, the inner loop executes all of its iterations for each iteration of the outer loop. In other words, the inner loop restarts for every iteration of the outer loop.</p>
+<br>
+<figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vR7co8LW2SdGMfw_YGABZTYtXxq8OJdnWXCq7rBrbO4UzQF3gaxuVLzH89GolZOyulx1GvvpSKsZlVO/pub?w=1428&h=591" style="width:75%">
+    <figcaption style="text-align:center"><br><strong>Nested loop example</strong></figcaption>   
+</figure>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Run the example below on nested for loops.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span> <span class="c1"># outer for loop</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span> <span class="c1"># inner for loop</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(i, j): (</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span> <span class="c1"># code block to be repeated</span>
+</pre></div>
+</div>
+</div>
+</div>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vRpcKznBS5DSdXr8pNzmN-wqxIVLA6TfcvpjWlbsDmIYZHkqamLSg1w5b2Vr1dm30G6r2h_Mltk695L/pub?w=1085&h=1064" style="width:50%">
+    <figcaption style="text-align:center"><br><strong>Nested loop example</strong></figcaption>   
+</figure></center>
+<p>Nested loops are essential for working with multidimensional data structures such as matrices, grids, or 2D arrays, where you often need to perform operations on elements in each row and in each column. While nested loops are powerful, they can make your code more complex. Be mindful of their use and ensure they are necessary for your specific task. Use nested loops when you don’t have any better alternatives.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Let <code>x</code> be a 2-D NumPy array with random numbers, <code>np.random.random((10, 5))</code>. Use a nested for loop to replace any value in <code>x</code> that is less than 0.5 by 0, otherwise replace it by 1.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># define x and print it</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># get shape of x</span>
+<span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">))</span>
+
+<span class="c1"># iterate over x</span>
+
+
+<span class="c1"># print new x</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="jump-statements-break-and-continue">
+<h2>7.4. Jump Statements: <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code> <a id="s4"></a><a class="headerlink" href="#jump-statements-break-and-continue" title="Link to this heading">#</a></h2>
+<p>Python, like other programming languages, includes jump statements. As the name suggests, these are flow control statements that interrupt the normal flow of the program and cause it to jump to another statement when a certain condition is met. We will learn about two types of jump statements, including:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">break</span></code>: stop or terminate the loop immediately and move to the subsequent code, if any</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">continue</span></code>: skip the current iteration and move to the next one</p></li>
+</ol>
+<section id="break-statement">
+<h3>7.4.1. <code class="docutils literal notranslate"><span class="pre">break</span></code> Statement<a class="headerlink" href="#break-statement" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">break</span></code> statement is used to exit/terminate a loop early immediately when it is encountered. It could be used inside a <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> loop to terminate the loop prematurely when a certain condition is met. The syntax of the <code class="docutils literal notranslate"><span class="pre">break</span></code> statement is:</p>
+<p>When a <code class="docutils literal notranslate"><span class="pre">break</span></code> statement is encountered inside the body of the loop, the current iteration stops, any remaining iterations are skipped, and program control immediately jumps to the subsequent statement following the loop.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vRXf_loAn_Q96Us-eJnVQ1544eqmDFbUpACoCixxfN-kA1T4aRR3yC4p0FVPqE0HkMLvuKFNKb6CJXJ/pub?w=1188&h=487" style="width:65%">
+    <figcaption style="text-align:center"><strong>Control flow with break statements</strong></figcaption>   
+</figure></center>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">moods</span> <span class="o">=</span> <span class="p">[</span><span class="err">😊</span><span class="p">,</span> <span class="err">😂</span><span class="p">,</span> <span class="err">😎</span><span class="p">,</span> <span class="err">😡</span><span class="p">,</span> <span class="err">🤔</span><span class="p">,</span> <span class="err">🎉</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">mood</span> <span class="ow">in</span> <span class="n">moods</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">mood</span> <span class="o">==</span> <span class="err">😡</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">break</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">mood</span><span class="p">)</span>
+
+<span class="go">😊</span>
+<span class="go">😂</span>
+<span class="go">😎</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Loop Iteration</p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">mood</span></code></p></th>
+<th class="head text-center"><p>Action</p></th>
+<th class="head text-center"><p>Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>😊</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">print</span></code></p></td>
+<td class="text-center"><p>😊</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-center"><p>😂</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">print</span></code></p></td>
+<td class="text-center"><p>😂</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-center"><p>😎</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">print</span></code></p></td>
+<td class="text-center"><p>😎</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-center"><p>😡</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">break</span></code></p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Let <code>x</code> be a 1-D NumPy array with random positive integers with two digits (10 through 99), <code>np.random.randint(low=10, high=100, size=24)</code>. Print all the values in <code>x</code> until but excluding the first repdigit (natural number composed of repeated instances of the same digit, e.g. 11 or 66) is encountered, if any. Do not print anything after the repdigit.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># define x and print it</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># iterate over x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="continue-statement">
+<h3>7.4.2. <code class="docutils literal notranslate"><span class="pre">continue</span></code> Statement<a class="headerlink" href="#continue-statement" title="Link to this heading">#</a></h3>
+<p>In some cases, instead of terminating the entire loop using a <code class="docutils literal notranslate"><span class="pre">break</span></code> statement, we just want to skip the current iteration early and move to the next one. This can be achieved using the <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement. The syntax of the <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+        <span class="k">continue</span> <span class="c1"># notice the indentation relative to for and to if</span>
+    <span class="c1"># code block to be repeated</span>
+    <span class="c1"># notice the indentation relative to for</span>
+    
+<span class="c1"># subsequent code</span>
+<span class="c1"># since this is not indented, this is outside the loop and will be executed after the loop is finished</span>
+</pre></div>
+</div>
+<p>When a <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement is encountered inside the body of the loop, the current iteration stops, any remaining statements within the loop are skipped, and program control immediately jumps to the next iteration in the loop.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vTa7jExOpjp7rFpb67ww2ACMwOzvnYldrBsawnjBI7RqpgXKxI_UfVBgqsRcHXgz8jHJpRhjafGSgTJ/pub?w=1188&h=487" style="width:65%">
+    <figcaption style="text-align:center"><strong>Control flow with continue statements</strong></figcaption>   
+</figure></center>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">moods</span> <span class="o">=</span> <span class="p">[</span><span class="err">😊</span><span class="p">,</span> <span class="err">😂</span><span class="p">,</span> <span class="err">😎</span><span class="p">,</span> <span class="err">😡</span><span class="p">,</span> <span class="err">🤔</span><span class="p">,</span> <span class="err">🎉</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">mood</span> <span class="ow">in</span> <span class="n">moods</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">mood</span> <span class="o">==</span> <span class="err">😡</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">continue</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">mood</span><span class="p">)</span>
+
+<span class="go">😊</span>
+<span class="go">😂</span>
+<span class="go">😎</span>
+<span class="go">🤔</span>
+<span class="go">🎉</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Loop Iteration</p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">mood</span></code></p></th>
+<th class="head text-center"><p>Action</p></th>
+<th class="head text-center"><p>Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>😊</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">print</span></code></p></td>
+<td class="text-center"><p>😊</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-center"><p>😂</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">print</span></code></p></td>
+<td class="text-center"><p>😂</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-center"><p>😎</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">print</span></code></p></td>
+<td class="text-center"><p>😎</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-center"><p>😡</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">continue</span></code></p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td class="text-center"><p>🤔</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">print</span></code></p></td>
+<td class="text-center"><p>🤔</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td class="text-center"><p>🎉</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">print</span></code></p></td>
+<td class="text-center"><p>🎉</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Using the same <code>x</code> from above, print all the values in <code>x</code> except repdigits, if any.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># define x and print it</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># iterate over x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="uses-of-jump-statements">
+<h3>7.4.3. Uses of Jump Statements<a class="headerlink" href="#uses-of-jump-statements" title="Link to this heading">#</a></h3>
+<p>Both <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code> statements provide valuable tools for controlling the flow of the code within loops, enhancing flexibility and efficiency.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">break</span></code>: Commonly used for early termination of loops when a specific condition is met, such as finding a target value or encountering an error condition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">continue</span></code>: Commonly used to skip certain iterations of a loop based on a condition, such as filtering or processing specific elements in a sequence.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>7.4.4. Nested Loops<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code> statements are used inside nested loops, they only affect the immediate loop that contains them and the outer loop remains unaffected. So, <code class="docutils literal notranslate"><span class="pre">break</span></code> stops the most immediate loop that contains it; that is, if it is contained in the inner loop of a nested loop, then it will only stop the innermost loop. Similarly, <code class="docutils literal notranslate"><span class="pre">continue</span></code> skips the remaining code in the current iteration of the most immediate loop that contains it; that is, if it is contained in the inner loop of a nested loop, then it will only skip the current iteration of the innermost loop.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define <code>list1 = [1, 2, 3]</code> and <code>list2 = [10, 20, 30]</code>. Print all the pairs <code>(list1, list2)</code> except when <code>list1</code> is 2 and <code>list2</code> is 20.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+
+<span class="c1"># iterate</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">list2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">20</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="nb">print</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we want to break or continue all loops (inner and outer loop), there are different ways to achieve this in Python. One way is to check the condition again in every loop. Another way is to use an <code class="docutils literal notranslate"><span class="pre">else</span></code> clause. Both cases are demonstrated below.</p>
+<p><strong>Checking the condition again:</strong></p>
+<p>In this example, the condition is checked in both the inner and outer loops, ensuring that both loops can be terminated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value1</span> <span class="ow">in</span> <span class="n">sequence1</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">value2</span> <span class="ow">in</span> <span class="n">sequence2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+            <span class="k">break</span> <span class="c1"># notice the indentation</span>
+        <span class="c1"># code block to be repeated </span>
+        <span class="c1"># notice the indentation</span>
+    <span class="k">if</span> <span class="n">condition</span><span class="p">:</span> <span class="c1"># check the condition again in the outer loop</span>
+        <span class="k">break</span> <span class="c1"># notice the indentation</span>
+</pre></div>
+</div>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vReUDEo0eq3RkWLsYKB06KXxX42hqmjP5Y-JiIDvyqtIKdQWxxGkGYSBg_Nuz1-oQ528RFMyScE1u6c/pub?w=1582&h=677" style="width:65%">
+    <figcaption style="text-align:center"><strong>Nested loops with break statements</strong></figcaption>   
+</figure></center>
+<p><strong>Using <code class="docutils literal notranslate"><span class="pre">else</span></code> clause:</strong></p>
+<p>In a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, the <code class="docutils literal notranslate"><span class="pre">else</span></code> clause is executed after the loop reaches its final iteration. In a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, it’s executed after the loop’s condition becomes false. In either kind of loop, the <code class="docutils literal notranslate"><span class="pre">else</span></code> clause is not executed if the loop was terminated by a break.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value1</span> <span class="ow">in</span> <span class="n">sequence1</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">value2</span> <span class="ow">in</span> <span class="n">sequence2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+            <span class="k">break</span> <span class="c1"># notice the indentation</span>
+        <span class="c1"># code block to be repeated</span>
+        <span class="c1"># notice the indentation</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># only executed when the inner loop is not stopped by the break statement</span>
+        <span class="k">continue</span> <span class="c1"># go to the next iteration of the outer loop</span>
+    <span class="k">break</span> <span class="c1"># only executed when the inner loop is stopped by the break statement</span>
+</pre></div>
+</div>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vR0fMbZghOq_g7DevMN0V1E_EFDt9TmnuH9vhP0DA-XUwthIav8-_JZ4LeAoKyav4C-OmkSLsjd8hWE/pub?w=1588&h=720" style="width:65%">
+    <figcaption style="text-align:center"><strong>Nested loops with else clause</strong></figcaption>   
+</figure></center>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define <code>list1 = [1, 2, 3]</code> and <code>list2 = [10, 20, 30]</code>. Print all the pairs <code>(list1, list2)</code> and stop after <code>list1</code> is 2 and <code>list2</code> is 20.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+
+<span class="c1"># iterate</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">list2</span><span class="p">:</span>
+        <span class="c1"># print</span>
+        <span class="nb">print</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+        <span class="c1"># check condition</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">20</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="list-comprehension">
+<h2>7.5. List Comprehension <a id="s5"></a><a class="headerlink" href="#list-comprehension" title="Link to this heading">#</a></h2>
+<p>In modern programming languages, including Python, there are more concise ways to perform iterations and create lists. One such method is <strong>list comprehension</strong>. List comprehensions allow you to create lists from existing sequences with a compact syntax.</p>
+<section id="basic-list-comprehension">
+<h3>7.5.1. Basic List Comprehension<a class="headerlink" href="#basic-list-comprehension" title="Link to this heading">#</a></h3>
+<p>The basic syntax of list comprehensions is as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">newlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">expression</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sequence</span></code>: any sequence object, like a list, tuple etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expression</span></code>: any expression that will be the outcome assigned to <code class="docutils literal notranslate"><span class="pre">newlist</span></code> for each item in the sequence</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weekly_weather</span> <span class="o">=</span> <span class="p">[</span><span class="err">🌤️</span><span class="p">,</span> <span class="err">🌦️</span><span class="p">,</span> <span class="err">🌧️</span><span class="p">,</span> <span class="err">🌪️</span><span class="p">,</span> <span class="err">🌤️</span><span class="p">,</span> <span class="err">🌤️</span><span class="p">,</span> <span class="err">🌦️</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exercise</span> <span class="o">=</span> <span class="p">[</span><span class="n">day</span> <span class="o">+</span> <span class="err">🏃🏾</span> <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">weekly_weather</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">exercise</span><span class="p">)</span>
+
+<span class="go">[🌤️🏃🏾 , 🌦️🏃🏾, 🌧️🏃🏾, 🌪️🏃🏾, 🌤️🏃🏾, 🌤️🏃🏾, 🌦️🏃🏾]</span>
+</pre></div>
+</div>
+</section>
+<section id="list-comprehension-with-a-filter-condition">
+<h3>7.5.2. List Comprehension with a Filter Condition<a class="headerlink" href="#list-comprehension-with-a-filter-condition" title="Link to this heading">#</a></h3>
+<p>More commonly, list comprehensions include an <code class="docutils literal notranslate"><span class="pre">if</span></code> condition to filter items and control the output of the new list based on the condition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">newlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">expression</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sequence</span> <span class="k">if</span> <span class="n">condition</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">condition</span></code> (optional): any expression that evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>The condition is optional and can be omitted: <code class="docutils literal notranslate"><span class="pre">newlist</span> <span class="pre">=</span> <span class="pre">[expression</span> <span class="pre">for</span> <span class="pre">item</span> <span class="pre">in</span> <span class="pre">sequence]</span></code>.  If provided, the condition filters elements from the sequence based on this condition.</p>
+</div></blockquote>
+<p><strong>Example (with <code class="docutils literal notranslate"><span class="pre">if</span></code>):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weekly_weather</span> <span class="o">=</span> <span class="p">[</span><span class="err">🌤️</span><span class="p">,</span> <span class="err">🌦️</span><span class="p">,</span> <span class="err">🌧️</span><span class="p">,</span> <span class="err">🌪️</span><span class="p">,</span> <span class="err">🌤️</span><span class="p">,</span> <span class="err">🌤️</span><span class="p">,</span> <span class="err">🌦️</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exercise</span> <span class="o">=</span> <span class="p">[</span><span class="n">day</span> <span class="o">+</span> <span class="err">🏃🏾</span> <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">weekly_weather</span> <span class="k">if</span> <span class="n">day</span> <span class="o">==</span> <span class="err">🌤️</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">exercise</span><span class="p">)</span>
+
+<span class="go">[🌤️🏃🏾, 🌤️🏃🏾, 🌤️🏃🏾]</span>
+</pre></div>
+</div>
+</section>
+<section id="list-comprehension-with-ternary-operator">
+<h3>7.5.3. List Comprehension with Ternary Operator<a class="headerlink" href="#list-comprehension-with-ternary-operator" title="Link to this heading">#</a></h3>
+<p>List comprehensions can also be combined with ternary operator to include <code class="docutils literal notranslate"><span class="pre">if-else</span></code> conditions to create more complex transformations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">newlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">expression_if_true</span> <span class="k">if</span> <span class="n">condition</span> <span class="k">else</span> <span class="n">expression_if_false</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">expression_if_true</span></code>: any expression that will be the outcome assigned to <code class="docutils literal notranslate"><span class="pre">newlist</span></code> for each item in the sequence if <code class="docutils literal notranslate"><span class="pre">condition</span></code> evaluates to a <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expression_if_false</span></code>: any expression that will be the outcome assigned to <code class="docutils literal notranslate"><span class="pre">newlist</span></code> for each item in the sequence if <code class="docutils literal notranslate"><span class="pre">condition</span></code> evaluates to a <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+</ul>
+<p><strong>Example (with <code class="docutils literal notranslate"><span class="pre">if-else</span></code>):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weekly_weather</span> <span class="o">=</span> <span class="p">[</span><span class="err">🌤️</span><span class="p">,</span> <span class="err">🌦️</span><span class="p">,</span> <span class="err">🌧️</span><span class="p">,</span> <span class="err">🌪️</span><span class="p">,</span> <span class="err">🌤️</span><span class="p">,</span> <span class="err">🌤️</span><span class="p">,</span> <span class="err">🌦️</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">activity</span> <span class="o">=</span> <span class="p">[</span><span class="err">🏃🏾</span> <span class="k">if</span> <span class="n">day</span> <span class="o">==</span> <span class="err">🌤️</span> <span class="k">else</span> <span class="err">☔</span> <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">weekly_weather</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span>
+
+<span class="go">[🏃🏾, ☔, ☔, ☔, 🏃🏾, 🏃🏾, ☔]</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+In Python, there are two common ways to use <code>if</code> in a list comprehension, but they serve different purposes. When the <code>if</code> comes at the end, as in <code>[expression for item in sequence if condition]</code>, it acts as a filter. Only the items that satisfy the condition are included in the result, and the rest are skipped. By contrast, when you use <code>if … else …</code> inside the expression, as in <code>[expr_if_true if condition else expr_if_false for item in sequence]</code>, it is the ternary operator. In this case, every item in the sequence is processed, but the value placed in the list depends on the condition. In short: the filter version controls which items appear, while the ternary version controls how each item appears.</p>
+</div></blockquote>
+<p>Consider for example a variable <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">range(10)</span></code> and we want to define a list <code class="docutils literal notranslate"><span class="pre">y</span></code> that is the square of only the even numbers in <code class="docutils literal notranslate"><span class="pre">x</span></code>. Without list comprehension, this can be achieved as shown below</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># without list comprehension</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="go">[0, 4, 16, 36, 64]</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Now using list comprehension, define <code>x = range(10)</code> and then define a list <code>y</code> that is the square of only the even numbers in <code>x</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># with list comprehension</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>While list comprehensions may appear complex at first, they can be very powerful and useful in Python programming. Although mastering them might require some practice, they offer a concise and readable way to perform operations on iterables and create new lists, making your code more efficient.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_conditionals.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 6: Conditional Statements</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_recursion.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 8: Recursion</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops">7.1. For Loops <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-the-values-of-a-sequence">7.1.1. Looping Over the Values of a Sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-the-indexes-of-a-sequence">7.1.2. Looping Over the Indexes of a Sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-the-indexes-and-values-using-enumerate">7.1.3. Looping Over the Indexes and Values Using <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-multiple-sequences">7.1.4. Looping Over Multiple Sequences</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loops">7.2. While Loops <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-of-while-loops">7.2.1. Syntax of While Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infinite-loops">7.2.2. Infinite Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-between-for-and-while">7.2.3. Choosing between For and While</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-loops">7.3. Nested Loops <a id="s3"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jump-statements-break-and-continue">7.4. Jump Statements: <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code> <a id="s4"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#break-statement">7.4.1. <code class="docutils literal notranslate"><span class="pre">break</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-statement">7.4.2. <code class="docutils literal notranslate"><span class="pre">continue</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uses-of-jump-statements">7.4.3. Uses of Jump Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.4.4. Nested Loops</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehension">7.5. List Comprehension <a id="s5"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-list-comprehension">7.5.1. Basic List Comprehension</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehension-with-a-filter-condition">7.5.2. List Comprehension with a Filter Condition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehension-with-ternary-operator">7.5.3. List Comprehension with Ternary Operator</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
