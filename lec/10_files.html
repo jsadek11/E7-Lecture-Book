@@ -1,0 +1,1222 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 11: File Input and Output Operations &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/10_files';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 12: Plotting" href="11_plotting.html" />
+    <link rel="prev" title="Chapter 10: Number Representation" href="09_number_rep.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/10_files.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/10_files.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/10_files.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 11: File Input and Output Operations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#txt-files">11.1. TXT Files <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-txt-files">11.1.1. Opening TXT Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-txt-files">11.1.2. Reading TXT Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-txt-files">11.1.3. Writing TXT Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#appending-txt-files">11.1.4. Appending TXT Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-modes">11.1.5. Other Modes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-numpy-package">11.1.7. Using NumPy Package</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-files">11.2. CSV Files <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-csv-module">11.2.1. Using <code class="docutils literal notranslate"><span class="pre">csv</span></code> Module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">11.2.2. Using NumPy Package</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-reading">11.3. Additional Reading <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-and-closing-files">11.3.1. Opening and Closing Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-files-using-pandas-package">11.3.2. CSV Files Using Pandas Package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pickle-files">11.3.3. Pickle Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-pickle-files">11.3.3.1. Writing Pickle Files</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-pickle-files">11.3.3.2. Reading Pickle Files</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#json-files">11.3.4. JSON Files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-11-file-input-and-output-operations">
+<h1>Chapter 11: File Input and Output Operations<a class="headerlink" href="#chapter-11-file-input-and-output-operations" title="Link to this heading">#</a></h1>
+<p>While a program is running, its data is stored in random access memory (RAM). RAM is fast, but it is also volatile, meaning data disappear when the program ends or the computer shuts down. To preserve data for future use, share it with collaborators, or interact with external resources, we have to store it as a <strong>file</strong>. A file is a structured block of data stored within the file system of the computer’s operating system. For instance, this lecture notebook itself is a file. In this section, we will learn how to use Python to read and write data in several common file formats.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Read and write TXT files using built-in methods and NumPy</p></li>
+<li><p>Read and write CSV files using built-in methods and NumPy</p></li>
+</ul>
+<section id="txt-files">
+<h2>11.1. TXT Files <a id="s1"></a><a class="headerlink" href="#txt-files" title="Link to this heading">#</a></h2>
+<p>A <strong>text</strong> file, often with a <strong>.txt</strong> extension, is a file containing plain text without any special formatting like bold text, fonts, or font sizes. Despite their simplicity, text files serve as the foundation for storing and sharing information in a wide range of applications. Even though these files contain plain text, programs usually expect a file to follow a specific structure or format; that is, the data are organized in a specific way.</p>
+<p>In general, working with text files in Python involves three fundamental steps:</p>
+<ol class="arabic simple">
+<li><p>Opening the file</p></li>
+<li><p>Performing any operations (reading, writing, or modifying)</p></li>
+<li><p>Closing the file</p></li>
+</ol>
+<section id="opening-txt-files">
+<h3>11.1.1. Opening TXT Files<a class="headerlink" href="#opening-txt-files" title="Link to this heading">#</a></h3>
+<p>To use a file, we must open it first. When opening the file, we must decide whether we want to read data from the file or write data to it. This can be achieved with the <code class="docutils literal notranslate"><span class="pre">open()</span></code> function, which is most commonly used with two arguments as shown in the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code>: a string including the file name or the path and name of the file, such as <code class="docutils literal notranslate"><span class="pre">'example.txt'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: a string defining the way in which the file will be used. See the table below for examples.</p></li>
+</ul>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Both <code>filename</code> and <code>mode</code> are strings, so both should be between quotes.</p>
+</div></blockquote>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">mode</span></code></p></th>
+<th class="head text-left"><p>Use and description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'r'</span></code></p></td>
+<td class="text-left"><p><strong>Read</strong> (default mode) – Opens the file for reading. Raises a <code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code> exception if file does not exist.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'w'</span></code></p></td>
+<td class="text-left"><p><strong>Write</strong> – Opens the file for writing. Creates the file if it does not exist. Overwrites (erases) the file if it already exists.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'a'</span></code></p></td>
+<td class="text-left"><p><strong>Append</strong> – Opens the file for appending. Creates the file if it does not exist. Appends to the end of the file if it already exists.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'x'</span></code></p></td>
+<td class="text-left"><p><strong>Create</strong> – Creates the file. Raises an error if it already exists.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">mode</span></code> argument is optional; the default <code class="docutils literal notranslate"><span class="pre">r</span></code> will be assumed if it’s omitted. There are other modes besides <code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">w</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code>, and <code class="docutils literal notranslate"><span class="pre">x</span></code> that we will discuss later.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try to open a file using <code>open(‘resources/example.txt’)</code>. This will raise an error because ‘example.txt’ does not exist in your directory.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try to write a file using <code>open(‘resources/example.txt’, ‘w’)</code>. This will not raise an error because this mode creates the file if it does not exist.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+If you look at your directory, you will see that a file named ‘example.txt’ has been created. If you click on it, you will see that it is empty – we just opened it for writing but we haven’t written anything to it yet. We will later see how to write to a file.</p>
+</div></blockquote>
+<p>Opening a file using the <code class="docutils literal notranslate"><span class="pre">open()</span></code> function requires explicitly closing the file using the <code class="docutils literal notranslate"><span class="pre">close()</span></code> method. Closing the file is essential to ensure that all resources are released and any written data is saved.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+<span class="c1"># perform any operations</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This can introduce errors if not handled properly. Alternatively, another common way to work with files in Python is using the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement, which ensures that the file is properly managed (i.e., opened and closed). Here’s the syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="c1"># perform any operations</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">f</span></code> is a variable name that represents the file object returned by the <code class="docutils literal notranslate"><span class="pre">open()</span></code> function</p>
+<p>It’s important to note the indentation, as all operations involving the file must be properly nested within the <code class="docutils literal notranslate"><span class="pre">with</span></code> block.</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement to open files is the preferred method in Python as it ensures the file is automatically closed once operations are completed, reducing the risk of resource leaks and potential data loss. For clean, readable, and reliable file handling, always use the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement.</p>
+<p>Although there are other way to open files in Python (see <a class="reference internal" href="#s3"><span class="xref myst">Additional Reading</span></a>), we will use the recommended method based on the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement in conjunction with the <code class="docutils literal notranslate"><span class="pre">open()</span></code> function.</p>
+</section>
+<section id="reading-txt-files">
+<h3>11.1.2. Reading TXT Files<a class="headerlink" href="#reading-txt-files" title="Link to this heading">#</a></h3>
+<p>After we open a file in reading mode, we can retrieve its contents in various ways. One approach is to use the <code class="docutils literal notranslate"><span class="pre">.read()</span></code> method after the file object, which returns the <strong>entire</strong> contents of the file as a <strong>single string</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">variable_name</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+If we used <code>with open(filename) as myfile:</code> to open the file, we would use <code>myfile.read()</code> to read it. The <code>open()</code> function returns a file object that we assigned to the variable after <code>as</code>. This object can be used to work with files and directories.</p>
+</div></blockquote>
+<p>Let’s demonstrate this by reading the contents of <code class="docutils literal notranslate"><span class="pre">zen_of_python.txt</span></code> and storing them in a variable. This file is located in a folder called <code class="docutils literal notranslate"><span class="pre">resources</span></code>.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Open the existing file <code>’resources/zen_of_python.txt’</code> in reading mode and then store all the contents in the file to variable <code>zen</code>. Print <code>zen</code> as well as the last character of it. Note that the file was imported to your directory when you loaded this notebook.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the file</span>
+<span class="c1"># equivalent to open(..., mode = &#39;r&#39;)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/zen_of_python.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    
+    <span class="c1"># read it using .read() method</span>
+    
+
+<span class="c1"># print the file data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">zen</span><span class="p">)</span>
+
+<span class="c1"># print the last character</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Last character: </span><span class="si">{</span><span class="n">zen</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned earlier, the <code class="docutils literal notranslate"><span class="pre">.read()</span></code> method returns the entire contents of the file as a single string. This may not be ideal for large files. Alternatively, to read the entire contents but save each line as a separate string in a list, we can use the <code class="docutils literal notranslate"><span class="pre">.readlines()</span></code> method.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Open the existing file <code>’resources/zen_of_python.txt’</code> in reading mode. Save each line in a list named <code>zen</code>. Print <code>zen</code> as well as the last element of it. Check the type of <code>zen</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the file</span>
+<span class="c1"># equivalent to open(..., mode = &#39;r&#39;)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/zen_of_python.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    
+    <span class="c1"># read it using .readlines() method</span>
+    
+
+<span class="c1"># print the file data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">zen</span><span class="p">)</span>
+
+<span class="c1"># print the last element</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Last element: </span><span class="si">{</span><span class="n">zen</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># check its type</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">zen</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#006600'><strong>💡 TIP!</strong></font><br />
+The <code>\n</code> character stands for new line. If you see it in a string, that means that the current line ends at that point and a new line starts right after it.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+There is another similar method, <code>.readline()</code> (without s), which returns one line of the file at a time. Each time you call <code>.readline()</code>, it returns the <strong>next line</strong>. So the first time you call it, it returns the first line. The second time, it returns the second line, and so on. Calls made to <code>.readline()</code> after reaching the end of the file will return an empty string (’ ‘).</p>
+</div></blockquote>
+<p>Another approach to reading a file line by line is using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. The object returned by <code class="docutils literal notranslate"><span class="pre">open()</span></code> is iterable, meaning, we can iterate over its contents like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Open the existing file <code>’resources/zen_of_python.txt’</code> in reading mode and then iterate over its contents and print each line.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the file</span>
+<span class="c1"># equivalent to open(..., mode = &#39;r&#39;)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/zen_of_python.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+    <span class="c1"># iterate over its contents and print each line</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="writing-txt-files">
+<h3>11.1.3. Writing TXT Files<a class="headerlink" href="#writing-txt-files" title="Link to this heading">#</a></h3>
+<p>When writing data to a file, you have to decide whether to start a new version of the file or append data to the end of what’s already there. If you choose <code class="docutils literal notranslate"><span class="pre">mode='w'</span></code>, any existing data in the file will be overwritten (erased). If you choose <code class="docutils literal notranslate"><span class="pre">mode='a'</span></code>, data will be appended (added) to the end of any existing data in the file. Let’s discuss <code class="docutils literal notranslate"><span class="pre">mode='w'</span></code> first and then <code class="docutils literal notranslate"><span class="pre">mode='a'</span></code>.</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">mode='w'</span></code>, remember:</p>
+<ol class="arabic simple">
+<li><p>If the file doesn’t exist, a new file is created.</p></li>
+<li><p>If the file already exists, its contents are erased, and new content is added.</p></li>
+</ol>
+<p>After we open a file in writing mode, we can write a string to the file using the <code class="docutils literal notranslate"><span class="pre">.write()</span></code> method after the file object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;some text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+The <code>write()</code> argument must be of type <code>str</code>. So if you have numeric values, use string formatting to store them in a text file.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Open the file <code>’resources/example.txt’</code> in writing mode and write five lines, where each line should have: ‘This is line #’, and replace # with the line number, starting from 0.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/example.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+    <span class="c1"># write the data</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you check the file <code class="docutils literal notranslate"><span class="pre">resources/example.txt</span></code>, you will see that the data are all on the same line. Python will <strong>not</strong> automatically write each string to a new line. To write each string to a new line, use <code class="docutils literal notranslate"><span class="pre">\n</span></code> at the end of each string.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Open the file <code>’resources/example.txt’</code> in writing mode and write five lines, where each line should have: ‘This is line #’, and replace # with the line number, starting from 0. Each statement should appear on a single line.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/example.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    
+    <span class="c1"># write the data, each on a new line</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned earlier, if you open an existing file in writing mode, its contents will be erased, and any new content will replace what was there previously.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Open the existing file <code>’resources/example.txt’</code> in writing mode and write: ‘This is another line’.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/example.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    
+    <span class="c1"># write additional data</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you check the file <code class="docutils literal notranslate"><span class="pre">resources/example.txt</span></code>, you will see that all the previous data were erased and were overwritten by the new string. To avoid overwriting data, we can append to the file.</p>
+</section>
+<section id="appending-txt-files">
+<h3>11.1.4. Appending TXT Files<a class="headerlink" href="#appending-txt-files" title="Link to this heading">#</a></h3>
+<p>When using <code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">'a'</span></code>, data are appended (added) to the end of any previously existing data in the file. If the file does not already exist, a new file is created, similar to <code class="docutils literal notranslate"><span class="pre">mode='w'</span></code>. The <code class="docutils literal notranslate"><span class="pre">.write()</span></code> method is used in the same way for appending as it is for writing.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Open the file <code>’resources/example.txt’</code> in writing mode and write five lines, where each line should have: ‘This is line #’, and replace # with the line number, starting from 0. Each statement should appear on a single line. Close the file and check it. Then, open the file again in appending mode and append: ‘This is another line’.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/example.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+    <span class="c1"># write the data, each on a new line</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is line </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/example.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+    <span class="c1"># write additional data</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;This is another line&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you check the file <code class="docutils literal notranslate"><span class="pre">resources/example.txt</span></code>, you will see that now the previous data were not erased. Instead, the new string was appended to the end of the file.</p>
+</section>
+<section id="other-modes">
+<h3>11.1.5. Other Modes<a class="headerlink" href="#other-modes" title="Link to this heading">#</a></h3>
+<p>In addition to the reading, writing, and appending modes we’ve discussed, there are other modes available for opening files in Python. These modes offer more flexibility and control over how files are accessed and manipulated.</p>
+<p>One common scenario is when we need to perform multiple operations on the same file, such as reading from it and then writing to it. However, attempting to perform incompatible operations on a file opened in a specific mode can lead to errors.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Open the file <code>’resources/example.txt’</code> in appending mode and try to read all its contents as a single string using <code>.read()</code>.</p>
+</div></blockquote>
+<p>This will result in an error because the file was opened in appending mode, which restricts operations to appending data to the file and does not allow reading its contents.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open a file in appending mode then try to read it using read() method</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/example.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">zen</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To perform multiple operations on a file, there are other modes that could be used, as shown in the table below.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">mode</span></code></p></th>
+<th class="head text-left"><p>Use and description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'r+'</span></code></p></td>
+<td class="text-left"><p>Opens the file for reading and writing. Raises an exception if file does not exist. If you read first then write, it appends to the end of the file. Otherwise, it overwrites the file.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'a+'</span></code></p></td>
+<td class="text-left"><p>Opens the file for reading and appending. Creates the file if it does not exist. Appends to the end of the file when writing.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'w+'</span></code></p></td>
+<td class="text-left"><p>Opens the file for reading and writing. Creates the file if it does not exist. Overwrites (erases) the file if it already exists.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>See the diagram below for differences between these modes.</p>
+<br>
+<center><figure>
+  <img src="https://d20p74l5mne5au.cloudfront.net/ExWNT-white-bg.png" style="width:75%">
+  <figcaption style="text-align:center"><strong> <br> Mode options for opening files: </strong> <a href="https://stackoverflow.com/questions/1466000/">https://stackoverflow.com/</a></figcaption>  
+</figure></center>
+<br>
+<p>In the diagram above, truncate is equivalent to overwrite or erase.</p>
+</section>
+<section id="using-numpy-package">
+<h3>11.1.7. Using NumPy Package<a class="headerlink" href="#using-numpy-package" title="Link to this heading">#</a></h3>
+<p>When reading and writing data in the above examples, we had to work with strings. Thus, when working with numerical data, dealing with text files can be cumbersome as it often requires converting data between strings and numeric values. Alternatively, we can leverage the NumPy package, which provides convenient functions for reading and writing numerical data directly from and to arrays.</p>
+<p>To save an array to a text file using NumPy, we can use the <code class="docutils literal notranslate"><span class="pre">np.savetxt()</span></code> function, which has the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code>: a string specifying the file name or the path and name of the file enclosed in quotes: <code class="docutils literal notranslate"><span class="pre">'example.txt'</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">array</span></code>: an array containing the data we want to write to the file. Most frequently, the input will be an <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>. However, technically, <code class="docutils literal notranslate"><span class="pre">np.savetxt()</span></code> will accept any “array-like” object, such as Python list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fmt</span></code>: a string specifying the format for the saved data. This parameter is optional and has default value <code class="docutils literal notranslate"><span class="pre">'%.3f'</span></code>, which indicates that the output numbers should be formatted with three decimal places. Other options include <code class="docutils literal notranslate"><span class="pre">'%i'</span></code> for integer format. Custom format specifications can also be provided. For more information about format specification, read <a class="reference external" href="https://docs.python.org/3/library/string.html#format-specification-mini-language">the official documentation</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">header</span></code>: an optional string that will be written at the beginning of the file, allowing to add labels or comments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">...</span></code>: additional optional arguments. See <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.savetxt.html">the official documentation</a> for more details.</p></li>
+</ul>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">np.savetxt()</span></code> creates the file if it does not exist and it overwrites (erases) the file if it already exists.</p>
+<p>Let’s use <span class="math notranslate nohighlight">\(y = \begin{pmatrix} 1.2 &amp; 2.2 &amp; 3 \\ 4.14 &amp; 5.65 &amp; 7.42 \\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Create a 2-D list for <code>y</code> then save it as a file <code>’resources/array_y.txt’</code> with 2 decimal points. Add a header that says ‘Col1 Col2 Col3’.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># create list of lists y</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.14</span><span class="p">,</span> <span class="mf">5.65</span><span class="p">,</span> <span class="mf">7.42</span><span class="p">]]</span>
+
+<span class="c1"># save y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that we were able to save the data without changing it to <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<p>To read numerical data from a text file into an array, we can utilize the <code class="docutils literal notranslate"><span class="pre">np.loadtxt()</span></code> function. This function has the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code>: a string specifying the file name or the path and name of the file enclosed in quotes: <code class="docutils literal notranslate"><span class="pre">'example.txt'</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">...</span></code>: additional optional arguments. For example, you can skip a number of rows or read specific columns, among others. See <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html">the official documentation</a> for more details.</p></li>
+</ul>
+<p>If the specified file does not exist, <code class="docutils literal notranslate"><span class="pre">np.loadtxt()</span></code> will raise an error. Additionally, the data within the text file must be numeric; otherwise, an error will occur during the loading process.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Read the file <code>’resources/array_y.txt’</code> then assign its contents to variable <code>z</code> and print it.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When using <code class="docutils literal notranslate"><span class="pre">np.loadtxt()</span></code>, the contents of the text file are automatically converted to numeric data. It’s worth noting that this function also handles headers by default. If the first row of the text file starts with the <code class="docutils literal notranslate"><span class="pre">#</span></code> sign, which is commonly used to denote headers, <code class="docutils literal notranslate"><span class="pre">np.loadtxt()</span></code> will skip this row when loading the data. This behavior simplifies the process of reading data files with headers, ensuring that only the numeric data is loaded into the array.</p>
+</section>
+</section>
+<section id="csv-files">
+<h2>11.2. CSV Files <a id="s2"></a><a class="headerlink" href="#csv-files" title="Link to this heading">#</a></h2>
+<p>One of the most simple and common files to store scientific data are <strong>Comma-Separated Values</strong> (CSV) files, which have a <strong>.csv</strong> file extension. A CSV file is very useful to store large tabular data, which can include both numbers and text. If you open the text file <code class="docutils literal notranslate"><span class="pre">resources/array_y.txt</span></code>, you can see that by default, values on the same row are separated by a white space. In CSV files, the elements are separated by a comma <code class="docutils literal notranslate"><span class="pre">,</span></code>, and hence the name comma-separated values. The character that separates values in a file is known as a <strong>delimiter</strong>.</p>
+<p>Let’s look at the file <code class="docutils literal notranslate"><span class="pre">resources/FAOSTAT.csv</span></code>. When opened, you’ll notice the header row followed by the data rows. Each value is delimited by a comma. You can also open this file (and any CSV file) using Microsoft Excel to visualize the rows and columns.</p>
+<blockquote>
+<div><p>The FAOSTAT Temperature change on land domain disseminates statistics of mean surface temperature change by country, with annual updates. This dissemination covers the period 1961–2022. Statistics are available for monthly temperature anomalies (among others), i.e., temperature change with respect to a baseline climatology, corresponding to the period 1951–1980. Data are based on the publicly available Global Surface Temperature Change data distributed by the National Aeronautics and Space Administration Goddard Institute for Space Studies (NASA-GISS). Source: Food and Agriculture Organization of the United Nations <a class="reference external" href="https://www.fao.org/faostat/en/#data/ET">(FAO)</a>.</p>
+</div></blockquote>
+<section id="using-csv-module">
+<h3>11.2.1. Using <code class="docutils literal notranslate"><span class="pre">csv</span></code> Module<a class="headerlink" href="#using-csv-module" title="Link to this heading">#</a></h3>
+<p>Python provides a built-in <code class="docutils literal notranslate"><span class="pre">csv</span></code> module that could handle reading and writing CSV files – you can see its details in <a class="reference external" href="https://docs.python.org/3/library/csv.html">this documentation</a>. To utilize this module, start by importing it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+</pre></div>
+</div>
+<p>To work with a CSV file using the <code class="docutils literal notranslate"><span class="pre">csv</span></code> module, you have to open the file using <code class="docutils literal notranslate"><span class="pre">open()</span></code> and specify <code class="docutils literal notranslate"><span class="pre">mode</span></code> (read, write, append), then perform any operations, and finally close the file, similar to TXT files.</p>
+<p>To read a CSV file, we can use the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">variable_name</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="c1"># if opening in &#39;r&#39; mode</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span> <span class="c1"># iterating over each element in f</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Read the file <code>’resources/FAOSTAT.csv’</code> then print its first 10 rows.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/FAOSTAT.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> 
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">data</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">csv</span></code> module has other functions for writing CSV files, such as <code class="docutils literal notranslate"><span class="pre">csv.writer()</span></code>.</p>
+<p>While the <code class="docutils literal notranslate"><span class="pre">csv</span></code> module provides basic functionality for working with CSV files, it interprets all elements as strings. For more flexibility and convenience, we can leverage other packages such as NumPy and Pandas.</p>
+</section>
+<section id="id1">
+<h3>11.2.2. Using NumPy Package<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>When working with CSV files that only contain numeric data (no text), we can use the same functions that we used for reading and writing TXT files. However, we need to specify <code class="docutils literal notranslate"><span class="pre">delimiter</span> <span class="pre">=</span> <span class="pre">','</span></code> to indicate that the file is in CSV format, as shown in the syntax below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span> <span class="c1"># read a csv file and save it as an array</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span> <span class="c1"># save a variable array as a csv file</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+The extension for <code>filename</code> should be <code>.csv</code>.</p>
+</div></blockquote>
+<p>If we attempt to use <code class="docutils literal notranslate"><span class="pre">np.loadtxt('resources/FAOSTAT.csv',</span> <span class="pre">delimiter=',')</span></code>, it will raise a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> error because the file includes text (area names), which cannot be converted to float. If the file contains text, we can use additional arguments to skip rows and/or columns that include text and only read the numeric data. Specifically:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">skiprows</span></code>: Skip a certain number of rows. For example, <code class="docutils literal notranslate"><span class="pre">skiprows</span> <span class="pre">=</span> <span class="pre">2</span></code> will skip the first two rows. The default, 0, results in no rows being skipped.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usecols</span></code>: Specify which column(s) to read, with 0 being the first. For example, <code class="docutils literal notranslate"><span class="pre">usecols</span> <span class="pre">=</span> <span class="pre">(1,4)</span></code> will extract the 2nd and 5th columns. The default, None, results in all columns being read.</p></li>
+</ul>
+<p>The above function takes several optional arguments, which you can read about in the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html">function’s documentation</a>.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Read the last two columns of the file <code>’resources/FAOSTAT.csv’</code> using <code>np.loadtxt()</code>. You will have to skip the first row, which includes the header. Save the data as an array <code>data</code> then print its values.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Be careful when using <code>np.loadtxt()</code>. If, for example, an area has the following name: <code>China, Hong Kong SAR</code>, then the <code>,</code> will be interpreted as a column separator and will create problems.</p>
+</div></blockquote>
+<p>Similarly, we can save a NumPy array as a csv file using <code class="docutils literal notranslate"><span class="pre">np.savetxt(filename,</span> <span class="pre">array,</span> <span class="pre">fmt='%.3f',</span> <span class="pre">header='',</span> <span class="pre">delimiter=',',</span> <span class="pre">...)</span></code>.</p>
+<p>Let’s use <span class="math notranslate nohighlight">\(y = \begin{pmatrix} 1.2 &amp; 2.2 &amp; 3 \\ 4.14 &amp; 5.65 &amp; 7.42 \\ \end{pmatrix}\)</span> as an example.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Create a new array for <code>y</code> then save it as a file <code>’resources/array_y.csv’</code> with 2 decimal points. Add a header that says ‘Col1, Col2, Col3’.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.14</span><span class="p">,</span> <span class="mf">5.65</span><span class="p">,</span> <span class="mf">7.42</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="additional-reading">
+<h2>11.3. Additional Reading <a id="s3"></a><a class="headerlink" href="#additional-reading" title="Link to this heading">#</a></h2>
+<section id="opening-and-closing-files">
+<h3>11.3.1. Opening and Closing Files<a class="headerlink" href="#opening-and-closing-files" title="Link to this heading">#</a></h3>
+<p>When working with TXT and CSV files in Python, it’s crucial to open and close files properly to ensure data integrity and avoid resource leaks. There are two primary methods to open files: using the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement and using the <code class="docutils literal notranslate"><span class="pre">open()</span></code> function directly.</p>
+<p>In all of the previous examples, we opened files using the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="c1"># perform any operations</span>
+</pre></div>
+</div>
+<p>This is the preferred method to open files in Python, as it ensures that the file is automatically closed once all operations within the block are completed, even if an error occurs during file processing.</p>
+<p>Alternatively, files can be opened using the <code class="docutils literal notranslate"><span class="pre">open()</span></code> function directly (without using <code class="docutils literal notranslate"><span class="pre">with</span></code>). However, this method requires explicitly closing the file using the <code class="docutils literal notranslate"><span class="pre">close()</span></code> method. Closing the file is essential to ensure that all resources are released and any written data is saved.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+<span class="c1"># perform any operations</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement to open files is the preferred method in Python as it ensures the file is automatically closed once operations are completed, reducing the risk of resource leaks and potential data loss. The alternative approach of using the <code class="docutils literal notranslate"><span class="pre">open()</span></code> function directly requires explicit file closure, which can introduce bugs if not handled properly. For clean, readable, and reliable file handling, always use the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement.</p>
+</section>
+<section id="csv-files-using-pandas-package">
+<h3>11.3.2. CSV Files Using Pandas Package<a class="headerlink" href="#csv-files-using-pandas-package" title="Link to this heading">#</a></h3>
+<p>While NumPy is convenient for handling CSV files containing only numeric data, another powerful tool for working with CSV files, especially those with mixed data types, is the Pandas package. Pandas is a widely used data science library in Python for data manipulation and analysis. To use Pandas, we need to import it first, typically using the alias <code class="docutils literal notranslate"><span class="pre">pd</span></code>: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code>.</p>
+<p>One advantage of using Pandas is its ability to handle data of any type, including strings, floats, integers, etc. To read a CSV file using Pandas, you can use the <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> function reads a CSV file named <code class="docutils literal notranslate"><span class="pre">filename</span></code> (which should be a string including the file extension, e.g., <code class="docutils literal notranslate"><span class="pre">'example.csv'</span></code>) and assigns it to a Pandas DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Read the file <code>’resources/FAOSTAT.csv’</code> using <code>pd.read_csv()</code> and save it as <code>df</code>. Show the first few rows of <code>df</code> using <code>df.head()</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;resources/FAOSTAT.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To write a CSV file using Pandas, we can use the <code class="docutils literal notranslate"><span class="pre">df.to_csv()</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df</span></code>: variable name containing the Pandas DataFrame</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code>: a string specifying the file name or the path and name of the file to be saved enclosed in quotes: <code class="docutils literal notranslate"><span class="pre">'example.csv'</span></code></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">to_csv()</span></code> function also accepts several optional arguments, which you can explore further in the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_csv.html">function’s documentation</a>.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Create a list that includes in each row the name of a person and their favorite number. Then, convert it to a dataframe using <code>pd.DataFrame()</code>. Finally, save it as a csv file called <code>’fav_num.csv’</code> using <code>.to_csv()</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize list of lists</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Doe&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">]]</span>
+
+<span class="c1"># creating a data frame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Number&#39;</span><span class="p">])</span>
+
+<span class="c1"># writing data frame to a CSV file</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;resources/fav_num.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pickle-files">
+<h3>11.3.3. Pickle Files<a class="headerlink" href="#pickle-files" title="Link to this heading">#</a></h3>
+<p>So far we have discussed how to store data using text and csv files. In some cases, we want to store data while preserving their data type (tuples, lists, dictionaries, etc.) to use them later or send them to colleagues. In thick case, we can use <strong>pickle</strong> files, which serialize objects so that they can be saved into a file and loaded again later. Pickle files usually have <strong>.pickle</strong> or <strong>.pkl</strong> extension, and they are specific to Python.</p>
+<p>In order to use pickle, we need to import it first: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pickle</span></code>.</p>
+<p>In general, to work with pickle files, you have to open the file using <code class="docutils literal notranslate"><span class="pre">open()</span></code> and specify <code class="docutils literal notranslate"><span class="pre">mode</span></code>, then perform any operations, and finally close the file. Alternatively, you can use a <code class="docutils literal notranslate"><span class="pre">with</span></code> statement, which closes the file automatically.</p>
+<section id="writing-pickle-files">
+<h4>11.3.3.1. Writing Pickle Files<a class="headerlink" href="#writing-pickle-files" title="Link to this heading">#</a></h4>
+<p>To write a pickle file, we can use the <code class="docutils literal notranslate"><span class="pre">pickle.dump()</span></code> function, which has the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code>: a string including the file name or the path and name of the file to be saved between quotes: <code class="docutils literal notranslate"><span class="pre">'example.pickle'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: object(s) that you want to save. If you have multiple objects, then <code class="docutils literal notranslate"><span class="pre">data</span></code> should be a list or tuple that includes the objects you want to save.</p></li>
+</ul>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Save the DataFrame <code>df</code> as a pickle file <code>’resources/fav_num.pickle’</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/fav_num.pickle&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-pickle-files">
+<h4>11.3.3.2. Reading Pickle Files<a class="headerlink" href="#reading-pickle-files" title="Link to this heading">#</a></h4>
+<p>To read a pickle file, we can use the <code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code> function, which has the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Load the pickle file you saved above.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;resources/fav_num.pickle&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pickle files are specially designed for Python, and therefore, cannot be easily read by other programming languages. On the contrary, text and csv files could be easily shared and opened in other programming languages (R, MATLAB, Java and so on).</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+The <code>pickle</code> module is not secure against erroneous or maliciously constructed data. Never unpickle data received from an untrusted or unauthenticated source.</p>
+</div></blockquote>
+</section>
+<section id="json-files">
+<h4>11.3.4. JSON Files<a class="headerlink" href="#json-files" title="Link to this heading">#</a></h4>
+<p><strong>JSON</strong> is another file format, which stands for <strong>JavaScript Object Notation</strong>. A JSON file usually ends with extension <strong>.json</strong>. Unlike pickle, which is Python dependent, JSON is a language-independent data format, which makes it attractive to use. Besides, it usually takes less space on the disk and the manipulation is faster than pickle. Therefore, it is a good option to store your data using JSON. If you are interested in reading more about JSON file, refer to the <a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter11.04-JSON-Files.html">textbook</a>.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_number_rep.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 10: Number Representation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="11_plotting.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 12: Plotting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#txt-files">11.1. TXT Files <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-txt-files">11.1.1. Opening TXT Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-txt-files">11.1.2. Reading TXT Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-txt-files">11.1.3. Writing TXT Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#appending-txt-files">11.1.4. Appending TXT Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-modes">11.1.5. Other Modes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-numpy-package">11.1.7. Using NumPy Package</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-files">11.2. CSV Files <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-csv-module">11.2.1. Using <code class="docutils literal notranslate"><span class="pre">csv</span></code> Module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">11.2.2. Using NumPy Package</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-reading">11.3. Additional Reading <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-and-closing-files">11.3.1. Opening and Closing Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-files-using-pandas-package">11.3.2. CSV Files Using Pandas Package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pickle-files">11.3.3. Pickle Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-pickle-files">11.3.3.1. Writing Pickle Files</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-pickle-files">11.3.3.2. Reading Pickle Files</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#json-files">11.3.4. JSON Files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

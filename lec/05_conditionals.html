@@ -1,0 +1,1049 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 6: Conditional Statements &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/05_conditionals';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 7: Iteration" href="06_iteration.html" />
+    <link rel="prev" title="Chapter 5: Functions" href="04_functions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/05_conditionals.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/05_conditionals.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/05_conditionals.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 6: Conditional Statements</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statements">6.1. If Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-else-statements">6.2. If-Else Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-elif-else-statements">6.3. If-Elif-Else Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-use-cases">6.4. Common Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-values">6.4.1. Compare Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-for-values">6.4.2. Check For Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-object-type">6.4.3. Check Object Type</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-if-statements">6.5. Nested If Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statements-with-logical-operators">6.6. If Statements with Logical Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ternary-operators">6.7. Ternary Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation-and-execution">6.8. Indentation and Execution</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-6-conditional-statements">
+<h1>Chapter 6: Conditional Statements<a class="headerlink" href="#chapter-6-conditional-statements" title="Link to this heading">#</a></h1>
+<p>Every day, we make decisions based on certain conditions. For example, <strong>if</strong> it is raining, I will bring an umbrella before going outside. Similarly, we want computer programs to perform different actions based on specific conditions. This can be achieved using <strong>conditional statements</strong>, which are also known as <strong>branching statements</strong> (i.e., the branch/path the program follows depending on the conditions). Conditional statements are a fundamental component of computer programming.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Identify situations where conditional statements are essential</p></li>
+<li><p>Implement conditional statements in your functions and scripts</p></li>
+<li><p>Use logical operators to create complex conditional expressions</p></li>
+<li><p>Apply ternary operators to simplify simple conditional statements</p></li>
+</ul>
+<section id="if-statements">
+<h2>6.1. If Statements<a class="headerlink" href="#if-statements" title="Link to this heading">#</a></h2>
+<p>In programming, we often need to execute a block of code only if a specific condition is true: <em>if this condition is true, do this code block.</em> This can be achieved using the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement in Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+    <span class="c1"># do code block</span>
+    
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p>The word <code class="docutils literal notranslate"><span class="pre">if</span></code> is a keyword in Python.</p>
+<ol class="arabic simple">
+<li><p>When Python sees an if-statement, it evaluates the specified condition.</p></li>
+<li><p>If the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the indented code block will be executed.</p></li>
+<li><p>Otherwise, if the condition is <code class="docutils literal notranslate"><span class="pre">False</span></code>, Python will skip the indented code block and continue with whatever appears after it (subsequent code).</p></li>
+</ol>
+<p>Here’s a breakdown of the syntax:</p>
+<ul class="simple">
+<li><p>The keyword <code class="docutils literal notranslate"><span class="pre">if</span></code> is followed by the condition, which is an expression that evaluates to either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p>A colon <code class="docutils literal notranslate"><span class="pre">:</span></code> follows the condition, indicating the start of the code block.</p></li>
+<li><p>The code block, which will only be executed if the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>, follows the colon. This block can contain one or more lines of code.</p></li>
+<li><p>The code block <em>must be indented</em>. Indentation is crucial because it indicates which code belongs to the if statement. Indentation is the only way Python knows which code block belongs to the conditional statement. In Python, it is standard to use four spaces (equivalent to a tab) for indentation. If the code block is not indented correctly, this will raise an <code class="docutils literal notranslate"><span class="pre">IndentationError</span></code>.</p></li>
+</ul>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vQfu9ZkGBRGxDUPd8ombdYWNua9s3GvdS9pAu5d3aZ1R5nFpIO8fVkmSsV9dVgueCaV7L7i9q9m2V-Y/pub?w=980&h=301" style="width:75%">
+    <figcaption style="text-align:center"><strong>Control flow with if statements</strong></figcaption>  
+</figure></center>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a speeding ticket function, <code>speed_check()</code>, that takes two arguments, <code>speed</code> and <code>limit</code>, which represent a vehicle’s speed and the posted speed limit. If the vehicle is going <strong>more than 5 mph</strong> over the speed limit, the function should print out the following message: ‘Speeding!’.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function</span>
+
+
+<span class="c1"># call function</span>
+<span class="n">speed_check</span><span class="p">(</span><span class="mi">71</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="if-else-statements">
+<h2>6.2. If-Else Statements<a class="headerlink" href="#if-else-statements" title="Link to this heading">#</a></h2>
+<p>In some cases, we not only want to specify what should happen if a condition is true, but also what should happen if the condition is false: <em>if this condition is true, do this code block, otherwise, do something else</em>. This is done using the <code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> syntax in Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+    <span class="c1"># do code block 1</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># do code block 2</span>
+    
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p>Here’s how it works:</p>
+<ol class="arabic simple">
+<li><p>When Python encounters an if statement, it evaluates the specified condition.</p></li>
+<li><p>If the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>, Python executes the indented code block 1.</p></li>
+<li><p>If the condition is <code class="docutils literal notranslate"><span class="pre">False</span></code>, Python skips code block 1 and proceeds to the else statement, executing code block 2.</p></li>
+</ol>
+<p>Proper indentation is crucial for Python to understand which code belongs to each block. Consistency in indentation is also important to ensure code readability and avoid errors.</p>
+<br> 
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vS88OqO7B3dEjWpiYtYrIzPo6F7YNkVOM7oIsgHoZk6cMoBcoSGmXHZ_oyDboenVPEKL9fDF68GSl_d/pub?w=1056&h=420" style="width:75%">
+    <figcaption style="text-align:center"><strong>Control flow with if-else statements</strong></figcaption>   
+</figure></center>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Modify the function above to print out another message if the vehicle is not going more than 5 mph over the speed limit: ‘Acceptable!’.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">speed_check</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">speed</span> <span class="o">&gt;</span> <span class="n">limit</span> <span class="o">+</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Speeding!&#39;</span><span class="p">)</span>
+    <span class="c1"># add else</span>
+        
+<span class="c1"># call function</span>
+<span class="n">speed_check</span><span class="p">(</span><span class="mi">68</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="if-elif-else-statements">
+<h2>6.3. If-Elif-Else Statements<a class="headerlink" href="#if-elif-else-statements" title="Link to this heading">#</a></h2>
+<p>When there are more than two alternatives to consider, we can use the <code class="docutils literal notranslate"><span class="pre">elif</span></code> keyword, which stands for else if. This allows you to check multiple conditions sequentially: <em>if this condition is true, do this code block; else if this other condition is true, do this other code block; otherwise, do something else</em>. This can be achieved using the <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, and <code class="docutils literal notranslate"><span class="pre">else</span></code> syntax in Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
+    <span class="c1"># do code block 1</span>
+<span class="k">elif</span> <span class="n">condition_2</span><span class="p">:</span>
+    <span class="c1"># do code block 2</span>
+<span class="k">elif</span> <span class="n">condition_3</span><span class="p">:</span>
+    <span class="c1"># do code block 3</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># do code block 4</span>
+    
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p>Only one branch will be followed, which is the <strong>first</strong> one for which the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>, otherwise, the <code class="docutils literal notranslate"><span class="pre">else</span></code> block is followed. The order of the branching statements is important:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span></code>: Branching statements must always start with an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, which contains the first condition to be checked. If this condition  evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>, Python runs code block 1 and then skips to the subsequent code the entire <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> structure.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elif</span></code>: An <code class="docutils literal notranslate"><span class="pre">elif</span></code>statement is used to check for other conditions <strong>only if the previous <code class="docutils literal notranslate"><span class="pre">if</span></code> (or <code class="docutils literal notranslate"><span class="pre">elif</span></code>) condition evaluated to <code class="docutils literal notranslate"><span class="pre">False</span></code></strong>. You can have any number of <code class="docutils literal notranslate"><span class="pre">elif</span></code> statements (or none) to handle different situations. Python will run the code block of the first <code class="docutils literal notranslate"><span class="pre">elif</span></code> condition that is <code class="docutils literal notranslate"><span class="pre">True</span></code> (if any), and then skip to the subsequent code.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">else</span></code>: The <code class="docutils literal notranslate"><span class="pre">else</span></code> statement comes at the end (an <code class="docutils literal notranslate"><span class="pre">else</span></code> statement is not required, but you can have at most one). This statement does not accept a condition. The code in an <code class="docutils literal notranslate"><span class="pre">else</span></code> block is executed <strong>only if all conditions above it are <code class="docutils literal notranslate"><span class="pre">False</span></code></strong>.</p></li>
+</ol>
+<p>Python evaluates the conditions in order, and once it finds a <code class="docutils literal notranslate"><span class="pre">True</span></code> condition, it executes the corresponding code block and skips the rest of the <code class="docutils literal notranslate"><span class="pre">elif</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> statements. The following are some common errors when using conditional statements:</p>
+<ul class="simple">
+<li><p>Missing colon <code class="docutils literal notranslate"><span class="pre">:</span></code> after <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, or <code class="docutils literal notranslate"><span class="pre">else</span></code> statements</p></li>
+<li><p>No indentation in the code block after <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, or <code class="docutils literal notranslate"><span class="pre">else</span></code> statements</p></li>
+<li><p>Adding a condition after <code class="docutils literal notranslate"><span class="pre">else</span></code></p></li>
+<li><p>Multiple <code class="docutils literal notranslate"><span class="pre">else</span></code> statements under the same <code class="docutils literal notranslate"><span class="pre">if</span></code></p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">elif</span></code> statement placed after an <code class="docutils literal notranslate"><span class="pre">else</span></code></p></li>
+</ul>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vRzJGbJDUALtKOxNKghDhCehARo4LCvIpB-ztWkgTsi6BvIS6u4KoKTX4YD7xShVsvaXceNH8FdEz2C/pub?w=1781&h=634" style="width:100%">
+    <figcaption style="text-align:center"><strong>Control flow with if-elif-else statements</strong></figcaption>   
+</figure></center>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Modify the function above to consider the following cases:</p>
+<ol>
+ <li>If the vehicle is going less than or equal to the speed limit: print "Safe!"</li>
+ <li>If the vehicle is going over the limit, but by less than or equal to 5 mph: print "Slow down!"</li>
+ <li>Otherwise: print "Speeding!"</li>
+</ol>  </div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">speed_check</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+    <span class="c1"># add control statements</span>
+    
+<span class="c1"># call function</span>
+<span class="n">speed_check</span><span class="p">(</span><span class="mi">68</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>              
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+A colon should always be included after <code>if</code>, <code>elif</code>, and <code>else</code>, and the code blocks after each statement should be indented. If you don’t use indentation correctly, you may think that you’ve included more under a condition than you really have. Indentation is important as it is the only way Python knows which code blocks belong together. If the code block is not indented correctly, Python might raise an <code>IndentationError</code>.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+The order of conditional statements is important. At most one branch will be followed, which is the first one for which the condition is true. So, if the first condition in the example above were <code>speed &lt;= speed_limit + 5</code>, the logic would be incorrect.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define a new variable, <code>fine</code>, which represents the fine due to speeding. In addition to printing “Safe!”, “Slow down!” and “Speeding!”, your function should print the fine amount: ‘Your fine is <span class="math notranslate nohighlight">\(x\)</span>’, where <span class="math notranslate nohighlight">\(x\)</span> should be replaced by:</p>
+<ol>
+ <li>$200 if the vehicle is going more than 5 mph over the speed limit</li>
+ <li>$0 otherwise</li>
+</ol>  </div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">speed_check</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+    <span class="c1"># Initialize the fine amount</span>
+    
+    <span class="k">if</span> <span class="n">speed</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Safe!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">speed</span> <span class="o">&lt;=</span> <span class="n">limit</span> <span class="o">+</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Slow Down!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Speeding!&#39;</span><span class="p">)</span>
+        <span class="c1"># update fine amount</span>
+        
+    <span class="c1"># print fine (show with and without extra level of indentation)</span>
+    
+
+<span class="c1"># call function</span>
+<span class="n">speed_check</span><span class="p">(</span><span class="mi">68</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="common-use-cases">
+<h2>6.4. Common Use Cases<a class="headerlink" href="#common-use-cases" title="Link to this heading">#</a></h2>
+<p>Conditional statements are fundamental in programming as they allow for decision-making in code. Below are some common use cases of conditional statements.</p>
+<section id="compare-values">
+<h3>6.4.1. Compare Values<a class="headerlink" href="#compare-values" title="Link to this heading">#</a></h3>
+<p>Conditional statements are often used to direct the flow of a program by comparing value of a variable against some other value or variable.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weather</span> <span class="o">==</span> <span class="err">🌫️</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">weather</span> <span class="o">==</span> <span class="err">🌧️</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Don&#39;t forget to take an ☔.&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">elif</span> <span class="n">weather</span> <span class="o">==</span> <span class="err">☀️</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It&#39;s a great day for a walk 🌞!&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stay prepared for any weather 🌦️🤔.&quot;</span><span class="p">)</span>\
+
+<span class="go">Stay prepared for any weather 🌦️🤔.</span>
+</pre></div>
+</div>
+</section>
+<section id="check-for-values">
+<h3>6.4.2. Check For Values<a class="headerlink" href="#check-for-values" title="Link to this heading">#</a></h3>
+<p>Membership operators (e.g. <code class="docutils literal notranslate"><span class="pre">in</span></code> or <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">in</span></code>) are also used to write conditional statements to check whether certain values are contained within a data structure, such as a <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code> or other collections.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">prohibited_items</span> <span class="o">=</span> <span class="p">[</span><span class="err">🔪</span><span class="p">,</span> <span class="err">✂️</span><span class="p">,</span> <span class="err">🎆</span><span class="p">,</span> <span class="err">🔥</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">item</span> <span class="o">=</span> <span class="err">🪥</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">prohibited_items</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🚫 Prohibited item found: </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">. Please remove it from your bag.&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2"> is allowed in the bag.&quot;</span><span class="p">)</span>
+
+<span class="go">&quot;✅ 🪥 is allowed in the bag.&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="check-object-type">
+<h3>6.4.3. Check Object Type<a class="headerlink" href="#check-object-type" title="Link to this heading">#</a></h3>
+<p>Conditional statements are also used to validate data type, ensuring a variable meets certain criteria before proceeding. A useful function to check the data type of an object is the <code class="docutils literal notranslate"><span class="pre">isinstance()</span></code> function, which has the following syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">classinfo</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">object</span></code> is the object or variable you want to check</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">classinfo</span></code> is a class, type, or tuple of classes and types</p></li>
+</ul>
+<p>The function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">object</span></code> is an instance or a subclass of <code class="docutils literal notranslate"><span class="pre">classinfo</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Can&#39;t square a string!&quot;</span><span class="p">)</span>
+
+<span class="go">&quot;❌ Can&#39;t square a string!&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="nested-if-statements">
+<h2>6.5. Nested If Statements<a class="headerlink" href="#nested-if-statements" title="Link to this heading">#</a></h2>
+<p>In Python, we can place an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement inside another <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, creating a <strong>nested if statement</strong>. This allows for more complex conditions and actions. The syntax for nested <code class="docutils literal notranslate"><span class="pre">if</span></code> statements is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span> <span class="c1"># outer if statement </span>
+    <span class="c1"># do code block 1</span>
+    
+    <span class="k">if</span> <span class="n">condition_2</span><span class="p">:</span> <span class="c1"># inner if statement </span>
+        <span class="c1"># do code block 2   </span>
+        
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p>Because the inner <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is nested within the outer <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, both condition_1 and condition_2 should be <code class="docutils literal notranslate"><span class="pre">True</span></code> for the innermost code block 2 to execute. This means that even if condition_2 is <code class="docutils literal notranslate"><span class="pre">True</span></code> but condition_1 is <code class="docutils literal notranslate"><span class="pre">False</span></code>, code block 2 will not be executed. In addition, the inner <code class="docutils literal notranslate"><span class="pre">if</span></code> statement must be indented further than the outer <code class="docutils literal notranslate"><span class="pre">if</span></code> statement to indicate that it is part of the outer <code class="docutils literal notranslate"><span class="pre">if</span></code> block. Proper indentation is crucial for readability and correct program execution.</p>
+<p>Additional Notes:</p>
+<ul class="simple">
+<li><p>The inner <code class="docutils literal notranslate"><span class="pre">if</span></code> statement can also include <code class="docutils literal notranslate"><span class="pre">elif</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> branches to handle multiple conditions</p></li>
+<li><p>The inner <code class="docutils literal notranslate"><span class="pre">if</span></code> statement can be placed under an <code class="docutils literal notranslate"><span class="pre">elif</span></code> or <code class="docutils literal notranslate"><span class="pre">else</span></code> statement</p></li>
+<li><p>You can have multiple layers of nested <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, but be mindful of readability and complexity. Excessive nesting can make code difficult to understand and maintain.</p></li>
+</ul>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Modify the function above to:</p>
+<ol>
+ <li>Define a new argument <code>school</code>, which is of type <code>bool</code> and is true if it is a school zone, false otherwise.</li>
+ <li>Let the default value for <code>school</code> be <code>False</code>.</li>
+ <li>If it is a school zone and the vehicle is going over the limit but by <= to 5 mph, there will be $200 fine and the code should print 'Speeding!'.<br> Use nested control statements.</li>
+</ol> </div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function (add new argument)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">speed_check</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+    <span class="c1"># Initialize the fine amount</span>
+    <span class="n">fine</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">speed</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Safe!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">speed</span> <span class="o">&lt;=</span> <span class="n">limit</span> <span class="o">+</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="c1"># modify and add nested if statement</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Slow Down!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Speeding!&#39;</span><span class="p">)</span>
+        <span class="c1"># update fine amount</span>
+        <span class="n">fine</span> <span class="o">=</span> <span class="mi">200</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Your fine is $</span><span class="si">{</span><span class="n">fine</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="c1"># call function</span>
+<span class="n">speed_check</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="if-statements-with-logical-operators">
+<h2>6.6. If Statements with Logical Operators<a class="headerlink" href="#if-statements-with-logical-operators" title="Link to this heading">#</a></h2>
+<p>While nested <code class="docutils literal notranslate"><span class="pre">if</span></code> statements are one way to check multiple levels of conditions, in some cases you can use logical operators to achieve the same effect. Python provides logical operators <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, and <code class="docutils literal notranslate"><span class="pre">not</span></code>, which allow you to combine multiple conditions into a single <code class="docutils literal notranslate"><span class="pre">if</span></code> or <code class="docutils literal notranslate"><span class="pre">elif</span></code> statement. The syntax for using logical operators in <code class="docutils literal notranslate"><span class="pre">if</span></code> statements is as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span> <span class="ow">and</span> <span class="n">condition_2</span><span class="p">:</span> 
+    <span class="c1"># do code block 1</span>
+</pre></div>
+</div>
+<p>You can use these operators to create more complex conditions without nesting <code class="docutils literal notranslate"><span class="pre">if</span></code> statements. This can lead to more concise and readable code.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Modify the above to use logical operators instead of nested branching statements.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">speed_check</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">school</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="c1"># Initialize the fine amount</span>
+    <span class="n">fine</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">speed</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Safe!&#39;</span><span class="p">)</span>
+    <span class="c1"># modify elif to use logical operators</span>
+    <span class="k">elif</span> <span class="n">speed</span> <span class="o">&lt;=</span> <span class="n">limit</span> <span class="o">+</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Slow Down!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Speeding!&#39;</span><span class="p">)</span>
+        <span class="c1"># update fine amount</span>
+        <span class="n">fine</span> <span class="o">=</span> <span class="mi">200</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Your fine is $</span><span class="si">{</span><span class="n">fine</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="c1"># call function</span>
+<span class="n">speed_check</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ternary-operators">
+<h2>6.7. Ternary Operators<a class="headerlink" href="#ternary-operators" title="Link to this heading">#</a></h2>
+<p>A ternary operator is a concise way of writing an <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement. It allows testing a condition in a single line replacing the multi-line <code class="docutils literal notranslate"><span class="pre">if-else</span></code> code. Python implements the ternary operator using the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="o">=</span> <span class="n">true_val</span> <span class="k">if</span> <span class="n">condition</span> <span class="k">else</span> <span class="n">false_val</span>
+</pre></div>
+</div>
+<p>The above is equivalent to the following <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">true_val</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">false_val</span>
+</pre></div>
+</div>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weather</span> <span class="o">=</span> <span class="err">🌤️</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">activity</span> <span class="o">=</span> <span class="err">🏃🏾</span> <span class="k">if</span> <span class="n">weather</span> <span class="o">==</span> <span class="err">🌤️</span> <span class="k">else</span> <span class="err">☔</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span>
+
+<span class="go">🏃🏾</span>
+</pre></div>
+</div>
+<p>In essence, the ternary operator condenses the <code class="docutils literal notranslate"><span class="pre">if-else</span></code> logic into a more compact form. You can use any expression with ternary operators, not just variable assignments. Here’s the general format:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">exprIfTrue</span> <span class="k">if</span> <span class="n">condition</span> <span class="k">else</span> <span class="n">exprIfFalse</span>
+</pre></div>
+</div>
+<p>The above is equivalent to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+    <span class="n">exprIfTrue</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">exprIfFalse</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">exprIfTrue</span></code> is an expression that is executed if <code class="docutils literal notranslate"><span class="pre">condition</span></code> evaluates to a <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exprIfFalse</span></code> is an expression that is executed if <code class="docutils literal notranslate"><span class="pre">condition</span></code> evaluates to a <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weather</span> <span class="o">=</span> <span class="err">🌤️</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="err">🏃🏾</span><span class="p">)</span> <span class="k">if</span> <span class="n">weather</span> <span class="o">==</span> <span class="err">🌤️</span> <span class="k">else</span> <span class="nb">print</span><span class="p">(</span><span class="err">☔</span><span class="p">)</span>
+
+<span class="go">🏃🏾</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+The <code>else</code> part is required in the ternary operator syntax. Omitting the <code>else</code> part will result in a syntax error. If you don’t want to execute any specific code block when <code>condition</code> evaluates to <code>False</code> in a ternary operator, you can use the following syntax: <code>exprIfTrue if condition else None</code>.</p>
+</div></blockquote>
+<p>Ternary operators are particularly useful when you want to assign a value to a variable based on a condition in a concise and readable manner. They help reduce code clutter and improve code readability by expressing conditional assignments in a single line.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Only for when the vehicle is going over the limit but by less than or equal to 5 mph, use ternary operators to print the correct message (‘Speeding!’ or ‘Slow down!’) and the fine amount depending on whether it is a school zone or not.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">speed_check</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">school</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">fine</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># Initialize the fine amount</span>
+    <span class="k">if</span> <span class="n">speed</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Safe!&#39;</span><span class="p">)</span>
+    <span class="c1"># use ternary operators (you can also print using ternary operators)</span>
+    <span class="k">elif</span> <span class="n">speed</span> <span class="o">&lt;=</span> <span class="n">limit</span> <span class="o">+</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Slow Down!&#39;</span><span class="p">)</span>    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Speeding!&#39;</span><span class="p">)</span>
+        <span class="c1"># update fine amount</span>
+        <span class="n">fine</span> <span class="o">=</span> <span class="mi">200</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Your fine is $</span><span class="si">{</span><span class="n">fine</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="c1"># call function</span>
+<span class="n">speed_check</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indentation-and-execution">
+<h2>6.8. Indentation and Execution<a class="headerlink" href="#indentation-and-execution" title="Link to this heading">#</a></h2>
+<p>Branching statements are a powerful tool that substantially increases the scope of tasks a program can perform. However, like every other tool, it’s essential to remember that the grammar rules of a programming language are rigid, and small changes to the syntax can entirely change what the program does.</p>
+<p>While the syntax of branching statements in the examples below may appear similar, they represent completely different branching conditions. To distinguish between them, check the keywords (<code class="docutils literal notranslate"><span class="pre">if</span></code> vs <code class="docutils literal notranslate"><span class="pre">elif</span></code>), the order of the branching statements, and the indentation level.</p>
+<p><strong>Example 1:</strong> Only one branch will be followed, which is the first one for which the condition is true, otherwise, the <code class="docutils literal notranslate"><span class="pre">else</span></code> block is followed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
+    <span class="c1"># do code block 1 if condition_1 is True</span>
+<span class="k">elif</span> <span class="n">condition_2</span><span class="p">:</span>
+    <span class="c1"># do code block 2 if condition_1 is False AND condition_2 is True</span>
+<span class="k">elif</span> <span class="n">condition_3</span><span class="p">:</span>
+    <span class="c1"># do code block 3 if condition_1 is False AND condition_2 is False AND condition_2 is True</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># do code block 4 if condition_1, condition_2, and condition_3 are ALL False</span>
+</pre></div>
+</div>
+<p><strong>Example 2:</strong> Any of the branches could be followed, since they are separate control statements (using multiple <code class="docutils literal notranslate"><span class="pre">if</span></code> instead of <code class="docutils literal notranslate"><span class="pre">if</span></code>-<code class="docutils literal notranslate"><span class="pre">elif</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
+    <span class="c1"># do code block 1 if condition_1 is True</span>
+<span class="k">if</span> <span class="n">condition_2</span><span class="p">:</span>
+    <span class="c1"># do code block 2 if condition_2 is True (regardless of condition_1)</span>
+<span class="k">if</span> <span class="n">condition_3</span><span class="p">:</span>
+    <span class="c1"># do code block 3 if condition_3 is True (regardless of condition_1 and condition_2)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># do code block 4 if condition_3 is False (regardless of condition_1 and condition_2)</span>
+</pre></div>
+</div>
+<p><strong>Example 3</strong>: Multiple branches and sub-branches could be followed (using nested control statements with multiple levels).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
+    <span class="c1"># do code block 1 if condition_1 is True</span>
+    <span class="k">if</span> <span class="n">condition_2</span><span class="p">:</span>
+        <span class="c1"># do code block 2 if condition_2 is True AND condition_1 is True</span>
+        <span class="k">if</span> <span class="n">condition_3</span><span class="p">:</span>
+            <span class="c1"># do code block 3 if condition_3 is True AND condition_2 is True AND condition_1 is True</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># do code block 4 if condition_1 is False (regardless of condition_2 and condition_3)</span>
+</pre></div>
+</div>
+<p><strong>Example 4</strong>: Similar to Example 3 but with the <code class="docutils literal notranslate"><span class="pre">else</span></code> statement indented two levels.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
+    <span class="c1"># do code block 1 if condition_1 is True</span>
+    <span class="k">if</span> <span class="n">condition_2</span><span class="p">:</span>
+        <span class="c1"># do code block 2 if condition_2 is True AND condition_1 is True</span>
+        <span class="k">if</span> <span class="n">condition_3</span><span class="p">:</span>
+            <span class="c1"># do code block 3 if condition_3 is True AND condition_2 is True AND condition_1 is True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># do code block 4 if condition_3 is False AND condition_2 is True AND condition_1 is True</span>
+</pre></div>
+</div>
+<p><strong>Example 5</strong>: Similar to Example 3 but with the <code class="docutils literal notranslate"><span class="pre">else</span></code> statement indented one level.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
+    <span class="c1"># do code block 1 if condition_1 is True</span>
+    <span class="k">if</span> <span class="n">condition_2</span><span class="p">:</span>
+        <span class="c1"># do code block 2 if condition_2 is True AND condition_1 is True</span>
+        <span class="k">if</span> <span class="n">condition_3</span><span class="p">:</span>
+            <span class="c1"># do code block 3 if condition_3 is True AND condition_2 is True AND condition_1 is True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># do code block 4 if condition_2 is False AND condition_1 is True (regardless of condition_3)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_functions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 5: Functions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_iteration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 7: Iteration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statements">6.1. If Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-else-statements">6.2. If-Else Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-elif-else-statements">6.3. If-Elif-Else Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-use-cases">6.4. Common Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-values">6.4.1. Compare Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-for-values">6.4.2. Check For Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-object-type">6.4.3. Check Object Type</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-if-statements">6.5. Nested If Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statements-with-logical-operators">6.6. If Statements with Logical Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ternary-operators">6.7. Ternary Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation-and-execution">6.8. Indentation and Execution</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

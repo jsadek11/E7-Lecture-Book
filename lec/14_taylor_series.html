@@ -1,0 +1,790 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 15: Taylor Series &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/14_taylor_series';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 16: Root Finding" href="15_root_finding.html" />
+    <link rel="prev" title="Chapter 14: Linear Algebra" href="13_linear_algebra.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/14_taylor_series.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/14_taylor_series.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/14_taylor_series.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 15: Taylor Series</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taylor-series">15.1. Taylor Series <a id="s1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approximating-functions">15.2. Approximating Functions <a id="s2"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#truncation-errors">15.3. Truncation Errors <a id="s3"></a></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-15-taylor-series">
+<h1>Chapter 15: Taylor Series<a class="headerlink" href="#chapter-15-taylor-series" title="Link to this heading">#</a></h1>
+<p>Many functions like <span class="math notranslate nohighlight">\(\sin(x)\)</span>, <span class="math notranslate nohighlight">\(\cos(x)\)</span>, <span class="math notranslate nohighlight">\(e^x\)</span>, and <span class="math notranslate nohighlight">\(\log(x)\)</span> play a fundamental role in engineering and science, but how does a computer actually represent and compute these functions? In fact, for many functions routinely encountered by engineers and scientists, explicit computation is virtually unattainable. In practice, these intricate functions are approximated using simpler polynomial expressions, which is the Taylor series of a function. However, since these are approximations, they inherently introduce some level of error. Hence, it is imperative to gain a comprehensive understanding of how these approximations work as well as their limitations.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Formulate mathematical functions using Taylor series</p></li>
+<li><p>Implement these Taylor series approximations in Python</p></li>
+<li><p>Estimate the error resulting from these approximations</p></li>
+</ul>
+<section id="taylor-series">
+<h2>15.1. Taylor Series <a id="s1"></a><a class="headerlink" href="#taylor-series" title="Link to this heading">#</a></h2>
+<p>A <strong>Taylor series</strong> of a function is an infinite sum of polynomials expressed in terms of the function’s derivatives at a single point, <span class="math notranslate nohighlight">\(a\)</span>. The motive is that polynomials tend to be much easier to compute, differentiate, integrate, and deal with overall. Mathematically, the Taylor series of a function, <span class="math notranslate nohighlight">\(f(x)\)</span>, that is infinitely differentiable at a real or complex number <span class="math notranslate nohighlight">\(a\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = f(a)+\frac {f'(a)}{1!} (x-a)+ \frac{f''(a)}{2!} (x-a)^2+\frac{f'''(a)}{3!}(x-a)^3+ \cdots = \sum_{n = 0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n\]</div>
+<p>where <span class="math notranslate nohighlight">\(f^{(n)}\)</span> is the <span class="math notranslate nohighlight">\(n^\mathrm{th}\)</span> derivative of <span class="math notranslate nohighlight">\(f\)</span></p>
+<br>
+<p>Don’t let the mathematical notation scare you. In a Taylor series we are getting a function that:</p>
+<ul class="simple">
+<li><p>matches <span class="math notranslate nohighlight">\(f(x)\)</span> at <span class="math notranslate nohighlight">\(x=a\)</span> exactly using the first term, <span class="math notranslate nohighlight">\(f(a)\)</span></p></li>
+<li><p>matches <span class="math notranslate nohighlight">\(f'(x)\)</span> at <span class="math notranslate nohighlight">\(x=a\)</span> exactly using the second term, <span class="math notranslate nohighlight">\(f'(a)\)</span></p></li>
+<li><p>matches <span class="math notranslate nohighlight">\(f''(x)\)</span> at <span class="math notranslate nohighlight">\(x=a\)</span> exactly using the third term, <span class="math notranslate nohighlight">\(f''(a)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\dots\)</span></p></li>
+<li><p>matches <span class="math notranslate nohighlight">\(f^{(n)}(x)\)</span> at <span class="math notranslate nohighlight">\(x=a\)</span> exactly using the <span class="math notranslate nohighlight">\(n^{th}\)</span> term, <span class="math notranslate nohighlight">\(f^{(n)}(a)\)</span></p></li>
+</ul>
+<p>For example, let <span class="math notranslate nohighlight">\(f(x) = \cos(x)\)</span>. We know that <span class="math notranslate nohighlight">\(f'(x) = -\sin(x)\)</span>, <span class="math notranslate nohighlight">\(f''(x) = -\cos(x)\)</span>, <span class="math notranslate nohighlight">\(f'''(x) = \sin(x)\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> If we take the Taylor series expansion around <span class="math notranslate nohighlight">\(a=0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\cos(x) = \frac{\cos(0)}{0!}x^0 + \frac{-\sin(0)}{1!}x^1 + \frac{-\cos(0)}{2!}x^2 + \frac{\sin(0)}{3!}x^3 + \frac{\cos(0)}{4!}x^4 + \frac{-\sin(0)}{5!}x^5 + \cdots = \frac{1}{0!}x^0  + \frac{-1}{2!}x^2  + \frac{1}{4!}x^4 + \cdots\]</div>
+<p>The expansion can be written compactly by the formula:</p>
+<div class="math notranslate nohighlight">
+\[\cos(x) = \sum_{n = 0}^{\infty} \frac{(-1)^n}{(2n)!}x^{2n}\]</div>
+<p>which ignores the terms that contain <span class="math notranslate nohighlight">\(\sin(0)\)</span> (i.e., the odd terms). Take a moment and make sure that the summation notation makes sense to you.</p>
+<p>So, we have rewritten the cosine function as a sum of polynomials, which only include addition, subtraction, multiplication, division, and integer exponents, without any complicated functions.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+A Taylor series that is centered around <span class="math notranslate nohighlight">\(a=0\)</span> is called a Maclaurin series. This is just a special case of a Taylor series, so we will refer to both simply as Taylor series.</p>
+</div></blockquote>
+</section>
+<section id="approximating-functions">
+<h2>15.2. Approximating Functions <a id="s2"></a><a class="headerlink" href="#approximating-functions" title="Link to this heading">#</a></h2>
+<p>Taylor series allow representing complicated functions as infinite sums of simple polynomials, which involve basic arithmetic operations such as addition, subtraction, multiplication, division, and integer powers. These operations are easily dealt with on a computer. However, using infinite sums is impractical, as computers cannot do infinitely many computations. So, in practice, we truncate the Taylor series by only taking a finite number of terms. Specifically, functions are approximated by using an <strong><span class="math notranslate nohighlight">\(N^{th}\)</span> order Taylor series approximation</strong>, which essentially truncates the Taylor expansion at a chosen <span class="math notranslate nohighlight">\(n = N\)</span>. The new polynomial function should be close enough to the actual function so far as we don’t stray too far from <span class="math notranslate nohighlight">\(x=a\)</span>. The idea here is simple in principle:</p>
+<ul class="simple">
+<li><p>Functions can be represented as infinite sums of polynomials</p></li>
+<li><p>Computers cannot do infinitely many computations</p></li>
+<li><p>Stop the sum at some <span class="math notranslate nohighlight">\(n=N\)</span> and ignore the rest of the sum for <span class="math notranslate nohighlight">\(n&gt;N\)</span></p></li>
+<li><p>Now <span class="math notranslate nohighlight">\(f(x)\)</span> is <em>approximated</em> by a finite sum of polynomials</p></li>
+</ul>
+<p>For cosine, the truncated expansion can be written compactly by the formula:</p>
+<div class="math notranslate nohighlight">
+\[\cos(x) \approx \sum_{n = 0}^{N} \frac{(-1)^n}{(2n)!}x^{2n}\]</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>myCos(X, N)</code> which computes cosine at every radian value in <code>X</code>, which may be a scalar or a <code>np.ndarray</code> using the <span class="math notranslate nohighlight">\(N^{th}\)</span> term from the equation above. The input <code>N</code> is a non-negative scalar integer. The output should be of the same type and size as <code>X</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define function</span>
+
+    <span class="c1"># initiate value</span>
+    <span class="n">cos_approx</span> <span class="o">=</span> <span class="o">...</span>
+    
+    <span class="c1"># iterate</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="o">...</span><span class="p">:</span>
+        <span class="c1"># update the values in each iteration</span>
+        <span class="n">cos_approx</span> <span class="o">=</span> <span class="o">...</span>
+        
+    <span class="k">return</span> <span class="n">cos_approx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try out your function using the following examples <code>myCos(np.pi/6, 0)</code>, <code>myCos(np.pi/6, 1)</code>, <code>myCos(np.pi/6, 15)</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cos(30) ~ </span><span class="si">{</span><span class="n">myCos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s1"> (using N=0)&#39;</span><span class="p">)</span> <span class="c1"># approximation of cos(30) using N = 0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cos(30) ~ </span><span class="si">{</span><span class="n">myCos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1"> (using N=1)&#39;</span><span class="p">)</span> <span class="c1"># approximation of cos(30) using N = 1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cos(30) ~ </span><span class="si">{</span><span class="n">myCos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">)</span><span class="si">}</span><span class="s1"> (using N=15)&#39;</span><span class="p">)</span> <span class="c1"># approximation of cos(30) using N = 15</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cos(30) = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s1"> (using np.cos())&#39;</span><span class="p">)</span> <span class="c1"># approximation of cos(30) using np.cos()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Plot the values of <span class="math notranslate nohighlight">\(cos(X)\)</span> using <code>np.cos()</code> for <code>X = np.linspace(-np.pi, np.pi, 100)</code>. Then use your function <code>myCos(X, N)</code> to plot the values for <code>N  = [1, 2, 3, 4]</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># create figure and axes</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
+
+<span class="c1"># Define X and N</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">N</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># Plot np.cos(X)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;NumPy&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot Taylor expansion for different N</span>
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">N</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">myCos</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;N = </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># control multiple properties</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;Angle (radians)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>    
+
+<span class="c1"># add legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>  
+
+<span class="c1"># add grid line</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># display the figure </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, when enough terms are used, the approximation approaches the results from <code class="docutils literal notranslate"><span class="pre">np.cos()</span></code> quickly, even for angles not close to <span class="math notranslate nohighlight">\(a = 0\)</span>.</p>
+</section>
+<section id="truncation-errors">
+<h2>15.3. Truncation Errors <a id="s3"></a><a class="headerlink" href="#truncation-errors" title="Link to this heading">#</a></h2>
+<p>As discussed in previous sections, a computer can only store a finite number of bits. As such, most computational tasks inherently involve approximations. Specifically with Taylor series, accurately representing a function requires an infinite sum of terms, which is impractical. By truncating the series after a finite number of terms, we introduce truncation errors.</p>
+<p>In numerical analyses, two primary sources of error emerge:</p>
+<ol class="arabic simple">
+<li><p>Round-off errors: difference between an approximation of a number used in computation and its exact (correct) value.</p></li>
+<li><p>Truncation errors: difference between an actual and a truncated, or cut-off, value.</p></li>
+</ol>
+<p>We have already discussed round-off errors, which are due to the inexactness in the representation of real numbers in a computer. So, we will focus on truncation errors. Truncation errors occur due to the approximation of an infinite sum by a finite sum, such as when employing the <span class="math notranslate nohighlight">\(N^{th}\)</span> order Taylor series to approximate a function.</p>
+<p>If we can evaluate the function exactly, computing the error would be straightforward. However, the motivation of Taylor series lies in approximating functions that cannot be evaluated exactly. Thus, since the actual value cannot be exactly calculated for many functions, we focus on calculating an <em>approximate error</em>. Let’s consider the Taylor series expansion of <span class="math notranslate nohighlight">\(f(x) = \cos(x)\)</span> around <span class="math notranslate nohighlight">\(a=0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \cos(x) = 1  - \frac{x^2}{2!}  + \frac{x^4}{4!} - \frac{x^6}{6!}  + \frac{x^8}{8!} - \cdots\]</div>
+<p>If we use a second-order (quadratic) approximation of <span class="math notranslate nohighlight">\(f(x) = \cos(x)\)</span>, we obtain:</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \cos(x) = \underbrace{1  - \frac{x^2}{2!}}_{2^{nd} \text{ order approximation}}  + \underbrace{\frac{x^4}{4!} - \frac{x^6}{6!}  + \frac{x^8}{8!} - \cdots}_{\text{remainder}}\]</div>
+<p>Therefore, we would approximate <span class="math notranslate nohighlight">\(f(x)\)</span> as <span class="math notranslate nohighlight">\(f(x)\approx 1  - \dfrac{x^2}{2!}\)</span></p>
+<p>For values of <span class="math notranslate nohighlight">\(x\)</span> close to <span class="math notranslate nohighlight">\(a=0\)</span>, the largest term in the remainder is the <span class="math notranslate nohighlight">\(x^4\)</span> term (since for small values of <span class="math notranslate nohighlight">\(x\)</span> like 0.01, <span class="math notranslate nohighlight">\(x^6\)</span> will be even smaller, <span class="math notranslate nohighlight">\(x^8\)</span> even smaller than that, etc). This means that if we use a second-order approximation for <span class="math notranslate nohighlight">\(\cos(x)\)</span>, then we expect our error to be about the same size as <span class="math notranslate nohighlight">\(x^4\)</span>. In this case, it is common to rewrite the truncated Taylor series as:</p>
+<div class="math notranslate nohighlight">
+\[f(x) \approx 1  - \frac{x^2}{2!} + \mathcal{O}\left(x^4\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{O}\left(x^4\right)\)</span> reads “Big-O of <span class="math notranslate nohighlight">\(x^4\)</span>” indicates that the expected error for approximations close to <span class="math notranslate nohighlight">\(a=0\)</span> is about the same size as <span class="math notranslate nohighlight">\(x^4\)</span>.</p>
+<p>Notice that we don’t explicitly say that the error is <span class="math notranslate nohighlight">\(x^4\)</span>. Instead we are just saying that using the quadratic function <span class="math notranslate nohighlight">\(f(x)\approx 1  - \dfrac{x^2}{2!}\)</span> to approximate <span class="math notranslate nohighlight">\(\cos(x)\)</span> for values of <span class="math notranslate nohighlight">\(x\)</span> near <span class="math notranslate nohighlight">\(a=0\)</span> will result in errors that are proportional to <span class="math notranslate nohighlight">\(x^4\)</span>.</p>
+<p>To get a more accurate approximation of the truncation error, we will use the entire next term, including any coefficients. So, when using the quadratic function <span class="math notranslate nohighlight">\(f(x)\approx 1  - \dfrac{x^2}{2!}\)</span>, the approximate error is <span class="math notranslate nohighlight">\(\dfrac{x^4}{4!}\)</span>. More generally, the truncated <span class="math notranslate nohighlight">\(N^{th}\)</span> expansion plus the estimated error for cosine can be written as:</p>
+<div class="math notranslate nohighlight">
+\[f(x) \approx \underbrace{\sum_{n = 0}^{N} \frac{(-1)^n x^{2n}}{(2n)!}}_{\text{Approximation}} + \underbrace{\frac{x^{2(N+1)}}{(2(N+1))!}}_{\text{Error}}\]</div>
+<p>So, in general, the error of a truncated Taylor series is approximately the next term in the expansion after the cut-off, which tends to be the largest remaining contribution to the approximation. This approximation is only good for values of <span class="math notranslate nohighlight">\(x\)</span> that are close to the center of the Taylor series <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>The table below shows approximations of <span class="math notranslate nohighlight">\(\cos(0.3)\)</span> with different order polynomials. Using <code class="docutils literal notranslate"><span class="pre">math.cos(0.3)</span></code>, we have Python’s approximation <span class="math notranslate nohighlight">\(\cos(0.3)\approx 0.9553364891\)</span>. If we use this as a reference, we can compare the estimated error from the next term in the Taylor series with the absolute error between the Taylor series approximation and the reference value.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Taylor Series</p></th>
+<th class="head text-left"><p>Approximation</p></th>
+<th class="head text-left"><p>Estimated Error</p></th>
+<th class="head text-left"><p>Absolute Error</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(0^{th} \text{ order}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.0\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\dfrac{x^2}{2!}=\dfrac{0.3^2}{2}\)</span> <span class="math notranslate nohighlight">\(=0.045\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0446635109\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(2^{nd} \text{ order}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.955\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\dfrac{x^4}{4!}=\dfrac{0.3^4}{24}\)</span> <span class="math notranslate nohighlight">\(=0.0003375\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0003364891\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(4^{th} \text{ order}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.9553375\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\dfrac{x^6}{6!}=\dfrac{0.3^6}{720}\)</span> <span class="math notranslate nohighlight">\(=0.0000010125\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000010109\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that the absolute error is always slightly less than the expected error. Thus, using the next term in the remainder to estimate the truncation error is reasonable.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>myCos_err(X, N)</code> which returns the absolute value of the estimated error of <code>myCos(X, N)</code> using the <code>N+1</code> term.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">myCos_err</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">X</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Use your function <code>myCos_err(X, N)</code> to plot the estimated error for <code>N  = [1, 2, 3, 4]</code> at <code>X = np.linspace(-np.pi, np.pi, 100)</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create figure and axes</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
+
+<span class="c1"># Define X and N</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">N</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># Plot estimated error for different N</span>
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">N</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">myCos_err</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;N = </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># control multiple properties</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;Angle (radians)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Estimated Error&#39;</span><span class="p">)</span>    
+
+<span class="c1"># add legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>  
+
+<span class="c1"># add grid line</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># display the figure </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="13_linear_algebra.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 14: Linear Algebra</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="15_root_finding.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 16: Root Finding</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taylor-series">15.1. Taylor Series <a id="s1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approximating-functions">15.2. Approximating Functions <a id="s2"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#truncation-errors">15.3. Truncation Errors <a id="s3"></a></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

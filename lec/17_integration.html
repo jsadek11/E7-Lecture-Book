@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 18: Integration &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/17_integration';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 19: Ordinary Differential Equations" href="18_ode.html" />
+    <link rel="prev" title="Chapter 17: Differentiation" href="16_differentiation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/17_integration.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/17_integration.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/17_integration.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 18: Integration</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-integral-of-a-function">18.1. The Integral of a Function <a id="s1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration">18.2. Numerical Integration <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-riemann">18.2.1. Left Riemann</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#right-riemann">18.2.2. Right Riemann</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#midpoint-rule">18.2.3. Midpoint Rule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trapezoid-rule">18.2.4. Trapezoid Rule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simpson-s-rule">18.2.5. Simpson’s Rule</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-in-numerical-integration">18.3. Error in Numerical Integration <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-error">18.3.1. Order of Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-and-spacing-trade-off">18.3.2. Error and Spacing Trade-off</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-in-python">18.4. Integration in Python <a id="s4"></a></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-18-integration">
+<h1>Chapter 18: Integration<a class="headerlink" href="#chapter-18-integration" title="Link to this heading">#</a></h1>
+<p>Calculus focuses on two primary computations: taking derivatives and evaluating definite integrals. We’ve previously discussed numerical differentiation methods for approximating rates of change. Similarly, quantifying accumulated quantities such as areas, volumes, and energy commonly arise in various engineering and science disciplines. For instance, in environmental science, estimating the total volume of water beneath a lake’s surface is essential for effective water resource management.</p>
+<p>Mathematically, the accumulation of quantities is modeled using integrals. Just as with derivatives, there exists a comprehensive <a class="reference external" href="https://www.mathsisfun.com/calculus/integration-rules.html">set of rules</a> for analytically computing integrals. These rules include the fundamental theorem of calculus, integration by substitution, integration by parts, and trigonometric integrals, among others. Despite the long list of available rules, computing integrals for complex functions can be time-consuming. In fact, there are functions for which no closed-form analytical solutions exist.</p>
+<p>Moreover, similar to differentiation, only discrete data points are typically available in real-world scenarios and the exact mathematical form of the function may be unknown. In such cases, analytical integration is impossible. This limitation necessitates the use of numerical integration methods, which provide a practical approach to approximating integrals when analytical solutions are impractical or unavailable. These methods allow us to estimate the area under a function based on available data points, thus playing a pivotal role across various fields and applications.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Recognize the challenges associated with analytical integration in real-world problems</p></li>
+<li><p>Understand the practical significance of numerical integration</p></li>
+<li><p>Describe the general approach of numerical integration methods</p></li>
+<li><p>Implement different numerical integration techniques including, left and right Riemann and central, trapezoid, and Simpson’s rules in Python</p></li>
+<li><p>Estimate the order of the error of these numerical approximations and choose the most accurate method</p></li>
+<li><p>Discuss the error and spacing trade-off in numerical integration and how very small spacing can result in increased computation time</p></li>
+</ul>
+<section id="the-integral-of-a-function">
+<h2>18.1. The Integral of a Function <a id="s1"></a><a class="headerlink" href="#the-integral-of-a-function" title="Link to this heading">#</a></h2>
+<p>Integration, in mathematical terms, involves finding the accumulated quantity or area under a curve. The definite integral of a function <span class="math notranslate nohighlight">\(f(x)\)</span> over an interval <span class="math notranslate nohighlight">\([a, b]\)</span> is denoted as:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} f(x) \, dx
+\]</div>
+<p>This represents the signed area under the curve of <span class="math notranslate nohighlight">\(f(x)\)</span> between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. While analytical methods exist, numerical integration becomes essential in situations where analytical solutions are impractical or unavailable. We can split the interval <span class="math notranslate nohighlight">\([a, b]\)</span> into <span class="math notranslate nohighlight">\(n\)</span> subintervals, and model each subinterval as a rectangle, each with width <span class="math notranslate nohighlight">\(h\)</span>. As the number of subintervals <span class="math notranslate nohighlight">\(n\)</span> increases (or equivalently, the spacing <span class="math notranslate nohighlight">\(h\)</span> decreases), the sum of the areas of the rectangles converges to the integral of the function over <span class="math notranslate nohighlight">\([a, b]\)</span>. This is expressed mathematically as:</p>
+<div class="math notranslate nohighlight">
+\[\int_{a}^{b} f(x) \, dx = \lim_{h\rightarrow 0}\sum_{i=1}^{n}{f(x_i)}{h} \approx \sum_{i=1}^{n}{f(x_i)}{h}\]</div>
+<p>The value of <span class="math notranslate nohighlight">\(x_i\)</span> can be chosen anywhere within the sub interval and three common choices are the left, the midpoint, or the right points.</p>
+<br>
+<center><figure>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Riemann_sum_%28rightbox%29.gif
+" style="width:35%">
+    <figcaption style="text-align:center"><strong>Integral of a function:</strong> <a href="https://upload.wikimedia.org/wikipedia/commons/6/61/Riemann_sum_%28rightbox%29.gif">https://en.m.wikipedia.org/</a></figcaption>   
+</figure></center></section>
+<section id="numerical-integration">
+<h2>18.2. Numerical Integration <a id="s2"></a><a class="headerlink" href="#numerical-integration" title="Link to this heading">#</a></h2>
+<p>Similar to differentiation, obtaining analytical solutions for integrals can be either too complex or impossible due to the lack of a known mathematical function or the lack of a closed-form solution. As such, numerical integration methods are a necessity. All numerical integration methods share a common procedural framework:</p>
+<ol class="arabic simple">
+<li><p>Partition the integration interval <span class="math notranslate nohighlight">\([a, b]\)</span> into <span class="math notranslate nohighlight">\(n\)</span> subintervals with points <span class="math notranslate nohighlight">\(\{x_0=a, \ x_1, \ x_2, \dots, \ x_{n-1}, \ x_n=b\}\)</span></p></li>
+<li><p>Employ a specific geometric shape to estimate the area of each subinterval (the shape varies between different methods)</p></li>
+<li><p>Take the sum of the areas of all subintervals</p></li>
+</ol>
+<p>There are five fundamental types of numerical integration methods:</p>
+<ol class="arabic simple">
+<li><p>Left Riemann</p></li>
+<li><p>Right Riemann</p></li>
+<li><p>Midpoint Rule</p></li>
+<li><p>Trapezoidal Rule</p></li>
+<li><p>Simpson’s Rule</p></li>
+</ol>
+<p>The following figure illustrates these five numerical integration methods used to estimate the integral:</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vQp6LxOy2XFAIarNGtHwyhlxhTBXE6Xsq6EGb2XZSPAbXmcWMLY3IU1xpRqIsDBRn5dC3wwAp9ip0z9/pub?w=1728&h=396" style="width:100%">
+    <figcaption style="text-align:center"><strong>Numerical integration methods</strong></figcaption>   
+</figure></center>
+<br>
+<section id="left-riemann">
+<h3>18.2.1. Left Riemann<a class="headerlink" href="#left-riemann" title="Link to this heading">#</a></h3>
+<p>The left Riemann method estimates the integral by partitioning <span class="math notranslate nohighlight">\([a, b]\)</span> into rectangles, each with height equal to the value of the function evaluated at the <strong>left</strong> endpoint of each subinterval. For an interval <span class="math notranslate nohighlight">\([a, b]\)</span>, the approximation is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} f(x) \, dx \approx \sum_{i=0}^{n-1}f(x_i) \cdot (x_{i+1} - x_i)
+\]</div>
+<p>If the spacing between the data points is a constant value <span class="math notranslate nohighlight">\(h\)</span>, the equation can be written as:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} f(x) \, dx \approx \sum_{i=0}^{n-1}f(x_i) \cdot h
+\]</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>left_int(f, a, b, n)</code> which takes as input a function object <code>f</code> and three scalar values <code>a, b, n</code>. The function should return an estimate of the integral of <code>f</code> over <code>[a, b]</code> using the left Riemann method and <code>n</code> equally spaced subintervals.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try your function <code>left_int(f, a, b, n)</code> for <span class="math notranslate nohighlight">\(f(x)=\cos(x)\)</span> over <span class="math notranslate nohighlight">\(x = [1, 3]\)</span> and different values of <code>n</code>. Then, compute the analytical value of the integral and the error between the numerical approximation and the analytical value.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimate integral and display results</span>
+<span class="n">I_left</span> <span class="o">=</span> <span class="o">...</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integral Left Riemann  ~ </span><span class="si">{</span><span class="n">I_left</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Analytical solution for integral</span>
+<span class="n">I_exact</span> <span class="o">=</span> <span class="o">...</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integral Exact         = </span><span class="si">{</span><span class="n">I_exact</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate Error</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error Left Riemann     = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">I_exact</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I_left</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="right-riemann">
+<h3>18.2.2. Right Riemann<a class="headerlink" href="#right-riemann" title="Link to this heading">#</a></h3>
+<p>Similarly, the right Riemann method estimates the integral by partitioning <span class="math notranslate nohighlight">\([a, b]\)</span> into rectangles, but each with height equal to the value of the function evaluated at the <strong>right</strong> endpoint of each subinterval. For an interval <span class="math notranslate nohighlight">\([a, b]\)</span>, the approximation is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} f(x) \, dx \approx \sum_{i=0}^{n-1}f(x_{i+1}) \cdot (x_{i+1} - x_i)
+\]</div>
+<p>If the spacing between the data points is a constant value <span class="math notranslate nohighlight">\(h\)</span>, the equation can be written as:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} f(x) \, dx \approx \sum_{i=0}^{n-1}f(x_{i+1}) \cdot h
+\]</div>
+</section>
+<section id="midpoint-rule">
+<h3>18.2.3. Midpoint Rule<a class="headerlink" href="#midpoint-rule" title="Link to this heading">#</a></h3>
+<p>The midpoint rule, similar to left and right Riemann, estimates the integral by partitioning <span class="math notranslate nohighlight">\([a, b]\)</span> into rectangles, but each with height equal to the value of the function evaluated at the <strong>midpoint</strong> of the endpoints of each subinterval. For an interval <span class="math notranslate nohighlight">\([a, b]\)</span>, the approximation is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} f(x) \, dx \approx \sum_{i=0}^{n-1}f\left(\dfrac{x_{i+1}+x_i}{2}\right) \cdot (x_{i+1} - x_i)
+\]</div>
+<p>If the spacing between the data points is a constant value <span class="math notranslate nohighlight">\(h\)</span>, the equation can be written as:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} f(x) \, dx \approx \sum_{i=0}^{n-1}f\left(\dfrac{x_{i+1}+x_i}{2}\right) \cdot h
+\]</div>
+<p>Note that this method requires evaluating the function at the midpoints. Thus, if only discrete data are available and the mathematical function is unknown, this method cannot be applied.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>mid_int(f, a, b, n)</code> which takes as input a function object <code>f</code> and three scalar values <code>a, b, n</code>. The function should return an estimate of the integral of <code>f</code> over <code>[a, b]</code> using the midpoint rule and <code>n</code> equally spaced subintervals.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try your function <code>mid_int(f, a, b, n)</code> for <span class="math notranslate nohighlight">\(f(x)=\cos(x)\)</span> over <span class="math notranslate nohighlight">\(x = [1, 3]\)</span> and different values of <code>n</code>. Then, compute the analytical value of the integral and the error between the numerical approximation and the analytical value.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimate integral and display results</span>
+<span class="n">I_mid</span> <span class="o">=</span> <span class="n">mid_int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integral Midpoint Rule ~ </span><span class="si">{</span><span class="n">I_mid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Analytical solution for integral</span>
+<span class="n">I_exact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Integral Exact         = </span><span class="si">{</span><span class="n">I_exact</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate Error</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error Midpoint Rule    = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">I_exact</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I_mid</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="trapezoid-rule">
+<h3>18.2.4. Trapezoid Rule<a class="headerlink" href="#trapezoid-rule" title="Link to this heading">#</a></h3>
+<p>It should be evident that trapezoids usually make better approximations than rectangles at least in the example below.</p>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vTpCE0vDucLq-JqStH73SkPj1v1JpB_d-ae4LnKW_3XsH2654Wv3w9JcqgG_ghOdcO0l8lk7zWkTxT0/pub?w=1152&h=396" style="width:60%">
+    <figcaption style="text-align:center"><strong>Comparison between rectangles and trapezoids for approximating definite integrals</strong></figcaption>   
+</figure></center>
+<br>
+<p>The trapezoidal rule estimates the integral by partitioning <span class="math notranslate nohighlight">\([a, b]\)</span> into trapezoids. For an interval <span class="math notranslate nohighlight">\([a, b]\)</span>, the approximation is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} f(x) \, dx \approx \sum_{i=0}^{n-1}\dfrac{f(x_{i+1})+f(x_i)}{2} \cdot (x_{i+1} - x_i)
+\]</div>
+<p>If the spacing between the data points is a constant value <span class="math notranslate nohighlight">\(h\)</span>, the equation can be written as:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} f(x) \, dx \approx \dfrac{h}{2}\sum_{i=0}^{n-1}\big(f(x_{i+1})+f(x_i)\big)
+\]</div>
+<p>If you expand the equation above, it should be evident that the function will be evaluated twice for all points except the endpoints, <span class="math notranslate nohighlight">\(x_0\)</span> and <span class="math notranslate nohighlight">\(x_n\)</span>. To make the computation more efficient, the equation can be rewritten to avoid reevaluating the same terms again using:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^{b} f(x) \, dx \approx \dfrac{h}{2}\left(f(x_0)+2\sum_{i=1}^{n-1}f(x_{i})+f(x_n)\right)
+\]</div>
+</section>
+<section id="simpson-s-rule">
+<h3>18.2.5. Simpson’s Rule<a class="headerlink" href="#simpson-s-rule" title="Link to this heading">#</a></h3>
+<p>While the trapezoidal rule provides a decent approximation of integrals, it still relies on linear functions to approximate <span class="math notranslate nohighlight">\(f(x)\)</span>, which may lead to error with large step sizes or highly non-linear functions. To address this limitation, Simpson’s rule offers a potentially better approach by using quadratic functions for approximation. The data are subdivided into groups of three points, <span class="math notranslate nohighlight">\(x_{i-1}, x_{i}, \text{and } x_{i+1}\)</span>, which extend over two subintervals. Then, a quadratic polynomial (i.e., parabola) <span class="math notranslate nohighlight">\(\beta_0+\beta_1x+\beta_2x^2\)</span> is fit into these three points using interpolation. The resulting polynomial is integrated exactly to get the area of the two subintervals, and then the process is repeated for the next three points.</p>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vRjPlvpeLJLv5RieV0tdfvpyoTh4jZ0IwFmPvTxXRFKPk5jiJ-ZU-cWGmy2YpVxvAcX1ErEsw0W14vQ/pub?w=720&h=396" style="width:45%">
+    <figcaption style="text-align:center"><strong>Illustration of Simpson's rule using four and six subintervals</strong></figcaption>   
+</figure></center>
+<br>
+<p>With some algebra and manipulation, the approximated integral of <span class="math notranslate nohighlight">\(f(x)\)</span> over an interval <span class="math notranslate nohighlight">\([a, b]\)</span> using Simpson’s rule can be written as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\int_{a}^{b} f(x) \, dx \approx \dfrac{h}{3}\left(f(x_0)+4\sum_{\substack{i=1 \\ \text{odd}}}^{n-1}f(x_{i})+2\sum_{\substack{i=2 \\ \text{even}}}^{n-2}f(x_{i})+f(x_n)\right)
+\end{split}\]</div>
+<p>Because the data are subdivided into groups of three points, spanning over two subintervals, the method requires an odd number of points, or equivalently, an even number of subintervals.</p>
+</section>
+</section>
+<section id="error-in-numerical-integration">
+<h2>18.3. Error in Numerical Integration <a id="s3"></a><a class="headerlink" href="#error-in-numerical-integration" title="Link to this heading">#</a></h2>
+<p>Similar to numerical differentiation, numerical integration methods are also subject to errors. Understanding the accuracy of these methods and the magnitude of the error is crucial for their reliable application. Graphically, the error in numerical integration refers to the gaps (both positive and negative) between the true function and the areas approximated by the numerical integration method, as illustrated in the figure below. As the number of subintervals <span class="math notranslate nohighlight">\(n\)</span> increases (or equivalently, the step size <span class="math notranslate nohighlight">\(h\)</span> decreases), the numerical result tends to converge to the true value of the integral. However, even with the same step size <span class="math notranslate nohighlight">\(h\)</span>, different numerical integration methods exhibit different levels of accuracy. Based on the figure, which method appears to be the most accurate? Which method(s) appear(s) to be the least accurate?</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vRjPjFpY4uu_lM1me9qRGpzlZTYVyhDCZCxBfP9QXxNxLQDU_7L_LC-Zo9nDgzN1bkp1xIPB-5pj1jK/pub?w=1728&h=792" style="width:100%">
+    <figcaption style="text-align:center"><strong>Numerical integration error as a function of the step size $h$</strong></figcaption>   
+</figure></center>
+<br>
+<section id="order-of-error">
+<h3>18.3.1. Order of Error<a class="headerlink" href="#order-of-error" title="Link to this heading">#</a></h3>
+<p>Calculating the exact error is generally not possible, as this requires knowing the true value of the integral, which is usually unknown in real applications. Instead, we estimate the order or magnitude of the error using Big-O notation as a function of the step size <span class="math notranslate nohighlight">\(h\)</span>. The order of the error can be derived using Taylor series expansions. For a detailed derivation of the errors, refer to this <a class="reference external" href="https://pythonnumericalmethods.studentorg.berkeley.edu/notebooks/chapter21.02-Riemanns-Integral.html">textbook</a>.</p>
+<p>The table below summarizes the order of the error associated with various numerical integration methods:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Method</p></th>
+<th class="head text-left"><p>Error</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Left Riemann</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Right Riemann</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h\right)\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Midpoint Rule</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h^2\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Trapezoid Rule</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h^2\right)\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Simpson’s Rule</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mathcal{O}\left(h^4\right)\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Because we are focusing on small values of <span class="math notranslate nohighlight">\(h\)</span>, higher-order methods, for which the exponent <span class="math notranslate nohighlight">\(k\)</span> in <span class="math notranslate nohighlight">\(\mathcal{O}\left(h^k\right)\)</span> is larger, tend to have smaller error and thus are more accurate (since for small values of <span class="math notranslate nohighlight">\(h\)</span> like 0.01, <span class="math notranslate nohighlight">\(h^2\)</span> will be smaller, <span class="math notranslate nohighlight">\(h^4\)</span> even smaller than that, and so on, making higher-order methods more accurate for small step sizes).</p>
+</section>
+<section id="error-and-spacing-trade-off">
+<h3>18.3.2. Error and Spacing Trade-off<a class="headerlink" href="#error-and-spacing-trade-off" title="Link to this heading">#</a></h3>
+<p>Similar to numerical differentiation, choosing a smaller step size <span class="math notranslate nohighlight">\(h\)</span> improves the accuracy of numerical integration. However, this increased accuracy comes at the cost of greater computational demands, including longer processing times and higher memory requirements, as well as potentially more significant round-off errors. When subdividing the integration domain <span class="math notranslate nohighlight">\([a, b]\)</span> into <span class="math notranslate nohighlight">\(n\)</span> subintervals each with step size <span class="math notranslate nohighlight">\(h\)</span>, increasing <span class="math notranslate nohighlight">\(n\)</span> or equivalently decreasing <span class="math notranslate nohighlight">\(h\)</span>, increases the number of shapes whose areas must be computed. This added complexity leads to longer computation times. Therefore, a balance between acceptable error and step size is crucial.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Calculate the error for the left Riemann and midpoint rule relative to the analytical solution for <span class="math notranslate nohighlight">\(f(x)=\cos(x)\)</span> over <span class="math notranslate nohighlight">\(x = [1, 3]\)</span>. Calculate the error for different values of <code>n</code> (e.g., <span class="math notranslate nohighlight">\(n = 10^7)\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define inputs</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;h = </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Analytical solution for integral</span>
+<span class="n">I_exact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># Calculate error and display results</span>
+<span class="n">I_left</span> <span class="o">=</span> <span class="n">left_int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Left Riemann error: O(h)    = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">I_exact</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I_left</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate error and display results</span>
+<span class="n">I_mid</span> <span class="o">=</span> <span class="n">mid_int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Midpoint rule error: O(h^2) = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">I_exact</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">I_mid</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="integration-in-python">
+<h2>18.4. Integration in Python <a id="s4"></a><a class="headerlink" href="#integration-in-python" title="Link to this heading">#</a></h2>
+<p>Several Python modules have existing numerical integration functions, with the <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code> sub-package being one of the most widely used. This sub-package includes several integration techniques, and one particularly useful function is <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad()</span></code>. This function is designed for general purpose integration (the term <em>quad</em> is short for quadrature).</p>
+<p>To use it, we first need to import SciPy: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">scipy</span></code>. The <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad()</span></code> function takes in many arguments, which are detailed in the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html#scipy.integrate.quad">official documentation</a>. The most important arguments are the function to be integrated, <code class="docutils literal notranslate"><span class="pre">func</span></code> and the lower and upper limits of integration, <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>, respectively: <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad(func,</span> <span class="pre">a,</span> <span class="pre">b)</span></code>.</p>
+<p>If the function being integrated, <code class="docutils literal notranslate"><span class="pre">func</span></code>, requires additional arguments besides the <span class="math notranslate nohighlight">\(x\)</span> values, you can pass the values of these arguments as a tuple using the optional argument <code class="docutils literal notranslate"><span class="pre">args</span></code>: <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad(func,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">args=(...))</span></code>.</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad()</span></code> returns two values, in the following order:</p>
+<ol class="arabic simple">
+<li><p>The integral of <code class="docutils literal notranslate"><span class="pre">func</span></code> from <code class="docutils literal notranslate"><span class="pre">a</span></code> to <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p>An estimate of the absolute error in the result</p></li>
+</ol>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">power</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="n">k</span>                                  <span class="c1"># define a lambda function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># integrate the function over [0, 2]. Assign k=3.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+
+<span class="go">4.0, 4.440892098500626e-14</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Use <code>quad()</code> to integrate <span class="math notranslate nohighlight">\(f(x)=\cos(x)\)</span> over <span class="math notranslate nohighlight">\(x = [1, 3]\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Use <code>quad()</code> to integrate <span class="math notranslate nohighlight">\(f(x)=x^n - c\)</span> over <span class="math notranslate nohighlight">\(x = [1, 3]\)</span>, where <code>n</code> and <code>c</code> are scalar values provided by the user.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITE YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="16_differentiation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 17: Differentiation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="18_ode.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 19: Ordinary Differential Equations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-integral-of-a-function">18.1. The Integral of a Function <a id="s1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration">18.2. Numerical Integration <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-riemann">18.2.1. Left Riemann</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#right-riemann">18.2.2. Right Riemann</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#midpoint-rule">18.2.3. Midpoint Rule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trapezoid-rule">18.2.4. Trapezoid Rule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simpson-s-rule">18.2.5. Simpson’s Rule</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-in-numerical-integration">18.3. Error in Numerical Integration <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-error">18.3.1. Order of Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-and-spacing-trade-off">18.3.2. Error and Spacing Trade-off</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-in-python">18.4. Integration in Python <a id="s4"></a></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1045 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 8: Recursion &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/07_recursion';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 9: Errors and Exceptions" href="08_exceptions.html" />
+    <link rel="prev" title="Chapter 7: Iteration" href="06_iteration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/07_recursion.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/07_recursion.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/07_recursion.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 8: Recursion</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-structure">8.1. Basic Structure <a id="s1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-function">8.2. Factorial Function <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-using-iteration">8.2.1. Factorial Using Iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-using-recursion">8.2.2. Factorial Using Recursion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fibonacci-numbers">8.3. Fibonacci Numbers <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fibonacci-numbers-using-recursion">8.3.1. Fibonacci Numbers Using Recursion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fibonacci-numbers-using-iteration">8.3.2. Fibonacci Numbers Using Iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursion-vs-iteration">8.3.3. Recursion vs. Iteration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-reading-divide-and-conquer-algorithms">8.4. Additional Reading: Divide and Conquer Algorithms <a id="s4"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort">8.4.1. Bubble Sort</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-sort">8.4.2. Quick Sort</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-8-recursion">
+<h1>Chapter 8: Recursion<a class="headerlink" href="#chapter-8-recursion" title="Link to this heading">#</a></h1>
+<p>We have seen that a function can call other functions. It is even possible for a function to call <strong>itself</strong>, which is known as <strong>recursion</strong>. If you ever stood between two mirrors, you could see yourself in mirror after mirror, deeper and deeper, to infinity. This is infinite recursion – the reflection of one mirror includes the reflection of the second mirror, which includes the reflection of the first, and so on.</p>
+<p>In programming, recursion is when a function calls a copy of itself, and the copy may call yet another copy, and so on. These recursions are finite, as the process repeats itself until a condition is satisfied (otherwise, the program might run indefinitely).</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Recognize recursive relationships and program them using recursive functions</p></li>
+<li><p>Explain the divide and conquer concept and its benefits</p></li>
+</ul>
+<section id="basic-structure">
+<h2>8.1. Basic Structure <a id="s1"></a><a class="headerlink" href="#basic-structure" title="Link to this heading">#</a></h2>
+<p>A recursive function is a function that repeatedly calls itself until a specified condition is met. This approach solves problems by breaking them down into smaller, more manageable instances of the same problem. A recursive function has two essential components:</p>
+<ul class="simple">
+<li><p><strong>Base Case</strong>: The condition under which the function stops calling itself and returns a result.</p></li>
+<li><p><strong>Recursive Case</strong>: The part of the function that reduces the problem into smaller instances and calls the function on these smaller instances. This is also known as the general or non-base case.</p></li>
+</ul>
+<p>The recursive case should be designed so that each recursive call brings the problem closer to the base case, ensuring the function eventually terminates.</p>
+<p>Let’s explore this concept through the factorial function.</p>
+</section>
+<section id="factorial-function">
+<h2>8.2. Factorial Function <a id="s2"></a><a class="headerlink" href="#factorial-function" title="Link to this heading">#</a></h2>
+<p>Factorials are a fundamental mathematical concept denoted as <span class="math notranslate nohighlight">\(n!\)</span>. By definition, the factorial of a positive integer <span class="math notranslate nohighlight">\(n\)</span> is the product of all positive integers from <span class="math notranslate nohighlight">\(n\)</span> down to <span class="math notranslate nohighlight">\(1\)</span>. This concept is expressed as:</p>
+<div class="math notranslate nohighlight">
+\[n!= n \times (n − 1) \times (n − 2) \ \times \ ... \ \times \ 3 \times 2 \times 1 \]</div>
+<p>For example:</p>
+<p><span class="math notranslate nohighlight">\(1! = 1\)</span></p>
+<p><span class="math notranslate nohighlight">\(2! = 2\times 1 = 2\)</span></p>
+<p><span class="math notranslate nohighlight">\(3! = 3\times 2\times 1 = 6\)</span></p>
+<p><span class="math notranslate nohighlight">\(4! = 4\times 3\times 2\times 1 = 24\)</span></p>
+<section id="factorial-using-iteration">
+<h3>8.2.1. Factorial Using Iteration<a class="headerlink" href="#factorial-using-iteration" title="Link to this heading">#</a></h3>
+<p>In Python, we can define a function to iteratively compute the factorial of a number like this:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">factorial_iter</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># base case</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="c1"># loop from 1 through n</span>
+        <span class="n">result</span> <span class="o">*=</span> <span class="n">i</span>           <span class="c1"># equivalent to: result = result * i</span>
+        
+    <span class="k">return</span> <span class="n">result</span>
+        
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates from <span class="math notranslate nohighlight">\(1\)</span> through <span class="math notranslate nohighlight">\(n\)</span> (inclusive), ensuring that all numbers from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(n\)</span> are multiplied together.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define the function <code>factorial_iter(n)</code>. Use your function to compute <span class="math notranslate nohighlight">\(5!\)</span> and <span class="math notranslate nohighlight">\(777!\)</span></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">factorial_iter</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># base case</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="c1"># loop from 1 through n</span>
+        <span class="n">result</span> <span class="o">*=</span> <span class="n">i</span>           <span class="c1"># equivalent to: result = result * i</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># call the function to compute 5! and 777!</span>
+<span class="n">factorial_iter</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="factorial-using-recursion">
+<h3>8.2.2. Factorial Using Recursion<a class="headerlink" href="#factorial-using-recursion" title="Link to this heading">#</a></h3>
+<p>Recursive functions are an intriguing concept in programming. They are functions that call themselves, potentially leading to a chain of repeated function calls. This leads to repetition, which is very similar to a loop. In fact, when designed correctly, a recursive function can replace a loop. While it may seem intimidating at first, we’ll soon see the practicality of recursive functions.</p>
+<p>Let’s explore this concept through factorials. Consider the recurring part of <span class="math notranslate nohighlight">\(5!\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(5! = 5\times 4\times 3\times 2\times 1 = 120\)</span></p>
+<p>But we also know that:</p>
+<p><span class="math notranslate nohighlight">\(4\times 3\times 2\times 1 = 4!\)</span>, which can be expressed as <span class="math notranslate nohighlight">\(4 \times (3 \times 2 \times 1)\)</span>, and further reduced to <span class="math notranslate nohighlight">\(4 \times 3!\)</span>.</p>
+<p>In other words: <span class="math notranslate nohighlight">\(5!\)</span> is <span class="math notranslate nohighlight">\(5 \times 4!\)</span>, and <span class="math notranslate nohighlight">\(4!\)</span> is <span class="math notranslate nohighlight">\(4 \times 3!\)</span> and so on. This recursive nature allows us to define the factorial function recursively as follows:</p>
+<p>\begin{equation}
+n! = \begin{cases}
+1 &amp;\text{if <span class="math notranslate nohighlight">\(n=1\)</span>}\
+n \times (n-1)! &amp; \text{if <span class="math notranslate nohighlight">\(n&gt;1\)</span>}\
+\end{cases}
+\end{equation}</p>
+<p>For example:</p>
+<p><span class="math notranslate nohighlight">\(2! = 2\times 1! = 2 \times 1 = 2\)</span></p>
+<p><span class="math notranslate nohighlight">\(3! = 3\times 2! = 3 \times 2 = 6\)</span></p>
+<p><span class="math notranslate nohighlight">\(4! = 4\times 3! = 4 \times 6 =24\)</span></p>
+<p>This recursive definition allows us to create a recursive factorial function, where each factorial becomes a function of another factorial, and so on.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Define a function <code>factorial_rec(n)</code> that computes the factorial of a number using recursion. Use your function to compute <span class="math notranslate nohighlight">\(5!\)</span> and <span class="math notranslate nohighlight">\(7777!\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">factorial_rec</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="c1"># Base case</span>
+    
+    <span class="c1"># Recursive case  </span>
+    
+
+<span class="c1"># call the function to compute 5! and 7777!</span>
+<span class="n">factorial_rec</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, the function <code class="docutils literal notranslate"><span class="pre">factorial_rec()</span></code> calls itself. To better understand what is going, try to run the above using <a class="reference external" href="https://pythontutor.com/cp/composingprograms.html#mode=edit">pythontutor.com</a>. It will help visualize the recursive calls and their flow.</p>
+<p>Now, let’s break down how this recursive function operates:</p>
+<ul class="simple">
+<li><p>The function continually calls itself until it reaches a point where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">==</span> <span class="pre">1</span></code>. This particular condition is known as the <strong>base case</strong>. The base case (after <code class="docutils literal notranslate"><span class="pre">if</span></code>) stops the recursion (it does not call another copy of the function).</p></li>
+<li><p>On the other hand, the second return statement, referred to as the <strong>general case</strong> or <strong>non-base case</strong>, heads toward the base case by calling another copy of the function, but with <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">1</span></code> as the argument.</p></li>
+</ul>
+<blockquote>
+<div><p><font color='#006600'><strong>💡 TIP!</strong></font><br />
+The key to writing an algorithm recursively: always begin by handling the base case(s). Then let recursion take care of the rest of the problem.</p>
+</div></blockquote>
+<p>Every recursive function should include at least one base case that stops the recursion. Without it, the function would indefinitely call itself, leading to an overflow. Python has a default maximum recursion depth of 1000 to prevent infinite recursions. If this limit is exceeded, Python raises a <code class="docutils literal notranslate"><span class="pre">RecursionError</span></code>. Therefore, when creating a recursive function, it’s essential to ensure that it can eventually reach the base case.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+In some cases, a recursion might require more than 1000 steps to reduce to the base case. You can increase the recursion limit by importing the module <code>import sys</code> and setting a higher limit using <code>sys.setrecursionlimit(max)</code>, where <code>max</code> would be the desired maximum,  (e.g., <code>10**5</code>). However, be cautious when modifying this limit, as it can impact system stability.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="fibonacci-numbers">
+<h2>8.3. Fibonacci Numbers <a id="s3"></a><a class="headerlink" href="#fibonacci-numbers" title="Link to this heading">#</a></h2>
+<p>Fibonacci, a mathematician who lived between 1170 and 1250, was interested in modeling the growth of rabbit populations. He came up with a simple formula to calculate the number of rabbit pairs in each month. This formula states that the number of pairs in the current month, <span class="math notranslate nohighlight">\(F(n)\)</span>, is equal to the sum of pairs in the two previous months <span class="math notranslate nohighlight">\(F(n-1) + F(n-2)\)</span>:</p>
+<p>\begin{equation}
+F(n) = \begin{cases}
+0 &amp;\text{if <span class="math notranslate nohighlight">\(n=0\)</span>}\
+1 &amp;\text{if <span class="math notranslate nohighlight">\(n=1\)</span>}\
+F(n-1) + F(n-2) &amp; \text{if <span class="math notranslate nohighlight">\(n&gt;1\)</span>}\
+\end{cases}
+\end{equation}</p>
+<section id="fibonacci-numbers-using-recursion">
+<h3>8.3.1. Fibonacci Numbers Using Recursion<a class="headerlink" href="#fibonacci-numbers-using-recursion" title="Link to this heading">#</a></h3>
+<p>It’s evident that Fibonacci numbers can be calculated using recursion. In this recursive approach, there are two base cases, each causing the recursion to stop:</p>
+<ul class="simple">
+<li><p>When <span class="math notranslate nohighlight">\(n\)</span> equals <span class="math notranslate nohighlight">\(0\)</span>, the Fibonacci number is <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+<li><p>When <span class="math notranslate nohighlight">\(n\)</span> equals <span class="math notranslate nohighlight">\(1\)</span>, the Fibonacci number is <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
+</ul>
+<p>In the general case, the formula contains two recursive calls:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F(n-1)\)</span>, which calculates the Fibonacci number for the previous month.</p></li>
+<li><p><span class="math notranslate nohighlight">\(F(n-2)\)</span>, which calculates the Fibonacci number for the month before the previous month.</p></li>
+</ul>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a recursive function for computing the <em>n-th</em> Fibonacci number. Use your function to compute the first six Fibonacci numbers.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fibonacci_rec</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="c1"># first base case</span>
+    
+    <span class="c1"># second base case</span>
+    
+    <span class="c1"># Recursive case</span>
+    
+    
+<span class="c1"># call the function    </span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;F(</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">fibonacci_rec</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To gain a more visual understanding of recursive algorithms, we can create a recursion tree. A recursion tree is a diagram of the function calls connected by arrows and their returned values. There are many online tools that can be used to visualize a recursion tree. <a class="reference external" href="https://visualgo.net/en/recursion?slide=1">The following</a> is one example.</p>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/1VSDHoCgLsKNHdOUICHrMtkyizcAL7wErhRYyxxexJjU/pub?w=1440&h=1080" style="width:100%">
+    <figcaption style="text-align:center"><strong>Recursion tree for the 5-th Fibonacci number</strong></figcaption>   
+</figure></center></section>
+<section id="fibonacci-numbers-using-iteration">
+<h3>8.3.2. Fibonacci Numbers Using Iteration<a class="headerlink" href="#fibonacci-numbers-using-iteration" title="Link to this heading">#</a></h3>
+<p>There is an iterative method of computing the <em>n-th</em> Fibonacci number.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vQfOUEpxGynYk0B1DDygVt_QS3Qy6tNpcTTq_XY_TJ3LkxsPvmXqT8jU9ZhLjnJC-JOQdNsijS4os3C/pub?w=1092&h=1079" style="width:40%">
+    <figcaption style="text-align:center"><strong>Iterative Fibonacci solution</strong></figcaption>   
+</figure></center><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fibonacci_iter</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Initialize an array of zeros with a length of n + 1</span>
+    <span class="n">fib</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="c1"># update fib(1)</span>
+    <span class="n">fib</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="c1"># Calculate Fibonacci numbers iteratively</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">fib</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fib</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fib</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>
+    
+    <span class="c1"># Return the n-th Fibonacci number</span>
+    <span class="k">return</span> <span class="n">fib</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># call the function    </span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;F(</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">fibonacci_iter</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recursion-vs-iteration">
+<h3>8.3.3. Recursion vs. Iteration<a class="headerlink" href="#recursion-vs-iteration" title="Link to this heading">#</a></h3>
+<p>When designed correctly, a recursive function can simply replace a loop. Both iteration and recursion have advantages and disadvantages. Let’s compare the recursive and iterative implementation of Fibonacci numbers.</p>
+<p>Recursive functions have the advantage of breaking down complex tasks into simpler sub-problems, resulting in clean and elegant code. In certain scenarios, using recursion can even make the code more straightforward compared to iteration. However, it’s important to note that understanding the logic behind recursion might be challenging at times.</p>
+<p>On the flip side, recursive calls come with some drawbacks. They tend to be less efficient in terms of both memory usage and execution time. Recursive calls can consume a significant amount of memory, which might lead to overflow errors in extreme cases.</p>
+<p>To illustrate the difference in efficiency, let’s consider the runtime for calculating the <em>20-th</em> Fibonacci number using both iteration and recursion.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Compute the <em>20-th</em> Fibonacci number using <code>fibonacci_iter()</code> and <code>fibonacci_rec()</code>. Use the command <code>%timeit function_name(argument)</code> to measure the run time for each function.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Iteration:&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> fibonacci_iter(20)
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Recursion:&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> fibonacci_rec(20)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The iterative version runs much faster than the recursive counterpart. In general, iterative functions are faster than recursive functions for the same task.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+If you look at the recursion tree for the <em>5-th</em> Fibonacci number, the <em>1-st</em> Fibonacci number is computed twice and the <em>2-nd</em> Fibonacci number is computed three times. So, the recursive function repeats solving the same smaller size problems several times, making it inefficient.</p>
+</div></blockquote>
+<p>So why use recursive functions at all? There are some problems that have a naturally recursive structure. In these cases it is usually more trivial to use a recursive function. In addition, the primary value of writing recursive functions is that they can usually be written much more compactly than iterative functions. The cost of the improved compactness, however, is added running time.</p>
+</section>
+</section>
+<section id="additional-reading-divide-and-conquer-algorithms">
+<h2>8.4. Additional Reading: Divide and Conquer Algorithms <a id="s4"></a><a class="headerlink" href="#additional-reading-divide-and-conquer-algorithms" title="Link to this heading">#</a></h2>
+<p>In the earlier examples, we explored mathematical functions that were defined recursively. While recursion serves as a powerful tool for solving various problems, it can be especially useful when tackling complex problems through the concept of <strong>divide and conquer</strong>.</p>
+<p>Divide and conquer strategies involve breaking down complex problems into a series of many smaller, more manageable problems, essentially leveraging the essence of recursion. The key lies in expressing the solution to the general problem in terms of solutions to its smaller counterparts.</p>
+<p>Several classic problems are often approached using the divide and conquer method, including:</p>
+<ul class="simple">
+<li><p>Quick sort</p></li>
+<li><p>Towers of Hanoi</p></li>
+<li><p>Binary search</p></li>
+</ul>
+<p>We will look into two algorithms designed to sort a list in ascending order:</p>
+<ol class="arabic simple">
+<li><p>Bubble sort (does not use divide and conquer approach)</p></li>
+<li><p>Quick sort (uses divide and conquer approach)</p></li>
+</ol>
+<section id="bubble-sort">
+<h3>8.4.1. Bubble Sort<a class="headerlink" href="#bubble-sort" title="Link to this heading">#</a></h3>
+<p>Bubble sort is one of the most straightforward sorting algorithms. Its approach involves repeatedly comparing two adjacent elements within a list and swapping them if they are not in the desired order. This process continues until all elements are arranged correctly.</p>
+<p>The name “Bubble Sort” derives from the way data moves through the algorithm. Much like air bubbles in water that naturally rise to the surface, data elements gradually “bubble” their way to their proper positions in the sorted list.</p>
+<p>It’s essential to note that Bubble Sort does not employ the divide and conquer approach. Instead, it focuses on comparing and swapping neighboring elements until the entire list is sorted. As we’ll explore further, Bubble Sort tends to become inefficient when handling large datasets.</p>
+<p>Let’s look at the different steps of a bubble sort algorithm for the following list: <code class="docutils literal notranslate"><span class="pre">[-2,</span> <span class="pre">45,</span> <span class="pre">0,</span> <span class="pre">11,</span> <span class="pre">-9]</span></code>.</p>
+<br>
+<figure>
+    <table><tr>
+    <td> 
+      <p align="center" style="vertical-align:top">
+        <img src="https://www.programiz.com/sites/tutorial2program/files/Bubble-sort-0.png" style="width:100%">
+        <br>
+      </p> 
+    </td>
+    <td style="vertical-align:top"> 
+      <p align="center" >
+        <img src="https://www.programiz.com/sites/tutorial2program/files/Bubble-sort-1.png" style="width:100%">
+        <br>
+      </p> 
+    </td>
+    </tr></table>
+    <table><tr>
+    <td> 
+      <p align="center" style="vertical-align:top">
+        <img src="https://www.programiz.com/sites/tutorial2program/files/Bubble-sort-2.png" style="width:100%">
+        <br>
+      </p> 
+    </td>
+    <td style="vertical-align:top"> 
+      <p align="center" >
+        <img src="https://www.programiz.com/sites/tutorial2program/files/Bubble-sort-3.png" style="width:100%">
+        <br>
+      </p> 
+    </td>
+    </tr></table>
+    <figcaption style="text-align:center"><strong>Steps of bubble sort algorithm: <a href="https://www.programiz.com/dsa/bubble-sort">https://www.programiz.com/</a></strong></figcaption>  
+</figure>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>bubbleSort()</code> that takes a list of numbers (<code>array</code>) and returns the list sorted in ascending order.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bubble sort in Python</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">bubbleSort</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    
+    <span class="c1"># loop to access each array element</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+
+        <span class="c1"># loop to compare array elements</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+
+            <span class="c1"># compare two adjacent elements</span>
+            <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+
+                <span class="c1"># swapping elements if elements are not in the intended order</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">array</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+                
+    <span class="k">return</span> <span class="n">array</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">]</span>
+
+<span class="n">sorted_array</span> <span class="o">=</span> <span class="n">bubbleSort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Sorted Array: </span><span class="si">{</span><span class="n">sorted_array</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s a brief overview:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">bubbleSort()</span></code> function takes an array as input</p></li>
+<li><p>It uses nested loops to compare and swap adjacent elements until the entire array is sorted in ascending order</p></li>
+<li><p>The outer loop (<code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(len(array))</span></code>) controls the number of iterations, ensuring that the largest element “bubbles” to the end in each pass</p></li>
+<li><p>The inner loop (<code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">j</span> <span class="pre">in</span> <span class="pre">range(0,</span> <span class="pre">len(array)</span> <span class="pre">-</span> <span class="pre">i</span> <span class="pre">-</span> <span class="pre">1)</span></code>) performs the pairwise comparisons and swaps</p></li>
+<li><p>If two adjacent elements are out of order, they are swapped using a temporary variable (<code class="docutils literal notranslate"><span class="pre">temp</span></code>)</p></li>
+<li><p>Finally, the sorted array is returned.</p></li>
+</ul>
+<p>Bubble sort, while simple, becomes inefficient for large data sets.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Sort <code>np.random.randint(low=100, size=10000)</code> using <code>bubbleSort()</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="n">sorted_list</span> <span class="o">=</span> <span class="n">bubbleSort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="quick-sort">
+<h3>8.4.2. Quick Sort<a class="headerlink" href="#quick-sort" title="Link to this heading">#</a></h3>
+<p>Quick Sort is a sorting algorithm that relies on the divide and conquer approach, a common strategy used in algorithm design. The divide and conquer methodology involves solving problems in three main steps:</p>
+<ol class="arabic simple">
+<li><p><em>Divide</em>: Divide the problem into smaller sub-problems.</p></li>
+<li><p><em>Conquer</em>: Solve the sub-problems individually, often through recursion.</p></li>
+<li><p><em>Combine</em>: Combine the solutions to the sub-problems to get the final solution of the whole problem.</p></li>
+</ol>
+<p>For Quick Sort, this process is carried out as follows:</p>
+<ol class="arabic simple" start="0">
+<li><p>Select any element from the unsorted list as a pivot element.</p>
+<ul class="simple">
+<li><p>There are various ways to select a pivot element: first element, last element, or any random element.</p></li>
+</ul>
+</li>
+<li><p>Divide the unsorted list into three distinct parts: one for elements smaller than the pivot, one for elements equal to the pivot, and one for elements larger than the pivot.</p>
+<ul class="simple">
+<li><p>The smaller sublist is placed to the left of the pivot, and the larger sublist is placed to the right. Elements equal to the pivot are already in their correct sorted order. Note that the smaller and larger sublists are not necessarily sorted at this stage.</p></li>
+</ul>
+</li>
+<li><p>Using recursion, repeat step 1 for the smaller and larger sublists.</p>
+<ul class="simple">
+<li><p>This process continues until the sublists are small enough, typically having a length of 1 or 0, that sorting becomes trivial.</p></li>
+</ul>
+</li>
+<li><p>Once the recursive process is complete, combine the sorted sublists to get the full sorted array.</p></li>
+</ol>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Write a function <code>quickSort()</code> that takes a list of numbers (<code>array</code>) and returns the list sorted in ascending order.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quick sort in Python</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">quickSort</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># list of length 1 is easiest to sort because it is already sorted</span>
+        <span class="n">sorted_array</span> <span class="o">=</span> <span class="n">array</span>   
+        
+    <span class="k">else</span><span class="p">:</span>
+        
+        <span class="c1"># select pivot as the first element of the list</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="c1"># initialize lists for bigger, smaller, as well those equal to the pivot</span>
+        <span class="n">bigger</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">smaller</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">same</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># loop through array and put elements into appropriate subarray</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">array</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span> <span class="o">&gt;</span> <span class="n">pivot</span><span class="p">:</span>
+                <span class="n">bigger</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">item</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">:</span>
+                <span class="n">smaller</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">same</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        
+        <span class="c1"># combine smaller, same, and bigger in the correct order</span>
+        <span class="n">sorted_array</span> <span class="o">=</span> <span class="n">quickSort</span><span class="p">(</span><span class="n">smaller</span><span class="p">)</span> <span class="o">+</span> <span class="n">same</span> <span class="o">+</span> <span class="n">quickSort</span><span class="p">(</span><span class="n">bigger</span><span class="p">)</span>
+                
+    <span class="k">return</span> <span class="n">sorted_array</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">]</span>
+
+<span class="n">sorted_array</span> <span class="o">=</span> <span class="n">quickSort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Sorted Array: </span><span class="si">{</span><span class="n">sorted_array</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Instead of sorting a list, quick sort separates the list by comparing to a pivot and then recursively sorts the sublists on left and right of pivot element. Because this uses the divide and conquer approach, quick sort is efficient for large data sets.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Sort <code>np.random.randint(low=100, size=10000)</code> using <code>quickSort()</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_list</span> <span class="o">=</span> <span class="n">quickSort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Use the command <code>%timeit function_name(argument)</code> to measure the run time for <code>bubbleSort()</code> and <code>quickSort()</code> using <code>np.random.randint(low=100, size=1000)</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bubble sort:&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> bubbleSort(x)
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Quick sort:&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> quickSort(x)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The recursive version with the divide and conquer approach runs much faster in this case. Recursive code, by itself, is nice and small. But understanding what exactly is the recursive part can be confusing. However, if used correctly, recursion can be a  helpful tool in your programming arsenal.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_iteration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 7: Iteration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08_exceptions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 9: Errors and Exceptions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-structure">8.1. Basic Structure <a id="s1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-function">8.2. Factorial Function <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-using-iteration">8.2.1. Factorial Using Iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-using-recursion">8.2.2. Factorial Using Recursion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fibonacci-numbers">8.3. Fibonacci Numbers <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fibonacci-numbers-using-recursion">8.3.1. Fibonacci Numbers Using Recursion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fibonacci-numbers-using-iteration">8.3.2. Fibonacci Numbers Using Iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursion-vs-iteration">8.3.3. Recursion vs. Iteration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-reading-divide-and-conquer-algorithms">8.4. Additional Reading: Divide and Conquer Algorithms <a id="s4"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort">8.4.1. Bubble Sort</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-sort">8.4.2. Quick Sort</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,2028 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 13: MATLAB &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/12_matlab';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 14: Linear Algebra" href="13_linear_algebra.html" />
+    <link rel="prev" title="Chapter 12: Plotting" href="11_plotting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/12_matlab.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/12_matlab.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/12_matlab.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 13: MATLAB</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-differences-between-matlab-and-python">13.1. Syntax Differences Between MATLAB and Python <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">13.1.1. Comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semicolons-to-end-lines-in-matlab">13.1.2. Semicolons to End Lines in MATLAB</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-output">13.1.3. Displaying Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation-versus-end">13.1.4. Indentation versus <code class="docutils literal notranslate"><span class="pre">end</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">13.1.5. Indexing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab-basics">13.2. MATLAB Basics <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operations">13.2.1. Arithmetic Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-operations">13.2.2. Order of Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometry-logarithms-and-other-operations">13.2.3. Trigonometry, Logarithms, and Other Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overflow-and-undefined-results">13.2.4. Overflow and Undefined Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-data-types">13.2.5. Basic Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">13.2.6 Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-variables">13.2.7. Managing Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-expressions-and-operators">13.2.8. Logical Expressions and Operators</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">13.3. Data Structures <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-arrays">13.3.1. Double Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-arrays">13.3.1.1. Creating Arrays</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-arrays-with-pattern">13.3.1.2. Creating Arrays with Pattern</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#array-properties">13.3.1.3. Array Properties</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">13.3.1.4. Indexing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">13.3.1.5. Slicing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#array-manipulation">13.3.1.6. Array Manipulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#array-operations">13.3.1.7. Array Operations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab-functions-on-arrays">13.3.1.8. MATLAB Functions on Arrays</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#char-arrays">13.3.2. <code class="docutils literal notranslate"><span class="pre">char</span></code> Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-arrays">13.3.3. Cell Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membership-operator">13.3.4. Membership Operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">13.4. Functions <a id="s4"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation-and-the-end-keyword">13.4.1. Indentation and the <code class="docutils literal notranslate"><span class="pre">end</span></code> Keyword</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-arguments">13.4.2. Default Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-functions">13.4.3. Calling Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-outputs">13.4.4. Multiple Outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-statement">13.4.5. <code class="docutils literal notranslate"><span class="pre">return</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anonymous-functions">13.4.6. Anonymous Functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-statements">13.5. Conditional Statements <a id="s5"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statements">13.5.1. If Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-else-statements">13.5.2. If-Else Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-elseif-else-statements">13.5.3. If-Elseif-Else Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-if-statements">13.5.4. Nested If Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statements-with-logical-operators">13.5.5. If Statements with Logical Operators</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration">13.6. Iteration <a id="s6"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops">13.6.1. For Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loops">13.6.2. While loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-loops">13.6.3. Nested Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jump-statements-break-and-continue">13.6.4. Jump Statements: <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-13-matlab">
+<h1>Chapter 13: MATLAB<a class="headerlink" href="#chapter-13-matlab" title="Link to this heading">#</a></h1>
+<p>Many engineers and scientists use MATLAB to analyze and design systems and products. MATLAB is primarily designed for numerical and matrix-based computation. There are many similarities between MATLAB and Python, so your Python experience will provide a good head start for learning MATLAB. However, there are important differences that you must learn to switch effectively from Python to MATLAB. In this section, we will explore basic MATLAB syntax concepts and demonstrate equivalent concepts in Python to ease the transition. Our goal is to highlight the MATLAB approach to topics you are already familiar with in Python.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Evaluate the syntax differences between Python and MATLAB</p></li>
+<li><p>Set up a MATLAB environment that replicates the majority of Python functions</p></li>
+<li><p>Convert scripts from Python to MATLAB</p></li>
+<li><p>Avoid common issues when transitioning from Python to MATLAB</p></li>
+</ul>
+<section id="syntax-differences-between-matlab-and-python">
+<h2>13.1. Syntax Differences Between MATLAB and Python <a id="s1"></a><a class="headerlink" href="#syntax-differences-between-matlab-and-python" title="Link to this heading">#</a></h2>
+<p>Understanding the syntax differences between MATLAB and Python is crucial for a seamless transition between the two languages. While the fundamental logic behind most operations remains similar, each language has unique coding approaches due to their core design philosophies. MATLAB, short for “MATrix LABoratory,” treats everything as a matrix, whereas Python treats everything as a general object.</p>
+<p>For instance, in MATLAB, strings are treated as matrices of characters or as arrays of strings, while in Python, strings have their own type called <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<p>This section presents key syntax differences that you are likely to encounter. These examples also demonstrate some basic MATLAB language features.</p>
+<section id="comments">
+<h3>13.1.1. Comments<a class="headerlink" href="#comments" title="Link to this heading">#</a></h3>
+<p>In Python, comments are created using the hash or pound sign (<code class="docutils literal notranslate"><span class="pre">#</span></code>). In MATLAB, comments are created using the percent sign (<code class="docutils literal notranslate"><span class="pre">%</span></code>) on a line. Both interpreters ignore the content of comments.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a single line comment</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="c">% This is a single line comment</span>
+</pre></div>
+</div>
+<p>In Python, multi-line comments can be created using triple quotes (<code class="docutils literal notranslate"><span class="pre">'''</span></code>).  In MATLAB, multi-line comments start with <code class="docutils literal notranslate"><span class="pre">%{</span></code> and end with <code class="docutils literal notranslate"><span class="pre">%}</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">%{</span></code> and <code class="docutils literal notranslate"><span class="pre">%}</span></code> should be on their own lines (i.e., there should be nothing after <code class="docutils literal notranslate"><span class="pre">%{</span></code> and nothing before <code class="docutils literal notranslate"><span class="pre">%}</span></code> on the same line).</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;This is a multi-line comment</span>
+<span class="sd">Line 2</span>
+<span class="sd">Line 3&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
+<span class="cm">This is a multi-line comment</span>
+<span class="cm">Line 2</span>
+<span class="cm">Line 3</span>
+<span class="cm">%}</span>
+</pre></div>
+</div>
+</section>
+<section id="semicolons-to-end-lines-in-matlab">
+<h3>13.1.2. Semicolons to End Lines in MATLAB<a class="headerlink" href="#semicolons-to-end-lines-in-matlab" title="Link to this heading">#</a></h3>
+<p>In MATLAB, by default, executing a statement displays the result in the Command Window, which can be useful for interactive sessions. However, this behavior might be undesirable in certain situations. To suppress the display of output, simply end each statement with a semicolon (<code class="docutils literal notranslate"><span class="pre">;</span></code>).</p>
+<p>In Python, ending lines of code with semicolons doesn’t change the behavior since Python doesn’t use them to suppress or display output.</p>
+<p>So in Python, you must explicitly print something when you want to display its value, whereas in MATLAB, you must explicitly silence something instead of explicitly displaying it. This contrast illustrates the differing default behaviors between the two languages.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#006600'><strong>💡 TIP!</strong></font><br />
+Most of the time you should suppress code output by using a semicolon at the end of all assignment statements in MATLAB.</p>
+</div></blockquote>
+</section>
+<section id="displaying-output">
+<h3>13.1.3. Displaying Output<a class="headerlink" href="#displaying-output" title="Link to this heading">#</a></h3>
+<p>Although omitting the semicolon from the end of an expression is one way to display output in MATLAB, the <code class="docutils literal notranslate"><span class="pre">disp()</span></code> function can be used to explicitly display the value of variables or expressions in the Command Window. This function is similar to Python’s <code class="docutils literal notranslate"><span class="pre">print()</span></code> function. In addition to <code class="docutils literal notranslate"><span class="pre">disp()</span></code>, MATLAB offers other functions for displaying output and formatting it, which we will discuss in more detail later.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="indentation-versus-end">
+<h3>13.1.4. Indentation versus <code class="docutils literal notranslate"><span class="pre">end</span></code><a class="headerlink" href="#indentation-versus-end" title="Link to this heading">#</a></h3>
+<p>Python uses indentation (whitespace) to define code blocks within functions, if statements, loops, and other control structures. Thus, indentation is required in Python. In contrast, MATLAB employs the <code class="docutils literal notranslate"><span class="pre">end</span></code> keyword to delineate code blocks that belong to function definitions, if statements, and loops. While indentation is not syntactically necessary in MATLAB, it is highly recommended for better code readability.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-OCTAVE notranslate"><div class="highlight"><pre><span></span><span class="c">% Not recommended, but works fine</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c">% Recommended</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+The <code>end</code> keyword is crucial, as it is the only way MATLAB knows which code blocks belong to a function, loop, if statement, and other control structures.</p>
+</div></blockquote>
+<p>In Python, a colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>) is used to indicate the start of an indented code block (after a function definition, if statement, loop, etc.). In MATLAB, colons should not be used to indicate code blocks; doing so will result in an error.</p>
+</section>
+<section id="indexing">
+<h3>13.1.5. Indexing<a class="headerlink" href="#indexing" title="Link to this heading">#</a></h3>
+<p>MATLAB uses 1-based indexing, meaning arrays and matrices start with an index of 1. Python, on the other hand, uses 0-based indexing, with arrays and lists starting at index 0. This difference can lead to off-by-one errors when transitioning between the two languages.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+<span class="n">first_element</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-OCTAVE notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="p">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">];</span>
+<span class="n">first_element</span> <span class="p">=</span> <span class="n">arr</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Python uses square brackets for indexing: <code>arr[index]</code>. However, MATLAB uses parentheses for indexing: <code>arr(index)</code>.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="matlab-basics">
+<h2>13.2. MATLAB Basics <a id="s2"></a><a class="headerlink" href="#matlab-basics" title="Link to this heading">#</a></h2>
+<section id="arithmetic-operations">
+<h3>13.2.1. Arithmetic Operations<a class="headerlink" href="#arithmetic-operations" title="Link to this heading">#</a></h3>
+<p>Most mathematical operators in MATLAB are the same as those in Python, with the exception of exponentiation, quotient, and modulo. Specifically, exponentiation is achieved using <code class="docutils literal notranslate"><span class="pre">^</span></code> in MATLAB, while the quotient and remainder are obtained using functions rather than operators.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Operation</p></th>
+<th class="head text-center"><p>Mathematical Notation</p></th>
+<th class="head text-center"><p>Python</p></th>
+<th class="head text-left"><p>MATLAB</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Addition</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a+b\)</span></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Subtraction</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a-b\)</span></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Multiplication</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a\times b\)</span></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Division</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a\div b\)</span></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">/</span> <span class="pre">b</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">/</span> <span class="pre">b</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Exponentiation</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a^b\)</span></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">b</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">^</span> <span class="pre">b</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Quotient</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\left\lfloor a\div b \right\rfloor\)</span></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">//</span> <span class="pre">b</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">floorDiv(a,</span> <span class="pre">b)</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Remainder or Modulo</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a\%b\)</span></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">%</span> <span class="pre">b</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mod(a,</span> <span class="pre">b)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="order-of-operations">
+<h3>13.2.2. Order of Operations<a class="headerlink" href="#order-of-operations" title="Link to this heading">#</a></h3>
+<p>Similar to Python, MATLAB follows the standard order of operations: powers are executed before multiplication and division, which are executed before addition and subtraction.</p>
+</section>
+<section id="trigonometry-logarithms-and-other-operations">
+<h3>13.2.3. Trigonometry, Logarithms, and Other Operations<a class="headerlink" href="#trigonometry-logarithms-and-other-operations" title="Link to this heading">#</a></h3>
+<p>One of MATLAB’s strengths lies in its extensive library of built-in functions for mathematical operations, making it particularly useful for scientific and engineering tasks. Unlike Python, where you often need to import external libraries for mathematical functions, MATLAB provides a comprehensive set of these functions by default. A complete list of mathematical functions and constants in MATLAB can be found in the <a class="reference external" href="https://www.mathworks.com/help/matlab/elementary-math.html">MATLAB documentation</a>.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log10</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>You can get help on a function in MATLAB by simply typing <code class="docutils literal notranslate"><span class="pre">help</span></code> followed by the function’s name.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span> <span class="n">log10</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>MATLAB also includes constants (e.g., <span class="math notranslate nohighlight">\(\pi\)</span> ). These are also built-in and can be used directly.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span>
+<span class="n">Inf</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>The table below shows some of the available mathematical functions in MATLAB. The full list an be found in the <a class="reference external" href="https://www.mathworks.com/help/matlab/elementary-math.html">MATLAB documentation</a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Operation</p></th>
+<th class="head text-left"><p>MATLAB Notation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Sine of an angle in radians</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sin()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Sine of an angle in degrees</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sind()</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Arcsine in radians</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">asin()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Arcsine in degrees</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">asind()</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Angle from degrees to radians</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">deg2rad()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Natural logarithm (<span class="math notranslate nohighlight">\(ln\)</span> or <span class="math notranslate nohighlight">\(log_e\)</span>)</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">log()</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Logarithm (base 10)</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">log10()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Exponential</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">exp()</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Square root</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sqrt()</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="overflow-and-undefined-results">
+<h3>13.2.4. Overflow and Undefined Results<a class="headerlink" href="#overflow-and-undefined-results" title="Link to this heading">#</a></h3>
+<p>In mathematical computations, it’s crucial to be aware of how MATLAB and Python handle special cases such as division by zero and the representation of infinity. In Python, dividing by zero results in a runtime error. In contrast, MATLAB handles division by zero differently. When you divide a nonzero number by zero in MATLAB, the result is represented as <code class="docutils literal notranslate"><span class="pre">Inf</span></code> (infinity).</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>          <span class="c1"># Error</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>   <span class="c1"># 0.0</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>   <span class="c1"># nan</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-OCTAVE notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>          <span class="c">% Inf</span>
+<span class="n">b</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="nb">Inf</span>        <span class="c">% 0.0</span>
+<span class="n">c</span> <span class="p">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="nb">Inf</span>        <span class="c">% NaN</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-data-types">
+<h3>13.2.5. Basic Data Types<a class="headerlink" href="#basic-data-types" title="Link to this heading">#</a></h3>
+<p>Both Python and MATLAB support scalar data types, which represent single values (not arrays or collections). In Python, common scalar data types include <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>, and <code class="docutils literal notranslate"><span class="pre">complex</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>   <span class="c1"># Displays &lt;class &#39;int&#39;&gt;</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>   
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>   <span class="c1"># Displays &lt;class &#39;float&#39;&gt;</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span>        <span class="c1"># c is True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>   <span class="c1"># Displays &lt;class &#39;bool&#39;&gt;</span>
+</pre></div>
+</div>
+<p>MATLAB has different scalar data types. For example, float data type is called <code class="docutils literal notranslate"><span class="pre">double</span></code> in MATLAB. MATLAB stores all numbers by default as class <code class="docutils literal notranslate"><span class="pre">double</span></code>, which refers to double precision floating point numbers. To create an integer one needs to explicitly create or convert a variable to an integer.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Class</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>double</p></td>
+<td class="text-left"><p>double-precision float</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>single</p></td>
+<td class="text-left"><p>single-precision float</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>uint8, uint16, uint32, uint64</p></td>
+<td class="text-left"><p>Unsigned 8, 16, 32, 64-bit integer</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>int8, int16, int32, int64</p></td>
+<td class="text-left"><p>Signed 8, 16, 32, 64-bit integer</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>logical</p></td>
+<td class="text-left"><p>Boolean values <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To get the type of a variable in MATLAB, use the <code class="docutils literal notranslate"><span class="pre">class()</span></code> function. You can also convert between different data types using built-in functions.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nb">class</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>         <span class="c">% Displays &#39;double&#39;</span>
+
+<span class="n">a</span> <span class="p">=</span> <span class="mf">5.0</span><span class="p">;</span>
+<span class="nb">class</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>         <span class="c">% Displays &#39;double&#39;</span>
+
+<span class="n">b</span> <span class="p">=</span> <span class="n">int32</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+<span class="nb">class</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>         <span class="c">% Displays &#39;int32&#39;</span>
+
+<span class="n">c</span> <span class="p">=</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">;</span>       <span class="c">% c is logical 1</span>
+<span class="nb">class</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>         <span class="c">% Displays &#39;logical&#39;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+In MATLAB, true is represented as logical 1 and false as logical 0.</p>
+</div></blockquote>
+</section>
+<section id="variables">
+<h3>13.2.6 Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h3>
+<p>Variables work in a similar way in Python and MATLAB. Note that MATLAB does not support short notations like <code class="docutils literal notranslate"><span class="pre">+=</span></code> for assignment addition operator.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">5</span>      <span class="c1"># a is now 10 (can also use a += 5)</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-OCTAVE notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">a</span> <span class="p">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>     <span class="c">% a is now 10 (cannot use a += 5)</span>
+</pre></div>
+</div>
+</section>
+<section id="managing-variables">
+<h3>13.2.7. Managing Variables<a class="headerlink" href="#managing-variables" title="Link to this heading">#</a></h3>
+<p>In MATLAB, the <code class="docutils literal notranslate"><span class="pre">clc</span></code> and <code class="docutils literal notranslate"><span class="pre">clear</span></code> commands help manage the command window and workspace.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">clc</span></code> clears the command window display, effectively removing all previous commands and output</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clear</span></code> clears variables from the workspace, freeing up memory</p></li>
+</ul>
+<p>These commands are useful for keeping your MATLAB environment organized.</p>
+</section>
+<section id="logical-expressions-and-operators">
+<h3>13.2.8. Logical Expressions and Operators<a class="headerlink" href="#logical-expressions-and-operators" title="Link to this heading">#</a></h3>
+<p>MATLAB uses the same comparison operators as Python, except for the “not equal” operator. In MATLAB, a tilde <code class="docutils literal notranslate"><span class="pre">~</span></code> is used for negation in comparison operators, whereas Python uses an exclamation mark <code class="docutils literal notranslate"><span class="pre">!</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Comparison</p></th>
+<th class="head text-left"><p>Python</p></th>
+<th class="head text-left"><p>MATLAB</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Less than</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Greater than</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Less than or equal</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Greater or equal</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Equal</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Not equal</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">~=</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Both MATLAB and Python provide logical operators, but the symbols differ.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Operation</p></th>
+<th class="head text-left"><p>Python</p></th>
+<th class="head text-left"><p>MATLAB</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>AND</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>OR</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">|</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>NOT</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># a is False</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>    <span class="c1"># b is True</span>
+<span class="n">c</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">b</span>                 <span class="c1"># c is False</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-OCTAVE notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="p">=</span> <span class="p">(</span><span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">);</span>    <span class="c">% a is logical 0</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">(</span><span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">);</span>    <span class="c">% b is logical 1</span>
+<span class="n">c</span> <span class="p">=</span> <span class="o">~</span><span class="n">b</span><span class="p">;</span>                   <span class="c">% c is logical 0</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+When evaluating scalar logical expressions, it is recommended to use <code>&amp;&amp;</code> and <code>||</code> instead of <code>&amp;</code> and <code>|</code> for logical operators. These are known as short-circuit logical operators and are more efficient. For example the <code>&amp;&amp;</code> operator stops evaluating as soon as the result is determined. If the first operand is false, the second operand is not evaluated because, regardless of its result, the final outcome will be false. This can save time and computational resources. However, the <code>&amp;&amp;</code> and <code>||</code> operators can only be used with scalar values. They cannot be used with arrays. For element-wise logical operations on arrays, the <code>&amp;</code> and <code>|</code> operators should be used.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="data-structures">
+<h2>13.3. Data Structures <a id="s3"></a><a class="headerlink" href="#data-structures" title="Link to this heading">#</a></h2>
+<p>Both MATLAB and Python provide various data structures (non-scalar data types) for organizing and manipulating data efficiently. While Python includes <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">tuple</span></code>, and <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>, MATLAB primarily revolves around arrays and matrices.</p>
+<section id="double-arrays">
+<h3>13.3.1. Double Arrays<a class="headerlink" href="#double-arrays" title="Link to this heading">#</a></h3>
+<p>MATLAB’s primary data structure is the numeric array, which is essentially a matrix. MATLAB arrays resemble most closely NumPy arrays in Python.</p>
+<section id="creating-arrays">
+<h4>13.3.1.1. Creating Arrays<a class="headerlink" href="#creating-arrays" title="Link to this heading">#</a></h4>
+<p>Arrays in MATLAB are formed using square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> and the values in the same row are separated by commas (<code class="docutils literal notranslate"><span class="pre">,</span></code>) or whitespace and the rows are separated by a semicolon (<code class="docutils literal notranslate"><span class="pre">;</span></code>). Below are some examples of 1-D and 2-D arrays in Python and MATLAB.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\begin{bmatrix} 
+2.1 &amp; 3.4 &amp; 9.3
+\end{bmatrix} \ \ \ \ \ \ \
+B = 
+\begin{bmatrix} 
+2.1\\ 
+3.4\\
+9.3
+\end{bmatrix}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">]])</span> <span class="c1"># commas &#39;,&#39; inside the same square bracket &#39;[]&#39; to separate columns</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mf">3.4</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mf">9.3</span><span class="p">]])</span> <span class="c1"># separate square brackets &#39;[]&#39; for each row and commas &#39;,&#39; between square brackets</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">]</span>  <span class="c">% commas &#39;,&#39; to separate columns (optional). Can also use A = [2.1 3.4 9.3]</span>
+
+<span class="n">B</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">;</span> <span class="mf">3.4</span><span class="p">;</span> <span class="mf">9.3</span><span class="p">]</span>  <span class="c">% semicolons &#39;;&#39; to separate rows (required)</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C = 
+\begin{bmatrix} 
+2.1 &amp; 3.4 &amp; 9.3\\ 
+9.2 &amp; -2.7 &amp; 4.0
+\end{bmatrix}  \ \ \ \ \ \ \
+D = 
+\begin{bmatrix} 
+2.1 &amp; 9.2\\ 
+3.4 &amp; -2.7\\
+9.3 &amp; 4.0
+\end{bmatrix}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">9.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mf">3.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mf">9.3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">;</span> <span class="mf">9.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span>
+
+<span class="n">D</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">;</span> <span class="mf">3.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">;</span> <span class="mf">9.3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-arrays-with-pattern">
+<h4>13.3.1.2. Creating Arrays with Pattern<a class="headerlink" href="#creating-arrays-with-pattern" title="Link to this heading">#</a></h4>
+<p>Similar to Python, we can create arrays that have a specific pattern in MATLAB. For generating arrays that are in order with a constant spacing, it is useful to use the colon operator, <code class="docutils literal notranslate"><span class="pre">:</span></code>, which has the following syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span> <span class="o">=</span> <span class="n">start</span> <span class="p">:</span> <span class="n">step</span> <span class="p">:</span> <span class="n">end</span>
+</pre></div>
+</div>
+<p>If a <code class="docutils literal notranslate"><span class="pre">step</span></code> is not specified, MATLAB will use a default value of 1. So, <code class="docutils literal notranslate"><span class="pre">1:1:100</span></code> and <code class="docutils literal notranslate"><span class="pre">1:100</span></code> are equivalent. Negative or non-integer increments can also be used.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">start</span></code> value should always be specific and does not have a default value.</p>
+<p>Note that this syntax is similar to Python’s <code class="docutils literal notranslate"><span class="pre">np.arange(start,</span> <span class="pre">end,</span> <span class="pre">step)</span></code>. However, the order of <code class="docutils literal notranslate"><span class="pre">end</span></code> and <code class="docutils literal notranslate"><span class="pre">step</span></code> is switched and  <code class="docutils literal notranslate"><span class="pre">end</span></code> is excluded in Python, but it is included in MATLAB.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+<span class="go">[0 2 4 6 8]</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">array</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span>
+
+<span class="n">array</span> <span class="p">=</span>
+
+     <span class="mi">0</span>     <span class="mi">2</span>     <span class="mi">4</span>     <span class="mi">6</span>     <span class="mi">8</span>    <span class="mi">10</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>For generating arrays that have a certain number of evenly spaced points between a start and end value, it is useful to use the <code class="docutils literal notranslate"><span class="pre">linspace()</span></code> function, which is very similar to NumPy’s <code class="docutils literal notranslate"><span class="pre">np.linspace(start,</span> <span class="pre">end,</span> <span class="pre">num)</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+<span class="go">[ 0. ,  2.5,  5. ,  7.5, 10. ]</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">array</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">array</span> <span class="p">=</span>
+
+     <span class="mi">0</span>    <span class="mf">2.5000</span>    <span class="mf">5.0000</span>    <span class="mf">7.5000</span>   <span class="mf">10.0000</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>There are also predefined arrays that can be useful. For example, the <code class="docutils literal notranslate"><span class="pre">zeros()</span></code> and <code class="docutils literal notranslate"><span class="pre">ones()</span></code> functions, which are similar to <code class="docutils literal notranslate"><span class="pre">np.zeros()</span></code> and <code class="docutils literal notranslate"><span class="pre">np.ones()</span></code>. In NumPy, the shape of the matrix <code class="docutils literal notranslate"><span class="pre">(n_rows,</span> <span class="pre">n_cols)</span></code> is give as a single argument in the form of a tuple (e.g., <code class="docutils literal notranslate"><span class="pre">np.zeros((3,</span> <span class="pre">5))</span></code>), whereas in MATLAB, the function takes two arguments, the first is for the number of rows and the second is for the number of columns (e.g., <code class="docutils literal notranslate"><span class="pre">zeros(3,</span> <span class="pre">5)</span></code>).</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+<span class="go">[[1. 1. 1. 1. 1.]</span>
+<span class="go"> [1. 1. 1. 1. 1.]</span>
+<span class="go"> [1. 1. 1. 1. 1.]]</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">array</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">array</span> <span class="p">=</span>
+
+     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">1</span>
+     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">1</span>
+     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="array-properties">
+<h4>13.3.1.3. Array Properties<a class="headerlink" href="#array-properties" title="Link to this heading">#</a></h4>
+<p>In linear algebra, array properties or attributes refer to specific characteristics associated with an array that provide essential information about its size, structure, and behavior. Below are some of the common array properties and the syntax that can be used to obtain them in Python and MATLAB. The results below are based on the following matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C = 
+\begin{bmatrix} 
+2.1 &amp; 3.4 &amp; 9.3\\ 
+9.2 &amp; -2.7 &amp; 4.0
+\end{bmatrix}
+\end{split}\]</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Python Example</p></th>
+<th class="head text-left"><p>Python Output</p></th>
+<th class="head text-left"><p>MATLAB Example</p></th>
+<th class="head text-left"><p>MATLAB Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Number of dimensions</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">C.ndim</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ndims(C)</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Length in each dimension</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">C.shape</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">3)</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">size(C)</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[2</span> <span class="pre">3]</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Total number of elements</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">C.size</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">numel(C)</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Length of largest dimension</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">length(C)</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">C</span></code> is the array name</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+The built-in Python function <code>len()</code> is NOT the same as MATLAB’s <code>length()</code> function. The <code>len()</code> function in Python returns the number of items in an object. However, the <code>length()</code> function in MATLAB returns the largest dimension of an array. If you want the total number of elements in an array in MATLAB, you should use <code>numel()</code>.</p>
+</div></blockquote>
+</section>
+<section id="id1">
+<h4>13.3.1.4. Indexing<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Python uses square brackets for indexing: <code class="docutils literal notranslate"><span class="pre">array[index]</span></code>. However, MATLAB uses parentheses for indexing: <code class="docutils literal notranslate"><span class="pre">array(index)</span></code>. Also, as previously mentioned, indexing in Python starts at 0, whereas indexing in MATLAB starts at 1.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">])</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="go">2.1</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+    <span class="mf">2.1000</span>
+</pre></div>
+</div>
+<p>You can also index 2-D arrays using <code class="docutils literal notranslate"><span class="pre">array[row_index,</span> <span class="pre">column_index]</span></code> in Python and <code class="docutils literal notranslate"><span class="pre">array(row_index,</span> <span class="pre">column_index)</span></code> in MATLAB.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">],</span>
+<span class="go">                  [9.2, -2.7, 4.0]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="go">4.0</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">C</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">;</span> <span class="mf">9.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+    <span class="mf">3.4000</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Unlike Python, MATLAB does not have negative indexing. Nonetheless, the last element of an array can be accessed using the keyword <code class="docutils literal notranslate"><span class="pre">end</span></code> in MATLAB.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">],</span>
+<span class="go">                  [9.2, -2.7, 4.0]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="go">4.0</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">C</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">;</span> <span class="mf">9.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">C</span><span class="p">(</span><span class="k">end</span><span class="p">,</span> <span class="k">end</span><span class="p">)</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+    <span class="mi">4</span>
+</pre></div>
+</div>
+</section>
+<section id="slicing">
+<h4>13.3.1.5. Slicing<a class="headerlink" href="#slicing" title="Link to this heading">#</a></h4>
+<p>In Python, slicing an <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> is done with the syntax <code class="docutils literal notranslate"><span class="pre">array[start:end:step]</span></code>. In MATLAB, the slicing syntax is <code class="docutils literal notranslate"><span class="pre">array(start:step:end)</span></code>. Note that:</p>
+<ul class="simple">
+<li><p>The order of <code class="docutils literal notranslate"><span class="pre">end</span></code> and <code class="docutils literal notranslate"><span class="pre">step</span></code> is switched</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">end</span></code> index is excluded in Python, but it is included in MATLAB</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">start</span></code> index can be omitted in Python (defaults to the beginning of the array) but cannot be omitted in MATLAB.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>   <span class="c1"># [0, 1, 2, 3, 4, 5, 6, 7, 8]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span><span class="p">[:</span><span class="mi">8</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>            <span class="c1"># If you omit start, slicing will start from the first index by default</span>
+
+<span class="go">[0, 2, 4, 6]</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">arr</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">;</span>            <span class="c">% [0, 1, 2, 3, 4, 5, 6, 7, 8]</span>
+<span class="o">&gt;&gt;</span> <span class="n">arr</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>            <span class="c">% You cannot omit start in MATLAB, even if it is the first index</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+     <span class="mi">0</span>     <span class="mi">2</span>     <span class="mi">4</span>     <span class="mi">6</span>     <span class="mi">8</span>
+</pre></div>
+</div>
+<p>Another way to index multiple elements in both Python and MATLAB is using an array of indexes.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">],</span>
+<span class="go">                  [9.2, -2.7, 4.0]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+
+<span class="go">array([2.1, 9.3])</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">C</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">;</span> <span class="mf">9.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+    <span class="mf">2.1000</span>    <span class="mf">9.3000</span>
+</pre></div>
+</div>
+</section>
+<section id="array-manipulation">
+<h4>13.3.1.6. Array Manipulation<a class="headerlink" href="#array-manipulation" title="Link to this heading">#</a></h4>
+<p>In Python, square brackets are used for lists, which are not primarily meant for mathematical and numerical calculations. For instance, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2]</span> <span class="pre">+</span> <span class="pre">[3,</span> <span class="pre">4]</span></code> will concatenate the lists and return <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code>. However, in MATLAB, the default data type is a double array, and using <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2]</span> <span class="pre">+</span> <span class="pre">[3,</span> <span class="pre">4]</span></code> will perform mathematical addition, yielding <code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">6]</span></code>.</p>
+<p>To concatenate arrays in MATLAB, you should enclose them in square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> and separate them by either commas <code class="docutils literal notranslate"><span class="pre">,</span></code> for horizontal concatenation or semicolons <code class="docutils literal notranslate"><span class="pre">;</span></code> for vertical concatenation. It’s important to note that the arrays being concatenated must have consistent dimensions for successful concatenation.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">B</span> <span class="p">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">]</span>         <span class="c">% concatenate horizontally in the same row using ,</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+     <span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">3</span>     <span class="mi">4</span>
+ 
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">A</span><span class="p">;</span> <span class="n">B</span><span class="p">]</span>        <span class="c">% concatenate vertically in different rows using ;</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+     <span class="mi">1</span>     <span class="mi">2</span>
+     <span class="mi">3</span>     <span class="mi">4</span>
+</pre></div>
+</div>
+</section>
+<section id="array-operations">
+<h4>13.3.1.7. Array Operations<a class="headerlink" href="#array-operations" title="Link to this heading">#</a></h4>
+<p>Basic arithmetic between an array and a scalar works similarly in MATLAB and Python’s NumPy arrays, with a notable exception being exponentiation. If <span class="math notranslate nohighlight">\(c\)</span> is a scalar, and <span class="math notranslate nohighlight">\(A\)</span> is an array, the following operations apply using MATLAB syntax:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">c</span></code>: adds <span class="math notranslate nohighlight">\(c\)</span> to every element of <span class="math notranslate nohighlight">\(A\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">−</span> <span class="pre">c</span></code>: subtracts <span class="math notranslate nohighlight">\(c\)</span> from every element of <span class="math notranslate nohighlight">\(A\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">c</span></code>: multiplies every element of <span class="math notranslate nohighlight">\(A\)</span> by <span class="math notranslate nohighlight">\(c\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">/</span> <span class="pre">c</span></code>: divides every element of <span class="math notranslate nohighlight">\(A\)</span> by <span class="math notranslate nohighlight">\(c\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Unlike Python, you cannot use <code>A ^ c</code> to raise every element of <span class="math notranslate nohighlight">\(A\)</span> to the power <span class="math notranslate nohighlight">\(c\)</span>. This will result in error, unless <span class="math notranslate nohighlight">\(A\)</span> is a square matrix. Instead you have to use <code>A .^ c</code>. See below for more details.</p>
+</div></blockquote>
+<p>When performing arithmetic operations between two arrays, there are differences between MATLAB and Python. In Python’s NumPy, mathematical operators result in element-wise operations if the arrays are of the same shape. In MATLAB, however, a dot <code class="docutils literal notranslate"><span class="pre">.</span></code> is required before certain operators to perform element-wise operations, specifically <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, and <code class="docutils literal notranslate"><span class="pre">^</span></code>. These operations are only defined if the two arrays are of the <strong>same shape</strong>. Consider two arrays <span class="math notranslate nohighlight">\(A1\)</span> and <span class="math notranslate nohighlight">\(A2\)</span> of the same shape:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span> <span class="pre">+</span> <span class="pre">A2</span></code>: takes every element of <span class="math notranslate nohighlight">\(A1\)</span> and adds it to the corresponding element of <span class="math notranslate nohighlight">\(A2\)</span> in the same index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span> <span class="pre">-</span> <span class="pre">A2</span></code>: takes every element of <span class="math notranslate nohighlight">\(A2\)</span> and subtracts it from the corresponding element of <span class="math notranslate nohighlight">\(A1\)</span> in the same index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span> <span class="pre">.*</span> <span class="pre">A2</span></code>: takes every element of <span class="math notranslate nohighlight">\(A1\)</span> and multiplies it by the corresponding element of <span class="math notranslate nohighlight">\(A2\)</span> in the same index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span> <span class="pre">./</span> <span class="pre">A2</span></code>: takes every element of <span class="math notranslate nohighlight">\(A1\)</span> and divides it by the corresponding element of <span class="math notranslate nohighlight">\(A2\)</span> in the same index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A1</span> <span class="pre">.^</span> <span class="pre">A2</span></code>: takes every element of <span class="math notranslate nohighlight">\(A1\)</span> and raises it to the power the corresponding element of <span class="math notranslate nohighlight">\(A2\)</span> in the same index</p></li>
+</ul>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+If you run <code>A1 * A2</code> in MATLAB, this will perform standard array multiplication, which is different from element-by-element multiplication. This will be discussed in greater detail later in the course.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+It might be easier to always add a dot <code>.</code> when performing multiplication, division, or exponentiation on an array, as this will work for both array-scalar and array-array operations. Only if you want to perform standard matrix multiplication, do not include the dot.</p>
+</div></blockquote>
+<p>All of MATLAB’s built-in arithmetic functions, such as <code class="docutils literal notranslate"><span class="pre">sin()</span></code>, can take arrays as input arguments. The output is the function evaluated for every element of the input array.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-ocatve notranslate"><div class="highlight"><pre><span></span>&gt;&gt; A = [1, 4, 9, 25];
+&gt;&gt; sqrt(A)
+
+ans =
+
+     1     2     3     5
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Comparison operations on arrays work very similarly in Python and MATLAB. The output is an array of the same shape as the original array, containing <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> (in Python) or <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code> (in MATLAB) based on the result of the comparison for each element.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">])</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">&gt;</span> <span class="mi">3</span>
+
+<span class="go">[False,  True,  True]</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">&gt;</span> <span class="mi">3</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+  <span class="mi">1</span>×<span class="mi">3</span> <span class="nb">logical</span> <span class="n">array</span>
+
+   <span class="mi">0</span>   <span class="mi">1</span>   <span class="mi">1</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>To perform element-wise logical operations, you will have to use <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> for logical AND and <code class="docutils literal notranslate"><span class="pre">|</span></code> for logical OR. The output is an array of the same shape as the original arrays, containing <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> (in Python) or <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code> (in MATLAB) based on the result of the comparison for each corresponding pair of elements in the same position.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">])</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">A</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="n">A</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="go">[True,  True,  False]</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">&amp;</span> <span class="n">A</span> <span class="o">&lt;</span> <span class="mi">5</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+  <span class="mi">1</span>×<span class="mi">3</span> <span class="nb">logical</span> <span class="n">array</span>
+
+   <span class="mi">1</span>   <span class="mi">1</span>   <span class="mi">0</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Similar to Python, MATLAB can index elements of an array that satisfy a logical expression. Instead of giving the values of the indexes, a logical expression can be used directly to filter the elements of the array.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">(</span><span class="n">A</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span>         <span class="c">% index the values of A that are greater than 3 and reassign them the value -1</span>
+
+<span class="n">A</span> <span class="p">=</span>
+
+    <span class="mf">2.1000</span>   <span class="o">-</span><span class="mf">1.0000</span>   <span class="o">-</span><span class="mf">1.0000</span>
+</pre></div>
+</div>
+</section>
+<section id="matlab-functions-on-arrays">
+<h4>13.3.1.8. MATLAB Functions on Arrays<a class="headerlink" href="#matlab-functions-on-arrays" title="Link to this heading">#</a></h4>
+<p>MATLAB has many functions that operate on arrays, some of which are shown below. The full list an be found in the <a class="reference external" href="https://www.mathworks.com/help/matlab/referencelist.html?type=function&amp;amp;category=descriptive-statistics&amp;amp;s_tid=CRUX_topnav">MATLAB documentation</a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Operation</p></th>
+<th class="head text-left"><p>MATLAB Notation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Sum of all elements</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sum()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Minimum of all elements</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">min()</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Maximum of all elements</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">max()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Average of all elements</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mean()</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="char-arrays">
+<h3>13.3.2. <code class="docutils literal notranslate"><span class="pre">char</span></code> Arrays<a class="headerlink" href="#char-arrays" title="Link to this heading">#</a></h3>
+<p>Similar to Python’s <code class="docutils literal notranslate"><span class="pre">str</span></code>, MATLAB has a data type for storing alphanumeric characters, which is called <code class="docutils literal notranslate"><span class="pre">char</span></code>. <code class="docutils literal notranslate"><span class="pre">char</span></code> data types are assembled using single quotes <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code> on both sides, but brackets can also be used to concatenate strings. Similar to Python, you can index <code class="docutils literal notranslate"><span class="pre">char</span></code> data types in MATLAB, as they are considered an array of characters.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Unlike Python, MATLAB only accepts single quotes <code>’</code> for <code>char</code> arrays. If you use double quotes <code>”</code>, this creates a different data type known as <code>string</code>. In MATLAB, you cannot directly index individual characters of <code>string</code> (the entire string is treated as a single object which cannot be subdivided into individual characters) like you can with <code>char</code> arrays.</p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">greeting1</span> <span class="p">=</span> <span class="s">&#39;Welcome to E7!&#39;</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">greeting2</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;W&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">,</span> <span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">,</span> <span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;t&#39;</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;7&#39;</span><span class="p">,</span> <span class="s">&#39;!&#39;</span><span class="p">];</span> <span class="c">% same as greeting1</span>
+<span class="o">&gt;&gt;</span> <span class="n">greeting2</span><span class="p">(</span><span class="mi">12</span><span class="p">:</span><span class="mi">13</span><span class="p">)</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+    <span class="s">&#39;E7&#39;</span>
+
+<span class="o">&gt;&gt;</span> <span class="nb">class</span><span class="p">(</span><span class="n">greeting2</span><span class="p">)</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+    <span class="s">&#39;char&#39;</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>To include an apostrophe (single quotation mark) within a <code class="docutils literal notranslate"><span class="pre">char</span></code> array in MATLAB, you can use two consecutive single quotation marks (<code class="docutils literal notranslate"><span class="pre">''</span></code>) – this will add a single apostrophe.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">advice</span> <span class="o">=</span> <span class="s1">&#39;Don&#39;&#39;t cheat, it&#39;&#39;s not worth the consequences.&#39;</span>
+
+<span class="n">advice</span> <span class="o">=</span>
+
+    <span class="s1">&#39;Don&#39;</span><span class="n">t</span> <span class="n">cheat</span><span class="p">,</span> <span class="n">it</span><span class="s1">&#39;s not worth the consequences.&#39;</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>We saw that <code class="docutils literal notranslate"><span class="pre">str</span></code> in Python are immutable. However, <code class="docutils literal notranslate"><span class="pre">char</span></code> arrays in MATLAB are mutable, meaning, you can modify individual characters in a <code class="docutils literal notranslate"><span class="pre">char</span></code> array.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">s1</span> <span class="p">=</span> <span class="s">&#39;Thix xtring hax xome obvioux typox&#39;</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">s1</span><span class="p">(</span><span class="n">s1</span> <span class="o">==</span> <span class="s">&#39;x&#39;</span><span class="p">)</span> <span class="p">=</span> <span class="s">&#39;s&#39;</span>
+
+<span class="n">s1</span> <span class="p">=</span>
+
+    <span class="s">&#39;This string has some obvious typos&#39;</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>To format strings in MATLAB, we can use the <code class="docutils literal notranslate"><span class="pre">sprintf()</span></code> function.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s">&#39;Welcome to %s. There are %d students in the class.&#39;</span><span class="p">,</span> <span class="s">&#39;E7&#39;</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+    <span class="s">&#39;Welcome to E7. There are 400 students in the class.&#39;</span>
+</pre></div>
+</div>
+<p>The following specifiers can be used inside <code class="docutils literal notranslate"><span class="pre">sprintf()</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">%s</span></code>: used to insert a string into the formatted string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%d</span></code>: used to insert an integer into the formatted string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%f</span></code>: used to insert a floating-point number into the formatted string</p>
+<blockquote>
+<div><p>You can control the precision of decimal digits by using a format like <code class="docutils literal notranslate"><span class="pre">%.2f</span></code>, which will present two decimal places in the output.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%e</span></code>: used to insert a number in scientific notation into the formatted string</p></li>
+</ul>
+</section>
+<section id="cell-arrays">
+<h3>13.3.3. Cell Arrays<a class="headerlink" href="#cell-arrays" title="Link to this heading">#</a></h3>
+<p>In MATLAB, cell arrays can include elements of different data types. They are defined using curly braces <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code>. Not only are cell arrays defined using braces, but they are also indexed using braces. If you index cell arrays using parentheses, you will get another cell array containing the contents of the indexed elements.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">cell_array</span> <span class="p">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;four&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;</span> <span class="nb">class</span><span class="p">(</span><span class="n">cell_array</span><span class="p">)</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+    <span class="s">&#39;cell&#39;</span>
+    
+<span class="o">&gt;&gt;</span> <span class="n">cell_array</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span> <span class="c">% index using curly braces</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+    <span class="s">&#39;four&#39;</span>
+    
+<span class="o">&gt;&gt;</span> <span class="n">cell_array</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c">% index using parentheses. You get another cell array.</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+  <span class="mi">1</span>×<span class="mi">1</span> <span class="nb">cell</span> <span class="n">array</span>
+
+    <span class="p">{</span><span class="s">&#39;four&#39;</span><span class="p">}</span>
+    
+</pre></div>
+</div>
+</section>
+<section id="membership-operator">
+<h3>13.3.4. Membership Operator<a class="headerlink" href="#membership-operator" title="Link to this heading">#</a></h3>
+<p>MATLAB does not have a built-in <code class="docutils literal notranslate"><span class="pre">in</span></code> operator like Python. However, you can achieve similar functionality in MATLAB using various methods. One method is to use the <code class="docutils literal notranslate"><span class="pre">ismember(element,</span> <span class="pre">array)</span></code> function, which checks if <code class="docutils literal notranslate"><span class="pre">element</span></code> is in <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">array</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="nb">ismember</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">array</span><span class="p">)</span>
+
+<span class="n">ans</span> <span class="p">=</span>
+
+  <span class="nb">logical</span>
+
+   <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="functions">
+<h2>13.4. Functions <a id="s4"></a><a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<p>Custom functions in Python and MATLAB serve similar purposes in terms of encapsulating reusable code, but there are differences in how you define and use them due to the programming languages’ distinct syntax and paradigms. Below is a comparison of the major components of a function in Python and MATLAB.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Description</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># function body</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>[result]<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span>arg1, arg2<span class="p">)</span>
+<span class="w">    </span><span class="cm">%{</span>
+<span class="cm">    Description</span>
+<span class="cm">    %}</span>
+    <span class="c">% function body</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Function Component</p></th>
+<th class="head text-left"><p>Python</p></th>
+<th class="head text-left"><p>MATLAB</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Function definition</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">def</span></code> keyword, line ends with <code class="docutils literal notranslate"><span class="pre">:</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">function</span></code> keyword, should not end line with <code class="docutils literal notranslate"><span class="pre">:</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Output parameters</p></td>
+<td class="text-left"><p>After <code class="docutils literal notranslate"><span class="pre">return</span></code> statement</p></td>
+<td class="text-left"><p>Inside <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>, after <code class="docutils literal notranslate"><span class="pre">function</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Documentation</p></td>
+<td class="text-left"><p>Docstring using triple quotes <code class="docutils literal notranslate"><span class="pre">'''</span></code></p></td>
+<td class="text-left"><p>Single (<code class="docutils literal notranslate"><span class="pre">%</span></code>) or multi-line comment (<code class="docutils literal notranslate"><span class="pre">%{</span> <span class="pre">%}</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+In MATLAB, both the return parameters (output arguments) and input arguments are typically defined in the function header. The output arguments are listed after the keyword <code>function</code> inside square brackets and the input arguments are listed after the function’s name inside parentheses. When the function execution ends (either by reaching the end of the function or by being terminated early), MATLAB returns the final values of the output arguments listed between square brackets.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+If there is only one output, square brackets are optional but still allowed. So, for the above example, both <code>function result = my_function(arg1, arg2)</code> and <code>function [result] = my_function(arg1, arg2)</code> could be used to define the function since there is only one output.</p>
+</div></blockquote>
+<p>The concepts of local and global scope work in the exact same way in Python and MATLAB. Below, we discuss some other differences between functions in Python and MATLAB.</p>
+<p>To program your own functions in MATLAB, you will need to use a new part of the MATLAB environment called
+the editor. The editor allows you to build, edit, and save your functions. Once the function is completed, you will need to save it. Click the save button, in the upper left-hand corner of the editor. <strong>When prompted to name the file, the filename must have the same name as the function name.</strong> The file type should be .m, an m-file, which is the standard file type for MATLAB functions.</p>
+<section id="indentation-and-the-end-keyword">
+<h3>13.4.1. Indentation and the <code class="docutils literal notranslate"><span class="pre">end</span></code> Keyword<a class="headerlink" href="#indentation-and-the-end-keyword" title="Link to this heading">#</a></h3>
+<p>Unlike Python, indenting the function’s body in MATLAB is not required, but it is still recommended for better readability.</p>
+<p>In MATLAB, the keyword <code class="docutils literal notranslate"><span class="pre">end</span></code> is placed at the end of the function. In this case, it denotes the end of a function. Although some functions will still work if <code class="docutils literal notranslate"><span class="pre">end</span></code> is omitted, it is good practice to end a function with the keyword <code class="docutils literal notranslate"><span class="pre">end</span></code>. Specifically, <code class="docutils literal notranslate"><span class="pre">end</span></code> is required when defining multiple or nested functions in the same file.</p>
+</section>
+<section id="default-arguments">
+<h3>13.4.2. Default Arguments<a class="headerlink" href="#default-arguments" title="Link to this heading">#</a></h3>
+<p>MATLAB does not support default arguments inside the function definition. For example, <code class="docutils literal notranslate"><span class="pre">my_function(arg1=def_val1,</span> <span class="pre">arg2=def_val2)</span></code> will result in an error in MATLAB. It is still possible to assign default arguments in MATLAB, but this should be done in the function’s body. You can check the <a class="reference external" href="https://blogs.mathworks.com/loren/2009/05/05/nice-way-to-set-function-defaults/">following post</a> for more details.</p>
+</section>
+<section id="calling-functions">
+<h3>13.4.3. Calling Functions<a class="headerlink" href="#calling-functions" title="Link to this heading">#</a></h3>
+<p>Python and MATLAB use very similar syntax to call functions. A function is called by using its name followed by parentheses, and input arguments are placed within those parentheses. Python returns multiple parameters as a tuple. However, MATLAB returns each value separately. So, if you make fewer assignments than there are output variables, MATLAB will only assign the first values and the rest will be dropped.</p>
+<p><em>Consider the following function in MATLAB:</em></p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[result1, result2] = my_sum</span><span class="p">(</span>a, b, c<span class="p">)</span>
+<span class="w">    </span><span class="n">result1</span> <span class="p">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">result2</span> <span class="p">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><em>If you call the function and assign the function call to one variable, only the first parameter will be returned. MATLAB will not return both as an array.</em></p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">out1</span> <span class="p">=</span> <span class="n">my_sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c">% MATLAB will only retrun the first value, result1</span>
+
+<span class="n">out1</span> <span class="p">=</span>
+
+     <span class="mi">3</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><em>To return multiple parameters, assign the function call to an array of variable inside <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>:</em></p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">out1</span><span class="p">,</span> <span class="n">out2</span><span class="p">]</span> <span class="p">=</span> <span class="n">my_sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c">% MATLAB will return both values</span>
+
+<span class="n">out1</span> <span class="p">=</span>
+
+     <span class="mi">3</span>
+
+
+<span class="n">out2</span> <span class="p">=</span>
+
+     <span class="mi">5</span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-outputs">
+<h3>13.4.4. Multiple Outputs<a class="headerlink" href="#multiple-outputs" title="Link to this heading">#</a></h3>
+<p>When a function definition has multiple outputs in MATLAB, all of these outputs should be defined inside the function’s body. Failure to define an output inside the function may result in errors.</p>
+<p>In the example below, <code class="docutils literal notranslate"><span class="pre">result2</span></code> is not defined inside the function’s body. This will result in an error if you try to call the function and assign the output to multiple variables using <code class="docutils literal notranslate"><span class="pre">[result1,</span> <span class="pre">result2]</span> <span class="pre">=</span> <span class="pre">my_sum(a,</span> <span class="pre">b,</span> <span class="pre">c)</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[result1, result2] = my_sum</span><span class="p">(</span>a, b, c<span class="p">)</span>
+<span class="w">    </span><span class="n">result1</span> <span class="p">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">out1</span><span class="p">,</span> <span class="n">out2</span><span class="p">]</span> <span class="p">=</span> <span class="n">my_sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">Error</span> <span class="n">using</span> <span class="n">my_sum</span>
+<span class="n">Too</span> <span class="n">many</span> <span class="n">output</span> <span class="n">arguments</span><span class="p">.</span>
+</pre></div>
+</div>
+</section>
+<section id="return-statement">
+<h3>13.4.5. <code class="docutils literal notranslate"><span class="pre">return</span></code> Statement<a class="headerlink" href="#return-statement" title="Link to this heading">#</a></h3>
+<p>Although MATLAB does not use the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword to return output parameters, this keyword can be used to terminate a function early if certain conditions are met. If any of the output arguments have not been defined when a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement is reached, you may get an error. Note that in MATLAB, the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword should not be followed by anything. It is only used to force immediate exit from the function, similar to how <code class="docutils literal notranslate"><span class="pre">break</span></code> forces immediate exit from a loop. However, <code class="docutils literal notranslate"><span class="pre">break</span></code> can only be used in a loop and cannot be used to terminate a function.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[result1, result2] = my_sum</span><span class="p">(</span>a, b, c<span class="p">)</span>
+<span class="w">    </span><span class="n">result1</span> <span class="p">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">result2</span> <span class="p">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
+    <span class="k">if</span> <span class="n">result1</span> <span class="o">&gt;</span> <span class="n">result2</span>
+        <span class="k">return</span>            <span class="c">% If result1 is greater than result2, exit the function immediately</span>
+    <span class="k">else</span>
+        <span class="n">result2</span> <span class="p">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>  <span class="c">% This line will not be executed if result1 &gt; result2</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>In the above example, if <code class="docutils literal notranslate"><span class="pre">result1</span> <span class="pre">&gt;</span> <span class="pre">result2</span></code> is true, the code will enter the if branch and run <code class="docutils literal notranslate"><span class="pre">return</span></code>. This will force immediate exit from the function, and any remaining code inside the function will be ignored.</p>
+</section>
+<section id="anonymous-functions">
+<h3>13.4.6. Anonymous Functions<a class="headerlink" href="#anonymous-functions" title="Link to this heading">#</a></h3>
+<p>Recall that lambda function can be defined in Python using the following syntax:</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">function_name</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">argument_1</span><span class="p">,</span> <span class="n">argument_2</span><span class="p">,</span> <span class="o">...</span> <span class="p">:</span> <span class="n">expression</span> 
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>MATLAB supports anonymous functions in a way that is similar to Python. To create an anonymous function in MATLAB, the following syntax can be used:</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">function_name</span> <span class="p">=</span> <span class="p">@(</span><span class="n">argument_1</span><span class="p">,</span> <span class="n">argument_2</span><span class="p">,</span> <span class="p">...)</span> <span class="n">expression</span> <span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conditional-statements">
+<h2>13.5. Conditional Statements <a id="s5"></a><a class="headerlink" href="#conditional-statements" title="Link to this heading">#</a></h2>
+<p>Conditional statements works similarly in Python and MATLAB, but there are some differences in the syntax. For example, MATLAB uses <code class="docutils literal notranslate"><span class="pre">elseif</span></code> instead of Python’s <code class="docutils literal notranslate"><span class="pre">elif</span></code>. Also, no colon <code class="docutils literal notranslate"><span class="pre">:</span></code> should be included at the end of each <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elseif</span></code>, and <code class="docutils literal notranslate"><span class="pre">else</span></code> statement. In addition, while indentation is not required in MATLAB, it is recommended for better readability. Lastly, you should use the keyword <code class="docutils literal notranslate"><span class="pre">end</span></code> to specify the end of an <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elseif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> block.</p>
+<section id="if-statements">
+<h3>13.5.1. If Statements<a class="headerlink" href="#if-statements" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+    <span class="c1"># do code block</span>
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span>
+    <span class="c">% do code block (indentation not required but recommended)</span>
+<span class="k">end</span>
+<span class="c">% subsequent code</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#006600'><strong>💡 TIP!</strong></font><br />
+When you forget to include <code>end</code> at the end of an <code>if</code> statement, MATLAB will generate an error. So, whenever you start an <code>if</code> statement, also write the <code>end</code> immediately, and then fill in between. This will help you keep track of your code when it becomes more complicated.</p>
+</div></blockquote>
+</section>
+<section id="if-else-statements">
+<h3>13.5.2. If-Else Statements<a class="headerlink" href="#if-else-statements" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+    <span class="c1"># do code block 1</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># do code block 2</span>
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span>
+    <span class="c">% do code block 1 (indentation not required but recommended)</span>
+<span class="k">else</span>
+    <span class="c">% do code block 2 (indentation not required but recommended)</span>
+<span class="k">end</span>
+<span class="c">% subsequent code</span>
+</pre></div>
+</div>
+</section>
+<section id="if-elseif-else-statements">
+<h3>13.5.3. If-Elseif-Else Statements<a class="headerlink" href="#if-elseif-else-statements" title="Link to this heading">#</a></h3>
+<p>Unlike Python, which uses <code class="docutils literal notranslate"><span class="pre">elif</span></code>, MATLAB uses <code class="docutils literal notranslate"><span class="pre">elseif</span></code> to check for other conditions.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span>
+    <span class="c1"># do code block 1</span>
+<span class="k">elif</span> <span class="n">condition_2</span><span class="p">:</span>
+    <span class="c1"># do code block 2</span>
+<span class="k">elif</span> <span class="n">condition_3</span><span class="p">:</span>
+    <span class="c1"># do code block 3</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># do code block 4</span>
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span>
+    <span class="c">% do code block 1 (indentation not required but recommended)</span>
+<span class="k">elseif</span> <span class="n">condition_2</span>
+    <span class="c">% do code block 2 (indentation not required but recommended)</span>
+<span class="k">elseif</span> <span class="n">condition_3</span>
+    <span class="c">% do code block 3 (indentation not required but recommended)</span>
+<span class="k">else</span>
+    <span class="c">% do code block 4 (indentation not required but recommended)</span>
+<span class="k">end</span>
+<span class="c">% subsequent code</span>
+</pre></div>
+</div>
+</section>
+<section id="nested-if-statements">
+<h3>13.5.4. Nested If Statements<a class="headerlink" href="#nested-if-statements" title="Link to this heading">#</a></h3>
+<p>When using nested if statements in MATLAB, each should have an <code class="docutils literal notranslate"><span class="pre">end</span></code> keyword.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span><span class="p">:</span> <span class="c1"># outer if statement </span>
+    <span class="c1"># do code block 1</span>
+    <span class="k">if</span> <span class="n">condition_2</span><span class="p">:</span> <span class="c1"># inner if statement </span>
+        <span class="c1"># do block code 2    </span>
+<span class="c1"># subsequent code</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span>
+    <span class="c">% do code block 1 (indentation not required but recommended)</span>
+    <span class="k">if</span> <span class="n">condition_2</span>
+        <span class="c">% do code block 2 (indentation not required but recommended)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="c">% subsequent code</span>
+</pre></div>
+</div>
+<p>Notice that if you omit indentation in MATLAB, the code can become very difficult to read. For example, consider the code below with and without indentation.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB (No Indentation):}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span>
+<span class="c">% do code block 1</span>
+<span class="k">if</span> <span class="n">condition_2</span>
+<span class="c">% do code block 2</span>
+<span class="k">else</span>
+<span class="c">% do code block 3</span>
+<span class="k">end</span>
+<span class="k">else</span>
+<span class="c">% do code block 4</span>
+<span class="k">end</span>
+<span class="c">% subsequent code</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB (With Indentation):}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span>
+    <span class="c">% do code block 1</span>
+    <span class="k">if</span> <span class="n">condition_2</span>
+        <span class="c">% do code block 2</span>
+    <span class="k">else</span>
+        <span class="c">% do code block 3</span>
+    <span class="k">end</span>
+<span class="k">else</span>
+    <span class="c">% do code block 4</span>
+<span class="k">end</span>
+<span class="c">% subsequent code</span>
+</pre></div>
+</div>
+</section>
+<section id="if-statements-with-logical-operators">
+<h3>13.5.5. If Statements with Logical Operators<a class="headerlink" href="#if-statements-with-logical-operators" title="Link to this heading">#</a></h3>
+<p>Similar to Python, we can use logical operators to combine multiple conditions.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span> <span class="ow">and</span> <span class="n">condition_2</span><span class="p">:</span> 
+    <span class="c1"># do code block 1</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition_1</span> <span class="o">&amp;</span> <span class="n">condition_2</span> 
+    <span class="c">% do code block 1</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Unlike Python, MATLAB does not have ternary operators.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="iteration">
+<h2>13.6. Iteration <a id="s6"></a><a class="headerlink" href="#iteration" title="Link to this heading">#</a></h2>
+<p>Iteration works similarly in Python and MATLAB, but there are some differences in the syntax. Similar to conditional statements, no colon <code class="docutils literal notranslate"><span class="pre">:</span></code> should be included at the end of the line of a <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. In addition, while indentation is not required in MATLAB, it is recommended for better readability. Lastly, you should use the keyword <code class="docutils literal notranslate"><span class="pre">end</span></code> to specify the end of a <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> block.</p>
+<p>We saw that in Python we can loop over the values of a data structure, its indexes, both the values and indexes, among others. However, iteration in MATLAB is not as flexible. In MATLAB, you can either directly iterate over the elements or iterate over the indexes and then use indexing to access individual values in the sequence.</p>
+<section id="for-loops">
+<h3>13.6.1. For Loops<a class="headerlink" href="#for-loops" title="Link to this heading">#</a></h3>
+<p>In MATLAB, there is no <code class="docutils literal notranslate"><span class="pre">in</span></code> keyword that can be used with for loops. Instead, you would use an assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span> 
+    <span class="c1"># code block to be repeated</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="n">end</span> 
+    <span class="o">%</span> <span class="n">code</span> <span class="n">block</span> <span class="n">to</span> <span class="n">be</span> <span class="n">repeated</span> <span class="p">(</span><span class="n">indentation</span> <span class="ow">not</span> <span class="n">required</span> <span class="n">but</span> <span class="n">recommended</span><span class="p">)</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>To iterate over all values in a sequence, the following syntax can be used:</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python (Iterating Over the Values):}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+    <span class="c1"># code block to be repeated, use value directly</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB (Iterating Over the Values):}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value</span> <span class="p">=</span> <span class="n">sequence</span>
+    <span class="c">% code block to be repeated, use value directly (indentation not required but recommended)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">sequence</span></code> is a vector (i.e., 1D), you can iterate over the indexes using the following syntax:</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python (Using Indexing):}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)):</span>
+    <span class="c1"># code block to be repeated, use sequence[i] for indexing</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB (Using Indexing):}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span> <span class="c">% or for i = 1:numel(sequence)</span>
+    <span class="c">% code block to be repeated, use sequence(i) for indexing (indentation not required but recommended)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+<section id="while-loops">
+<h3>13.6.2. While loops<a class="headerlink" href="#while-loops" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">condition</span><span class="p">:</span>
+    <span class="c1"># code block to be repeated</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">condition</span>
+    <span class="c">% code block to be repeated (indentation not required but recommended)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+<section id="nested-loops">
+<h3>13.6.3. Nested Loops<a class="headerlink" href="#nested-loops" title="Link to this heading">#</a></h3>
+<p>Similar to nested <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, each loop within a nested loop should have an <code class="docutils literal notranslate"><span class="pre">end</span></code> keyword.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index_1</span> <span class="p">=</span> <span class="n">sequence_1</span>
+    <span class="k">for</span> <span class="n">index_2</span> <span class="p">=</span> <span class="n">sequence_2</span>
+        <span class="c">% code block to be repeated (indentation not required but recommended)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+<section id="jump-statements-break-and-continue">
+<h3>13.6.4. Jump Statements: <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code><a class="headerlink" href="#jump-statements-break-and-continue" title="Link to this heading">#</a></h3>
+<p>Both <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code> have the same functionality in Python and MATLAB.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index_1</span> <span class="p">=</span> <span class="n">sequence_1</span>
+    <span class="k">if</span> <span class="n">condition</span>
+        <span class="k">break</span> <span class="c">% terminate the loop and skip to the subsequent code (indentation not required but recommended)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c">% subsequent code</span>
+
+<span class="k">for</span> <span class="n">index_1</span> <span class="p">=</span> <span class="n">sequence_1</span>
+    <span class="k">if</span> <span class="n">condition</span>
+        <span class="k">continue</span> <span class="c">% skip to the next iteration in the loop (indentation not required but recommended)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Unlike Python, MATLAB does not have list comprehensions.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="11_plotting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 12: Plotting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="13_linear_algebra.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 14: Linear Algebra</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-differences-between-matlab-and-python">13.1. Syntax Differences Between MATLAB and Python <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">13.1.1. Comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semicolons-to-end-lines-in-matlab">13.1.2. Semicolons to End Lines in MATLAB</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-output">13.1.3. Displaying Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation-versus-end">13.1.4. Indentation versus <code class="docutils literal notranslate"><span class="pre">end</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">13.1.5. Indexing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab-basics">13.2. MATLAB Basics <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operations">13.2.1. Arithmetic Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-of-operations">13.2.2. Order of Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometry-logarithms-and-other-operations">13.2.3. Trigonometry, Logarithms, and Other Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overflow-and-undefined-results">13.2.4. Overflow and Undefined Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-data-types">13.2.5. Basic Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">13.2.6 Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-variables">13.2.7. Managing Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-expressions-and-operators">13.2.8. Logical Expressions and Operators</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">13.3. Data Structures <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-arrays">13.3.1. Double Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-arrays">13.3.1.1. Creating Arrays</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-arrays-with-pattern">13.3.1.2. Creating Arrays with Pattern</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#array-properties">13.3.1.3. Array Properties</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">13.3.1.4. Indexing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">13.3.1.5. Slicing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#array-manipulation">13.3.1.6. Array Manipulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#array-operations">13.3.1.7. Array Operations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab-functions-on-arrays">13.3.1.8. MATLAB Functions on Arrays</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#char-arrays">13.3.2. <code class="docutils literal notranslate"><span class="pre">char</span></code> Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-arrays">13.3.3. Cell Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membership-operator">13.3.4. Membership Operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">13.4. Functions <a id="s4"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation-and-the-end-keyword">13.4.1. Indentation and the <code class="docutils literal notranslate"><span class="pre">end</span></code> Keyword</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-arguments">13.4.2. Default Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-functions">13.4.3. Calling Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-outputs">13.4.4. Multiple Outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-statement">13.4.5. <code class="docutils literal notranslate"><span class="pre">return</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anonymous-functions">13.4.6. Anonymous Functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-statements">13.5. Conditional Statements <a id="s5"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statements">13.5.1. If Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-else-statements">13.5.2. If-Else Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-elseif-else-statements">13.5.3. If-Elseif-Else Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-if-statements">13.5.4. Nested If Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statements-with-logical-operators">13.5.5. If Statements with Logical Operators</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration">13.6. Iteration <a id="s6"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops">13.6.1. For Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loops">13.6.2. While loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-loops">13.6.3. Nested Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jump-statements-break-and-continue">13.6.4. Jump Statements: <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

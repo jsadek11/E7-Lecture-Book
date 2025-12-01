@@ -1,0 +1,1190 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 14: Linear Algebra &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/13_linear_algebra';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 15: Taylor Series" href="14_taylor_series.html" />
+    <link rel="prev" title="Chapter 13: MATLAB" href="12_matlab.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_exceptions.html">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/13_linear_algebra.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/13_linear_algebra.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/13_linear_algebra.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 14: Linear Algebra</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-basics">14.1. Array Basics <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-1-d-arrays">14.1.1. Vectors (1-D Arrays)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-2-d-arrays">14.1.2. Matrices (2-D Arrays)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-array-properties">14.1.3. Basic Array Properties</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-properties">14.2. Array Properties <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinant">14.2.1. Determinant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse">14.2.2. Inverse</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identity-matrix">14.2.2.1. Identity Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-matrix">14.2.2.2. Inverse Matrix</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transpose">14.2.3. Transpose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#norm">14.2.4. Norm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-operations">14.3. Array Operations <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product">14.3.1. Dot Product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">14.3.2. Matrix Multiplication</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#systems-of-linear-equations">14.4. Systems of Linear Equations <a id="s4"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-form">14.4.1. Matrix Form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-systems-of-linear-equations">14.4.2. Solving Systems of Linear Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#square-matrices">14.4.2.1. Square Matrices</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-square-matrices">14.4.2.2. Non-square Matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rank">14.4.2.2.1. Rank</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#general-solution-square-and-non-square-matrices">14.4.2.2.2. General Solution (Square and Non-square Matrices)</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overdetermined-systems">14.4.2.3. Overdetermined Systems</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-14-linear-algebra">
+<h1>Chapter 14: Linear Algebra<a class="headerlink" href="#chapter-14-linear-algebra" title="Link to this heading">#</a></h1>
+<p>Linear algebra is undeniably one of the most essential mathematical tools across various fields and disciplines. Its significance lies in its ability to describe or approximate countless real-world phenomena through linear relationships. In finance, linear algebra aids in portfolio optimization, enabling investors to maximize returns while minimizing risk. Medical imaging relies on linear algebra to reconstruct detailed images from complex data obtained through MRI and CT scans. Signal processing harnesses linear algebra to enhance audio and image quality. In environmental science, researchers leverage linear algebra to model climate patterns and simulate ecological systems. Linear algebra even plays a pivotal role in determining the most relevant web pages in a Google search.</p>
+<p>This section provides a basic overview of some basic linear algebraic vocabulary and concepts that are important for later chapters. However, the information in this section is in no way comprehensive and should not be considered a substitute for a full linear algebra course. Rather, our goal is to focus on numerical algorithms to answer questions in linear algebra, specifically, solving a system of linear equations.</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Use Python and MATLAB tools to perform various linear algebra calculations</p></li>
+<li><p>Write a system of linear equations in matrix form</p></li>
+<li><p>Determine whether a system of linear equations has no solutions, infinite solutions, or a unique solution</p></li>
+<li><p>Select appropriate Python and MATLAB tools to solve a system of linear equations</p></li>
+</ul>
+<section id="array-basics">
+<h2>14.1. Array Basics <a id="s1"></a><a class="headerlink" href="#array-basics" title="Link to this heading">#</a></h2>
+<p>An important part of linear algebra is the symbolic language (notation). We will use the following notation conventions:</p>
+<ul class="simple">
+<li><p>A lowercase bold mathematical symbol such as <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> or <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> represents a vector (1-D array)</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> is a vector then <span class="math notranslate nohighlight">\(\boldsymbol{v_i}\)</span> is the <span class="math notranslate nohighlight">\(i^{th}\)</span> element of the vector</p></li>
+<li><p>An uppercase mathematical symbol such as <span class="math notranslate nohighlight">\({A}\)</span> or <span class="math notranslate nohighlight">\({M}\)</span> represents a matrix (2-D array)</p></li>
+<li><p>If <span class="math notranslate nohighlight">\({M}\)</span> is a matrix then <span class="math notranslate nohighlight">\(M_{i,j}\)</span> is the element in the <span class="math notranslate nohighlight">\(i^{th}\)</span> row and <span class="math notranslate nohighlight">\(j^{th}\)</span> column</p></li>
+<li><p>Two bold symbols separated by a centered dot such as  <span class="math notranslate nohighlight">\(\boldsymbol{v} \cdot \boldsymbol{w}\)</span> represents the dot product of two vectors</p></li>
+<li><p>The juxtaposition of two symbol such as <span class="math notranslate nohighlight">\(A \boldsymbol{x}\)</span> represents matrix multiplication</p></li>
+</ul>
+<section id="vectors-1-d-arrays">
+<h3>14.1.1. Vectors (1-D Arrays)<a class="headerlink" href="#vectors-1-d-arrays" title="Link to this heading">#</a></h3>
+<p>A vector is a 1-D array that can be written either horizontally in a row vector (i.e., all elements next to each other), or vertically in a column vector (i.e., all elements on top of each other).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{a} = 
+\begin{bmatrix} 
+2.1 &amp; 3.4 &amp; 9.3
+\end{bmatrix} \ \ \ \ \ \ \
+\boldsymbol{b} = 
+\begin{bmatrix} 
+2.1\\ 
+3.4\\
+9.3
+\end{bmatrix}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">]])</span> <span class="c1"># comma &#39;,&#39; inside the same square bracket &#39;[]&#39; to separate columns</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mf">3.4</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mf">9.3</span><span class="p">]])</span> <span class="c1"># separate square brackets &#39;[]&#39; for each row and a comma &#39;,&#39; between square brackets</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">]</span>  <span class="c">% comma &#39;,&#39; to separate columns (optional)</span>
+
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">;</span> <span class="mf">3.4</span><span class="p">;</span> <span class="mf">9.3</span><span class="p">]</span>  <span class="c">% semicolon &#39;;&#39; to separate rows (not optional)</span>
+</pre></div>
+</div>
+<p>If the context of a vector is ambiguous, it usually means the vector is a column vector.</p>
+</section>
+<section id="matrices-2-d-arrays">
+<h3>14.1.2. Matrices (2-D Arrays)<a class="headerlink" href="#matrices-2-d-arrays" title="Link to this heading">#</a></h3>
+<p>A matrix is an array with at least 2 rows and 2 columns. In general, an <span class="math notranslate nohighlight">\(m \times n\)</span> matrix is a rectangular table of numbers consisting of <span class="math notranslate nohighlight">\(m\)</span> rows and <span class="math notranslate nohighlight">\(n\)</span> columns.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C = 
+\begin{bmatrix} 
+2.1 &amp; 3.4 &amp; 9.3\\ 
+9.2 &amp; -2.7 &amp; 4.0
+\end{bmatrix}_{2 \times 3}  \ \ \ \ \ \ \
+D = 
+\begin{bmatrix} 
+2.1 &amp; 9.2\\ 
+3.4 &amp; -2.7\\
+9.3 &amp; 4.0
+\end{bmatrix}_{3 \times 2} 
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">9.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mf">3.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mf">9.3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">;</span> <span class="mf">9.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span>
+
+<span class="n">D</span> <span class="p">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">;</span> <span class="mf">3.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.7</span><span class="p">;</span> <span class="mf">9.3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-array-properties">
+<h3>14.1.3. Basic Array Properties<a class="headerlink" href="#basic-array-properties" title="Link to this heading">#</a></h3>
+<p>In linear algebra, array properties or attributes refer to specific characteristics associated with an array that provide essential information about its size, structure, and behavior. These attributes help in understanding and manipulating arrays in various computational contexts. Below are some of the common array properties and the syntax that can be used to obtain them in Python and MATLAB. The results below are based on the following matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C = 
+\begin{bmatrix} 
+2.1 &amp; 3.4 &amp; 9.3\\ 
+9.2 &amp; -2.7 &amp; 4.0
+\end{bmatrix}_{2 \times 3}
+\end{split}\]</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Python Example</p></th>
+<th class="head text-left"><p>Python Output</p></th>
+<th class="head text-left"><p>MATLAB Example</p></th>
+<th class="head text-left"><p>MATLAB Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Number of dimensions</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">C.ndim</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ndims(C)</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Length in each dimension</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">C.shape</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">3)</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">size(C)</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[2</span> <span class="pre">3]</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Total number of elements</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">C.size</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">numel(C)</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">C</span></code> is the array name</p>
+</section>
+</section>
+<section id="array-properties">
+<h2>14.2. Array Properties <a id="s2"></a><a class="headerlink" href="#array-properties" title="Link to this heading">#</a></h2>
+<p>In addition to the basic array properties like dimension and shape, there are other array properties essential in linear algebra. Next, we briefly introduce some of these properties and demonstrates how to obtain them using Python and MATLAB.</p>
+<section id="determinant">
+<h3>14.2.1. Determinant<a class="headerlink" href="#determinant" title="Link to this heading">#</a></h3>
+<p>The <strong>determinant</strong> is an important property that is defined only for square matrices. A <strong>square matrix</strong> is an <span class="math notranslate nohighlight">\({m} \times {m}\)</span> matrix; that is, it has the same number of rows as columns. The determinant of a square matrix <span class="math notranslate nohighlight">\(M\)</span> is denoted by <span class="math notranslate nohighlight">\(det(M)\)</span> or <span class="math notranslate nohighlight">\(|M|\)</span>. The process of calculating the determinant of a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix is simple whereas the process becomes more complex as the matrix order increases.</p>
+<p>The determinant of a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix can be computed as follows:</p>
+<ol class="arabic simple">
+<li><p>Multiply the top-left element (<span class="math notranslate nohighlight">\(\color{red}a\)</span>) by the bottom-right element (<span class="math notranslate nohighlight">\(\color{red}d\)</span>).</p></li>
+<li><p>Subtract the product of the top-right element (<span class="math notranslate nohighlight">\(\color{blue}b\)</span>) and the bottom-left element (<span class="math notranslate nohighlight">\(\color{blue}c\)</span>) from the result obtained in step 1.</p></li>
+</ol>
+<br>
+<center><figure>
+  <img src="https://www.chilimath.com/wp-content/uploads/2018/12/animated-gif-determinant-of-2x2-matrix.gif
+" style="width:35%">
+    <figcaption style="text-align:center"><strong>Determinant of a matrix:</strong> <a href="https://www.chilimath.com/lessons/advanced-algebra/determinant-2x2-matrix/">https://www.chilimath.com/</a></figcaption>   
+</figure></center>
+<br>
+<p>Calculating the determinant of a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix is a bit more involved than for a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix. It involves breaking the <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix down into smaller <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrices. The process involves finding the determinants of these smaller <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrices and performing multiplications and subtractions according to a specific pattern.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray*}
+|M| = \begin{bmatrix}
+a &amp; b &amp; c \\
+d &amp; e &amp; f \\
+g &amp; h &amp; i \\
+\end{bmatrix} &amp; = &amp; a\begin{bmatrix}
+\Box &amp;\Box  &amp;\Box  \\
+\Box &amp; e &amp; f \\
+\Box &amp; h &amp; i \\
+\end{bmatrix} - b\begin{bmatrix}
+\Box &amp;\Box  &amp;\Box  \\
+d &amp; \Box &amp; f \\
+g &amp; \Box &amp; i \\
+\end{bmatrix}+c\begin{bmatrix}
+\Box &amp;\Box  &amp;\Box  \\
+d &amp; e &amp; \Box \\
+g &amp; h &amp; \Box \\
+\end{bmatrix} \\
+&amp;&amp;\\
+&amp; = &amp; a\begin{bmatrix}
+e &amp; f \\
+h &amp; i \\
+\end{bmatrix} - b\begin{bmatrix}
+d &amp; f \\
+g &amp; i \\
+\end{bmatrix}+c\begin{bmatrix}
+d &amp; e \\
+g &amp; h \\
+\end{bmatrix} \\ 
+&amp;&amp;\\
+&amp; = &amp; a(ei-fh) - b(di-fg) + c(dh-eg)
+\end{eqnarray*}\end{split}\]</div>
+<p>We can use a similar approach to calculate the determinant for matrices with higher dimensions, but it is much easier to calculate it using Python or MATLAB.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>  <span class="c1"># returns the determinant of matrix M</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">det</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>            <span class="c">% returns the determinant of matrix M</span>
+</pre></div>
+</div>
+<p>The determinant helps us understand key properties of a matrix, especially when dealing with systems of linear equations. For example, it can tell us whether a system has a unique solution or not. We will explore the application of the determinant in more detail later in this chapter.</p>
+</section>
+<section id="inverse">
+<h3>14.2.2. Inverse<a class="headerlink" href="#inverse" title="Link to this heading">#</a></h3>
+<p>The <strong>inverse</strong> of a square matrix is another matrix of the same size that, when multiplied with the original matrix, results in the identity matrix. The inverse is also only defined for square matrices. The inverse of a matrix is analogous to the inverse of real numbers. For example:</p>
+<div class="math notranslate nohighlight">
+\[\text{The inverse of } 3 \text{ is } 3^{-1} \text{ because } 3 \times 3^{-1} = 1\]</div>
+<p>Likewise:</p>
+<div class="math notranslate nohighlight">
+\[\text{The inverse of matrix } M \text{ is another matrix of the same shape } M^{-1} \text{, where } M \times M^{-1} = I\]</div>
+<p>where <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix.</p>
+<section id="identity-matrix">
+<h4>14.2.2.1. Identity Matrix<a class="headerlink" href="#identity-matrix" title="Link to this heading">#</a></h4>
+<p>The <strong>identity matrix</strong> is a square matrix with ones on the diagonal and zeros elsewhere. The identity matrix is usually denoted by <span class="math notranslate nohighlight">\(I\)</span>, and is analogous to the real number identity, 1. For any matrix <span class="math notranslate nohighlight">\(M\)</span>, multiplying it by the identity matrix <span class="math notranslate nohighlight">\(I\)</span> of compatible size produces the same matrix <span class="math notranslate nohighlight">\(M\)</span> (refer to section <a class="reference internal" href="#s3"><span class="xref myst">3.2. Matrix Multiplication</span></a>).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+\mathbf{\color{teal}1}   &amp; 0    &amp; \dots &amp; 0 \\
+                     0   &amp; \mathbf{\color{teal}1}   &amp; \dots &amp; 0 \\
+                  \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+                     0   &amp; 0   &amp; ... &amp; \mathbf{\color{teal}1}
+\end{bmatrix}\end{split}\]</div>
+<p>For any <span class="math notranslate nohighlight">\(m \times n\)</span> matrix <span class="math notranslate nohighlight">\(M\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[I_{m \times m} M_{m \times n} = M_{m \times n}\]</div>
+<div class="math notranslate nohighlight">
+\[M_{m \times n} I_{n \times n} = M_{m \times n}\]</div>
+<p>You can create an identity matrix in both Python and MATLAB with the following methods:</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>       <span class="c1"># returns an m x m identity matrix</span>
+<span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>  <span class="c1"># returns an m x m identity matrix</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">eye</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>          <span class="c">% returns an m x m identity matrix</span>
+</pre></div>
+</div>
+</section>
+<section id="inverse-matrix">
+<h4>14.2.2.2. Inverse Matrix<a class="headerlink" href="#inverse-matrix" title="Link to this heading">#</a></h4>
+<p>Just like 0 has no inverse, not all matrices have inverses. A square matrix <span class="math notranslate nohighlight">\(M\)</span> has an inverse, denoted <span class="math notranslate nohighlight">\(M^{-1}\)</span>, if and only if its determinant is nonzero: <span class="math notranslate nohighlight">\(|M| \neq 0\)</span>. In this case, the matrix is said to be <strong>invertible</strong> or <strong>non-singular</strong>. Otherwise, if <span class="math notranslate nohighlight">\(|M| = 0\)</span>, the matrix does not have an inverse and is said to be <strong>singular</strong>. If it exists, the inverse of a matrix is <em>unique</em>; that is, for an invertible matrix, there is only one inverse.</p>
+<p>The inverse of a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix can be computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+M^{-1} = \begin{bmatrix}
+a &amp; b \\
+c &amp; d\\
+\end{bmatrix}^{-1} = \frac{1}{|M|}\begin{bmatrix}
+d &amp; -b \\
+-c &amp; a\\
+\end{bmatrix}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(|M|\)</span> is the determinant of the matrix.</p>
+<p>For larger matrices, computing the inverse analytically is more complex, but Python and MATLAB provide straightforward methods for this.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>   <span class="c1"># returns the inverse of matrix M</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">inv</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>             <span class="c">% returns the inverse of matrix M</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>As mentioned earlier, not all matrices have inverses. For a matrix to have an inverse, first, it must be a square matrix (having the same number of rows and columns) and second, it should have a nonzero determinant. A matrix that is close to being singular (i.e., the determinant is close to 0) is called <strong>ill-conditioned</strong>. While ill-conditioned matrices have inverses, they can cause numerical issues similar to dividing by a very small number, leading to overflow, underflow, or significant round-off errors.</p>
+</section>
+</section>
+<section id="transpose">
+<h3>14.2.3. Transpose<a class="headerlink" href="#transpose" title="Link to this heading">#</a></h3>
+<p>The <strong>transpose</strong> of a matrix is a reversal of its rows with its columns. The transpose is denoted by a superscript <span class="math notranslate nohighlight">\(^T\)</span> such as <span class="math notranslate nohighlight">\(M^T\)</span> is the transpose of matrix <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<p><strong>Example:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C = 
+\begin{bmatrix} 
+2.1 &amp; 3.4 &amp; 9.3\\ 
+9.2 &amp; -2.7 &amp; 4.0
+\end{bmatrix}_{2 \times 3}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C^T = 
+\begin{bmatrix} 
+2.1 &amp; 9.2\\ 
+3.4 &amp; -2.7\\
+9.3 &amp; 4.0
+\end{bmatrix}_{3 \times 2} 
+\end{split}\]</div>
+<p>In general:</p>
+<div class="math notranslate nohighlight">
+\[ 
+M^T(j, i) = M(i, j)
+\]</div>
+<p>The transpose of a matrix can be obtained in Python and MATLAB using different ways.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>  <span class="c1"># using np.transpose() function</span>
+<span class="n">M</span><span class="o">.</span><span class="n">T</span>              <span class="c1"># using the .T attribute</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">transpose</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>     <span class="c">% using transpose() function</span>
+<span class="n">A</span><span class="o">&#39;</span>               <span class="c">% using the &#39; operator</span>
+</pre></div>
+</div>
+</section>
+<section id="norm">
+<h3>14.2.4. Norm<a class="headerlink" href="#norm" title="Link to this heading">#</a></h3>
+<p>The <strong>norm</strong> of a vector or matrix, denoted <span class="math notranslate nohighlight">\(\Vert M \Vert\)</span>,  is a measure of its size or magnitude. It is a scalar value that quantifies how large the array is in some sense. We will next focus on the norm of a vector.</p>
+<p>There are many ways of defining the length of a vector depending on the distance formula that is used. Consider the following vector:</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{v} = 
+\begin{bmatrix} 
+2.1 &amp; 3.4 &amp; 9.3
+\end{bmatrix}
+\]</div>
+<p>The length of <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> can be obtained as:
+$<span class="math notranslate nohighlight">\(\Vert \boldsymbol{v} \Vert_{2} = \sqrt{2.1^2 + 3.4^2 + 9.3^2} \approx 10.122\)</span>$</p>
+<p>This is known as the <strong><span class="math notranslate nohighlight">\(L_2\)</span> norm</strong> or Euclidean norm. In general, the <strong><span class="math notranslate nohighlight">\(L_2\)</span> norm</strong> of a vector <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\Vert \boldsymbol{v} \Vert_{2} = \left(\sum_i \left|v_{i}\right|^2\right)^{1/2}\]</div>
+<p>There are other definitions for the norm. One such definition is the <strong><span class="math notranslate nohighlight">\(L_1\)</span> norm</strong>, also known as the Manhattan norm. The <span class="math notranslate nohighlight">\(L_1\)</span> norm of a vector <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\Vert \boldsymbol{v} \Vert_{1} = \sum_i \left|v_{i}\right|\]</div>
+<p>In general, the <strong>p-norm</strong>, <span class="math notranslate nohighlight">\(L_p\)</span> with <span class="math notranslate nohighlight">\(p \geq 1\)</span>, of a vector <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\Vert \boldsymbol{v} \Vert_{p} = \left(\sum_i \left|v_{i}\right|^p\right)^{1/p}\]</div>
+<p>Note that the <strong><span class="math notranslate nohighlight">\(L_\infty\)</span> norm</strong> is equal to the maximum absolute value of the elements in <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span>.</p>
+<p>The norm can be obtained in Python and MATLAB, but there are differences.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>  <span class="c1"># returns the 2-norm of vector v (square root of the sum of the square of all elements)</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>            <span class="c">% returns the 2-norm of vector v (square root of the sum of the square of all elements)</span>
+<span class="nb">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>         <span class="c">% returns the 1-norm of vector v (sum of the absolute value of all elements)</span>
+<span class="nb">norm</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">Inf</span><span class="p">)</span>       <span class="c">% returns the maximum absolute value of vector v</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Similar to MATLAB, <code>np.linalg.norm()</code> takes optional arguments to control the order of the norm. However, the order argument behavior differs based on whether the input is a row or column vector.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="array-operations">
+<h2>14.3. Array Operations <a id="s3"></a><a class="headerlink" href="#array-operations" title="Link to this heading">#</a></h2>
+<p>In previous sections, we have seen that basic arithmetic operations can be applied to arrays. Specifically, if we have two <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> objects in Python of the same shape, <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">B</span></code> takes every element of <span class="math notranslate nohighlight">\(A\)</span> and multiplies it by the corresponding element of <span class="math notranslate nohighlight">\(B\)</span> in the same index. This is known as element-by-element multiplication, where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> should be arrays of the same shape. However, this is <em>different</em> from that standard matrix multiplication in linear algebra. Below we introduce the dot product of two vectors and then discuss matrix multiplication.</p>
+<section id="dot-product">
+<h3>14.3.1. Dot Product<a class="headerlink" href="#dot-product" title="Link to this heading">#</a></h3>
+<p>The dot product of two vectors <span class="math notranslate nohighlight">\(\boldsymbol{v} = [v_1, v_2, \dots, v_n]\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{w} = [w_1, w_2,\dots, w_n]\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[ {\displaystyle \boldsymbol{v} \cdot \boldsymbol{w} =\sum _{i=1}^{n}{v}_{i}{w}_{i}={v}_{1}{w}_{1}+{v}_{2}{w}_{2}+\cdots +{v}_{n}{w}_{n}}\]</div>
+<p>The dot product between two vectors can be computed in Python and MATLAB as follows:</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>     <span class="c1"># dot product using the np.dot() function</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>        <span class="c">% dot product using the dot() function</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Geometrically, the dot product of two vectors is given by:</p>
+<div class="math notranslate nohighlight">
+\[ \boldsymbol{v} \cdot \boldsymbol{w} = \Vert \boldsymbol{v} \Vert \Vert \boldsymbol{w} \Vert \cos(\theta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Vert \boldsymbol{v} \Vert\)</span> and <span class="math notranslate nohighlight">\(\Vert \boldsymbol{w} \Vert\)</span> are the <strong><span class="math notranslate nohighlight">\(L_2\)</span> norms</strong> (i.e., lengths) of <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span>, respectively, and <span class="math notranslate nohighlight">\(\theta\)</span> is the angle between the two vectors.</p>
+</section>
+<section id="matrix-multiplication">
+<h3>14.3.2. Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Link to this heading">#</a></h3>
+<p>Matrix multiplication between two matrices, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, is only defined when <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\({m} \times {n}\)</span> matrix and <span class="math notranslate nohighlight">\(B\)</span> is a <span class="math notranslate nohighlight">\({n} \times {p}\)</span> matrix. That is, the number or columns in <span class="math notranslate nohighlight">\(A\)</span> must equal the number of rows in <span class="math notranslate nohighlight">\(B\)</span>. The result of <span class="math notranslate nohighlight">\(A \times B\)</span> is a matrix <span class="math notranslate nohighlight">\(C\)</span> that is <span class="math notranslate nohighlight">\(m \times p\)</span>.</p>
+<br>
+<center><figure>
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vS9x1GcveTWaBX65SvjzVFCzNAd93_z2O7bYIZ0jnbvSiGN3SVomnK9RWl606LpfbrrlOtViWC4aucV/pub?w=3204&h=1951
+" style="width:35%">
+    <figcaption style="text-align:center"><strong> <br> Matrix multiplication requirements</strong></figcaption>   
+</figure></center>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> satisfy the above condition, then <span class="math notranslate nohighlight">\(C = A \times B\)</span> can be obtained as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+C(i, j) = \sum_{k=1}^n A(i, k)B(k,j)
+\]</div>
+<p>For each row in the first matrix, take the dot product with each column in the second matrix. Place the results onto the corresponding row in a new matrix:</p>
+<div class="math notranslate nohighlight">
+\[C(i, j) = (\text{Row } i \text{ of matrix } A) \cdot (\text{Column } j \text{ of matrix } B)\]</div>
+<center><figure>
+  <img src="https://notesbylex.com/_media/matrix-multiplication.gif
+" style="width:75%">
+    <figcaption style="text-align:center"><strong> <br> Matrix multiplication procedure</strong> <a href="https://notesbylex.com/matrix-multiplication">https://notesbylex.com/</a> </figcaption>   
+</figure></center>
+<p>Both matrix multiplication and element-wise multiplication can be performed in Python and MATLAB, but the syntax differs. Specifically, <code class="docutils literal notranslate"><span class="pre">*</span></code> performs element-wise multiplication in Python, whereas it performs matrix multiplication in MATLAB. To perform matrix multiplication on <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> in Python, the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> operator or the <code class="docutils literal notranslate"><span class="pre">np.dot()</span></code> function can be used.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="c1"># matrix multiplication using the np.dot() function</span>
+<span class="n">A</span> <span class="o">@</span> <span class="n">B</span>        <span class="c1"># matrix multiplication using the @ operator</span>
+
+<span class="n">A</span> <span class="o">*</span> <span class="n">B</span>        <span class="c1"># element-wise multiplication using the * operator</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">*</span> <span class="n">B</span>        <span class="c">% matrix multiplication using the * operator</span>
+
+<span class="n">A</span> <span class="o">.*</span> <span class="n">B</span>       <span class="c">% element-wise multiplication using the .* operator</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="systems-of-linear-equations">
+<h2>14.4. Systems of Linear Equations <a id="s4"></a><a class="headerlink" href="#systems-of-linear-equations" title="Link to this heading">#</a></h2>
+<section id="matrix-form">
+<h3>14.4.1. Matrix Form<a class="headerlink" href="#matrix-form" title="Link to this heading">#</a></h3>
+<p>A <strong>linear equation</strong> is an equality of the form <span class="math notranslate nohighlight">\(\sum_{i = 1}^{n} (a_i x_i) = b\)</span> where <span class="math notranslate nohighlight">\(a_i\)</span> are scalars, <span class="math notranslate nohighlight">\(x_i\)</span> are unknown variables, and <span class="math notranslate nohighlight">\(b\)</span> is a scalar.</p>
+<p>Examples of linear equations:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(3x_1 + 4x_2 + 5x_3 = 3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(-x_1 + x_2 = 0\)</span></p></li>
+</ul>
+<p>Examples of nonlinear equations:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(3x_1^2 + 4x_2 + 5x_3 = 3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_1x_2 + x_3 = 5\)</span></p></li>
+</ul>
+<p>A <strong>system of linear equations</strong> is a set of linear equations that share the same variables. Consider the following system of linear equations:</p>
+<p>\begin{eqnarray*}
+\begin{array}{rcrcccccrcc}
+x_1 &amp;+&amp;  x_2   &amp;=&amp; 5\
+x_1 &amp;+&amp;  2 x_2 &amp;=&amp; 8
+\end{array}
+\end{eqnarray*}</p>
+<p>The <strong>matrix form</strong> of a system of linear equations is <strong><span class="math notranslate nohighlight">\(A\boldsymbol{x} = \boldsymbol{b}\)</span></strong>, where <strong><span class="math notranslate nohighlight">\(A\)</span></strong> is called the coefficient matrix, <strong><span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span></strong> is the unknowns or solution vector, and <strong><span class="math notranslate nohighlight">\(\boldsymbol{b}\)</span></strong> is the constant vector.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; 2 \\
+\end{bmatrix}\left[\begin{array}{c} x_1 \\x_2  \end{array}\right] =
+\left[\begin{array}{c} 5 \\8 \end{array}\right]\end{split}\]</div>
+<p>If you carry out the matrix multiplication, you will see that you arrive back at the original system of equations.</p>
+<p>The general form of such a system with <span class="math notranslate nohighlight">\(m\)</span>  equations and <span class="math notranslate nohighlight">\(n\)</span> unknowns is given by the following:</p>
+<p>\begin{eqnarray*}
+\begin{array}{rcrcccccrcc}
+a_{1,1} x_1 &amp;+&amp; a_{1,2} x_2 &amp;+&amp; {\ldots}&amp; +&amp; a_{1,n-1} x_{n-1} &amp;+&amp;a_{1,n} x_n &amp;=&amp; b_1\
+a_{2,1} x_1 &amp;+&amp; a_{2,2} x_2 &amp;+&amp;{\ldots}&amp; +&amp; a_{2,n-1} x_{n-1} &amp;+&amp; a_{2,n} x_n &amp;=&amp; b_2 \
+&amp;&amp;&amp;&amp;{\ldots} &amp;&amp;{\ldots}&amp;&amp;&amp;&amp; \
+a_{m-1,1}x_1 &amp;+&amp; a_{m-1,2}x_2&amp;+ &amp;{\ldots}&amp; +&amp; a_{m-1,n-1} x_{n-1} &amp;+&amp; a_{m-1,n} x_n &amp;=&amp; b_{m-1}\
+a_{m,1} x_1 &amp;+&amp; a_{m,2}x_2 &amp;+ &amp;{\ldots}&amp; +&amp; a_{m,n-1} x_{n-1} &amp;+&amp; a_{m,n} x_n &amp;=&amp; b_{m}
+\end{array}
+\end{eqnarray*}</p>
+<p>which has the following matrix form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+a_{1,1} &amp; a_{1,2} &amp; ... &amp; a_{1,n}\\
+a_{2,1} &amp; a_{2,2} &amp; ... &amp; a_{2,n}\\
+... &amp; ... &amp; ... &amp; ... \\
+a_{m,1} &amp; a_{m,2} &amp; ... &amp; a_{m,n}
+\end{bmatrix}\left[\begin{array}{c} x_1 \\x_2 \\ ... \\x_n \end{array}\right] =
+\left[\begin{array}{c} b_1 \\b_2 \\ ... \\b_m \end{array}\right]\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_{i,j}\)</span> and <span class="math notranslate nohighlight">\(b_i\)</span> are real numbers, <span class="math notranslate nohighlight">\(A\)</span> is a <span class="math notranslate nohighlight">\({m} \times {n}\)</span> matrix, and <span class="math notranslate nohighlight">\(A(i,j) = a_{i,j}\)</span>.</p>
+<p>Note that the number of rows always equals the number of equations so the vertical height of the coefficient matrix <strong><span class="math notranslate nohighlight">\(A\)</span></strong> always equals the length of the constant vector <strong><span class="math notranslate nohighlight">\(\boldsymbol{b}\)</span></strong>. Likewise, the horizontal length of the matrix (number of columns) equals the length of the unknowns vector <strong><span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span></strong>.</p>
+</section>
+<section id="solving-systems-of-linear-equations">
+<h3>14.4.2. Solving Systems of Linear Equations<a class="headerlink" href="#solving-systems-of-linear-equations" title="Link to this heading">#</a></h3>
+<p>While solving a system with two equations and two unknowns can be straightforward, solving linear systems with more equations and unknowns can become quite tedious. We will learn how to use Python and MATLAB to solve systems of linear equations.</p>
+<p>Consider a system of <span class="math notranslate nohighlight">\(m\)</span> linear equations and <span class="math notranslate nohighlight">\(n\)</span> unknowns written in matrix form, <span class="math notranslate nohighlight">\(A\boldsymbol{x}=\boldsymbol{b}\)</span>. Depending on the values of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{b}\)</span>, there are three possibilities for <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>:</p>
+<ol class="arabic simple">
+<li><p>No solution exists for <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span></p></li>
+<li><p>There is an infinite number of solutions for <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span></p></li>
+<li><p>There is one, unique solution for <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span></p></li>
+</ol>
+<section id="square-matrices">
+<h4>14.4.2.1. Square Matrices<a class="headerlink" href="#square-matrices" title="Link to this heading">#</a></h4>
+<p>The discussion below only applies when <span class="math notranslate nohighlight">\(m = n\)</span>, that is, the number of equations is equal to the number of unknowns and <span class="math notranslate nohighlight">\(A\)</span> is a square matrix. If <span class="math notranslate nohighlight">\(A\)</span> is a square matrix, we can solve for the unknowns by multiplying each side of the equation by <span class="math notranslate nohighlight">\(A^{-1}\)</span>. This results in:</p>
+<div class="math notranslate nohighlight">
+\[A^{-1}A\boldsymbol{x} = A^{-1}\boldsymbol{b}\rightarrow I\boldsymbol{x} = A^{-1}\boldsymbol{b}\rightarrow \boldsymbol{x} = A^{-1}\boldsymbol{b}\]</div>
+<p>However, this requires that <span class="math notranslate nohighlight">\(A\)</span> be an invertible matrix, which is not always the case.</p>
+<p>If <span class="math notranslate nohighlight">\(|A| = 0\)</span>, then <span class="math notranslate nohighlight">\(A\)</span> is said to be singular and it does not have an inverse. In this case, the system does not have a unique solution (it either has infinitely many solutions or no solutions). It is not possible to conclude whether the system has infinitely many solutions or no solutions solely based on the determinant. However, if <span class="math notranslate nohighlight">\(|A| \neq 0\)</span>, then <span class="math notranslate nohighlight">\(A\)</span> is invertible. Since the inverse of a matrix is unique, then <span class="math notranslate nohighlight">\(\boldsymbol{x} = A^{-1}\boldsymbol{b}\)</span> gives the unique solution to the system of equations.</p>
+<p>In Python and MATLAB, we can obtain the inverse of matrix <span class="math notranslate nohighlight">\(A\)</span> and perform matrix multiplication to solve a system of linear equations. In addition, Python has the <code class="docutils literal notranslate"><span class="pre">np.linalg.solve()</span></code> function and MATLAB has the <code class="docutils literal notranslate"><span class="pre">\</span></code> operator, both of which can also be used to solve a system of linear equations without explicitly computing the inverse.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># Using matrix inversion (or x = np.linalg.inv(A) @ b) (for square matrices only)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>       <span class="c1"># Using LU Decomposition (for square matrices only)</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">*</span> <span class="n">b</span>                  <span class="c">% Using matrix inversion (for square matrices only)</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span>                       <span class="c">% Using backslash operator. Note that this is NOT the same as the division operator /</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+Do not confuse the backslash operator <code class="docutils literal notranslate"><span class="pre">\</span></code>, which is used to solve a system of linear equations in MATLAB, with the forward slash operator <code>/</code>, which is the division operator. The illustration below may help you remember the difference. Assume a person is walking the same direction we write in English, from left to right. If the person leans backward, they look like a backslash. If the person leans forward, they look like a forward slash.</p>
+</div></blockquote>
+<center><figure>
+  <img src="https://www.epm.org/static/uploads/images/blog/backslash-forward-flash-illustration.png
+" style="width:45%">
+    <figcaption style="text-align:center"><strong>Back vs. forward slash:</strong> <a href="https://www.epm.org/resources/2014/Nov/21/backslashes-vs-forward-slashes/">https://www.epm.org/</a></figcaption>   
+</figure></center>
+</section>
+<section id="non-square-matrices">
+<h4>14.4.2.2. Non-square Matrices<a class="headerlink" href="#non-square-matrices" title="Link to this heading">#</a></h4>
+<p>The inverse is only defined for square matrices, that is, when the number of unknowns is equal to the number of equations. However, it’s rare that you have exactly the same number of equations as unknowns. In general, to determine whether a system of linear equations has no solution, infinite solutions, or a unique solution, it is helpful to evaluate the rank.</p>
+<section id="rank">
+<h5>14.4.2.2.1. Rank<a class="headerlink" href="#rank" title="Link to this heading">#</a></h5>
+<p>The rank is a property of matrices that indicates the number of linearly independent columns or rows. It can be shown that the number of linearly independent rows is always equal to the number of linearly independent columns for any matrix. So let’s focus our attention on the rows for now. Consider the following matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+M = 
+\begin{bmatrix} 
+1 &amp; -2\\ 
+2 &amp; -1\\
+3 &amp; -3
+\end{bmatrix}_{3 \times 2} 
+\end{split}\]</div>
+<p>It should be evident that the third row can be written as the sum of the first two rows, and thus, it is “redundant”. Because only two rows out of the three are considered linearly independent, the rank of the above matrix is 2: <span class="math notranslate nohighlight">\(rank(M) = 2\)</span></p>
+<p>There are mathematical procedures to obtain the rank of a matrix, such as Gaussian elimination. However, this is beyond the scope of our course, so we will focus on obtaining the rank using Python and MATLAB.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{midnightblue}{\text{Python:}}}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>  <span class="c1"># returns the rank of matrix M</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">rank</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>                   <span class="c">% returns the rank of matrix M</span>
+</pre></div>
+</div>
+</section>
+<section id="general-solution-square-and-non-square-matrices">
+<h5>14.4.2.2.2. General Solution (Square and Non-square Matrices)<a class="headerlink" href="#general-solution-square-and-non-square-matrices" title="Link to this heading">#</a></h5>
+<p>To determine the status of the linear system, we will evaluate and compare <span class="math notranslate nohighlight">\({rank}([A,b])\)</span> and <span class="math notranslate nohighlight">\({rank}(A)\)</span>.</p>
+<ol class="arabic simple">
+<li><p>If <span class="math notranslate nohighlight">\({rank}([A,b]) = {rank}(A) + 1 \rightarrow\)</span> No solution</p></li>
+<li><p>If <span class="math notranslate nohighlight">\({rank}([A, b]) = {rank}(A)\)</span> and <span class="math notranslate nohighlight">\({rank}(A)&lt; n \rightarrow\)</span> Infinite number of solutions</p></li>
+<li><p>If <span class="math notranslate nohighlight">\({rank}([A,b]) = {rank}(A)\)</span> and <span class="math notranslate nohighlight">\({rank}(A) = n \rightarrow\)</span> Unique solution</p></li>
+</ol>
+<p>When the coefficient matrix is non-square, we cannot compute its inverse to solve the system of linear equations. In this case, we can use the backslash operator in MATLAB <code class="docutils literal notranslate"><span class="pre">\</span></code> to solve the system of linear equations. Note that <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">\</span> <span class="pre">B</span></code> works for square and non-square matrices and is more efficient than <code class="docutils literal notranslate"><span class="pre">inv(A)</span> <span class="pre">*</span> <span class="pre">b</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">*</span> <span class="n">b</span>                  <span class="c">% Using matrix inversion (A has to be square)</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span>                       <span class="c">% Using backslash operator; more efficient (A can be square or non-square)</span>
+</pre></div>
+</div>
+<p>Using the backslash operator is the recommended method in MATLAB, as it is the most efficient and numerically stable way.</p>
+</section>
+</section>
+<section id="overdetermined-systems">
+<h4>14.4.2.3. Overdetermined Systems<a class="headerlink" href="#overdetermined-systems" title="Link to this heading">#</a></h4>
+<p>An overdetermined system is a system of equations where there are more equations than unknown variables, which is typically the case in many real-world applications. Consider the following system of linear equations:</p>
+<p>\begin{eqnarray*}
+\begin{array}{rcrcccccrcc}
+2 x_1 &amp;+&amp;  3 x_2   &amp;=&amp; 5\
+4 x_1 &amp;+&amp;  2 x_2 &amp;=&amp; 8\
+3 x_1 &amp;-&amp;  2 x_2 &amp;=&amp; 1\
+\end{array}
+\end{eqnarray*}</p>
+<p>The matrix form <strong><span class="math notranslate nohighlight">\(A\boldsymbol{x} = \boldsymbol{b}\)</span></strong> is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+2 &amp; 3 \\
+4 &amp; 2 \\
+3 &amp; -2 \\
+\end{bmatrix}\left[\begin{array}{c} x_1 \\ x_2 \end{array}\right] =
+\left[\begin{array}{c} 5 \\8 \\1\end{array}\right]\end{split}\]</div>
+<p>This system has two unknowns (<span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>) but three equations. It’s overdetermined because there are more equations than unknowns.</p>
+<p>Generally, overdetermined systems do not have an exact solution because the additional equations introduce conflicting constraints. Specifically, the above system has <span class="math notranslate nohighlight">\(rank(A)=2\)</span> and <span class="math notranslate nohighlight">\(rank([A,b])=3\)</span>, which according to what we discussed earlier, implies that the system has no solution. This means that there does not exist any values for <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> that would simultaneously  satisfy all three equations.</p>
+<p>Instead of finding an exact solution, we typically seek a solution that minimizes the error between the equations. This is often achieved through methods like the least squares method. This is commonly used in regression, where we want to find the best-fitting curve through a set of data points.</p>
+<p>Mathematically, the solution that minimizes the error can be determined using the following equation:
+$<span class="math notranslate nohighlight">\(\boldsymbol{x} = \left( A^TA\right)^{-1}A^T \boldsymbol{b}\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(\left( A^TA\right)^{-1}A^T\)</span> is known as the pseudo-inverse of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>This solution can be obtained in MATLAB using three different ways. However, using the backslash operator is the recommended approach, as it is the most efficient and numerically stable way to solve overdetermined systems using the least squares method.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{\color{orange}{\text{MATLAB:}}}\)</span></p>
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">inv</span><span class="p">(</span><span class="n">A</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">b</span>        <span class="c">% Using matrix inversion. Not recommended.</span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">pinv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">*</span> <span class="n">b</span>                 <span class="c">% Using Moore-Penrose pseudoinverse. Generally more stable.</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span>                       <span class="c">% Using backslash operator. Recommended approach.</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="12_matlab.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 13: MATLAB</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="14_taylor_series.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 15: Taylor Series</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-basics">14.1. Array Basics <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-1-d-arrays">14.1.1. Vectors (1-D Arrays)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-2-d-arrays">14.1.2. Matrices (2-D Arrays)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-array-properties">14.1.3. Basic Array Properties</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-properties">14.2. Array Properties <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinant">14.2.1. Determinant</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse">14.2.2. Inverse</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identity-matrix">14.2.2.1. Identity Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-matrix">14.2.2.2. Inverse Matrix</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transpose">14.2.3. Transpose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#norm">14.2.4. Norm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-operations">14.3. Array Operations <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product">14.3.1. Dot Product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">14.3.2. Matrix Multiplication</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#systems-of-linear-equations">14.4. Systems of Linear Equations <a id="s4"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-form">14.4.1. Matrix Form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-systems-of-linear-equations">14.4.2. Solving Systems of Linear Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#square-matrices">14.4.2.1. Square Matrices</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-square-matrices">14.4.2.2. Non-square Matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#rank">14.4.2.2.1. Rank</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#general-solution-square-and-non-square-matrices">14.4.2.2.2. General Solution (Square and Non-square Matrices)</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overdetermined-systems">14.4.2.3. Overdetermined Systems</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

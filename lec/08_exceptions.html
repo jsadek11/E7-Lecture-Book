@@ -1,0 +1,998 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter 9: Errors and Exceptions &#8212; E7 Lecture Books</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lec/08_exceptions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 10: Number Representation" href="09_number_rep.html" />
+    <link rel="prev" title="Chapter 8: Recursion" href="07_recursion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">E7 Lecture Books</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Programming and Numerical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_introduction.html">Chapter 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_basics.html">Chapter 2: Python Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_struct.html">Chapter 3: Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_arrays.html">Chapter 4: NumPy Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_functions.html">Chapter 5: Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_conditionals.html">Chapter 6: Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_iteration.html">Chapter 7: Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_recursion.html">Chapter 8: Recursion</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 9: Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_number_rep.html">Chapter 10: Number Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_files.html">Chapter 11: File Input and Output Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_plotting.html">Chapter 12: Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_matlab.html">Chapter 13: MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_linear_algebra.html">Chapter 14: Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_taylor_series.html">Chapter 15: Taylor Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_root_finding.html">Chapter 16: Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_differentiation.html">Chapter 17: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_integration.html">Chapter 18: Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_ode.html">Chapter 19: Ordinary Differential Equations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jsadek11/E7-Lecture-Book/blob/master/lec/08_exceptions.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsadek11/E7-Lecture-Book/issues/new?title=Issue%20on%20page%20%2Flec/08_exceptions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lec/08_exceptions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 9: Errors and Exceptions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-types">9.1. Error Types <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-errors">9.1.1. Syntax Errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-errors-exceptions">9.1.2. Runtime Errors (Exceptions)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-errors">9.1.3. Logical Errors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exceptions">9.2. Exceptions <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uss-yorktown">9.2.1. USS Yorktown</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raising-exceptions">9.2.2. Raising Exceptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-exceptions">9.2.3. Handling Exceptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-multiple-exceptions">9.2.4. Handling Multiple Exceptions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-reading">9.3. Additional Reading <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-assert-statements">9.3.1. Using <code class="docutils literal notranslate"><span class="pre">assert</span></code> Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging">9.3.2. Debugging</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-print">9.3.2.1. Using <code class="docutils literal notranslate"><span class="pre">print()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-debugging">9.3.2.2. Interactive Debugging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-9-errors-and-exceptions">
+<h1>Chapter 9: Errors and Exceptions<a class="headerlink" href="#chapter-9-errors-and-exceptions" title="Link to this heading">#</a></h1>
+<p>In the previous section, we discussed numerical errors caused by how computers represent numbers. These are different from errors in a code, which can be classified into three different types: (1) syntax, (2) runtime, and (3) logical errors. Syntax errors occur when the code does not conform to the correct programming language syntax. Runtime errors (also called exceptions) occur when the code has no syntax errors but encounters exceptional situations. Logical errors occur when the code has no syntax or runtime errors and runs smoothly, but does not produce the intended result due to incorrect logic.</p>
+<p>So far, our programs have crashed whenever they have encountered a syntax or runtime error. However, runtime errors can be handled to allow the program to continue without crashing. In this section, we will discuss handling exceptions and debugging, which is the process of fixing bugs (i.e., errors).</p>
+<p><strong>Learning objectives:</strong></p>
+<ul class="simple">
+<li><p>Distinguish between different error types</p></li>
+<li><p>Identify the error type in a program</p></li>
+<li><p>Fix errors in a program</p></li>
+<li><p>Identify errors that can be handled</p></li>
+<li><p>Design programs that handle exceptions (one or multiple exceptions)</p></li>
+</ul>
+<section id="error-types">
+<h2>9.1. Error Types <a id="s1"></a><a class="headerlink" href="#error-types" title="Link to this heading">#</a></h2>
+<p>Errors or mistakes in a program are often referred to as <strong>bugs</strong>. The process of tracking them down and correcting them is called <strong>debugging</strong>. It is useful to distinguish between error types in order to track them down more quickly. There are three basic types of errors that can occur:</p>
+<ol class="arabic simple">
+<li><p>Syntax errors</p></li>
+<li><p>Runtime errors</p></li>
+<li><p>Logical errors</p></li>
+</ol>
+<section id="syntax-errors">
+<h3>9.1.1. Syntax Errors<a class="headerlink" href="#syntax-errors" title="Link to this heading">#</a></h3>
+<p>Syntax errors occur when the syntax of a program does not conform to the rules of the language. By now, you will have encountered many syntax errors when programming for this class. Some examples of syntax errors include:</p>
+<ul class="simple">
+<li><p>trying to assign a variable to a number: <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">=</span>&#160; <span class="pre">x</span></code></p></li>
+<li><p>inconsistent parentheses and/or brackets: <code class="docutils literal notranslate"><span class="pre">(1]</span></code></p></li>
+<li><p>missing quotes: <code class="docutils literal notranslate"><span class="pre">print(I</span> <span class="pre">like</span> <span class="pre">programming)</span></code></p></li>
+<li><p>missing colon: <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">function_name()</span></code></p></li>
+</ul>
+<p><strong>When they appear:</strong> The Python interpreter checks the code for correct structure before running it. If there is a syntax error, the program does not even begin to run and Python displays an error message.</p>
+<p>Overall, syntax errors are generally easily detectable, easily found, and easily fixed.</p>
+</section>
+<section id="runtime-errors-exceptions">
+<h3>9.1.2. Runtime Errors (Exceptions)<a class="headerlink" href="#runtime-errors-exceptions" title="Link to this heading">#</a></h3>
+<p>Runtime errors, also known as exceptions, occur when something goes wrong while the program is running. Some  examples of runtime errors include:</p>
+<ul class="simple">
+<li><p>division by zero: <code class="docutils literal notranslate"><span class="pre">1/0</span></code></p></li>
+<li><p>performing an operation on incompatible types: <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">[2]</span></code></p></li>
+<li><p>using a variable which has not been defined: <code class="docutils literal notranslate"><span class="pre">print(x)</span></code></p></li>
+<li><p>trying to access an index out of range: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">2];</span> <span class="pre">x[5]</span></code></p></li>
+<li><p>trying to import a misspelled/missing module: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">mat</span></code></p></li>
+</ul>
+<p><strong>When they appear:</strong> These errors only occur during execution, and only if the program actually reaches the problematic line. The program runs normally up to the error, then stops at that point. Python displays an error message showing what went wrong and where.</p>
+<p>Exceptions are more difficult to find and are only detectable by the interpreter when a program is run.</p>
+</section>
+<section id="logical-errors">
+<h3>9.1.3. Logical Errors<a class="headerlink" href="#logical-errors" title="Link to this heading">#</a></h3>
+<p>Sometimes, even if there are no syntax or runtime errors, and a code runs without raising any errors, that does not necessarily mean the code is correct. Logical errors occur when the result is incorrect due to a mistake in the logic of the program. If there is a logical error, the program will run smoothly, in the sense that the computer will not generate any error messages, but the result is incorrect. Some examples of logical errors include:</p>
+<ul class="simple">
+<li><p>mixing up a variable name</p></li>
+<li><p>getting operator precedence wrong</p></li>
+<li><p>making a mistake in logical operations</p></li>
+</ul>
+<p><strong>When they appear:</strong> Logical errors do not generate error messages. The program runs to completion, but produces the wrong result.</p>
+<p>Logical errors are easy to generate but very tricky to find.</p>
+</section>
+</section>
+<section id="exceptions">
+<h2>9.2. Exceptions <a id="s2"></a><a class="headerlink" href="#exceptions" title="Link to this heading">#</a></h2>
+<p>Until now, our programs have crashed whenever they have encountered a syntax or runtime error. Instead of letting the error crash our program, it would be nice if we can intercept it, handle it gracefully, and allow the program to continue. Syntax errors cannot be handled and are always fatal (a program with syntax error will always crash). However, runtime errors are not fatal – we can write our code to <em>handle</em> exceptions gracefully and allow the program to continue running instead of crashing. By handling exceptions, we can instruct our program to take alternative actions when a runtime error occurs.</p>
+<section id="uss-yorktown">
+<h3>9.2.1. USS Yorktown<a class="headerlink" href="#uss-yorktown" title="Link to this heading">#</a></h3>
+<p>One example where handling exceptions would have been helpful is the USS Yorktown, a cruiser in the United States Navy from 1984 to 2004. From 1996, Yorktown was used as the testbed for the Navy’s Smart Ship program. On 21 September 1997, while on maneuvers off the coast of Cape Charles, Virginia, a crew member entered a zero into a database field, causing an attempted division by zero in the ship’s Remote Data Base Manager. This error brought down all the machines on the network, causing the ship’s propulsion system to fail and the ship to stop dead in the water.</p>
+<br>
+<center><figure>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/USS_Yorktown_%28CG-48%29_2002.jpg/600px-USS_Yorktown_%28CG-48%29_2002.jpg" style="width:35%">
+    <figcaption style="text-align:center"><strong><br> USS Yorktown on 24 February 2002:</strong> <a href="https://en.wikipedia.org/wiki/USS_Yorktown_(CG-48)#Smart_ship_testbed">https://en.wikipedia.org/</a></figcaption>   
+</figure></center>
+<br>
+<p>Several lessons can be learned from this event that are useful for software development professionals:</p>
+<ul class="simple">
+<li><p>Programs should be designed to validate input data before processing it</p></li>
+<li><p>Programs should also catch and handle exceptions</p></li>
+</ul>
+</section>
+<section id="raising-exceptions">
+<h3>9.2.2. Raising Exceptions<a class="headerlink" href="#raising-exceptions" title="Link to this heading">#</a></h3>
+<p>When an issue arises during program execution, Python raises an exception to indicate that something has gone wrong. While Python performs some built-in checks, it’s essential to implement your own checks and provide informative error messages to clarify the problem.</p>
+<p>To raise an exception with a custom message, you can use the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="n">ExceptionType</span><span class="p">(</span><span class="s2">&quot;Message to display&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">ExceptionType</span></code> <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#bltin-exceptions">built-in exception types</a> available in Python. Choose the exception type that best describes the encountered error. If none of the built-in exceptions accurately represents the error, you can use <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code>.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Modify the function below to raise a <code>ValueError</code> with the message <code>”Divisor cannot be zero.”</code> when it is called with <code>divisor = 0</code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">division</span><span class="p">(</span><span class="n">dividend</span><span class="p">,</span> <span class="n">divisor</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">divisor</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># raise exception</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> / </span><span class="si">%d</span><span class="s2"> = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dividend</span><span class="p">,</span> <span class="n">divisor</span><span class="p">,</span> <span class="n">dividend</span><span class="o">/</span><span class="n">divisor</span><span class="p">))</span>
+        
+<span class="n">division</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="handling-exceptions">
+<h3>9.2.3. Handling Exceptions<a class="headerlink" href="#handling-exceptions" title="Link to this heading">#</a></h3>
+<p>Still, in the example above, the error caused the program to crash. We can alternatively write our code to handle exceptions and allow the program to continue to run instead of crashing. Exceptions can be handled using a <code class="docutils literal notranslate"><span class="pre">try</span></code> and <code class="docutils literal notranslate"><span class="pre">except</span></code> statement, which is similar to <code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code>. The syntax is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># attempt code block 1</span>
+<span class="k">except</span> <span class="n">ExceptionType</span><span class="p">:</span>
+    <span class="c1"># If an &#39;ExceptionType&#39; exception is raised above, do code block 2 </span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">block</span> <span class="pre">1</span></code> is a code that might raise an exception</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ExceptionType</span></code> is the exception <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#bltin-exceptions">type</a> that you want to handle (e.g., <code class="docutils literal notranslate"><span class="pre">NameError</span></code>, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">block</span> <span class="pre">2</span></code> is what will be executed if <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">block</span> <span class="pre">1</span></code> raises an exception that matches <code class="docutils literal notranslate"><span class="pre">ExceptionType</span></code></p></li>
+</ul>
+<p>Python’s behavior with try and except is straightforward:</p>
+<ol class="arabic simple">
+<li><p>Python will first attempt to execute the code in the <code class="docutils literal notranslate"><span class="pre">try</span></code> statement (code block 1).</p></li>
+<li><p>If no exception occurs during the execution of code block 1, the <code class="docutils literal notranslate"><span class="pre">except</span></code> statement (code block 2) is skipped, and the program continues executing the code outside the <code class="docutils literal notranslate"><span class="pre">try</span></code>/<code class="docutils literal notranslate"><span class="pre">except</span></code> construct.</p></li>
+<li><p>If any exception occurs while executing code block 1, the flow of control will immediately shift to the <code class="docutils literal notranslate"><span class="pre">except</span></code> statement.</p></li>
+<li><p>If the type of the raised exception matches <code class="docutils literal notranslate"><span class="pre">ExceptionType</span></code>, the code in the <code class="docutils literal notranslate"><span class="pre">except</span></code> statement (code block 2) will be executed.</p></li>
+<li><p>If nothing in the <code class="docutils literal notranslate"><span class="pre">except</span></code> block stops the program, it will continue to execute the rest of the code outside of the <code class="docutils literal notranslate"><span class="pre">try</span></code>/<code class="docutils literal notranslate"><span class="pre">except</span></code> code block.</p></li>
+</ol>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Run the following code. Input a letter (not a number) and examine the error:</p>
+</div></blockquote>
+<pre>
+dividend = int(input("Please enter the dividend: "))
+divisor = int(input("Please enter the divisor: "))
+print("%d / %d = %f" % (dividend, divisor, dividend/divisor))
+</pre>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dividend</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the dividend: &quot;</span><span class="p">))</span>
+<span class="n">divisor</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the divisor: &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> / </span><span class="si">%d</span><span class="s2"> = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dividend</span><span class="p">,</span> <span class="n">divisor</span><span class="p">,</span> <span class="n">dividend</span><span class="o">/</span><span class="n">divisor</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This statement does not run!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Try to handle the <code>ValueError</code> and print the following if it occurs: “The input should be an integer”.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add try except</span>
+
+<span class="c1"># code after try/except</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This statement runs!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the exception type does not match <code class="docutils literal notranslate"><span class="pre">ExceptionType</span></code>, the execution stops and an error is raised.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Input 0 for the divisor and examine the error.</p>
+</div></blockquote>
+<p>Inputting 0 for the divisor raises a <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>, which does not match the error type after <code class="docutils literal notranslate"><span class="pre">except</span></code> (i.e., <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>), and thus, the error in this case is not handled and the program crashes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">dividend</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the dividend: &quot;</span><span class="p">))</span>
+    <span class="n">divisor</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the divisor: &quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> / </span><span class="si">%d</span><span class="s2"> = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dividend</span><span class="p">,</span> <span class="n">divisor</span><span class="p">,</span> <span class="n">dividend</span><span class="o">/</span><span class="n">divisor</span><span class="p">))</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The input should be an integer&quot;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This statement does not run!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="handling-multiple-exceptions">
+<h3>9.2.4. Handling Multiple Exceptions<a class="headerlink" href="#handling-multiple-exceptions" title="Link to this heading">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">try</span></code> statement may have more than one <code class="docutils literal notranslate"><span class="pre">except</span></code> statement to handle different types of exceptions. Alternatively, a general <code class="docutils literal notranslate"><span class="pre">except</span></code> statement can be used without specifying <code class="docutils literal notranslate"><span class="pre">ExceptionType</span></code> to catch any exception type that occurs within the try block:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># attempt code block 1</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="c1"># If ANY exception is raised above, do code block 2 </span>
+</pre></div>
+</div>
+<p>In this case, <strong>all</strong> exceptions, of any type, will be handled. This, however, <em>is not a good idea</em>. What if we got an error that we hadn’t predicted? It would be handled as well, and we wouldn’t even notice that anything unusual was going wrong.</p>
+<p><strong>Example that handles ALL exception types:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">dividend</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the dividend: &quot;</span><span class="p">))</span>
+    <span class="n">divisor</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the divisor: &quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> / </span><span class="si">%d</span><span class="s2"> = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dividend</span><span class="p">,</span> <span class="n">divisor</span><span class="p">,</span> <span class="n">dividend</span><span class="o">/</span><span class="n">divisor</span><span class="p">))</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The input(s) is(are) incorrect&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Example that handles multiple exception types:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">dividend</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the dividend: &quot;</span><span class="p">))</span>
+    <span class="n">divisor</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the divisor: &quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> / </span><span class="si">%d</span><span class="s2"> = </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dividend</span><span class="p">,</span> <span class="n">divisor</span><span class="p">,</span> <span class="n">dividend</span><span class="o">/</span><span class="n">divisor</span><span class="p">))</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The divisor and dividend have to be numbers&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The divisor may not be zero&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Exception handling gives us an alternative way to deal with error-prone situations in our code. However, <code class="docutils literal notranslate"><span class="pre">try/except</span></code> statements should never be used in place of good programming practice. You should not code sloppily and then encase your program in many <code class="docutils literal notranslate"><span class="pre">try/except</span></code> statements until you have taken every measure you can think of to ensure that your function is working properly.</p>
+</section>
+</section>
+<section id="additional-reading">
+<h2>9.3. Additional Reading <a id="s3"></a><a class="headerlink" href="#additional-reading" title="Link to this heading">#</a></h2>
+<section id="using-assert-statements">
+<h3>9.3.1. Using <code class="docutils literal notranslate"><span class="pre">assert</span></code> Statements<a class="headerlink" href="#using-assert-statements" title="Link to this heading">#</a></h3>
+<p>When testing a program, it’s essential to test for both valid and invalid input data. For example, if you are writing a function that takes in an integer and squares it, it might be useful to ensure that your input is in fact an integer. A helpful tool for this is the <code class="docutils literal notranslate"><span class="pre">assert</span></code> keyword, which can be used to enforce conditions and assumptions in your code.</p>
+<p>Assertions are boolean expressions that check whether a given condition holds true or not.  If the condition is true, the program continues executing without any interruption. However, if the condition evaluates to false, an exception is raised, halting the program’s execution.</p>
+<p>The basic syntax of an <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement is as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">condition</span><span class="p">,</span> <span class="s2">&quot;Error Message&quot;</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">condition</span></code> is an expression or condition you want to check</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;Error</span> <span class="pre">Message&quot;</span></code> is an optional error message as a string to clarify why the assertion failed</p></li>
+</ul>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Modify the function below to assert that the type of <code>x</code> is an integer before squaring it.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">square_number</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># Add assert statement followed by an error message</span>
+    
+    <span class="n">sq</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">sq</span>
+
+<span class="c1"># call the function with invalid input</span>
+<span class="n">square_number</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So now, when the assert statement fails, we receive a clear error indicating that the argument to <code class="docutils literal notranslate"><span class="pre">square_number()</span></code> must be an integer. This allows us to quickly narrow down the problem.</p>
+<p>A useful function to check the data type of an object is the <code class="docutils literal notranslate"><span class="pre">isinstance()</span></code> function, which has the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">classinfo</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">object</span></code> is the object or variable you want to check</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">classinfo</span></code> is a class, type, or tuple of classes and types</p></li>
+</ul>
+<p>The function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">object</span></code> is an instance or a subclass of <code class="docutils literal notranslate"><span class="pre">classinfo</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Modify the function below to assert that the type of <code>x</code> is an integer or float using <code>isinstance()</code> before squaring it.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">square_number</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># Add assert statement with instance followed by an error message</span>
+    
+    <span class="n">sq</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">sq</span>
+
+<span class="c1"># call the function with invalid input</span>
+<span class="n">square_number</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="debugging">
+<h3>9.3.2. Debugging<a class="headerlink" href="#debugging" title="Link to this heading">#</a></h3>
+<p>Even with best practices, errors will occur. So, it is important to be able to identify and fix them. Errors are often referred to as bugs, and the process of tracking them down and correcting them is called debugging. One of the most important skills you will acquire is debugging. Although it can be frustrating, debugging is one of the most intellectually challenging and interesting parts of programming. In some ways, debugging is like detective work. You are confronted with errors or results that are not what you expect. These are your clues to infer what led to the results you see.</p>
+<p>When Python raises an error, look at what type of error it is to help narrow your search. Also check that you aren’t making any common mistakes (e.g., spelling, missing parentheses, missing quotes, = versus ==, etc.). If the cause of the error is not obvious, there are different debugging techniques, and we discuss some of these techniques below.</p>
+<section id="using-print">
+<h4>9.3.2.1. Using <code class="docutils literal notranslate"><span class="pre">print()</span></code><a class="headerlink" href="#using-print" title="Link to this heading">#</a></h4>
+<p>When you first learn how to program, it can be hard to spot bugs in your code. One common practice is to insert <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements at different lines to check how the output is changing. This will output the intermediate results which were calculated on that line. Most programmers intuitively do this as they are writing a function, or perhaps if they need to figure out why it isn’t doing the right thing.</p>
+<p>For example, let’s say the following function <code class="docutils literal notranslate"><span class="pre">f1()</span></code> keeps returning an error or incorrect result:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>We can add a <code class="docutils literal notranslate"><span class="pre">print()</span></code> statement before the return to check what <code class="docutils literal notranslate"><span class="pre">f2()</span></code> is returning:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f2 result: &#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>If it turns out <code class="docutils literal notranslate"><span class="pre">result</span></code> is not what we expect it to be, we would go look in <code class="docutils literal notranslate"><span class="pre">f2()</span></code> to see if it works properly.</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements for debugging, here are a few good practices to follow:</p>
+<ul class="simple">
+<li><p>Don’t just print out a variable – add some sort of message to make it easier for you to read</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="c1"># harder to keep track</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;f2 result: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># easier</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements to view the results of function calls (i.e. after function calls)</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements at the end of a loop to view the state of the counter variables after each iteration</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="n">f1</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;counter i is </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Don’t just put random <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements after lines that are obviously correct</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements described above are meant for quick debugging of one-time errors – after figuring out the error, you would remove all the <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements. However, sometimes we would like to leave the debugging code if we need to periodically test our file. It can get kind of annoying if every time we run our file, debugging messages pop up. One way to avoid this is to use a global debug variable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">debug</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f2 result: &#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>Now, whenever we want to do some debugging, we can set the global <code class="docutils literal notranslate"><span class="pre">debug</span></code> variable to <code class="docutils literal notranslate"><span class="pre">True</span></code>, and when we don’t want to see any debugging input, we can turn it to <code class="docutils literal notranslate"><span class="pre">False</span></code> (such a variable is called a “flag”).</p>
+</section>
+<section id="interactive-debugging">
+<h4>9.3.2.2. Interactive Debugging<a class="headerlink" href="#interactive-debugging" title="Link to this heading">#</a></h4>
+<p>Python has functionalities that can assist you when debugging. The standard debugging tool in Python is <code class="docutils literal notranslate"><span class="pre">pdb</span></code> (Python DeBugger) for interactive debugging. It lets you step through the code line by line to find out what might be causing a difficult error. We won’t cover too much about it here, you can check out the <a class="reference external" href="https://docs.python.org/3/library/pdb.html">documentation for details</a>.</p>
+<p>There are two ways you could debug your code, (1) activate the debugger after you run into an exception; (2) activate debugger before you run the code. Both work very similarly, so we will only demonstrate activating the debugger <em>after</em> an exception is raised.</p>
+<p>After an exception is raised, you could activate the debugger by using the command <code class="docutils literal notranslate"><span class="pre">%debug</span></code>, which will open an interactive debugger for you.</p>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Run the code below and then active the debugger using <code>%debug</code>. When the debugger is activated, enter <code>h</code> to get a list of helpful commands.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell first, which will raise an error</span>
+<span class="c1"># Then run the next cell and enter h</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">square_number</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">x</span>
+    <span class="n">sq</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">z</span>
+    <span class="k">return</span> <span class="n">sq</span>
+
+<span class="n">square_number</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell and type h, then hit Enter</span>
+<span class="o">%</span><span class="k">debug</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can type in commands in the debugger to get useful information. Some of the most frequent commands you can type are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">h</span></code> to get a list of help</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">x</span></code> to print the value of variable <code class="docutils literal notranslate"><span class="pre">x</span></code> (you can replace <code class="docutils literal notranslate"><span class="pre">x</span></code> with any variable in your code)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type(x)</span></code> to get the type of variable <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">locals()</span></code> to print out all the local variables</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">l</span></code> to list source code for the current file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">q</span></code> to quit the debugger</p></li>
+</ul>
+<p>It is often very useful to insert a breakpoint into your code. A breakpoint is a line in your code at which Python will stop when the function is run. This will allow you to to investigate the result up to this point in the code. To add a breakpoint, use <code class="docutils literal notranslate"><span class="pre">pdb.set_trace()</span></code>. The program stops at this line, and activate the <code class="docutils literal notranslate"><span class="pre">pdb</span></code> debugger. We could check all the variable values before this line. Then, you can use the command <code class="docutils literal notranslate"><span class="pre">c</span></code> to continue the execution.</p>
+<blockquote>
+<div><p><font color='#990000'><strong>📝 NOTE!</strong></font><br />
+To add a breakpoint, you have to first run <code>import pdb</code>.</p>
+</div></blockquote>
+<blockquote>
+<div><p><font color='#0080FF'><strong>💻 TRY IT!</strong></font><br />
+Run the code below and then investigate the variable <code>x</code> after the debugger is activated.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell</span>
+<span class="c1"># Then, investigate the input x up to pdb.set_trace()</span>
+<span class="c1"># First, type `p locals()` to print out all the local variables</span>
+<span class="c1"># Then, type `p x` to print the value of variable x</span>
+<span class="c1"># Third, type `type(x)` to get the type of variable x</span>
+<span class="c1"># Finally, type `c`, which will continue to run the program after pdb.set_trace(), resulting in an error</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pdb</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">square_number</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">x</span>
+    <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>  <span class="c1"># add a breakpoint here</span>
+    <span class="n">sq</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">sq</span>
+
+<span class="n">square_number</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_recursion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 8: Recursion</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09_number_rep.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 10: Number Representation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-types">9.1. Error Types <a id="s1"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-errors">9.1.1. Syntax Errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runtime-errors-exceptions">9.1.2. Runtime Errors (Exceptions)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-errors">9.1.3. Logical Errors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exceptions">9.2. Exceptions <a id="s2"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uss-yorktown">9.2.1. USS Yorktown</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raising-exceptions">9.2.2. Raising Exceptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-exceptions">9.2.3. Handling Exceptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-multiple-exceptions">9.2.4. Handling Multiple Exceptions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-reading">9.3. Additional Reading <a id="s3"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-assert-statements">9.3.1. Using <code class="docutils literal notranslate"><span class="pre">assert</span></code> Statements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging">9.3.2. Debugging</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-print">9.3.2.1. Using <code class="docutils literal notranslate"><span class="pre">print()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-debugging">9.3.2.2. Interactive Debugging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohamad M. Hallal
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
